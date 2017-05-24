@@ -3,13 +3,4 @@ layout : post
 title : Test Post
 date: 2017-05-23 13:50:30 +0900
 ---
-# Title
-## sub title
-### sub sub title
-This is just a test post of my blog.
-
-I am now preparing for my new blog.
-
-{% highlight ipynb %}
-
 test.ipynb
