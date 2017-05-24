@@ -5,8 +5,3 @@ date: 2017-05-23 13:50:30 +0900
 comments : true
 ---
 test.ipynb
-
-
-{% if page.comments %}
-  {% include disqus.html %}
-{% endif %}
