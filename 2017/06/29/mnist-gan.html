@@ -25,7 +25,7 @@
       crossorigin="anonymous"></script>
     <script src="/semantic/semantic.js"></script>
 
-    <title>Scala 의 Type Class 코드로 살펴보기 1</title>
+    <title>tensorflow 로 mnist 흉내내는 GAN 만들기</title>
 
   </head>
   <body>
@@ -46,13 +46,13 @@
 
     <img class="ui fluid image" src="/pangyo_long.jpeg" >
 
-    <h1>Scala 의 Type Class 코드로 살펴보기 1</h1>
-2017-06-29 00:45:40 +0900
+    <h1>tensorflow 로 mnist 흉내내는 GAN 만들기</h1>
+2017-06-29 00:00:00 +0900
 <div>
   <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>scala-type-class-blog</title>
+<title>mnist_gan</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11802,47 +11802,54 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>이번 글에서는 <strong>scala 의 Type class</strong> 에 대해서 코드와 함께 알아보도록 하겠습니다.</p>
-<p><strong>Type class</strong> 를 이용하면</p>
-<p>기존의 object oriented programming 에서 사용하던</p>
-<p><strong>상속이나 객체, 클래스의 개념 없이도</strong> 다양한 기능을 구현할 수 있습니다.</p>
-<p>(개인적인 소감으로는, Object Oriented Programming 의 소중함을 느끼게 해주는 공부였습니다...)</p>
-<p><br/>
-<br/>
-<br/></p>
-<h1 id="1.-Type-Class-&#51032;-&#44396;&#49457;">1. Type Class &#51032; &#44396;&#49457;<a class="anchor-link" href="#1.-Type-Class-&#51032;-&#44396;&#49457;">&#182;</a></h1><p><br/>
-<br/>
-<br/></p>
-<ol>
-<li><p>type class 본체</p>
+<p>잠깐!</p>
+<h4 id="pre-requisite-knowledge">pre-requisite knowledge<a class="anchor-link" href="#pre-requisite-knowledge">&#182;</a></h4><p><hr/>
+아래의 지식들을 알고 계셔야 읽기 편한 글입니다.</p>
+<blockquote><ol>
+<li><p>tensorflow, numpy, matplotlib 사용법</p>
 </li>
-<li><p>type class 의 instance (customizing)</p>
+<li><p>Nueral Network (특히 Binary Classification)</p>
 </li>
-<li><p>type class 의 interface (함수 사용)</p>
+<li><p>epoch, batch 단위 학습 방식</p>
 </li>
 </ol>
-<p>Type class 는 크게 위와같은  3가지 구성으로 이루어져 있습니다 .</p>
-<hr/>
-
-<p><strong>Type class 본체</strong>는 <code>abstract class</code> 또는 <code>trait</code>로 만듭니다.</p>
-<p>자세한 메서드의 구현은 생략하고, 공통된 동작만 기술되어 있습니다.</p>
-<hr/>
-
-<p><strong>Type class 의 instance</strong> 는 Type class 의 본체에 특정 Type 을 대입하여 구체화시켰다고 생각할 수 있습니다.</p>
-<p>Type class 의 인터페이스(interface) 에 특정 Type 이 들어왔을 때 어떤 동작을 할 것인지 구체적으로 Type Class 의 인스턴스로 표현 할 수 있습니다.</p>
-<p><code>implicit def</code>, 또는 <code>implicit val</code> 로 많이 표현합니다. 자세한 예는 아래서 다루도록 하겠습니다.</p>
-<hr/>
-
-<p><strong>Type Class 의 interface</strong>는 두 가지 파라메터(인자)를 받습니다.</p>
-<p>하나는 실제 함수에서 다룰 데이터이고, 하나는 데이터를 처리하는 동작이 기술되어있는 Type class 의 instance 입니다.</p>
+</blockquote>
 <p><br/>
 <br/>
-<br/></p>
-<h1 id="2.-Type-Class-&#44060;&#50836;">2. Type Class &#44060;&#50836;<a class="anchor-link" href="#2.-Type-Class-&#44060;&#50836;">&#182;</a></h1><p><br/>
 <br/>
 <br/></p>
-<p>기본적으로 type class 는 type 을 parameter로 받는 class 입니다.</p>
-<p>이제 이 아래부터는 실제 스칼라 코드를 통해서 여러가지 Type Class 와 그의 인스턴스, 인터페이스들을 구현해보도록 하겠습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이번 글에서는 <strong>GAN (Generative Adversarial Networks)</strong> 를 tensorflow code 로 구현하는 방법을 알아보려고 합니다.</p>
+<p>간단한 GAN 알고리즘을 통해서, MNIST 숫자 손글씨 데이터와 닮은 가짜 손글씨 데이터를 만들어내는 모델(<code>mnist_GAN</code>)을 만들어 보겠습니다.</p>
+<p>결과물을 미리 살짝 엿보자면 아래와 같은 실제 MNIST 데이터를</p>
+<p><img src="mnist_digits.png" alt="real_mnist"></p>
+<p>모델에게 계속 보여주면서 훈련시키면</p>
+<p>나중에는 아래처럼 비스무리한 숫자를 스스로 만들어낼 수 있습니다.</p>
+<p><img src="goblin-gan-generated/099.png" alt="title"></p>
+<p>이는 실제 제가 얻은 결과입니다.</p>
+<p>이번 공부를 하면서 참고한 자료는 아래 링크의 코드입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://github.com/golbin/TensorFlow-Tutorials/blob/master/07%20-%20GAN/01%20-%20GAN.py">https://github.com/golbin/TensorFlow-Tutorials/blob/master/07%20-%20GAN/01%20-%20GAN.py</a></p>
+<p><br/>
+<br/>
+그럼 이제</p>
+<p>어떻게 mnist 손글씨와 비슷한 이미지를 생성하는 mnist_GAN 모델을 구현하는지 보도록 하겠습니다.</p>
 
 </div>
 </div>
@@ -11853,16 +11860,118 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><br/>
-<br/>
 <br/></p>
-<h1 id="3.-&#54616;&#45208;&#51032;-type-parameter-&#47484;-&#48155;&#45716;-Type-class">3. &#54616;&#45208;&#51032; type parameter &#47484; &#48155;&#45716; Type class<a class="anchor-link" href="#3.-&#54616;&#45208;&#51032;-type-parameter-&#47484;-&#48155;&#45716;-Type-class">&#182;</a></h1><p><br/>
-<br/>
-<br/></p>
-<h3 id="part1-:-type-class-&#51032;-&#48376;&#52404;">part1 : type class &#51032; &#48376;&#52404;<a class="anchor-link" href="#part1-:-type-class-&#51032;-&#48376;&#52404;">&#182;</a></h3><p><hr/>
-Ord[A] 는 type A 의 무언가를 크기비교하는 기능을 가진 type class 입니다.</p>
-<p>Type Class 는 간단히 <code>abstract class</code> 또는 <code>traits</code>를 통해 구현합니다.</p>
-<p>메서드는 정의하지만 정확한 동작은 인스턴스에서 구현합니다.</p>
+<h1 id="01--mnist_GAN-&#51032;-&#44396;&#51312;&#50752;-&#45936;&#51060;&#53552;&#51032;-&#55120;&#47492;">01  mnist_GAN &#51032; &#44396;&#51312;&#50752; &#45936;&#51060;&#53552;&#51032; &#55120;&#47492;<a class="anchor-link" href="#01--mnist_GAN-&#51032;-&#44396;&#51312;&#50752;-&#45936;&#51060;&#53552;&#51032;-&#55120;&#47492;">&#182;</a></h1><hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>만들어볼 모델의 구조를 설명드리겠습니다.</p>
+<p><img src="goblin_gan.png" alt="title"></p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>GAN 은 두개의 서로 다른 학습 가능한 모델이 서로 경쟁하면서 학습합니다.</p>
+<p>두 모델의 이름은 각각 <strong><em>Genarator(생성기) , Discriminator (분류기) </em></strong>입니다 .</p>
+<h3 id="Discriminator-(&#48516;&#47448;&#44592;)">Discriminator (&#48516;&#47448;&#44592;)<a class="anchor-link" href="#Discriminator-(&#48516;&#47448;&#44592;)">&#182;</a></h3><p>분류기는 단순한 classification 을 수행하는 모델입니다.</p>
+<p>이미지 데이터를 input 으로 받으면 그 이미지가 실제 이미지(real)인지 가짜 이미지(fake) 인지 분류합니다.</p>
+<p>실제 이미지일 확률이 높으면 1에 가까운 수를,</p>
+<p>가짜 이미지일 확률이 높으면 0에 가까운 수를 반환합니다.</p>
+<blockquote><p><strong>분류기의 성능(성취도)</strong>는 실제 이미지를 잘 구분할수록, 즉 실제 이미지에 1에 가까운 수를 부여할수록 좋다고 할 수 있습니다.</p>
+</blockquote>
+<p>분류기는 간단한 binary classification 기능을 할 수 있는 2 layer NN 구조를 사용했습니다.</p>
+<h3 id="Genarator-(&#49373;&#49457;&#44592;)">Genarator (&#49373;&#49457;&#44592;)<a class="anchor-link" href="#Genarator-(&#49373;&#49457;&#44592;)">&#182;</a></h3><p>생성기는 가짜 이미지를 만들어냅니다.</p>
+<p>noise 데이터 [128] 을 input 으로 받으면, 그 noise 를 바탕으로</p>
+<p>output 으로 만들어낸 이미지 데이터[784] 를 생성합니다.</p>
+<blockquote><p><strong>생성기의 성능(성취도)</strong>는 자신이 만든 가짜 이미지를 분류기에 보여주었을 때 1에 가까운 수를 부여할 수록 좋다고 할 수 있습니다.</p>
+</blockquote>
+<p>생성기 내부를 구현하는 방법에는 다양한 방법이 있을 수 있지만,</p>
+<p>저는 단순히 2 layer NN 의 구조를 사용해보았습니다.</p>
+<h3 id="placeholder-Z">placeholder Z<a class="anchor-link" href="#placeholder-Z">&#182;</a></h3><p>Z 는 우리가 random 한 noise 를 넣어줄 placeholder 입니다.</p>
+<p>미세하게 어떤 noise 가 들어갔는지에 따라서 생성기가 만들어내는 가짜이미지가 달라질 것입니다.</p>
+<p>noise 의 크기는 임의로 128로 지정해놓았습니다.</p>
+<h3 id="placeholder-X">placeholder X<a class="anchor-link" href="#placeholder-X">&#182;</a></h3><p>X 는 분류기에게 보여줄 실제 이미지입니다.</p>
+<p>mnist 에서 제공하는 손글씨 숫자데이터 55000개를 이용할 것입니다.</p>
+<p>[55000, 784]</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="02-&#54617;&#49845;-&#48169;&#48277;-(loss-function,-train)">02 &#54617;&#49845; &#48169;&#48277; (loss function, train)<a class="anchor-link" href="#02-&#54617;&#49845;-&#48169;&#48277;-(loss-function,-train)">&#182;</a></h1><p><hr/>
+그렇다면 두개의 모델(분류기와 생성기)를 어떻게 학습시켜야할까요?</p>
+<p>학습을 위해서는 적절한 loss function 이 필요합니다.</p>
+<p>GAN 에는 loss function 이 손실을 나타낸다기보다 , 각 모델의 성취도 혹은 성능을 나타낸다고 하는 것이 좋을 것 같습니다.</p>
+<p>각 모델의 <strong>loss function(성능) 을 최대화</strong> 하는 것이 학습의 목표이기 때문입니다.</p>
+<p>위의 모델 설명에서 언급한 내용을 잠시 다시 보겠습니다.</p>
+<blockquote><p><strong>분류기의 성능(성취도)</strong>는 실제 이미지를 잘 구분할수록, 즉 실제 이미지에 1에 가까운 수를 부여할수록 좋다고 할 수 있습니다.</p>
+<p><strong>생성기의 성능(성취도)</strong>는 자신이 만든 가짜 이미지를 분류기에 보여주었을 때 1에 가까운 수를 부여할 수록 좋다고 할 수 있습니다.</p>
+</blockquote>
+<p>이 두 성취도는 위 모델 그림의 fake-result 와 real-result 로 다시 나타낼 수 있습니다.</p>
+<blockquote><p><strong>분류기의 성능(성취도)</strong> <code>d_loss</code>  는 real-result 는 높을수록, fake-result 는 낮을수록 좋습니다.</p>
+<p><strong>생성기의 성능(성취도)</strong> <code>g_loss</code>  는 fake-result 가 높을수록 좋습니다.</p>
+</blockquote>
+<p>이 d_loss 와 g_loss 를 각각 학습시켜, 최대화하도록 하면</p>
+<p>생성기의 성능과 분류기의 성능이 서로 경쟁적으로 올라가게 됩니다.</p>
+<p><br/>
+<br/></p>
+<h1 id="03-&#54617;&#49845;&#51012;-&#47560;&#52828;-&#54980;&#50640;&#45716;-...">03 &#54617;&#49845;&#51012; &#47560;&#52828; &#54980;&#50640;&#45716; ...<a class="anchor-link" href="#03-&#54617;&#49845;&#51012;-&#47560;&#52828;-&#54980;&#50640;&#45716;-...">&#182;</a></h1><hr/>
+
+<p>생성기에 새로운 noise 를 넣어서 실제 손글씨와 비슷한 이미지를 만들어내는지 확인해볼 것입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="04-Tensorflow-Code-&#47196;-&#51649;&#51217;-&#51676;&#48372;&#44592;">04 Tensorflow Code &#47196; &#51649;&#51217; &#51676;&#48372;&#44592;<a class="anchor-link" href="#04-Tensorflow-Code-&#47196;-&#51649;&#51217;-&#51676;&#48372;&#44592;">&#182;</a></h1><hr/>
+
+<p>이제 개념 정리와 어떻게 모델을 구성하고 학습할지에 대한 계획이 끝났으니,</p>
+<p>실제 tensorflow 로 코드를 짜보도록 하겠습니다.</p>
+<p><hr/>
+(1) Import Packages</p>
+<p>(2) 사용할 데이터 load</p>
+<p>(3) Hyper-Parameters 설정</p>
+<p>(4) 필요한 module 만들기</p>
+<p>(5) Graph 짜기</p>
+<p>(6) Graph Run 해서 반복 training 으로 variable update</p>
+<hr/>
+
+<p><br/>
+<br/>
+<br/>
+<br/><br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="(1)-Import-Packages">(1) Import Packages<a class="anchor-link" href="#(1)-Import-Packages">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11871,35 +11980,12 @@ Ord[A] 는 type A 의 무언가를 크기비교하는 기능을 가진 type clas
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Ord</span><span class="o">[</span><span class="kt">A</span><span class="o">]{</span>
-  <span class="k">def</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Int</span>  <span class="c1">// instnace 에서 구현될 것입니다. </span>
-  
-  <span class="c1">//A의 type 과 관계 없는 공통된 메서드들은 미리 작성해놓기도 합니다.   </span>
-  <span class="k">def</span> <span class="o">===(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">,</span> <span class="n">you</span><span class="o">)</span> <span class="o">==</span> <span class="mi">0</span>
-  <span class="k">def</span> <span class="o">&lt;(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">,</span> <span class="n">you</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mi">0</span>
-  <span class="k">def</span> <span class="o">&gt;(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">,</span> <span class="n">you</span><span class="o">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-  <span class="k">def</span> <span class="o">&lt;=(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">,</span> <span class="n">you</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="mi">0</span>
-  <span class="k">def</span> <span class="o">&gt;=(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">A</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">,</span> <span class="n">you</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span>
-<span class="o">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Ord</span></pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -11909,27 +11995,17 @@ Ord[A] 는 type A 의 무언가를 크기비교하는 기능을 가진 type clas
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="part2-:-type-class-&#51032;-instance-(customize)">part2 : type class &#51032; instance (customize)<a class="anchor-link" href="#part2-:-type-class-&#51032;-instance-(customize)">&#182;</a></h3><p><hr/>
-Ord[A] 의 type parameter A 에 다양한 type 을 집어넣음으로써 각각의 instance 를 구현합니다.</p>
-<p>type parameter 의 instance 는 
-<code>implicit val</code> 또는 <code>implicit def</code> 를 통해 구현합니다.</p>
-<p><strong>(<code>implicit def</code>는 보통 생성할 instance에 parameter type 을 한번 더 주고 싶을 때 사용합니다. )</strong></p>
-<p>잘 감이 안오신다면, 밑에 코드에서 한번 더 언급될 것입니다. 그때 다시 설명하겠습니다.</p>
-<h4 id="1.-Ord[Int]-&#51064;&#49828;&#53556;&#49828;">1. Ord[Int] &#51064;&#49828;&#53556;&#49828;<a class="anchor-link" href="#1.-Ord[Int]-&#51064;&#49828;&#53556;&#49828;">&#182;</a></h4><p>Int 라는 타입을 다룰 수 있는 Type class 의 인스턴스입니다.</p>
-<p>이 인스턴스를 인자로 받는 interface는 Int 타입의 데이터를 조작할 수 있습니다.</p>
-
+<h3 id="(2)-&#49324;&#50857;&#54624;-&#45936;&#51060;&#53552;-load">(2) &#49324;&#50857;&#54624; &#45936;&#51060;&#53552; load<a class="anchor-link" href="#(2)-&#49324;&#50857;&#54624;-&#45936;&#51060;&#53552;-load">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[0]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// A = Int</span>
-<span class="k">implicit</span> <span class="k">val</span> <span class="n">intOrd</span> <span class="k">:</span> <span class="kt">Ord</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Ord</span><span class="o">[</span><span class="kt">Int</span><span class="o">]{</span>  <span class="c1">//Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화</span>
-  <span class="k">def</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Int</span>  <span class="o">=</span> <span class="n">me</span> <span class="o">-</span> <span class="n">you</span>
-<span class="o">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.examples.tutorials.mnist</span> <span class="k">import</span> <span class="n">input_data</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">read_data_sets</span><span class="p">(</span><span class="s2">&quot;MNIST_data/&quot;</span><span class="p">)</span> 
 </pre></div>
 
 </div>
@@ -11941,46 +12017,28 @@ Ord[A] 의 type parameter A 에 다양한 type 을 집어넣음으로써 각각�
 
 
 <div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>cmd0.sc:1: not found: type Ord
-implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화
-                      ^cmd0.sc:1: not found: type Ord
-implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화
-                                     ^</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-Compilation Failed</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Extracting MNIST_data/train-images-idx3-ubyte.gz
+Extracting MNIST_data/train-labels-idx1-ubyte.gz
+Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+</pre>
 </div>
 </div>
 
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2.-Ord[Double]-&#51064;&#49828;&#53556;&#49828;">2. Ord[Double] &#51064;&#49828;&#53556;&#49828;<a class="anchor-link" href="#2.-Ord[Double]-&#51064;&#49828;&#53556;&#49828;">&#182;</a></h4><p>마찬가지고 Double 이라는 타입을 다룰 수 있는 Type class 의 인스턴스입니다.</p>
-<p>이 인스턴스를 인자로 받는 interface는 Double 타입의 데이터를 조작할 수 있습니다.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// A = Double</span>
-<span class="k">implicit</span> <span class="k">val</span> <span class="n">doubleOrd</span> <span class="k">:</span> <span class="kt">Ord</span><span class="o">[</span><span class="kt">Double</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Ord</span><span class="o">[</span><span class="kt">Double</span><span class="o">]{</span>
-  <span class="k">def</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span> <span class="k">:</span> <span class="kt">Double</span><span class="o">,</span> <span class="n">you</span> <span class="k">:</span> <span class="kt">Double</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">(</span><span class="n">me</span> <span class="o">-</span> <span class="n">you</span><span class="o">).</span><span class="n">toInt</span>
-<span class="o">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_x</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">images</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">labels</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">train_x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">train_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11991,13 +12049,11 @@ Compilation Failed</pre>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">doubleOrd</span>: <span class="ansi-green-fg">Ord</span>[<span class="ansi-green-fg">Double</span>] = $sess.cmd2Wrapper$Helper$$anon$1@3368bc6f</pre>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(55000, 784) (55000,)
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -12009,12 +12065,7 @@ Compilation Failed</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="3.-Ord[-(X,Y)-]-&#51064;&#49828;&#53556;&#49828;">3. Ord[ (X,Y) ] &#51064;&#49828;&#53556;&#49828;<a class="anchor-link" href="#3.-Ord[-(X,Y)-]-&#51064;&#49828;&#53556;&#49828;">&#182;</a></h4><p>여기에선 특별하게 implicit instance 안에 인자로 다시한번 implicit parameter를 받았습니다.</p>
-<p>(X,Y) 형식의 type 을 다룰 수 있도록 해주는 Type class 의 인스턴스이고,</p>
-<p>이 인스턴스를 받는 interface는 모두 (X,Y) 형식의 type 의 데이터를 다룰 수 있습니다.</p>
-<p><strong>type class interface + instance</strong> 의 혼종이라고 생각하면 좋겠습니다.
-(아래 interface 부분을 보시고 다시 보시는게 이해에 도움 됩니다. 조금 어렵습니다.)</p>
-
+<h3 id="(3)-Hyper-Parameters-&#49444;&#51221;">(3) Hyper-Parameters &#49444;&#51221;<a class="anchor-link" href="#(3)-Hyper-Parameters-&#49444;&#51221;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12023,33 +12074,12 @@ Compilation Failed</pre>
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// A = (X,Y)</span>
-<span class="k">implicit</span> <span class="k">def</span> <span class="n">twoOrd</span><span class="o">[</span><span class="kt">X</span>,<span class="kt">Y</span><span class="o">](</span><span class="k">implicit</span> <span class="n">ordX</span> <span class="k">:</span> <span class="kt">Ord</span><span class="o">[</span><span class="kt">X</span><span class="o">],</span> <span class="n">ordY</span> <span class="k">:</span> <span class="kt">Ord</span><span class="o">[</span><span class="kt">Y</span><span class="o">])</span>  <span class="k">:</span> <span class="kt">Ord</span><span class="o">[(</span><span class="kt">X</span>,<span class="kt">Y</span><span class="o">)]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Ord</span><span class="o">[(</span><span class="kt">X</span>,<span class="kt">Y</span><span class="o">)]{</span>
-  <span class="k">def</span> <span class="n">cmp</span><span class="o">(</span><span class="n">me</span> <span class="k">:</span> <span class="o">(</span><span class="kt">X</span><span class="o">,</span><span class="kt">Y</span><span class="o">),</span> <span class="n">you</span> <span class="k">:</span> <span class="o">(</span><span class="kt">X</span><span class="o">,</span><span class="kt">Y</span><span class="o">))</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
-    <span class="k">val</span> <span class="n">c1</span> <span class="k">=</span> <span class="n">ordX</span><span class="o">.</span><span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">you</span><span class="o">.</span><span class="n">_1</span><span class="o">)</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">c1</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="n">c1</span>
-    <span class="k">else</span> <span class="n">ordY</span><span class="o">.</span><span class="n">cmp</span><span class="o">(</span><span class="n">me</span><span class="o">.</span><span class="n">_2</span> <span class="o">,</span> <span class="n">you</span><span class="o">.</span><span class="n">_2</span><span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">total_epochs</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.0002</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">twoOrd</span></pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12059,17 +12089,49 @@ Compilation Failed</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="part3-:-type-class-interface-(&#49324;&#50857;)">part3 : type class interface (&#49324;&#50857;)<a class="anchor-link" href="#part3-:-type-class-interface-(&#49324;&#50857;)">&#182;</a></h3><hr/>
+<h3 id="(4)-&#54596;&#50836;&#54620;-module-&#47564;&#46308;&#44592;">(4) &#54596;&#50836;&#54620; module &#47564;&#46308;&#44592;<a class="anchor-link" href="#(4)-&#54596;&#50836;&#54620;-module-&#47564;&#46308;&#44592;">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:left">모듈이름</th>
+<th style="text-align:left">기능</th>
+<th style="text-align:left">input</th>
+<th style="text-align:left">output</th>
+<th style="text-align:left">trainable_variables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">generator</td>
+<td style="text-align:left">2 layer NN 로 구성된 가짜이미지 생성기를 호출합니다.</td>
+<td style="text-align:left">noise z [-, 128]</td>
+<td style="text-align:left">fake images [-,784]</td>
+<td style="text-align:left">Gen/w1, Gen/b1, Gen/w2, Gen/gb2</td>
+</tr>
+<tr>
+<td style="text-align:left">discriminator</td>
+<td style="text-align:left">2 layer NN 로 구성된 binary 분류기를 호출합니다.</td>
+<td style="text-align:left">real/fake images x [-,784]</td>
+<td style="text-align:left">scores [-,1]</td>
+<td style="text-align:left">Dis/w1, Dis/b1, Dis/w2, Dis/b2</td>
+</tr>
+<tr>
+<td style="text-align:left">random_noise</td>
+<td style="text-align:left">호출할 때마다 random normal한 batch_size 갯수의 noise 를 생성합니다.</td>
+<td style="text-align:left">batch_size</td>
+<td style="text-align:left">noise [batch_size, 128]</td>
+<td style="text-align:left">-</td>
+</tr>
+</tbody>
+</table>
 
-<p>type class Ord[X] 의 interface 에는 두개의 입구가 있습니다.</p>
-<ol>
-<li>type X 인 데이터 parameter 들을 받는 입구 </li>
-<li>Ord[X] 의 instance 를 implicit parameter 로 받는 입구 </li>
-</ol>
-<p><strong><em>1번 입구에서 받은 data 들을 , 2번 입구에서 받은 type class instance 의 규칙을 이용해 처리합니다. </em></strong></p>
-<p>여기서 implicit parameter 의 입구는, scala 의 컴파일러에 의해 자동으로 코드 내의 implicit val / implicit def 로 구현된 Cls[X] 의 instance 를 찾아 연결합니다.</p>
-<p><strong><em> 즉, 1번 입구는 넣어주어야하지만, 2번 입구는 인스턴스들만 만들어 놓았다면 자동으로 채워집니다. </em></strong></p>
-
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="&lt;-module1-:-Generator-(-&#49373;&#49457;&#44592;-)-&gt;">&lt; module1 : Generator ( &#49373;&#49457;&#44592; ) &gt;<a class="anchor-link" href="#&lt;-module1-:-Generator-(-&#49373;&#49457;&#44592;-)-&gt;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -12078,28 +12140,52 @@ Compilation Failed</pre>
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">max3</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">b</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">c</span><span class="k">:</span> <span class="kt">A</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">ord</span> <span class="k">:</span> <span class="kt">Ord</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">A</span> <span class="o">=</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">ord</span><span class="o">.&lt;=(</span><span class="n">a</span><span class="o">,</span><span class="n">b</span><span class="o">))</span>  <span class="o">{</span><span class="k">if</span> <span class="o">(</span><span class="n">ord</span><span class="o">.&lt;=(</span><span class="n">b</span><span class="o">,</span><span class="n">c</span><span class="o">))</span> <span class="n">c</span> <span class="k">else</span> <span class="n">b</span><span class="o">}</span>
-  <span class="k">else</span>              <span class="o">{</span><span class="k">if</span> <span class="o">(</span><span class="n">ord</span><span class="o">.&lt;=(</span><span class="n">a</span><span class="o">,</span><span class="n">c</span><span class="o">))</span> <span class="n">c</span> <span class="k">else</span> <span class="n">a</span> <span class="o">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">generator</span><span class="p">(</span> <span class="n">z</span> <span class="p">,</span> <span class="n">reuse</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">)</span> <span class="p">:</span> 
+    <span class="k">if</span> <span class="n">reuse</span><span class="o">==</span><span class="kc">False</span> <span class="p">:</span> 
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">name_or_scope</span> <span class="o">=</span> <span class="s2">&quot;Gen&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">scope</span> <span class="p">:</span> 
+            <span class="n">gw1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w1&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span> 
+                                  <span class="n">initializer</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+            <span class="c1"># quiz : weight 의 초깃값을 random normal 로 주는 이유는 무엇일까요?</span>
+            
+            <span class="n">gb1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span>
+                                 <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span>
+                                 <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+            
+            <span class="n">gw2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w2&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">784</span><span class="p">],</span> 
+                                  <span class="n">initializer</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+            
+            <span class="n">gb2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span>
+                                 <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">784</span><span class="p">],</span>
+                                 <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+    <span class="k">else</span> <span class="p">:</span> 
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">name_or_scope</span><span class="o">=</span><span class="s2">&quot;Gen&quot;</span><span class="p">,</span> <span class="n">reuse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">scope</span> <span class="p">:</span> 
+            <span class="n">gw1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w1&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span> 
+                                  <span class="n">initializer</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+            
+            <span class="n">gb1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span>
+                                 <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span>
+                                 <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+            
+            <span class="n">gw2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w2&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">784</span><span class="p">],</span> 
+                                  <span class="n">initializer</span><span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+            
+            <span class="n">gb2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span>
+                                 <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">784</span><span class="p">],</span>
+                                 <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">))</span> 
+        
+        
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">z</span> <span class="p">,</span> <span class="n">gw1</span><span class="p">)</span> <span class="o">+</span> <span class="n">gb1</span> <span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="n">gw2</span><span class="p">)</span> <span class="o">+</span> <span class="n">gb2</span> <span class="p">)</span>   <span class="c1">#출력층에 시그모이드를 쓰는 이유는 무엇일까요? </span>
+    
+    <span class="k">return</span> <span class="n">output</span>   <span class="c1">#[784] 가짜 생성된 이미지 </span>
+    
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">max3</span></pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12109,7 +12195,7 @@ Compilation Failed</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="result">result<a class="anchor-link" href="#result">&#182;</a></h3><hr/>
+<h4 id="&lt;-module2-:-Discriminator-(-&#48516;&#47448;&#44592;-)-&gt;">&lt; module2 : Discriminator ( &#48516;&#47448;&#44592; ) &gt;<a class="anchor-link" href="#&lt;-module2-:-Discriminator-(-&#48516;&#47448;&#44592;-)-&gt;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -12118,28 +12204,44 @@ Compilation Failed</pre>
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">max3</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">)</span>  <span class="c1">// ord = intOrd 인스턴스 자동 사용됨</span>
-<span class="n">max3</span><span class="o">[</span><span class="kt">Double</span><span class="o">](</span><span class="mf">1.1</span><span class="o">,</span> <span class="mf">2.2</span><span class="o">,</span> <span class="mf">3.3</span><span class="o">)</span> <span class="c1">// ord = doubleOrd 인스턴스 자동 사용됨</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">discriminator</span><span class="p">(</span> <span class="n">x</span> <span class="p">,</span> <span class="n">reuse</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="p">:</span> 
+
+    <span class="k">if</span><span class="p">(</span><span class="n">reuse</span> <span class="o">==</span> <span class="kc">False</span><span class="p">)</span> <span class="p">:</span> 
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">name_or_scope</span><span class="o">=</span><span class="s2">&quot;Dis&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">scope</span> <span class="p">:</span> 
+            <span class="n">dw1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w1&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">784</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">db1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">dw2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w2&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">db2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">else</span> <span class="p">:</span> 
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">name_or_scope</span><span class="o">=</span><span class="s2">&quot;Dis&quot;</span><span class="p">,</span> <span class="n">reuse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">scope</span> <span class="p">:</span> 
+            <span class="n">dw1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w1&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">784</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">db1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">dw2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;w2&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">db2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> 
+                                  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                                  <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal_initializer</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">)</span>
+            
+    <span class="n">hidden</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span> <span class="p">,</span> <span class="n">dw1</span><span class="p">)</span> <span class="o">+</span> <span class="n">db1</span> <span class="p">)</span>  <span class="c1">#[-, 256]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="n">dw2</span><span class="p">)</span>  <span class="o">+</span> <span class="n">db2</span> <span class="p">)</span>   <span class="c1">#[-, 1]  진품인지(1) 가품인지(0)의 label 결과값</span>
+    
+    <span class="k">return</span> <span class="n">output</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">res5_0</span>: <span class="ansi-green-fg">Int</span> = <span class="ansi-green-fg">3</span>
-<span class="ansi-cyan-fg">res5_1</span>: <span class="ansi-green-fg">Double</span> = <span class="ansi-green-fg">3.3</span></pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12149,19 +12251,7 @@ Compilation Failed</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><br/>
-<br/>
-<br/></p>
-<h1 id="4.-&#46160;&#44060;-&#51032;-type-parameter-&#47484;-&#48155;&#45716;-Type-class">4. &#46160;&#44060; &#51032; type parameter &#47484; &#48155;&#45716; Type class<a class="anchor-link" href="#4.-&#46160;&#44060;-&#51032;-type-parameter-&#47484;-&#48155;&#45716;-Type-class">&#182;</a></h1><p><br/>
-<br/>
-<br/></p>
-<p>같은 방식으로, 이번엔 두개의 type parameter 를 받는 type class 를 보겠습니다.</p>
-<h3 id="part1-:-type-class-&#51032;-&#48376;&#52404;">part1 : type class &#51032; &#48376;&#52404;<a class="anchor-link" href="#part1-:-type-class-&#51032;-&#48376;&#52404;">&#182;</a></h3><p><hr/>
-Iter[I,A] 는 type A 를 저장하고있는 type I 에서 , A를 조회하거나 다음 I 로 넘어가는 기능을 구현합니다.</p>
-<p>예를 들자면,</p>
-<p>A 가 Int 이면 I 는 이를 저장하는 List[Int]가 될 것이고</p>
-<p>A 가 String 이면 I는 이를 저장하는 List[String] 이 될 것입니다.</p>
-
+<h4 id="&lt;-module3-:--random-noise-&#49373;&#49457;&#44592;-&gt;">&lt; module3 :  random noise &#49373;&#49457;&#44592; &gt;<a class="anchor-link" href="#&lt;-module3-:--random-noise-&#49373;&#49457;&#44592;-&gt;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -12170,29 +12260,11 @@ Iter[I,A] 는 type A 를 저장하고있는 type I 에서 , A를 조회하거나
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iter</span><span class="o">[</span><span class="kt">I</span>, <span class="kt">A</span><span class="o">]{</span>    
-  <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>  <span class="c1">//메서드의 디테일은 인스턴스에서 구현합니다.</span>
-  <span class="k">def</span> <span class="n">getNext</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)</span> <span class="k">:</span> <span class="kt">I</span>
-<span class="o">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">random_noise</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span> <span class="p">:</span> 
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">batch_size</span> <span class="p">,</span> <span class="mi">128</span><span class="p">])</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Iter</span></pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12202,13 +12274,7 @@ Iter[I,A] 는 type A 를 저장하고있는 type I 에서 , A를 조회하거나
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part2-:-type-class-&#51032;-instance-(customize)">part2 : type class &#51032; instance (customize)<a class="anchor-link" href="#part2-:-type-class-&#51032;-instance-(customize)">&#182;</a></h3><p><hr/>
-Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각각의 instance 를 구현합니다.</p>
-<p>다시한번..<br/>
-<strong>(<code>implicit def</code>는 보통 생성할 instance에 parameter type 을 한번 더 주고 싶을 때 사용합니다. )</strong></p>
-<p><br/></p>
-<h4 id="1.-Iter[Int,-Int]-&#51064;&#49828;&#53556;&#49828;">1. Iter[Int, Int] &#51064;&#49828;&#53556;&#49828;<a class="anchor-link" href="#1.-Iter[Int,-Int]-&#51064;&#49828;&#53556;&#49828;">&#182;</a></h4>
+<h3 id="(5)-Graph-&#51676;&#44592;">(5) Graph &#51676;&#44592;<a class="anchor-link" href="#(5)-Graph-&#51676;&#44592;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12217,32 +12283,65 @@ Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각�
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// I = Int, A = Int </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
 
-<span class="c1">// Int 라는 저장 구조(I) 안에서 Int 데이터(A)를 조회할 수 있습니다. </span>
-<span class="k">implicit</span> <span class="k">val</span> <span class="n">intIter</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iter</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]{</span>
-  <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">)</span> <span class="nc">Some</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="k">else</span> <span class="nc">None</span>  
-  <span class="k">def</span> <span class="n">getNext</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">)</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
-<span class="o">}</span>
+<span class="k">with</span> <span class="n">g</span><span class="o">.</span><span class="n">as_default</span><span class="p">()</span> <span class="p">:</span> 
+    
+    <span class="c1">######################################################</span>
+    <span class="c1"># 1 .Feedable part  :: 그래프에서 유일하게 데이터가 유입될 수 있는 장소 </span>
+    <span class="c1">######################################################</span>
+    
+    <span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">784</span><span class="p">])</span> <span class="c1">#GAN 은 autoencoder 와 마찬가지로 unsupervised learning 이므로 y(label)을 사용하지 않습니다.</span>
+ 
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">128</span><span class="p">])</span> <span class="c1">#Z 는 생성기의 입력값으로 사용될 노이즈 입니다. </span>
+    
+    
+    <span class="c1">################################</span>
+    <span class="c1"># 2. generator 와 discriminator 의 사용 </span>
+    <span class="c1">##################################</span>
+
+    
+    <span class="n">fake_x</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+    
+    <span class="n">result_of_fake</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">fake_x</span><span class="p">)</span>
+    <span class="n">result_of_real</span> <span class="o">=</span> <span class="n">discriminator</span><span class="p">(</span><span class="n">X</span> <span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    
+    
+    <span class="c1">################################</span>
+    <span class="c1"># 3. Loss( 성취도평가 ) : g_loss 와 d_loss</span>
+    
+    <span class="c1"># g_loss &amp; d_loss 모두 높을 수록 좋다.</span>
+    <span class="c1"># g_loss : 얼마나 fake_x 가 진짜같은가</span>
+    <span class="c1"># d_loss : 얼마나 discriminator 가 정확한가 </span>
+    
+    <span class="c1"># 두 수치를 모두 높이도록 train 하면 생성기와 분류기의 성능이 모두 올라간다. </span>
+    <span class="c1">################################</span>
+    
+    <span class="n">g_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">result_of_fake</span><span class="p">)</span> <span class="p">)</span> 
+    <span class="n">d_loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span> <span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">result_of_real</span><span class="p">)</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">result_of_fake</span><span class="p">)</span> <span class="p">)</span>
+    
+    
+    <span class="c1">################################</span>
+    <span class="c1"># 4. Train : Maximizing g_loss &amp; d_loss</span>
+    <span class="c1">################################</span>
+    
+    <span class="n">t_vars</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">()</span> <span class="c1"># return list </span>
+    
+    <span class="n">g_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">t_vars</span> <span class="k">if</span> <span class="s2">&quot;Gen&quot;</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+    <span class="n">d_vars</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">t_vars</span> <span class="k">if</span> <span class="s2">&quot;Dis&quot;</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+    
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span>
+    
+    <span class="n">g_train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="o">-</span><span class="n">g_loss</span><span class="p">,</span> <span class="n">var_list</span><span class="o">=</span> <span class="n">g_vars</span><span class="p">)</span>
+    <span class="n">d_train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="o">-</span><span class="n">d_loss</span><span class="p">,</span> <span class="n">var_list</span> <span class="o">=</span> <span class="n">d_vars</span><span class="p">)</span>    
+    
+    <span class="c1"># g_loss &amp; d_loss 를 최대화 시켜야하는데 minimize 함수밖에 없기 때문에 - 음수부호 붙인다.</span>
+    
+    
+    
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">intIter</span>: <span class="ansi-green-fg">Iter</span>[<span class="ansi-green-fg">Int</span>, <span class="ansi-green-fg">Int</span>] = $sess.cmd7Wrapper$Helper$$anon$1@5a79ff31</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -12252,12 +12351,7 @@ Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각�
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h4 id="2.-Iter[-List[X],--X-]-&#51064;&#49828;&#53556;&#49828;">2. Iter[ List[X],  X ] &#51064;&#49828;&#53556;&#49828;<a class="anchor-link" href="#2.-Iter[-List[X],--X-]-&#51064;&#49828;&#53556;&#49828;">&#182;</a></h4><p>이 인스턴스의 독특한 점은, 인스턴스의 완성을 interface 로  떠넘겼다는 것입니다.</p>
-<p>X는 결국 이 인스턴스가 사용되는 interface 에서 결정됩니다.</p>
-<p>즉 interface에서 X를 Int 로 주면 Iter[List[Int], Int] 가 되고</p>
-<p>다른 값으로 주면 달라집니다.</p>
-
+<h3 id="(6)-Graph-Run-&#54644;&#49436;-&#48152;&#48373;-training-&#51004;&#47196;-variable-update">(6) Graph Run &#54644;&#49436; &#48152;&#48373; training &#51004;&#47196; variable update<a class="anchor-link" href="#(6)-Graph-Run-&#54644;&#49436;-&#48152;&#48373;-training-&#51004;&#47196;-variable-update">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12266,104 +12360,52 @@ Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각�
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// I = List[X], A = X </span>
-
-<span class="c1">//List 라는 저장구조 (I) 안에서 X 타입의 데이터(A) 를 조회할 수 있습니다.  </span>
-<span class="k">implicit</span> <span class="k">def</span> <span class="n">listIter</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iter</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">]{</span>
-  <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">])</span> <span class="k">=</span> <span class="n">i</span><span class="o">.</span><span class="n">headOption</span>
-  <span class="k">def</span> <span class="n">getNext</span><span class="o">(</span><span class="n">i</span>  <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">])</span> <span class="k">=</span> <span class="n">i</span><span class="o">.</span><span class="n">tail</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">listIter</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part3-:-type-class-interface-(&#49324;&#50857;)">part3 : type class interface (&#49324;&#50857;)<a class="anchor-link" href="#part3-:-type-class-interface-(&#49324;&#50857;)">&#182;</a></h3><hr/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// listIter 의 X를 인스턴스 파라메터에서 Int로 고정해놓았습니다.</span>
-<span class="k">def</span> <span class="n">sumElements</span><span class="o">[</span><span class="kt">I</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">I</span>, <span class="kt">Int</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">getValue</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span> <span class="k">match</span><span class="o">{</span>
-  <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span> <span class="mi">0</span>
-  <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">sumElements</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">getNext</span><span class="o">(</span><span class="n">xs</span><span class="o">))</span>
-<span class="o">}</span>
-
-
-<span class="c1">// listIter 의 X는 xs(I) 의 타입에 따라 결정됩니다. I 가 List[Int] 이면, A 도 Int 가 됩니다. </span>
-<span class="k">def</span> <span class="n">printElements</span><span class="o">[</span><span class="kt">I</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">I</span>, <span class="kt">A</span><span class="o">])</span> <span class="k">:</span><span class="kt">Unit</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">getValue</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span> <span class="k">match</span><span class="o">{</span>
-  <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span>
-  <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span><span class="n">println</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="o">;</span> <span class="n">printElements</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">getNext</span><span class="o">(</span><span class="n">xs</span><span class="o">))}</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">sumElements</span>
-defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">printElements</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="result">result<a class="anchor-link" href="#result">&#182;</a></h3><hr/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">printElements</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]](</span><span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">6</span><span class="o">))</span>
-<span class="n">printElements</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="mi">10</span><span class="o">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span> <span class="o">=</span> <span class="n">g</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span> <span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
+    
+    <span class="n">total_batchs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">train_x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span> 
+    
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_epochs</span><span class="p">)</span> <span class="p">:</span> 
+        
+        <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_batchs</span><span class="p">)</span> <span class="p">:</span> 
+            <span class="n">batch_x</span> <span class="o">=</span> <span class="n">train_x</span><span class="p">[</span><span class="n">batch</span> <span class="o">*</span> <span class="n">batch_size</span> <span class="p">:</span> <span class="p">(</span><span class="n">batch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">]</span>  <span class="c1"># [batch_size , 784]</span>
+            <span class="n">batch_y</span> <span class="o">=</span> <span class="n">train_y</span><span class="p">[</span><span class="n">batch</span> <span class="o">*</span> <span class="n">batch_size</span> <span class="p">:</span> <span class="p">(</span><span class="n">batch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">batch_size</span><span class="p">]</span>  <span class="c1"># [batch_size,]</span>
+            <span class="n">noise</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>  <span class="c1"># [batch_size, 128] </span>
+            
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">g_train</span> <span class="p">,</span> <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">Z</span> <span class="p">:</span> <span class="n">noise</span><span class="p">})</span>
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">d_train</span><span class="p">,</span> <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span> <span class="p">:</span> <span class="n">batch_x</span> <span class="p">,</span> <span class="n">Z</span> <span class="p">:</span> <span class="n">noise</span><span class="p">})</span>
+            
+            <span class="n">gl</span><span class="p">,</span> <span class="n">dl</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">g_loss</span><span class="p">,</span> <span class="n">d_loss</span><span class="p">],</span> <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">X</span> <span class="p">:</span> <span class="n">batch_x</span> <span class="p">,</span> <span class="n">Z</span> <span class="p">:</span> <span class="n">noise</span><span class="p">})</span>
+    
+    
+        <span class="c1">#매 20 epoch 마다 학습된 성능을 중간점검  (실제론 더 자주하시는 것이 좋습니다. )</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">1</span>  <span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=======Epoch : &quot;</span><span class="p">,</span> <span class="n">epoch</span> <span class="p">,</span> <span class="s2">&quot; =======================================&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;생성기 성능 : &quot;</span> <span class="p">,</span><span class="n">gl</span> <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;분류기 성능 : &quot;</span> <span class="p">,</span><span class="n">dl</span> <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;생성기와 분류기 선의의 경쟁중...&quot;</span><span class="p">)</span>
+            
+        
+        <span class="c1">#10개의 epoch 마다 Generator 가 만들어내는 실제 결과물을 얻어보며 , 성능 발전을 시각적으로 확인</span>
+    
+        <span class="k">if</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span>  <span class="p">:</span> 
+            <span class="n">sample_noise</span> <span class="o">=</span> <span class="n">random_noise</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            
+            <span class="n">generated</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fake_x</span> <span class="p">,</span> <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="n">Z</span> <span class="p">:</span> <span class="n">sample_noise</span><span class="p">})</span>
+            
+            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">:</span> 
+                <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+                <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span> <span class="n">generated</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span> <span class="p">)</span>
+            
+            <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;goblin-gan-generated/</span><span class="si">{}</span><span class="s1">.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        
+        
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;최적화 완료!&#39;</span><span class="p">)</span>
+        
+        
+    
 </pre></div>
 
 </div>
@@ -12376,20 +12418,31 @@ defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">p
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3
-4
-5
-6
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
+<pre>=======Epoch :  1  =======================================
+생성기 성능 :  -3.06128
+분류기 성능 :  -0.200115
+생성기와 분류기 선의의 경쟁중...
+=======Epoch :  19  =======================================
+생성기 성능 :  -2.32224
+분류기 성능 :  -0.4686
+생성기와 분류기 선의의 경쟁중...
+=======Epoch :  39  =======================================
+생성기 성능 :  -1.91436
+분류기 성능 :  -0.619524
+생성기와 분류기 선의의 경쟁중...
+=======Epoch :  59  =======================================
+생성기 성능 :  -1.69127
+분류기 성능 :  -0.593143
+생성기와 분류기 선의의 경쟁중...
+=======Epoch :  79  =======================================
+생성기 성능 :  -1.62559
+분류기 성능 :  -0.574774
+생성기와 분류기 선의의 경쟁중...
+=======Epoch :  99  =======================================
+생성기 성능 :  -1.76843
+분류기 성능 :  -0.501177
+생성기와 분류기 선의의 경쟁중...
+최적화 완료!
 </pre>
 </div>
 </div>
@@ -12404,225 +12457,24 @@ defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">p
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><br/>
-<br/>
 <br/></p>
-<h1 id="5.-&#51328;-&#45908;-&#48373;&#51105;&#54620;-&#47928;&#51228;&#46308;">5. &#51328; &#45908; &#48373;&#51105;&#54620; &#47928;&#51228;&#46308;<a class="anchor-link" href="#5.-&#51328;-&#45908;-&#48373;&#51105;&#54620;-&#47928;&#51228;&#46308;">&#182;</a></h1><p><br/>
-<br/>
-<br/></p>
-<h3 id="&#51116;&#47308;">&#51116;&#47308;<a class="anchor-link" href="#&#51116;&#47308;">&#182;</a></h3><hr/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//재료</span>
-<span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="nc">case</span> <span class="k">class</span> <span class="nc">Empty</span><span class="o">[</span><span class="kt">A</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="k">case</span> <span class="k">class</span> <span class="nc">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">left</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-</pre></div>
+<h1 id="05-&#44208;&#44284;&#47932;-&#48372;&#44592;">05 &#44208;&#44284;&#47932; &#48372;&#44592;<a class="anchor-link" href="#05-&#44208;&#44284;&#47932;-&#48372;&#44592;">&#182;</a></h1><p><hr/>
+위의 코드에서 , 매 10 epoch 마다 generator(생성기) 에 임의의 noise 10개를 주어서 생성되는 10개의 이미지를 저장했습니다.</p>
+<p>이 결과를 보면 , 학습이 진행되면 진행될수록 생성기가 실제 사람 손글씨와 비슷한 이미지 형태를 생성해냄을 볼 수 있습니다.</p>
+<h3 id="epoch-0">epoch 0<a class="anchor-link" href="#epoch-0">&#182;</a></h3><p><img src="goblin-gan-generated/000.png" alt="000"></p>
+<h3 id="epoch-9">epoch 9<a class="anchor-link" href="#epoch-9">&#182;</a></h3><p><img src="goblin-gan-generated/009.png" alt="title"></p>
+<h3 id="epoch-19">epoch 19<a class="anchor-link" href="#epoch-19">&#182;</a></h3><p><img src="goblin-gan-generated/019.png" alt="title"></p>
+<h3 id="epoch-29">epoch 29<a class="anchor-link" href="#epoch-29">&#182;</a></h3><p><img src="goblin-gan-generated/029.png" alt="title"></p>
+<h3 id="epoch-39">epoch 39<a class="anchor-link" href="#epoch-39">&#182;</a></h3><p><img src="goblin-gan-generated/039.png" alt="title"></p>
+<h3 id="epoch-49">epoch 49<a class="anchor-link" href="#epoch-49">&#182;</a></h3><p><img src="goblin-gan-generated/049.png" alt="title"></p>
+<h3 id="epoch-59">epoch 59<a class="anchor-link" href="#epoch-59">&#182;</a></h3><p><img src="goblin-gan-generated/059.png" alt="title"></p>
+<h3 id="epoch-69">epoch 69<a class="anchor-link" href="#epoch-69">&#182;</a></h3><p><img src="goblin-gan-generated/069.png" alt="title"></p>
+<h3 id="epoch-79">epoch 79<a class="anchor-link" href="#epoch-79">&#182;</a></h3><p><img src="goblin-gan-generated/079.png" alt="title"></p>
+<h3 id="epoch-89">epoch 89<a class="anchor-link" href="#epoch-89">&#182;</a></h3><p><img src="goblin-gan-generated/089.png" alt="title"></p>
+<h3 id="epoch-99">epoch 99<a class="anchor-link" href="#epoch-99">&#182;</a></h3><p><img src="goblin-gan-generated/099.png" alt="title"></p>
 
 </div>
 </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">MyTree</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Empty</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Node</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part1-:-type-class-&#48376;&#52404;">part1 : type class &#48376;&#52404;<a class="anchor-link" href="#part1-:-type-class-&#48376;&#52404;">&#182;</a></h3><p><hr/>
-순환적이지 않은 type R 의 무언가를 순환적으로 만들어준다.</p>
-<p>iter()는 순환적이지 않은 type R 의 무언가를 순환적인 I 로 바꾸고, I는 A들을 포함한다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iterable</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">I</span> ,<span class="kt">A</span><span class="o">]</span> <span class="o">{</span>
-  <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">R</span><span class="o">)</span> <span class="k">:</span> <span class="kt">I</span>
-  <span class="k">def</span> <span class="n">iterProxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">I</span>,<span class="kt">A</span><span class="o">]</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Iterable</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part2-:-type-class-&#51032;-instance-(customize)">part2 : type class &#51032; instance (customize)<a class="anchor-link" href="#part2-:-type-class-&#51032;-instance-(customize)">&#182;</a></h3><hr>
-<p><br/></p>
-<h4 id="Iterable[-MyTree[X]-,-List[X],--X-]-&#51064;&#49828;&#53556;&#49828;------------(&lt;--X-&#50976;&#46041;&#51201;-)">Iterable[ MyTree[X] , List[X],  X ] &#51064;&#49828;&#53556;&#49828;            (&lt;- X &#50976;&#46041;&#51201; )<a class="anchor-link" href="#Iterable[-MyTree[X]-,-List[X],--X-]-&#51064;&#49828;&#53556;&#49828;------------(&lt;--X-&#50976;&#46041;&#51201;-)">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">implicit</span> <span class="k">def</span> <span class="n">treeIterable</span><span class="o">[</span><span class="kt">X</span><span class="o">](</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iterable</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">]{</span>
-  <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">X</span><span class="o">])</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span> <span class="k">=</span> <span class="n">a</span> <span class="k">match</span><span class="o">{</span>
-    <span class="k">case</span> <span class="nc">Empty</span><span class="o">()</span> <span class="k">=&gt;</span>  <span class="nc">Nil</span>
-    <span class="k">case</span> <span class="nc">Node</span><span class="o">(</span><span class="n">v</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">v</span> <span class="o">::</span> <span class="o">(</span><span class="n">iter</span><span class="o">(</span><span class="n">left</span><span class="o">)</span> <span class="o">++</span> <span class="n">iter</span><span class="o">(</span><span class="n">right</span><span class="o">))</span>
-  <span class="o">}</span>
-  <span class="k">def</span> <span class="n">iterProxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">]</span> <span class="k">=</span>  <span class="n">proxy</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">treeIterable</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">part3 : type class &#51032; interface (&#49324;&#50857;)<a class="anchor-link" href="#part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">sumElements2</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">I</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">R</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">I</span> ,<span class="kt">Int</span><span class="o">])</span> <span class="k">=</span> <span class="n">sumElements</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iter</span><span class="o">(</span><span class="n">xs</span><span class="o">))(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iterProxy</span><span class="o">)</span>
-
-<span class="k">def</span> <span class="n">printElements2</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">I</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">R</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">I</span>, <span class="kt">Int</span><span class="o">])</span> <span class="k">=</span> <span class="n">printElements</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iter</span><span class="o">(</span><span class="n">xs</span><span class="o">))(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iterProxy</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">sumElements2</span>
-defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">printElements2</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="result">result<a class="anchor-link" href="#result">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">tree</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="nc">Empty</span><span class="o">(),</span> <span class="nc">Empty</span><span class="o">()),</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="nc">Empty</span><span class="o">(),</span> <span class="nc">Empty</span><span class="o">()))</span>
-
-<span class="n">sumElements2</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>, <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]](</span><span class="n">tree</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">tree</span>: <span class="ansi-green-fg">MyTree</span>[<span class="ansi-green-fg">Int</span>] = Node(10,Node(9,Empty(),Empty()),Node(8,Empty(),Empty()))
-<span class="ansi-cyan-fg">res15_1</span>: <span class="ansi-green-fg">Int</span> = <span class="ansi-green-fg">27</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -12630,888 +12482,12 @@ defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">p
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><br/>
-<br/>
 <br/></p>
-<h1 id="6.-Higher-kind-Type-classes">6. Higher-kind Type classes<a class="anchor-link" href="#6.-Higher-kind-Type-classes">&#182;</a></h1><p><br/>
-<br/>
-<br/>
-Higher-kind 는 type 들을 다시 상위의 하나의 개념으로 묶는, 상위 카테고리라고 할 수 있고, 변역은 "상류" 로 한다.</p>
-<p>아래 링크를 참고하면 좋다.</p>
-<blockquote><p>twitter 의 scalaschool : scala의 상류 타입</p>
-<p><a href="https://twitter.github.io/scala_school/ko/advanced-types.html#higher">https://twitter.github.io/scala_school/ko/advanced-types.html#higher</a></p>
-</blockquote>
-<h3 id="&#51116;&#47308;">&#51116;&#47308;<a class="anchor-link" href="#&#51116;&#47308;">&#182;</a></h3><hr/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">scala.language.higherKinds</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-green-fg">import </span><span class="ansi-cyan-fg">scala.language.higherKinds</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>higher kind 를 사용하려면 scala 에서 위처럼 higerKinds 패키지를 import 해줘야한다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="part1-:-type-class-&#48376;&#52404;">part1 : type class &#48376;&#52404;<a class="anchor-link" href="#part1-:-type-class-&#48376;&#52404;">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iter2</span><span class="o">[</span><span class="kt">I</span><span class="o">[</span><span class="k">_</span><span class="o">]]{</span>
-    <span class="k">def</span> <span class="n">getValue</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">I</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-    <span class="k">def</span> <span class="n">getNext</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">I</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">I</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Iter2</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="part2-:-type-class-&#51032;-instance-(customize)">part2 : type class &#51032; instance (customize)<a class="anchor-link" href="#part2-:-type-class-&#51032;-instance-(customize)">&#182;</a></h3><hr>
-<p><code>Iter2[I[_]]</code> 를 일종의 익명함수 처럼 생각하고 , 빈칸안에 들어올 인자타입은 나중에 받는 것으로 보류하고 나머지를 구현한다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">listIter2</span> <span class="k">:</span> <span class="kt">Iter2</span><span class="o">[</span><span class="kt">List</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iter2</span><span class="o">[</span><span class="kt">List</span><span class="o">]{</span>
-    <span class="k">def</span> <span class="n">getValue</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">=</span> <span class="n">a</span><span class="o">.</span><span class="n">headOption</span>
-    <span class="k">def</span> <span class="n">getNext</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">=</span> <span class="n">a</span><span class="o">.</span><span class="n">tail</span> 
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">listIter2</span>: <span class="ansi-green-fg">Iter2</span>[<span class="ansi-green-fg">List</span>] = $sess.cmd18Wrapper$Helper$$anon$1@1188d429</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">part3 : type class &#51032; interface (&#49324;&#50857;)<a class="anchor-link" href="#part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">// Int 를 담는 higerkind I 에 대해서만 동작한다.</span>
-<span class="k">def</span> <span class="n">sumElements3</span><span class="o">[</span><span class="kt">I</span><span class="o">[</span><span class="k">_</span><span class="o">]](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">I</span><span class="o">[</span><span class="kt">Int</span><span class="o">])(</span><span class="k">implicit</span> <span class="n">itr2</span> <span class="k">:</span> <span class="kt">Iter2</span><span class="o">[</span><span class="kt">I</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
-    <span class="n">itr2</span><span class="o">.</span><span class="n">getValue</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span> <span class="mi">0</span>
-        <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">sumElements3</span><span class="o">(</span><span class="n">itr2</span><span class="o">.</span><span class="n">getNext</span><span class="o">(</span><span class="n">xs</span><span class="o">))</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// higerkind I 에 담긴 type X에 구애를 받지 않는다. </span>
-<span class="k">def</span> <span class="n">printElements3</span><span class="o">[</span><span class="kt">I</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">X</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">I</span><span class="o">[</span><span class="kt">X</span><span class="o">])(</span><span class="k">implicit</span> <span class="n">itr2</span> <span class="k">:</span> <span class="kt">Iter2</span><span class="o">[</span><span class="kt">I</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
-    <span class="n">itr2</span><span class="o">.</span><span class="n">getValue</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span> <span class="k">match</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span> 
-        <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span><span class="n">println</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="o">;</span> <span class="n">printElements3</span><span class="o">(</span><span class="n">itr2</span><span class="o">.</span><span class="n">getNext</span><span class="o">(</span><span class="n">xs</span><span class="o">))}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">sumElements3</span>
-defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">printElements3</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="result">result<a class="anchor-link" href="#result">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">lst</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">10</span> <span class="o">,</span><span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">)</span>
-
-<span class="n">sumElements3</span><span class="o">(</span><span class="n">xs</span> <span class="k">=</span> <span class="n">lst</span><span class="o">)</span> 
-
-<span class="c1">// 과정1.    lst 가 들어가면서 I = List 타입인자 전달 ; </span>
-<span class="c1">// 과정2.    itr2 : Iter2[List] = listIter2   자동으로 채워짐 (implicit 끼리의 연동)</span>
-
-<span class="n">printElements3</span><span class="o">(</span><span class="n">xs</span> <span class="k">=</span> <span class="n">lst</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>4
-5
-10
-8
-9
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">lst</span>: <span class="ansi-green-fg">List</span>[<span class="ansi-green-fg">Int</span>] = <span class="ansi-yellow-fg">List</span>(<span class="ansi-green-fg">4</span>, <span class="ansi-green-fg">5</span>, <span class="ansi-green-fg">10</span>, <span class="ansi-green-fg">8</span>, <span class="ansi-green-fg">9</span>)
-<span class="ansi-cyan-fg">res21_1</span>: <span class="ansi-green-fg">Int</span> = <span class="ansi-green-fg">36</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/>
-<br/>
-<br/></p>
-<h1 id="7.-Higher-kind-Type-classes-+-&#51328;-&#45908;-&#50612;&#47140;&#50868;-&#47928;&#51228;&#46308;">7. Higher-kind Type classes + &#51328; &#45908; &#50612;&#47140;&#50868; &#47928;&#51228;&#46308;<a class="anchor-link" href="#7.-Higher-kind-Type-classes-+-&#51328;-&#45908;-&#50612;&#47140;&#50868;-&#47928;&#51228;&#46308;">&#182;</a></h1><p><br/>
-<br/>
-<br/>
-순환가능하지 않은 타입 R 을 순환 가능한 타입 I 으로 바꿔주는 동작과 (<code>def iter : I</code>),</p>
-<p>그 순환가능한 타입 I에 대한 순환동작(<code>type class Iter2[I]</code>) 을 접근할 수 있게 해주는 동작(<code>def iterProxy : Iter2[I]</code>)</p>
-<p>으로 구성된 새로운 <code>type class Iterable2[R[_], I[_]]</code> 를 만들어보자.</p>
-<h3 id="&#51116;&#47308;">&#51116;&#47308;<a class="anchor-link" href="#&#51116;&#47308;">&#182;</a></h3><hr/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">scala.language.higherKinds</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-green-fg">import </span><span class="ansi-cyan-fg">scala.language.higherKinds</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>아래는 예제에 사용될 MyTree 라는 데이터타입이다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//재료</span>
-<span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="nc">case</span> <span class="k">class</span> <span class="nc">Empty</span><span class="o">[</span><span class="kt">A</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="k">case</span> <span class="k">class</span> <span class="nc">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">left</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-green-fg">import </span><span class="ansi-cyan-fg">scala.language.higherKinds
-
-</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">MyTree</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Empty</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Node</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;/br&gt;</p>
-<h3 id="part1-:-type-class-&#48376;&#52404;">part1 : type class &#48376;&#52404;<a class="anchor-link" href="#part1-:-type-class-&#48376;&#52404;">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iterable2</span><span class="o">[</span><span class="kt">R</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>, <span class="kt">I</span><span class="o">[</span><span class="k">_</span><span class="o">]]{</span>
-    <span class="k">def</span> <span class="n">iter</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">R</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">I</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-    <span class="k">def</span> <span class="n">iterProxy</span> <span class="k">:</span> <span class="kt">Iter2</span><span class="o">[</span><span class="kt">I</span><span class="o">]</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Iterable2</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part2-:-type-class-&#51032;-instance-(customize)">part2 : type class &#51032; instance (customize)<a class="anchor-link" href="#part2-:-type-class-&#51032;-instance-(customize)">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">implicit</span> <span class="k">def</span> <span class="n">treeIterable2</span><span class="o">(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iter2</span><span class="o">[</span><span class="kt">List</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Iterable2</span><span class="o">[</span><span class="kt">MyTree</span>, <span class="kt">List</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iterable2</span><span class="o">[</span><span class="kt">MyTree</span>, <span class="kt">List</span><span class="o">]{</span>
-    <span class="k">def</span> <span class="n">iter</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">a</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="n">a</span> <span class="k">match</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="nc">Empty</span><span class="o">()</span> <span class="k">=&gt;</span> <span class="nc">Nil</span> 
-        <span class="k">case</span> <span class="nc">Node</span><span class="o">(</span><span class="n">v</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">v</span> <span class="o">::</span> <span class="o">(</span><span class="n">iter</span><span class="o">(</span><span class="n">left</span><span class="o">)</span> <span class="o">++</span> <span class="n">iter</span><span class="o">(</span><span class="n">right</span><span class="o">))</span> 
-    <span class="o">}</span>
-    <span class="k">def</span> <span class="n">iterProxy</span> <span class="k">:</span> <span class="kt">Iter2</span><span class="o">[</span><span class="kt">List</span><span class="o">]</span>  <span class="k">=</span>  <span class="n">proxy</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">treeIterable2</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>TIP ::  위의 코드는 아래와같이도 사용할 수 있다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="cm">/**</span>
-<span class="cm">implicit def treeIterable2: Iterable2[MyTree, List] = new Iterable2[MyTree, List]{</span>
-<span class="cm">    def iter[A](a : MyTree[A]) : List[A] = a match {</span>
-<span class="cm">        case Empty() =&gt; Nil </span>
-<span class="cm">        case Node(v, left, right) =&gt; v :: (iter(left) ++ iter(right)) </span>
-<span class="cm">    }</span>
-<span class="cm">    def iterProxy : Iter2[List]  =  implicitly[Iter2[List]] // type 주어진 채로 연동하기  </span>
-<span class="cm">}</span>
-<span class="cm">**/</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">part3 : type class &#51032; interface (&#49324;&#50857;)<a class="anchor-link" href="#part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">sumElements4</span><span class="o">[</span><span class="kt">R</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">I</span><span class="o">[</span><span class="k">_</span><span class="o">]](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">R</span><span class="o">[</span><span class="kt">Int</span><span class="o">])(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iterable2</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">I</span><span class="o">])</span> <span class="k">=</span> <span class="n">sumElements3</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iter</span><span class="o">(</span><span class="n">xs</span><span class="o">))(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iterProxy</span><span class="o">)</span>
-
-<span class="c1">//1. xs 에 인자가 전달된다. R과 _가 결정된다.</span>
-<span class="c1">//2. 결정된 R과 _ 를 확인한 implicit 가 proxy 를 결정한다. I가 결정된다. </span>
-
-
-<span class="k">def</span> <span class="n">printElements4</span><span class="o">[</span><span class="kt">R</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">I</span><span class="o">[</span><span class="kt">X</span><span class="o">]</span>, <span class="kt">X</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">R</span><span class="o">[</span><span class="kt">X</span><span class="o">])(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iterable2</span><span class="o">[</span><span class="kt">R</span>,<span class="kt">I</span><span class="o">])</span> <span class="k">=</span> <span class="n">printElements3</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iter</span><span class="o">(</span><span class="n">xs</span><span class="o">))(</span><span class="n">proxy</span><span class="o">.</span><span class="n">iterProxy</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">sumElements4</span>
-defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">printElements4</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="result">result<a class="anchor-link" href="#result">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">t2</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="nc">Empty</span><span class="o">(),</span> <span class="nc">Empty</span><span class="o">()),</span> <span class="nc">Empty</span><span class="o">()),</span> <span class="nc">Empty</span><span class="o">())</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">t2</span>: <span class="ansi-green-fg">MyTree</span>[<span class="ansi-green-fg">Int</span>] = Node(3,Node(4,Node(5,Empty(),Empty()),Empty()),Empty())</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="n">sumElements4</span><span class="o">(</span><span class="n">t2</span><span class="o">)</span>
-<span class="n">printElements4</span><span class="o">(</span><span class="n">t2</span><span class="o">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3
-4
-5
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">res28_0</span>: <span class="ansi-green-fg">Int</span> = <span class="ansi-green-fg">12</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/>
-<br/>
-<br/></p>
-<h1 id="8.-Higher-kind-Type-classes-+-Functor-Specification">8. Higher-kind Type classes + Functor Specification<a class="anchor-link" href="#8.-Higher-kind-Type-classes-+-Functor-Specification">&#182;</a></h1><p><br/>
-<br/>
-<br/></p>
-<h3 id="&#51116;&#47308;">&#51116;&#47308;<a class="anchor-link" href="#&#51116;&#47308;">&#182;</a></h3><hr/>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">scala.language.higherKinds</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-green-fg">import </span><span class="ansi-cyan-fg">scala.language.higherKinds</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="c1">//재료</span>
-<span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="nc">case</span> <span class="k">class</span> <span class="nc">Empty</span><span class="o">[</span><span class="kt">A</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-<span class="k">case</span> <span class="k">class</span> <span class="nc">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">left</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">MyTree</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Empty</span>
-defined <span class="ansi-green-fg">class</span> <span class="ansi-cyan-fg">Node</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>&lt;/br&gt;</p>
-<h3 id="part1-:-type-class-&#48376;&#52404;">part1 : type class &#48376;&#52404;<a class="anchor-link" href="#part1-:-type-class-&#48376;&#52404;">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">trait</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]]</span> <span class="o">{</span>
-    <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>, <span class="kt">B</span><span class="o">](</span><span class="n">f</span> <span class="k">:</span> <span class="kt">A</span><span class="o">=&gt;</span><span class="n">B</span><span class="o">)(</span><span class="n">x</span> <span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">trait</span> <span class="ansi-cyan-fg">Functor</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part2-:-type-class-&#51032;-instance-(customize)">part2 : type class &#51032; instance (customize)<a class="anchor-link" href="#part2-:-type-class-&#51032;-instance-(customize)">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">implicit</span> <span class="k">val</span> <span class="nc">ListFunctor</span> <span class="k">:</span> <span class="kt">Functor</span><span class="o">[</span><span class="kt">List</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">List</span><span class="o">]{</span>
-    <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">f</span> <span class="k">:</span> <span class="kt">A</span><span class="o">=&gt;</span><span class="n">B</span><span class="o">)(</span><span class="n">x</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="n">x</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">f</span><span class="o">)</span>
-<span class="o">}</span>
-
-<span class="k">implicit</span> <span class="k">val</span> <span class="nc">TreeFunctor</span> <span class="k">:</span> <span class="kt">Functor</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Functor</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">]{</span>
-    <span class="k">def</span> <span class="n">map</span><span class="o">[</span><span class="kt">A</span>,<span class="kt">B</span><span class="o">](</span><span class="n">f</span> <span class="k">:</span> <span class="kt">A</span><span class="o">=&gt;</span><span class="n">B</span><span class="o">)(</span><span class="n">x</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">B</span><span class="o">]</span> <span class="k">=</span> <span class="n">x</span> <span class="k">match</span><span class="o">{</span>
-        <span class="k">case</span> <span class="nc">Empty</span><span class="o">()</span> <span class="k">=&gt;</span> <span class="nc">Empty</span><span class="o">()</span>
-        <span class="k">case</span> <span class="nc">Node</span><span class="o">(</span><span class="n">v</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="nc">Node</span><span class="o">(</span><span class="n">f</span><span class="o">(</span><span class="n">v</span><span class="o">),</span> <span class="n">map</span><span class="o">(</span><span class="n">f</span><span class="o">)(</span><span class="n">left</span><span class="o">),</span> <span class="n">map</span><span class="o">(</span><span class="n">f</span><span class="o">)(</span><span class="n">right</span><span class="o">))</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">ListFunctor</span>: <span class="ansi-green-fg">Functor</span>[<span class="ansi-green-fg">List</span>] = $sess.cmd33Wrapper$Helper$$anon$1@3bbdd7c8
-<span class="ansi-cyan-fg">TreeFunctor</span>: <span class="ansi-green-fg">Functor</span>[<span class="ansi-green-fg">MyTree</span>] = $sess.cmd33Wrapper$Helper$$anon$2@6f83087e</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br/></p>
-<h3 id="part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">part3 : type class &#51032; interface (&#49324;&#50857;)<a class="anchor-link" href="#part3-:-type-class-&#51032;-interface-(&#49324;&#50857;)">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">compose</span><span class="o">[</span><span class="kt">F</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>,<span class="kt">X</span>,<span class="kt">Y</span>,<span class="kt">Z</span><span class="o">](</span><span class="n">g</span> <span class="k">:</span> <span class="kt">Y</span><span class="o">=&gt;</span><span class="n">Z</span><span class="o">)(</span><span class="n">f</span> <span class="k">:</span> <span class="kt">X</span><span class="o">=&gt;</span><span class="n">Y</span><span class="o">)(</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">X</span><span class="o">])(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Functor</span><span class="o">[</span><span class="kt">F</span><span class="o">])</span> <span class="k">:</span> <span class="kt">F</span><span class="o">[</span><span class="kt">Z</span><span class="o">]</span> <span class="o">={</span>
-    <span class="n">proxy</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">g</span><span class="o">)(</span><span class="n">proxy</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">f</span><span class="o">)(</span><span class="n">xs</span><span class="o">))</span>
-<span class="o">}</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>defined <span class="ansi-green-fg">function</span> <span class="ansi-cyan-fg">compose</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="result">result<a class="anchor-link" href="#result">&#182;</a></h3><hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">t2</span>: <span class="ansi-green-fg">MyTree</span>[<span class="ansi-green-fg">Int</span>] = Node(3,Node(4,Node(5,Empty(),Empty()),Empty()),Empty())</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-scala"><pre><span></span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3
-4
-5
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre><span class="ansi-cyan-fg">res28_0</span>: <span class="ansi-green-fg">Int</span> = <span class="ansi-green-fg">12</span></pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47560;&#52824;&#47728;-...">&#47560;&#52824;&#47728; ...<a class="anchor-link" href="#&#47560;&#52824;&#47728;-...">&#182;</a></h1><hr/>
+
+<p>간단한 2 layer NN 와 mnist data, 그리고 GAN 구조를 이용해 mnist 손글씨를 흉내내는 모델을 tensorflow 만들어보았습니다.</p>
+<p>코드를 보시다 궁금한 점이나 오류가 있다면</p>
+<p>아래 댓글로 남겨주시면 감사하겠습니다 ^^ .</p>
 
 </div>
 </div>
