@@ -47,7 +47,7 @@
     <img class="ui fluid image" src="/pangyo_long.jpeg" >
 
     <h1>tensorflow 로 mnist 흉내내는 GAN 만들기</h1>
-2017-06-29 00:00:00 +0900
+2017-06-29 18:00:30 +0900
 <div>
   <!DOCTYPE html>
 <html>
@@ -11830,10 +11830,10 @@ div#notebook {
 <p>이번 글에서는 <strong>GAN (Generative Adversarial Networks)</strong> 를 tensorflow code 로 구현하는 방법을 알아보려고 합니다.</p>
 <p>간단한 GAN 알고리즘을 통해서, MNIST 숫자 손글씨 데이터와 닮은 가짜 손글씨 데이터를 만들어내는 모델(<code>mnist_GAN</code>)을 만들어 보겠습니다.</p>
 <p>결과물을 미리 살짝 엿보자면 아래와 같은 실제 MNIST 데이터를</p>
-<p><img src="mnist_digits.png" alt="real_mnist"></p>
+<p><img src="/images/mnist_digits.png" alt="real_mnist"></p>
 <p>모델에게 계속 보여주면서 훈련시키면</p>
 <p>나중에는 아래처럼 비스무리한 숫자를 스스로 만들어낼 수 있습니다.</p>
-<p><img src="goblin-gan-generated/099.png" alt="title"></p>
+<p><img src="/images/goblin-gan-generated/099.png" alt="title"></p>
 <p>이는 실제 제가 얻은 결과입니다.</p>
 <p>이번 공부를 하면서 참고한 자료는 아래 링크의 코드입니다.</p>
 
@@ -11871,7 +11871,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>만들어볼 모델의 구조를 설명드리겠습니다.</p>
-<p><img src="goblin_gan.png" alt="title"></p>
+<p><img src="/images/goblin_gan.png" alt="title"></p>
 
 </div>
 </div>
@@ -12461,17 +12461,17 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 <h1 id="05-&#44208;&#44284;&#47932;-&#48372;&#44592;">05 &#44208;&#44284;&#47932; &#48372;&#44592;<a class="anchor-link" href="#05-&#44208;&#44284;&#47932;-&#48372;&#44592;">&#182;</a></h1><p><hr/>
 위의 코드에서 , 매 10 epoch 마다 generator(생성기) 에 임의의 noise 10개를 주어서 생성되는 10개의 이미지를 저장했습니다.</p>
 <p>이 결과를 보면 , 학습이 진행되면 진행될수록 생성기가 실제 사람 손글씨와 비슷한 이미지 형태를 생성해냄을 볼 수 있습니다.</p>
-<h3 id="epoch-0">epoch 0<a class="anchor-link" href="#epoch-0">&#182;</a></h3><p><img src="goblin-gan-generated/000.png" alt="000"></p>
-<h3 id="epoch-9">epoch 9<a class="anchor-link" href="#epoch-9">&#182;</a></h3><p><img src="goblin-gan-generated/009.png" alt="title"></p>
-<h3 id="epoch-19">epoch 19<a class="anchor-link" href="#epoch-19">&#182;</a></h3><p><img src="goblin-gan-generated/019.png" alt="title"></p>
-<h3 id="epoch-29">epoch 29<a class="anchor-link" href="#epoch-29">&#182;</a></h3><p><img src="goblin-gan-generated/029.png" alt="title"></p>
-<h3 id="epoch-39">epoch 39<a class="anchor-link" href="#epoch-39">&#182;</a></h3><p><img src="goblin-gan-generated/039.png" alt="title"></p>
-<h3 id="epoch-49">epoch 49<a class="anchor-link" href="#epoch-49">&#182;</a></h3><p><img src="goblin-gan-generated/049.png" alt="title"></p>
-<h3 id="epoch-59">epoch 59<a class="anchor-link" href="#epoch-59">&#182;</a></h3><p><img src="goblin-gan-generated/059.png" alt="title"></p>
-<h3 id="epoch-69">epoch 69<a class="anchor-link" href="#epoch-69">&#182;</a></h3><p><img src="goblin-gan-generated/069.png" alt="title"></p>
-<h3 id="epoch-79">epoch 79<a class="anchor-link" href="#epoch-79">&#182;</a></h3><p><img src="goblin-gan-generated/079.png" alt="title"></p>
-<h3 id="epoch-89">epoch 89<a class="anchor-link" href="#epoch-89">&#182;</a></h3><p><img src="goblin-gan-generated/089.png" alt="title"></p>
-<h3 id="epoch-99">epoch 99<a class="anchor-link" href="#epoch-99">&#182;</a></h3><p><img src="goblin-gan-generated/099.png" alt="title"></p>
+<h3 id="epoch-0">epoch 0<a class="anchor-link" href="#epoch-0">&#182;</a></h3><p><img src="/images/goblin-gan-generated/000.png" alt="000"></p>
+<h3 id="epoch-9">epoch 9<a class="anchor-link" href="#epoch-9">&#182;</a></h3><p><img src="/images/goblin-gan-generated/009.png" alt="title"></p>
+<h3 id="epoch-19">epoch 19<a class="anchor-link" href="#epoch-19">&#182;</a></h3><p><img src="/images/goblin-gan-generated/019.png" alt="title"></p>
+<h3 id="epoch-29">epoch 29<a class="anchor-link" href="#epoch-29">&#182;</a></h3><p><img src="/images/goblin-gan-generated/029.png" alt="title"></p>
+<h3 id="epoch-39">epoch 39<a class="anchor-link" href="#epoch-39">&#182;</a></h3><p><img src="/images/goblin-gan-generated/039.png" alt="title"></p>
+<h3 id="epoch-49">epoch 49<a class="anchor-link" href="#epoch-49">&#182;</a></h3><p><img src="/images/goblin-gan-generated/049.png" alt="title"></p>
+<h3 id="epoch-59">epoch 59<a class="anchor-link" href="#epoch-59">&#182;</a></h3><p><img src="/images/goblin-gan-generated/059.png" alt="title"></p>
+<h3 id="epoch-69">epoch 69<a class="anchor-link" href="#epoch-69">&#182;</a></h3><p><img src="/images/goblin-gan-generated/069.png" alt="title"></p>
+<h3 id="epoch-79">epoch 79<a class="anchor-link" href="#epoch-79">&#182;</a></h3><p><img src="/images/goblin-gan-generated/079.png" alt="title"></p>
+<h3 id="epoch-89">epoch 89<a class="anchor-link" href="#epoch-89">&#182;</a></h3><p><img src="/images/goblin-gan-generated/089.png" alt="title"></p>
+<h3 id="epoch-99">epoch 99<a class="anchor-link" href="#epoch-99">&#182;</a></h3><p><img src="/images/goblin-gan-generated/099.png" alt="title"></p>
 
 </div>
 </div>
