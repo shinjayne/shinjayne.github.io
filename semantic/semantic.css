@@ -11640,8 +11640,9 @@ img.ui.bordered.image {
 .ui.small.images img,
 .ui.small.images svg,
 .ui.small.image {
+  padding-bottom: 100px ;
   width: 150px;
-  height: 200px;
+  height: auto;
   font-size: 0.92857143rem;
 }
 
