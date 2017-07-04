@@ -2,7 +2,10 @@
 <!doctype html>
 <html>
   <head>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Analytics js-->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -13,11 +16,27 @@
     ga('send', 'pageview');
   </script>
 
+  <!-- code highlight js / css-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
+    <!-- BootStrap js / css-->
+    <link href="/bootstrap-3.3.2/css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+     <script src="/bootstrap-3.3.2/js/bootstrap.js"></script>
 
+    <!-- JUPYTER NOTEBOOK js / css-->
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+     <link href="/jupyterstyle/jupyterstyle.css" rel="stylesheet">
+
+
+  <!-- Semantic UI js / css-->
     <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -25,10 +44,14 @@
       crossorigin="anonymous"></script>
     <script src="/semantic/semantic.js"></script>
 
+
+
+
     <title></title>
 
   </head>
   <body>
+
     <div class = "ui container">
 
       <div class="ui top fixed menu">
@@ -40,31 +63,40 @@
         <h5> <a class="item" href = "https://shinjayne.github.io//about">About</a> </h5>
       </div>
 
+      <div class="ui grid">
+        <div class="two wide column">
 
-    the developer blog
-    <hr />
+        </div>
 
-    <img class="ui fluid image" src="/pangyo_long.jpeg" >
+        <div class="twelve wide column">
+          <img class="ui fluid rounded image" src="/pangyo_long.jpeg" >
+        </div>
 
-    <div class = "ui center aligned text container" >
-  <h1 class = "ui ultra header">Welcome</h1>
-</div>
+        <div class="two wide column">
+
+        </div>
+
+        <div class="two wide column">  </div>
 
 
-
+<div class="eight wide column">
+  
 
 
 <div class = "ui segment">
 
 <h3>Recent Posts</h3>
 
-<div class="ui items">
+<div class="ui divided items">
   
 
     <div class="item">
 
-      <div class="image">
-        <img src="/pangyo.jpeg">
+      <div class="ui small rounded bordered image">
+        
+          <img class="ui bordered image" src=/images/goblin-gan-generated/099.png>
+        
+
       </div>
 
       <div class="content">
@@ -86,7 +118,7 @@
         <div class="extra">
           <p>
             
-              잠깐! pre-requisite knowledge&#182; 아래의 지식들을 알고 계셔야 읽기 편한 글입니다. tensorflow, numpy, matplotlib 사용법 Nueral Network (특히 Binary Classification) epoch, batch 단위 학습 방식 이번 글에서는 GAN (Generative Adversarial Networks)...
+              잠깐!pre-requisite knowledge&#182;아래의 지식들을 알고 계셔야 읽기 편한 글입니다.tensorflow, numpy, matplotlib 사용법Nueral Network (특히 Binary Classification)epoch, batch 단위 학습 방식", "이번 글에서는 GAN (Generative Adversarial Networ...
             
           </p>
         </div>
@@ -100,8 +132,11 @@
 
     <div class="item">
 
-      <div class="image">
-        <img src="/pangyo.jpeg">
+      <div class="ui small rounded bordered image">
+        
+          <img class="ui bordered image" src=/images/scala-icon.png>
+        
+
       </div>
 
       <div class="content">
@@ -123,7 +158,7 @@
         <div class="extra">
           <p>
             
-              1. Turning Type Classes into OO Classes&#182; In&nbsp;[1]: abstract class Iter[I,A]{ def getValue(i : I) : Option[A] def getNext(i : I) : I } Out[1]: defined class Iter In&nbsp;[2]: implicit...
+              1. Turning Type Classes into OO Classes&#182;In&nbsp;[1]:    abstract class Iter[I,A]{    def getValue(i : I) : Option[A]    def getNext(i : I) : I }Out[1]:defined class IterIn&nbsp;[2]:    implicit d...
             
           </p>
         </div>
@@ -137,8 +172,11 @@
 
     <div class="item">
 
-      <div class="image">
-        <img src="/pangyo.jpeg">
+      <div class="ui small rounded bordered image">
+        
+          <img class="ui bordered image" src=/images/scala-icon.png>
+        
+
       </div>
 
       <div class="content">
@@ -160,7 +198,7 @@
         <div class="extra">
           <p>
             
-              이번 글에서는 scala 의 Type class 에 대해서 코드와 함께 알아보도록 하겠습니다. Type class 를 이용하면 기존의 object oriented programming 에서 사용하던 상속이나 객체, 클래스의 개념 없이도 다양한 기능을 구현할...
+              이번 글에서는 scala 의 Type class 에 대해서 코드와 함께 알아보도록 하겠습니다.Type class 를 이용하면기존의 object oriented programming 에서 사용하던상속이나 객체, 클래스의 개념 없이도 다양한 기능을 구현할 수 있습니다.(개인적인 소감으로는, Object Oriented Programming 의 소중함을 느끼게 ...
             
           </p>
         </div>
@@ -174,8 +212,11 @@
 
     <div class="item">
 
-      <div class="image">
-        <img src="/pangyo.jpeg">
+      <div class="ui small rounded bordered image">
+        
+          <img class="ui image" src="/pangyo.jpeg">
+        
+
       </div>
 
       <div class="content">
@@ -197,7 +238,7 @@
         <div class="extra">
           <p>
             
-              Deep Learning&#182;Assignment 1&#182;The objective of this assignment is to learn about simple data curation practices, and familiarize you with some of the data we'll be reusing later. This notebook uses...
+              Deep Learning&#182;Assignment 1&#182;The objective of this assignment is to learn about simple data curation practices, and familiarize you with some of the data we'll be reusing later.This notebook u...
             
           </p>
         </div>
@@ -212,35 +253,130 @@
 
 </div>
 
+</div>
+
+<div class="four wide column">
+  <div class="ui card">
+  <div class="image">
+    <img src="/images/profile.jpeg">
+  </div>
+  <div class="content">
+    <a class="header">Jayne Shin</a>
+    <div class="meta">
+      <span>Developer</span>
+    </div>
+    <div class="description">
+      <div>
+        <i class="student icon"></i>
+        Seoul National University
+      </div>
+      <div>
+        <i class="birthday icon"></i>
+        1996.10.29
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="meta">
+      <span>Contact</span>
+    </div>
+
+    <div class="description">
+      <div>
+        <i class="github icon"></i>
+        <a href="https://github.com/shinjayne">github.com</a>
+      </div>
+      <div>
+        <i class="facebook icon"></i>
+        <a href="https://www.facebook.com/profile.php?id=100008716364762">facebook.com</a>
+      </div>
+      <div>
+        <i class="mail icon"></i>
+        shinjayne@gmail.com
+      </div>
+      <div>
+        <i class="mail icon"></i>
+        shinjayne@snu.ac.kr
+      </div>
+    </div>
+
+  </div>
+
+  <div class="extra content">
+    <a>
+      <i class="user icon"></i>
+      22 Friends
+    </a>
+  </div>
+</div>
+
+</div>
+
+<div class="two wide column">  </div>
+
+
+
+
 
 
 <script src="https://semantic-ui.com/javascript/library/highlight.js"></script>
 
 
+        <div class="two wide column"></div>
+
+        <div class="twelve wide column">
+          <hr />
+          <div id="disqus_thread" class = "ui segment"></div>
+          <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+          /*
+          var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          */
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://shinjayne.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+
+        <div class="two wide column"></div>
 
 
 
-    <hr />
-    <div id="disqus_thread" class = "ui segment"></div>
-    <script>
+        <div class="two wide column">
+        </div>
+        <div class="twelve wide column">
+          <hr />
+          <p>
+            powered by <a>Jupyter NoteBook</a> / <a>Jekyll</a> / <a>BootStrap</a> / <a>Semantic-UI</a> / <a>Github Pages</a>
+          </p>
+          <p>
+            source code available on <a href="https://github.com/shinjayne/shinjayne.github.io">here</a>
+          </p>
 
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://shinjayne.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+        <div class="two wide column">
+        </div>
+
+
+
+      </div>
+
+
+
+
+
 
     </div>
   </body>
