@@ -53,7 +53,7 @@
   <body>
 
     <div class = "ui container">
-
+<!---
       <div class="ui top fixed menu">
         <div class="item">
           shinjayne
@@ -62,14 +62,25 @@
         <h5> <a class="item" href = "https://shinjayne.github.io//category">Categories</a> </h5>
         <h5> <a class="item" href = "https://shinjayne.github.io//about">About</a> </h5>
       </div>
-
-      <div class="ui grid">
+-->
+      <div class="ui stackable grid">
         <div class="two wide column">
 
         </div>
 
         <div class="twelve wide column">
-          <img class="ui fluid rounded image" src="/pangyo_long.jpeg" >
+          <div class="ui center aligned inverted segment" >
+
+            <h1  class="ui inverted header" ></h1>
+            <h1  class="ui inverted header" >shinjayne</h1>
+            <h1  class="ui inverted header" ></h1>
+
+            <div class="right item">
+              <a class="ui inverted button" href = "https://shinjayne.github.io/">Home</a>
+              <a class="ui inverted button" href = "https://shinjayne.github.io//category">Categories</a>
+              <a class="ui inverted button" href = "https://shinjayne.github.io//about">About</a>
+            </div>
+          </div>
         </div>
 
         <div class="two wide column">
@@ -82,8 +93,8 @@
         <div class="two wide column"></div>
 
         <div class="twelve wide column">
-          <div class="ui grid">
-  <div class="five wide column">
+          <div class="ui stackable grid">
+  <div class="eight wide column">
     <div class="ui card">
   <div class="image">
     <img src="/images/profile.jpeg">
@@ -134,13 +145,50 @@
   <div class="extra content">
     <a>
       <i class="user icon"></i>
-      22 Friends
+      Hello
     </a>
   </div>
 </div>
 
   </div>
-  <div class="eleven wide column"></div>
+  <div class="eight wide column">
+    <div class="ui card">
+  <div class="image">
+    <img src="/images/fb.png">
+  </div>
+  <div class="content">
+    <a class="header">마음에 드셨나요?</a>
+    <div class="meta">
+      <span>마음에 드셨다면, 좋아요 꾸욱 눌러주세요</span>
+    </div>
+    <div class="description">
+
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+      <div class="fb-like" data-href="https://shinjayne.github.io/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+
+    </div>
+  </div>
+
+
+
+  <div class="extra content">
+
+      <i class="heart icon"></i>
+      감사합니다
+
+  </div>
+</div>
+
+  </div>
 
 </div>
 
