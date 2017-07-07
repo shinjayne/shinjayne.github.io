@@ -1,0 +1,403 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Analytics js-->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101872700-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- code highlight js / css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- BootStrap js / css-->
+    <link href="/bootstrap-3.3.2/css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+     <script src="/bootstrap-3.3.2/js/bootstrap.js"></script>
+
+    <!-- JUPYTER NOTEBOOK js / css-->
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+     <link href="/jupyterstyle/jupyterstyle.css" rel="stylesheet">
+
+
+  <!-- Semantic UI js / css-->
+    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="/semantic/semantic.js"></script>
+
+
+
+
+    <title>Efficient Back Propagation(1998) 논문 리뷰(1)</title>
+
+  </head>
+  <body>
+
+    <div class = "ui container">
+<!---
+      <div class="ui visible left vertical inverted sidebar labeled icon menu">
+        <div class="item">
+          shinjayne
+        </div>
+        <h5> <a class="item" href = "https://shinjayne.github.io/">Home</a> </h5>
+        <h5> <a class="item" href = "https://shinjayne.github.io//category">Categories</a> </h5>
+        <h5> <a class="item" href = "https://shinjayne.github.io//about">About</a> </h5>
+      </div>
+-->
+      <div class="ui stackable grid">
+        <div class="two wide column">
+
+        </div>
+
+        <div class="twelve wide column">
+
+            <div class="ui center aligned inverted segment" >
+
+              <h1  class="ui inverted header" ></h1>
+              <h1  class="ui inverted header" >shinjayne</h1>
+              <h1  class="ui inverted header" ></h1>
+
+              <div class="right item">
+                <a class="ui inverted button" href = "https://shinjayne.github.io/">Home</a>
+                <a class="ui inverted button" href = "https://shinjayne.github.io//category">Categories</a>
+                <a class="ui inverted button" href = "https://shinjayne.github.io//about">About</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="two wide column">
+
+        </div>
+
+        <div class="two wide column">
+
+</div>
+
+<div class="twelve wide column">
+  <div class = "ui segment">
+    <h1>Efficient Back Propagation(1998) 논문 리뷰(1)</h1>
+
+    <li>
+      작성일 : 07 July 2017
+    </li>
+    <li>
+      카테고리 : <a href = "https://shinjayne.github.io//category">DeepLearning</a>
+    </li>
+  </div>
+
+  <div class = "ui segment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이번 글에서는 deep learning 에서 아주 중요한 back propagation 에 대한 insight를 얻기 위해,</p>
+<p>Yann LeCun 외 3명이 참여한 1998년 논문 "Efficent BackProp" 을 부분적으로 리뷰해보겠습니다.</p>
+<blockquote><p><strong>다운로드 링크</strong></p>
+<p><a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf">이 링크</a> 에서 논문 다운받아보실 수 있습니다.</p>
+<p><img src="/images/backprop/backprop.png" alt="paper"></p>
+</blockquote>
+<p>총 10개의 챕터로 구성된 이 논문은</p>
+<p>3장까지 간단하게 simple gradient descent 을 통한 Back Propagation 을 설명하고,</p>
+<p>4장에 몇가지 트릭들(Few Tricks) 들을 통해 그 성능을 높이는 방법들을 제시하고 있습니다.</p>
+<p>저는 제가 관심이 있었던 이 4장의 내용, 즉</p>
+<h4 id="&quot;Back-Propagation-&#51004;&#47196;-&#54617;&#49845;&#54616;&#45716;-&#47784;&#45944;&#46308;&#51032;-&#54617;&#49845;-&#49457;&#45733;&#51012;-&#45458;&#51060;&#45716;-Trick-&#46308;&quot;">"Back Propagation &#51004;&#47196; &#54617;&#49845;&#54616;&#45716; &#47784;&#45944;&#46308;&#51032; &#54617;&#49845; &#49457;&#45733;&#51012; &#45458;&#51060;&#45716; Trick &#46308;"<a class="anchor-link" href="#&quot;Back-Propagation-&#51004;&#47196;-&#54617;&#49845;&#54616;&#45716;-&#47784;&#45944;&#46308;&#51032;-&#54617;&#49845;-&#49457;&#45733;&#51012;-&#45458;&#51060;&#45716;-Trick-&#46308;&quot;">&#182;</a></h4><p>을 집중적으로 리뷰해보려고 합니다.</p>
+<p><em>(저희가 요즘 다루는 거의 대부분의 모델들은 back propagation 으로 학습하는 모델이므로 의미가 있습니다)</em></p>
+<p>논문 4장까지의 챕터 구성은 아래와 같습니다.</p>
+<ol>
+<li><p>introduction</p>
+</li>
+<li><p>Learning and Generalization</p>
+</li>
+<li><p>Standard Back Propagation</p>
+</li>
+<li><p>Few Practical Tricks</p>
+</li>
+</ol>
+<blockquote><p>4-1 Stochastic vs Batch Learning</p>
+<p>4-2 Shuffling the examples</p>
+<p>4.3 Normalizing inputs</p>
+<p>4.4 The Sigmoid</p>
+<p>4.5 Choosing Target Value</p>
+<p>4.6 Initializing Weight</p>
+<p>4.7 Choose Learning Rate</p>
+</blockquote>
+<p><strong><em>(논문의 뒷 내용이 궁금하신 분들은 직접 다운받아서 읽어보시기 바랍니다)</em></strong></p>
+<p>Back Propagation 과 그 방식으로 학습하는 모델의 구조(Neural Network 등) 을 아신다면,</p>
+<p>"4. Few Practical Tricks" 을 다루는 단원으로 바로 넘어가셔도 좋습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br />
+<br />
+<br /></p>
+<h1 id="&#51068;&#48152;&#51201;&#51064;-gradient-based-&#54617;&#49845;-&#47784;&#45944;">&#51068;&#48152;&#51201;&#51064; gradient-based &#54617;&#49845; &#47784;&#45944;<a class="anchor-link" href="#&#51068;&#48152;&#51201;&#51064;-gradient-based-&#54617;&#49845;-&#47784;&#45944;">&#182;</a></h1><h2 id="(2-.Learning-and-Generalization)">(2 .Learning and Generalization)<a class="anchor-link" href="#(2-.Learning-and-Generalization)">&#182;</a></h2><p><hr />
+<br /></p>
+<p><img src="/images/backprop/model.png" alt="model"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이 논문에서 이야기하는 모델의 모습입니다.</p>
+<p><em>(이런 구조를 가지는 학습 모델은 이 논문에서 말하는 trick들로 성능을 향상시킬 수 있다는 말이겠죠?)</em></p>
+<p>처음 입력값, 즉 input 은 Z 로 표현하였고,</p>
+<p>학습 가능한 Parameter 인 W 가 있고 ,</p>
+<p>모델에 W, Z가 들어가면 output M(W,Z) 가 나옵니다.</p>
+<p>output M(W,Z) 와  desired output D 를 (이 논문에서 말하는) 가장 일반적인 cost fuction 인</p>
+<p><strong>mean-square</strong> 를 이용하여 E 를 산출하였습니다.</p>
+<p>E (error) 는 모델의 성능을 평가하는 유일한 스칼라값입니다.</p>
+<p>E (error) 의 값이 작을수록, 모델이 잘 학습했다고 말할 수 있습니다.</p>
+<p>즉, 머신 러닝에서의 가장 중요한 부분은</p>
+<p><strong>cost function 을 통해 나온 저 E(error) 값을 줄이는 방법을 찾는 일</strong>이라고 해도 과언이 아닙니다.</p>
+<p>위와 같은 Gradient-based 학습 모델은 이 error 을 줄이는 일을</p>
+<p><strong>Back Propagation</strong> 이라는 과정을 통해 수행하게 됩니다.</p>
+<p><em>( 그 과정에서 Gradient 가 쓰이기 때문에 Gradient based 학습 모델이라고 부르는 것입니다. )</em></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br />
+<br />
+<br /></p>
+<h1 id="&#44592;&#48376;&#51201;&#51064;-Back-Propagation">&#44592;&#48376;&#51201;&#51064; Back Propagation<a class="anchor-link" href="#&#44592;&#48376;&#51201;&#51064;-Back-Propagation">&#182;</a></h1><h2 id="(3-.-Standard-Back-Propagation)">(3 . Standard Back Propagation)<a class="anchor-link" href="#(3-.-Standard-Back-Propagation)">&#182;</a></h2><p><hr />
+<br /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>요즘엔 Back Propagation 을 효과적으로 빠르게 수행해주는 방법들이 많이 나와있습니다.</p>
+<p>저도 아직 그 종류들과 작동 방식들을 잘 몰라서, 참고 링크를 가져왔습니다.</p>
+<blockquote><p>&lt;다양한 Back Propagation 알고리즘들&gt;</p>
+<p><a href="http://shuuki4.github.io/deep%20learning/2016/05/20/Gradient-Descent-Algorithm-Overview.html">http://shuuki4.github.io/deep%20learning/2016/05/20/Gradient-Descent-Algorithm-Overview.html</a></p>
+</blockquote>
+<p>이 글에서는 간단히 Back Propagation 의 작동 방식을 보고 넘어갈 것이기 때문에,</p>
+<p><strong>가장 기본적인 Gradient descent 알고리즘</strong> 을 통해 back propagation을 살펴보겠습니다.</p>
+<hr/>
+
+<p>Back Propagation 은 학습 모델에서의 W(trainable parameter) 를 업데이트 하는 방법입니다.</p>
+<p>W의 값을 업데이트해서 cost function 의 결과값인 error 가 작아지게 하면 성공입니다.</p>
+<p>이 W의 업데이트과정(back propagation) 을 수백번, 수천번 반복해서 천천히 error를 줄여나가는 것입니다.</p>
+<p><img src="/images/backprop/wupdate2.png" alt="mibun"></p>
+<p>그렇다면 W 를 얼마씩 업데이트 해주어야 할까요?</p>
+<p><em>(그 방법으로 지금까지 많은 사람들이 다양한 알고리즘을 찾아내었고, 그것이 바로 위에 소개해드린 링크의 내용입니다. )</em></p>
+<p>가장 기본적인 Gradient Descent에서는 이전의 W_(t-1)  이  이 모델의 error 에 미친 영향을 편미분을 통해 계산해서,</p>
+<p>그 값을 업데이트값으로 사용합니다.</p>
+<p><img src="/images/backprop/wupdate1.png" alt="mibun">
+<em>(E 는 cost function 의 결과값)</em></p>
+<p><br/>
+<br/>
+<br/></p>
+<p>업데이트 값을 구하는 식은 아래와 같습니다.</p>
+<hr/>
+
+
+
+<p>조건 
+<img src="/images/backprop/render4.gif" alt="mibun"></p>
+<p>에서의 y의 x 에 대한 편미분을 구하는 식은</p>
+<p><img src="/images/backprop/render2.gif" alt="mibun"></p>
+<p>입니다.</p>
+<hr/>
+
+<p>마찬가지로 조건</p>
+<p><img src="/images/backprop/render3.gif" alt="mibun"></p>
+<p>에서의 E 의 Wn에 대한 편미분을 구하는 식은</p>
+<p><img src="/images/backprop/render.gif" alt="mibun"></p>
+<p>이와 같습니다.</p>
+<p>천천히 살펴보시면</p>
+<table>
+<thead><tr>
+<th style="text-align:center">기호</th>
+<th style="text-align:center">의미</th>
+<th style="text-align:center">편미분 공식 매칭</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Wn</td>
+<td style="text-align:center">n-th layer 의 weight</td>
+<td style="text-align:center">x</td>
+</tr>
+<tr>
+<td style="text-align:center">Xn</td>
+<td style="text-align:center">n-th layer 의 output</td>
+<td style="text-align:center">g(x)</td>
+</tr>
+<tr>
+<td style="text-align:center">E(Xn, D)</td>
+<td style="text-align:center">...</td>
+<td style="text-align:center">f(g(x))</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">모델의 error</td>
+<td style="text-align:center">y</td>
+</tr>
+</tbody>
+</table>
+<p>이해가 되실 겁니다.</p>
+<p><br/>
+<br/>
+<br/></p>
+<p><hr/>
+같은 방법으로 n-1 번째 layer 의 Wn-1 이 error 에 미친 영향을 구하면 아래와 같습니다.</p>
+<p><img src="/images/backprop/render 5.gif" alt="mibun"></p>
+<p>편미분의 연속입니다.</p>
+<p>이와같은 방법으로 n-th layer(Wn), n-1-th layer(Wn-1) , ... , 2nd layer(W2), input layer(W1) 에 대해</p>
+<p>E 에 대한 각각의 편미분을 구해줍니다.</p>
+<p>그리고 그 편미분 값을 업데이트 값으로 각각의 W 에 대해 아래 연산을 해줍니다.</p>
+<p><img src="/images/backprop/wupdate1.png" alt="mibun"></p>
+<p>t는 학습 반복횟수고, 몇번째 layer 의 W 인지는 생략되어있습니다.</p>
+<p>여기서 저 업데이트 값 앞의 상수는 <strong>learning rate</strong> 로,</p>
+<p>이 값을 어떻게 지정하느냐에 따라 학습의 효과가 달라집니다.</p>
+<p>이 값을 조정하는 방법도 4장의 trick에서 다룹니다.</p>
+<p>t값이 학습 반복 횟수라고 말씀드렸는데,</p>
+<p>이렇게 W 를 업데이트 하는 과정을 수백 수천번 반복하여 t를 올리면, E 는 점점 줄어들게 되고, 모델은 학습을 잘 하게 됩니다.</p>
+<p>이것이 기본적인 Back Propagation 을 통한 학습 모델의 학습방법입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br />
+<br />
+<br /></p>
+<h1 id="(&#47700;&#51064;)-Back-Propagation-&#51004;&#47196;-&#54617;&#49845;&#54616;&#45716;-&#47784;&#45944;&#46308;&#51032;-&#54617;&#49845;-&#49457;&#45733;&#51012;-&#45458;&#51060;&#45716;-Trick-&#46308;">(&#47700;&#51064;) Back Propagation &#51004;&#47196; &#54617;&#49845;&#54616;&#45716; &#47784;&#45944;&#46308;&#51032; &#54617;&#49845; &#49457;&#45733;&#51012; &#45458;&#51060;&#45716; Trick &#46308;<a class="anchor-link" href="#(&#47700;&#51064;)-Back-Propagation-&#51004;&#47196;-&#54617;&#49845;&#54616;&#45716;-&#47784;&#45944;&#46308;&#51032;-&#54617;&#49845;-&#49457;&#45733;&#51012;-&#45458;&#51060;&#45716;-Trick-&#46308;">&#182;</a></h1><h2 id="(4.-Few-Practical-Tricks)">(4. Few Practical Tricks)<a class="anchor-link" href="#(4.-Few-Practical-Tricks)">&#182;</a></h2><p><hr />
+<br /></p>
+<blockquote><p>4-1 Stochastic vs Batch Learning</p>
+<p>4-2 Shuffling the examples</p>
+<p>4.3 Normalizing inputs</p>
+<p>4.4 The Sigmoid</p>
+<p>4.5 Choosing Target Value</p>
+<p>4.6 Initializing Weight</p>
+<p>4.7 Choose Learning Rate</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>다음 포스트들에서는 이제 이런 학습 모델들의 학습 성능을 높일 수 있는 trick 들을</p>
+<p>개별적인 포스트를 통해 자세히 살펴보겠습니다.</p>
+<p>감사합니다.</p>
+<p>(질문이나 잘못된 부분 지적은 환영입니다.)</p>
+
+</div>
+</div>
+</div>
+  </div>
+
+</div>
+
+<div class="two wide column">
+
+</div>
+
+
+        <div class="two wide column"></div>
+
+        <div class="twelve wide column">
+          <hr />
+          <div id="disqus_thread" class = "ui segment"></div>
+          <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+          /*
+          var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          */
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://shinjayne.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+
+        <div class="two wide column"></div>
+
+
+
+        <div class="two wide column">
+        </div>
+        <div class="twelve wide column">
+          <hr />
+          <p>
+            powered by <a>Jupyter NoteBook</a> / <a>Jekyll</a> / <a>BootStrap</a> / <a>Semantic-UI</a> / <a>Github Pages</a>
+          </p>
+          <p>
+            source code available on <a href="https://github.com/shinjayne/shinjayne.github.io">here</a>
+          </p>
+
+        </div>
+        <div class="two wide column">
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
