@@ -1,5 +1,292 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-07-07T16:38:51+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">Efficient Back Propagation(1998) 논문 리뷰(1)</title><link href="https://shinjayne.github.io//deeplearning/2017/07/07/efficeint-back-prop-paper-review-1.html" rel="alternate" type="text/html" title="Efficient Back Propagation(1998) 논문 리뷰(1)" /><published>2017-07-07T16:30:50+09:00</published><updated>2017-07-07T16:30:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/07/07/efficeint-back-prop-paper-review-1</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/07/07/efficeint-back-prop-paper-review-1.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-07-21T18:31:44+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Textboxes(2016) : Image Text Detection 논문 리뷰</title><link href="https://shinjayne.github.io//deeplearning/2017/07/21/text-boxes-paper-review-1.html" rel="alternate" type="text/html" title="Textboxes(2016) : Image Text Detection 논문 리뷰" /><published>2017-07-21T18:27:50+09:00</published><updated>2017-07-21T18:27:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/07/21/text-boxes-paper-review-1</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/07/21/text-boxes-paper-review-1.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;이번 글에서는 &lt;strong&gt;&lt;em&gt;Textboxes: A Fast Text Detector with a single Deep Neural Network(2016)&lt;/em&gt;&lt;/strong&gt; 란 딥러닝 최신 논문을&lt;/p&gt;
+&lt;p&gt;가볍게 정리해보도록 하겠습니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;&amp;#52280;&amp;#44256;-&amp;#47553;&amp;#53356;&quot;&gt;&amp;#52280;&amp;#44256; &amp;#47553;&amp;#53356;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#52280;&amp;#44256;-&amp;#47553;&amp;#53356;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1611.06779&quot;&gt;textboxes 논문 원본(arxiv.org)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/shinjayne/textboxes&quot;&gt;textboxes tensorflow 구현 코드(github)&lt;/a&gt; &lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1.-Introduction&quot;&gt;1. Introduction&lt;a class=&quot;anchor-link&quot; href=&quot;#1.-Introduction&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h3 id=&quot;scene-text-detection-&amp;#51032;-&amp;#54952;&amp;#50857;&amp;#49457;&quot;&gt;scene text detection &amp;#51032; &amp;#54952;&amp;#50857;&amp;#49457;&lt;a class=&quot;anchor-link&quot; href=&quot;#scene-text-detection-&amp;#51032;-&amp;#54952;&amp;#50857;&amp;#49457;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;scene text 가 일상 환경에서 많이 접할 수 있는 visual object 이며, scene text detection 의 일상에서의&lt;/p&gt;
+&lt;p&gt;높은 효용성을 강조합니다.&lt;/p&gt;
+&lt;h3 id=&quot;scene-text-detection-&amp;#48156;&amp;#51204;&amp;#51032;-&amp;#50612;&amp;#47140;&amp;#50880;&quot;&gt;scene text detection &amp;#48156;&amp;#51204;&amp;#51032; &amp;#50612;&amp;#47140;&amp;#50880;&lt;a class=&quot;anchor-link&quot; href=&quot;#scene-text-detection-&amp;#48156;&amp;#51204;&amp;#51032;-&amp;#50612;&amp;#47140;&amp;#50880;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;기존의 traditional OCR(전통적인 광학적 문자인식)과 매우 유사한 task를 가지고 있음에도 불구하고,&lt;/p&gt;
+&lt;p&gt;scene text detection 은 많은 어려움으로 더딘 발전을 겪고 있었다고 합니다.&lt;/p&gt;
+&lt;p&gt;그 어려움에는 '너무 다양한 배경과 글자의 형태' , '빛 상태에 따른 글자 상태의 다양성' 등이 있습니다.&lt;/p&gt;
+&lt;h3 id=&quot;&amp;#44592;&amp;#51316;&amp;#51032;-&amp;#48373;&amp;#51105;&amp;#54616;&amp;#44256;-&amp;#45712;&amp;#47536;-scene-text-detection-&amp;#47784;&amp;#45944;&quot;&gt;&amp;#44592;&amp;#51316;&amp;#51032; &amp;#48373;&amp;#51105;&amp;#54616;&amp;#44256; &amp;#45712;&amp;#47536; scene text detection &amp;#47784;&amp;#45944;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#44592;&amp;#51316;&amp;#51032;-&amp;#48373;&amp;#51105;&amp;#54616;&amp;#44256;-&amp;#45712;&amp;#47536;-scene-text-detection-&amp;#47784;&amp;#45944;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;기존의 scene text detection 은&lt;/p&gt;
+&lt;p&gt;&quot;글자/단어 후보 생성&quot; -&amp;gt; &quot;후보 필터링&quot; -&amp;gt; &quot;grouping&quot; 과 같은 여러 단계로 나누어져 있어서,&lt;/p&gt;
+&lt;p&gt;모델 학습 중의 tuning 이 매우 어려웠고,&lt;/p&gt;
+&lt;p&gt;완성된 모델의 속도도 매우 느려서 real-time detection 에 적용하기 힘들었다고 합니다.&lt;/p&gt;
+&lt;h3 id=&quot;&amp;#54620;&amp;#44228;&amp;#47484;-&amp;#44537;&amp;#48373;&amp;#54620;-textboxes&quot;&gt;&amp;#54620;&amp;#44228;&amp;#47484; &amp;#44537;&amp;#48373;&amp;#54620; textboxes&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#54620;&amp;#44228;&amp;#47484;-&amp;#44537;&amp;#48373;&amp;#54620;-textboxes&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;저자는 Textboxes 는 object detection 에서 큰 성능 향상을 보여준 &lt;a href=&quot;https://arxiv.org/abs/1512.02325&quot;&gt;SSD(2015) 논문&lt;/a&gt; 을 본따 만들었으며,&lt;/p&gt;
+&lt;p&gt;single network 로 구성되어있기 때문에 기존의 모델들에 비해 현저히 빠른 성능을 보여주고,&lt;/p&gt;
+&lt;p&gt;정확도 또한 기존 모델들로부터 크게 향상시켰다고 말합니다.&lt;/p&gt;
+&lt;h3 id=&quot;SSD-&amp;#50752;&amp;#51032;-&amp;#50976;&amp;#49324;&amp;#49457;&quot;&gt;SSD &amp;#50752;&amp;#51032; &amp;#50976;&amp;#49324;&amp;#49457;&lt;a class=&quot;anchor-link&quot; href=&quot;#SSD-&amp;#50752;&amp;#51032;-&amp;#50976;&amp;#49324;&amp;#49457;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Textboxes 모델은 SSD(sigle shot mulitbox detector) 와 구조가 매우 유사하며,&lt;/p&gt;
+&lt;p&gt;오직 모델 내부의 몇가지 하이퍼-파라메터들만 텍스트 인식에 알맞도록 조정하였다고 합니다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;( default box 와 convolutional kernel(filter) 의 종횡비(ratio) 를 가로로 길게 늘린 것이 그것입니다 )&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&quot;word-recognition-&amp;#51032;-feedback-&amp;#51012;-&amp;#53685;&amp;#54644;-detection-&amp;#49457;&amp;#45733;&amp;#51012;-&amp;#45908;&amp;#50865;-&amp;#54693;&amp;#49345;-&amp;#44032;&amp;#45733;&quot;&gt;word recognition &amp;#51032; feedback &amp;#51012; &amp;#53685;&amp;#54644; detection &amp;#49457;&amp;#45733;&amp;#51012; &amp;#45908;&amp;#50865; &amp;#54693;&amp;#49345; &amp;#44032;&amp;#45733;&lt;a class=&quot;anchor-link&quot; href=&quot;#word-recognition-&amp;#51032;-feedback-&amp;#51012;-&amp;#53685;&amp;#54644;-detection-&amp;#49457;&amp;#45733;&amp;#51012;-&amp;#45908;&amp;#50865;-&amp;#54693;&amp;#49345;-&amp;#44032;&amp;#45733;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;보통 &lt;em&gt;scene text reading&lt;/em&gt; 분야는 text detection 과 text recognition 의 두가지 task로 나뉘는데&lt;/p&gt;
+&lt;p&gt;Textboxes 모델은 이중에 text detection 을 수행합니다.&lt;/p&gt;
+&lt;p&gt;하지만 Textboxes 는 detection 후 다양한 text recognition 모델들과 연계가 가능하며,&lt;/p&gt;
+&lt;p&gt;특정한 given set (lexicon, 단어무리) 이 주어졌을 때에는 text recognition 의 feedback이  detection 모델의 학습 성능을 향상시켜준다고&lt;/p&gt;
+&lt;p&gt;논문에서는 말합니다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2.-Related-Works&quot;&gt;2. Related Works&lt;a class=&quot;anchor-link&quot; href=&quot;#2.-Related-Works&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h3 id=&quot;&amp;#49440;&amp;#54665;-&amp;#45436;&amp;#47928;&quot;&gt;&amp;#49440;&amp;#54665; &amp;#45436;&amp;#47928;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#49440;&amp;#54665;-&amp;#45436;&amp;#47928;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;em&gt;scene text reading&lt;/em&gt; 분야는 detection 과 recognition 으로 나뉘고,&lt;/p&gt;
+&lt;p&gt;detection 은 다시한번 charicter based(글자 단위) 와 word based(단어 단위) 로 나뉩니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;1.-charicter-based(&amp;#44544;&amp;#51088;-&amp;#45800;&amp;#50948;)-&amp;#49440;&amp;#54665;-&amp;#45436;&amp;#47928;&quot;&gt;1. charicter based(&amp;#44544;&amp;#51088; &amp;#45800;&amp;#50948;) &amp;#49440;&amp;#54665; &amp;#45436;&amp;#47928;&lt;a class=&quot;anchor-link&quot; href=&quot;#1.-charicter-based(&amp;#44544;&amp;#51088;-&amp;#45800;&amp;#50948;)-&amp;#49440;&amp;#54665;-&amp;#45436;&amp;#47928;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Lukas Neumann, Jiri Matas 의 &lt;a href=&quot;https://www.semanticscholar.org/paper/Real-time-scene-text-localization-and-recognition-Neumann-Matas/323649409db200d2eebed0091f9ea25151a1c36b&quot;&gt;real time scene textlocalization and recognition(2012)&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;2.-word-based(&amp;#45800;&amp;#50612;-&amp;#45800;&amp;#50948;)-&amp;#49440;&amp;#54665;-&amp;#45436;&amp;#47928;&quot;&gt;2. word based(&amp;#45800;&amp;#50612; &amp;#45800;&amp;#50948;) &amp;#49440;&amp;#54665; &amp;#45436;&amp;#47928;&lt;a class=&quot;anchor-link&quot; href=&quot;#2.-word-based(&amp;#45800;&amp;#50612;-&amp;#45800;&amp;#50948;)-&amp;#49440;&amp;#54665;-&amp;#45436;&amp;#47928;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&amp;lt; R-CNN based &amp;gt;&lt;/p&gt;
+&lt;p&gt;Max Jaderberg, Karen Simonyan, Andrea Vedaldi, Andrew Zisserman 의 &lt;a href=&quot;https://www.semanticscholar.org/paper/Reading-Text-in-the-Wild-with-Convolutional-Neural-Jaderberg-Simonyan/b1a25f665cd18b2a22e5804a2a012af282d59f1b&quot;&gt;Reading Text in the Wild with Convolutional Neural Networks(2015)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt; YOLO based &amp;gt;&lt;/p&gt;
+&lt;p&gt;Ankush Gupta, Andrea Vedaldi, Andrew Zisserman 의 &lt;a href=&quot;https://www.semanticscholar.org/paper/Synthetic-Data-for-Text-Localisation-in-Natural-Im-Gupta-Vedaldi/18f51e9bdc1abdb6f1601c5c0692d6c150421a48&quot;&gt;Synthetic Data for Text Localisation in Natural Images(2016)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Textboxes-&amp;#45716;-word-based-&amp;#47784;&amp;#45944;&quot;&gt;Textboxes &amp;#45716; word based &amp;#47784;&amp;#45944;&lt;a class=&quot;anchor-link&quot; href=&quot;#Textboxes-&amp;#45716;-word-based-&amp;#47784;&amp;#45944;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Textboxes 는 단어별로 detection 하는 word based 모델입니다.&lt;/p&gt;
+&lt;h3 id=&quot;Textboxes-&amp;#45716;-SSD-&amp;#50640;&amp;#49436;-&amp;#50689;&amp;#44048;&quot;&gt;Textboxes &amp;#45716; SSD &amp;#50640;&amp;#49436; &amp;#50689;&amp;#44048;&lt;a class=&quot;anchor-link&quot; href=&quot;#Textboxes-&amp;#45716;-SSD-&amp;#50640;&amp;#49436;-&amp;#50689;&amp;#44048;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;&lt;p&gt;Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg 의&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1512.02325&quot;&gt;Single Shot Mulitbox Detector(2015)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Textboxes 의 모델 구조는 SSD(Single shot mulitbox detector) 에서 영감을 얻었습니다.&lt;/p&gt;
+&lt;p&gt;( 실제로 SSD 에서 사용하는 모델 구조, box matching scheme , loss function 등을 인용해 거의 그대로 사용합니다.)&lt;/p&gt;
+&lt;h3 id=&quot;Textboxes(-detection-)--&amp;gt;-CRNN(-recognition-)-&amp;#51032;-&amp;#50672;&amp;#44208;&amp;#46020;-&amp;#44396;&amp;#54788;&amp;#54632;&quot;&gt;Textboxes( detection ) -&amp;gt; CRNN( recognition ) &amp;#51032; &amp;#50672;&amp;#44208;&amp;#46020; &amp;#44396;&amp;#54788;&amp;#54632;&lt;a class=&quot;anchor-link&quot; href=&quot;#Textboxes(-detection-)--&amp;gt;-CRNN(-recognition-)-&amp;#51032;-&amp;#50672;&amp;#44208;&amp;#46020;-&amp;#44396;&amp;#54788;&amp;#54632;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;&lt;p&gt;Shi, Baoguang; Bai, Xiang; Yao, Cong 의 
+&lt;a href=&quot;http://adsabs.harvard.edu/abs/2015arXiv150705717S&quot;&gt;An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition(2015)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;end-to-end(detection to recognition) 모델 학습을 위해 Textboxes 모델과 CRNN 을 통한 text recognition 모델을 연결하여 사용하였습니다.&lt;/p&gt;
+&lt;p&gt;논문은  뒷단에 다양한 recognition 모델을 붙여 end-to-end training 이 가능한 것이 Textboxes 의 장점이라고 밝혔습니다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;3.-Detecting-with-Textboxes&quot;&gt;3. Detecting with Textboxes&lt;a class=&quot;anchor-link&quot; href=&quot;#3.-Detecting-with-Textboxes&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;3-1.-Training-Phase&quot;&gt;3-1. Training Phase&lt;a class=&quot;anchor-link&quot; href=&quot;#3-1.-Training-Phase&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;hr/&gt;&lt;/p&gt;
+&lt;h3 id=&quot;&amp;#47784;&amp;#45944;-&amp;#44396;&amp;#51312;-Architecture&quot;&gt;&amp;#47784;&amp;#45944; &amp;#44396;&amp;#51312; Architecture&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#47784;&amp;#45944;-&amp;#44396;&amp;#51312;-Architecture&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Textboxes 는 오직 convolution과 pooling 으로만 이루어진 fully-convolutional-network 입니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;&amp;lt;&amp;#45436;&amp;#47928;&amp;#51032;-&amp;#47784;&amp;#45944;-&amp;#44536;&amp;#47548;&amp;gt;&quot;&gt;&amp;lt;&amp;#45436;&amp;#47928;&amp;#51032; &amp;#47784;&amp;#45944; &amp;#44536;&amp;#47548;&amp;gt;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;lt;&amp;#45436;&amp;#47928;&amp;#51032;-&amp;#47784;&amp;#45944;-&amp;#44536;&amp;#47548;&amp;gt;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;/images/tb/model1.png&quot; alt=&quot;모델그림&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;위는 논문에 실린 모델의 모습입니다. 이 모델 그림을 기반으로 아래에 제가 해석한 모델 그림을 그려보았습니다.&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;&amp;lt;&amp;#51649;&amp;#51217;-&amp;#45796;&amp;#49884;-&amp;#44536;&amp;#47536;-&amp;#47784;&amp;#45944;-&amp;#44536;&amp;#47548;&amp;gt;&quot;&gt;&amp;lt;&amp;#51649;&amp;#51217; &amp;#45796;&amp;#49884; &amp;#44536;&amp;#47536; &amp;#47784;&amp;#45944; &amp;#44536;&amp;#47548;&amp;gt;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;lt;&amp;#51649;&amp;#51217;-&amp;#45796;&amp;#49884;-&amp;#44536;&amp;#47536;-&amp;#47784;&amp;#45944;-&amp;#44536;&amp;#47548;&amp;gt;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;/images/tb/1.png&quot; alt=&quot;표&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/tb/2.png&quot; alt=&quot;표&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;input images 는 RGB 로 3개의 채널로 되어있습니다.&lt;/p&gt;
+&lt;p&gt;input images 의 사이즈는 임의로 300*300 으로 설정하고 진행하였습니다. (다른 사이즈의 input 도 가능합니다)&lt;/p&gt;
+&lt;blockquote&gt;&lt;용어&gt;
+
+&lt;p&gt;연속적인 convolution layer 가 이어진 부분을 &lt;strong&gt;&quot;Base network&quot;&lt;/strong&gt; 이라고 하고,&lt;/p&gt;
+&lt;p&gt;Base network 에서 중간중간 feature map 을 가져오는 위치를 &lt;strong&gt;&quot;Map Point&quot;&lt;/strong&gt; 라고 일컫습니다.&lt;/p&gt;
+&lt;p&gt;Map Point 에서 가져온 feature map 들을 새로운 convolution 을 수행해서 만들어낸 이 모델의 &lt;strong&gt;output&lt;/strong&gt; 들을 &lt;strong&gt;&quot;Textbox Layer&quot;&lt;/strong&gt; 라고 부릅니다.&lt;/p&gt;
+&lt;p&gt;즉 Textboxes 모델은 training (loss function) 에 사용되는 output 이 한 값이 아닌, &lt;em&gt;Textbox Layer&lt;/em&gt; 가 됩니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;input images 는 Base network 을 거치면서 수많은 feature map들을 만들고,&lt;/p&gt;
+&lt;p&gt;중간중간 Map point 에서 feature map 들을 추출해 가로로 긴 filter([1,5]) 를 이용한 convolution 을 수행해&lt;/p&gt;
+&lt;p&gt;channel 이 72개인 Texbox Layer( output ) 를 생성해냅니다.&lt;/p&gt;
+&lt;p&gt;다양한 크기의 feature map 을 중간중간 이용하는 이유는 다양한 크기의 text 들을 detection 하기 위해서입니다.&lt;/p&gt;
+&lt;h3 id=&quot;Base-network-&amp;#45236;&amp;#48512;-&amp;#45936;&amp;#51060;&amp;#53552;-&amp;#55120;&amp;#47492;-&amp;#54364;&quot;&gt;Base network &amp;#45236;&amp;#48512; &amp;#45936;&amp;#51060;&amp;#53552; &amp;#55120;&amp;#47492; &amp;#54364;&lt;a class=&quot;anchor-link&quot; href=&quot;#Base-network-&amp;#45236;&amp;#48512;-&amp;#45936;&amp;#51060;&amp;#53552;-&amp;#55120;&amp;#47492;-&amp;#54364;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;표에서 노란색으로 하이라이트 된 부분이 &lt;strong&gt;Map Point&lt;/strong&gt; 입니다. 
+&lt;img src=&quot;/images/tb/model2.png&quot; alt=&quot;표&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Textbox-Layer-&amp;#51032;-&amp;#52292;&amp;#45328;&amp;#51060;-72&amp;#44060;&amp;#51064;-&amp;#51060;&amp;#50976;&quot;&gt;Textbox Layer &amp;#51032; &amp;#52292;&amp;#45328;&amp;#51060; 72&amp;#44060;&amp;#51064; &amp;#51060;&amp;#50976;&lt;a class=&quot;anchor-link&quot; href=&quot;#Textbox-Layer-&amp;#51032;-&amp;#52292;&amp;#45328;&amp;#51060;-72&amp;#44060;&amp;#51064;-&amp;#51060;&amp;#50976;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;72 라는 숫자는 무엇일까요?&lt;/p&gt;
+&lt;p&gt;Textboxes 모델은 각 Map Point 의 각 픽셀마다 Default Box 를 다양한 종횡비로 12개씩 미리 설정해놓습니다. (SSD 와 같습니다)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(무수히 많은 default box 들이 생깁니다.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;하나의 Default box 는 하나의 predicted box 를 만들어냅니다.&lt;/p&gt;
+&lt;p&gt;predicted box는 offset 4값(dx, dy, dw, dh) 과  confidence 2값(c1, c2) 으로 이루어져 있습니다.&lt;/p&gt;
+&lt;p&gt;하나의 feature map 픽셀당 12개씩의 default box들이 존재하므로&lt;/p&gt;
+&lt;p&gt;총 12 * 6(4+2) = 72 개의 결과값이 나옵니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h3 id=&quot;offset?&quot;&gt;offset?&lt;a class=&quot;anchor-link&quot; href=&quot;#offset?&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;predicted box 가 산출된 defualt box 로부터의 형태 변화량입니다.&lt;/p&gt;
+&lt;p&gt;하나의 default box는 하나의 predicted box 를 만들어낼 때&lt;/p&gt;
+&lt;p&gt;한 default box 가 &lt;strong&gt;(x0,y0) 에 위치&lt;/strong&gt;하고 &lt;strong&gt;너비가 w0, 높이가 h0 &lt;/strong&gt; 라고 하면&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;(모든 box들은 0~1 로 scaling 된 맵 위의 (x,y,w,h) 값을 가집니다. 그래야 서로 다른 크기의 map location 들사이에서의 비교가 가능하기 때문입니다. )&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;그리고 그 default box로부터 예측된 predicted box 의 offset 이 &lt;strong&gt;(dx, dy ,dw, dh)&lt;/strong&gt; 라면&lt;/p&gt;
+&lt;p&gt;predicted box 의 위치 정보(x, y, w, h)는 다음과 같이 복구할 수 있습니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/tb/3.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Default-box-&amp;#47484;-&amp;#47564;&amp;#46300;&amp;#45716;-&amp;#48169;&amp;#48277;&quot;&gt;Default box &amp;#47484; &amp;#47564;&amp;#46300;&amp;#45716; &amp;#48169;&amp;#48277;&lt;a class=&quot;anchor-link&quot; href=&quot;#Default-box-&amp;#47484;-&amp;#47564;&amp;#46300;&amp;#45716;-&amp;#48169;&amp;#48277;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;모델을 훈련시키기 전, 우선 각 Map Location 의 각 픽셀당 12개씩 , 총 수만개의 Default box 들을 만들어주어야 합니다.&lt;/p&gt;
+&lt;p&gt;각 default box의 x0,y0 값(0~1 사이로 scaling된 값) 은 각 Map Location 의 각 픽셀마다 모두 다르지만&lt;/p&gt;
+&lt;p&gt;w0,h0 값은 아닙니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;종횡비(ratio)&lt;/strong&gt; 와 &lt;strong&gt;Scale&lt;/strong&gt; 이라는 값으로 컨트롤합니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;&amp;#54620;-Map-Location-&amp;#51032;-12&amp;#44060;&amp;#51032;-Default-Box&amp;#46308;&amp;#51008;-&amp;#44033;-&amp;#54589;&amp;#49472;&amp;#47560;&amp;#45796;-&amp;#47784;&amp;#50577;&amp;#51060;-&amp;#47784;&amp;#46160;-&amp;#44057;&amp;#45796;.&quot;&gt;&amp;#54620; Map Location &amp;#51032; 12&amp;#44060;&amp;#51032; Default Box&amp;#46308;&amp;#51008; &amp;#44033; &amp;#54589;&amp;#49472;&amp;#47560;&amp;#45796; &amp;#47784;&amp;#50577;&amp;#51060; &amp;#47784;&amp;#46160; &amp;#44057;&amp;#45796;.&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#54620;-Map-Location-&amp;#51032;-12&amp;#44060;&amp;#51032;-Default-Box&amp;#46308;&amp;#51008;-&amp;#44033;-&amp;#54589;&amp;#49472;&amp;#47560;&amp;#45796;-&amp;#47784;&amp;#50577;&amp;#51060;-&amp;#47784;&amp;#46160;-&amp;#44057;&amp;#45796;.&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;12개의 &lt;strong&gt;종횡비(ratio)&lt;/strong&gt;를 미리 설정해놓기 때문이다.  (w:h)&lt;/p&gt;
+&lt;h4 id=&quot;&amp;#54616;&amp;#51648;&amp;#47564;-&amp;#44033;-Map-Location-&amp;#47560;&amp;#45796;-Default-Box&amp;#51032;-(w0,h0)-&amp;#46308;&amp;#51008;-&amp;#44033;&amp;#44033;-&amp;#45796;&amp;#47476;&amp;#45796;.&quot;&gt;&amp;#54616;&amp;#51648;&amp;#47564; &amp;#44033; Map Location &amp;#47560;&amp;#45796; Default Box&amp;#51032; (w0,h0) &amp;#46308;&amp;#51008; &amp;#44033;&amp;#44033; &amp;#45796;&amp;#47476;&amp;#45796;.&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#54616;&amp;#51648;&amp;#47564;-&amp;#44033;-Map-Location-&amp;#47560;&amp;#45796;-Default-Box&amp;#51032;-(w0,h0)-&amp;#46308;&amp;#51008;-&amp;#44033;&amp;#44033;-&amp;#45796;&amp;#47476;&amp;#45796;.&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;6개의 Map Location 마다 정해진 종횡비에 특정 &lt;strong&gt;Scale&lt;/strong&gt; 을 곱해서 w0, h0 를 구성하기 때문이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1)-&amp;#51333;&amp;#54945;&amp;#48708;-&amp;#44396;&amp;#49457;&quot;&gt;1) &amp;#51333;&amp;#54945;&amp;#48708; &amp;#44396;&amp;#49457;&lt;a class=&quot;anchor-link&quot; href=&quot;#1)-&amp;#51333;&amp;#54945;&amp;#48708;-&amp;#44396;&amp;#49457;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;텍스트는 기본적으로 옆으로 긴 형태를 띄고 있기 때문에 Default box 의 종횡비 또한 가로로 깁니다.&lt;/p&gt;
+&lt;p&gt;논문에서는 종횡비 6가지 (1,2,3,5,7,10) 을 설정해서 픽셀의 중심에 한번, 픽셀의 아래에 한번 적용해&lt;/p&gt;
+&lt;p&gt;총 12개를 한 픽셀의 default box로 정합니다.&lt;/p&gt;
+&lt;p&gt;중심에 모든 박스를 넣지 않고 살짝 아래로 6개를 내린 이유는 촘촘한 detection 을 위해서입니다.&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+&lt;img src=&quot;/images/tb/4.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+그림에서 파란색은 (중심, 종횡비 1) , 검은색은 (중심, 종횡비 5), 빨간색은 (아래, 종횡비 1), 초록색은 (아래, 종횡비 5) 입니다.&lt;/p&gt;
+&lt;h4 id=&quot;2)-Scale-&amp;#44396;&amp;#49457;&quot;&gt;2) Scale &amp;#44396;&amp;#49457;&lt;a class=&quot;anchor-link&quot; href=&quot;#2)-Scale-&amp;#44396;&amp;#49457;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Scale 에 관한 내용은 본 논문에는 나와있지 않지만 SSD 논문에 기술되어있고, 실제로 Textboxes 구현에서도 사용됩니다.&lt;/p&gt;
+&lt;p&gt;6개의 Map location 의 각 Scale 들은 등차수열을 이룹니다.&lt;/p&gt;
+&lt;h3 id=&quot;Loss-Function&quot;&gt;Loss Function&lt;a class=&quot;anchor-link&quot; href=&quot;#Loss-Function&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;hr /&gt;
+이렇게 모든 default box 들을 준비하고, Network Model 까지 준비한 후&lt;/p&gt;
+&lt;p&gt;이 모델에 image 를 넣고 동작시키면&lt;/p&gt;
+&lt;p&gt;수만개의 default box 들에서 각각 (dx, dy, dw, dh, c1, c2) 값이 산출됩니다.&lt;/p&gt;
+&lt;p&gt;이 값들은 loss function 을 구성하는 데에 쓰이고,&lt;/p&gt;
+&lt;p&gt;우린  Optimizer 를 통해 이 loss function 을 최소화 시키는 방향으로 매 iteration 마다 나아갈 것이고,&lt;/p&gt;
+&lt;p&gt;이 과정을 무수히 많이 반복하게 됩니다.&lt;/p&gt;
+&lt;hr/&gt;
+
+&lt;p&gt;loss function 의 수식은 아래와 같습니다.&lt;/p&gt;
+&lt;p&gt;간단히 요약하자면&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;total-loss-=-confidnece-loss-+-location-loss&quot;&gt;&lt;code&gt;total loss = confidnece loss + location loss&lt;/code&gt;&lt;a class=&quot;anchor-link&quot; href=&quot;#total-loss-=-confidnece-loss-+-location-loss&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;입니다.&lt;/p&gt;
+&lt;p&gt;confidence loss 에는 softmax loss 함수를 사용합니다.&lt;/p&gt;
+&lt;p&gt;location loss 에는 smooth_L1 loss 함수를 사용합니다.&lt;/p&gt;
+&lt;p&gt;(아래 수식은 SSD 논문에서 가져왔습니다.)&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+&lt;img src=&quot;/images/tb/5.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+그런데 중요한 것은 우리가 모든 default box 에서 나온 prediction 값을 사용하지 않는다는 것입니다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;default box 들을 positive 와 negative 로 분류합니다. &lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;h3 id=&quot;Jaccard-Overlap-&amp;amp;-Hard-Negative-Mining&quot;&gt;Jaccard Overlap &amp;amp; Hard Negative Mining&lt;a class=&quot;anchor-link&quot; href=&quot;#Jaccard-Overlap-&amp;amp;-Hard-Negative-Mining&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;우리가 미리 만들어놓은 &lt;strong&gt;모든 default box 들&lt;/strong&gt;과 한 이미지의 &lt;strong&gt;모든 ground truth box 들&lt;/strong&gt;의 Jaccard Overlap 을 비교하여&lt;/p&gt;
+&lt;p&gt;Jaccard Overlap &amp;gt; 0.5 이상인 dafualt box 들을 &lt;strong&gt;positive&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Jaccard Over &amp;lt; 0.5 이하인 default box 들을 &lt;strong&gt;negative&lt;/strong&gt; 라고 지정합니다.&lt;/p&gt;
+&lt;p&gt;이렇게 나누면 negative 의 갯수가 positive 의 갯수보다 현저히 많기 때문에&lt;/p&gt;
+&lt;p&gt;negative 의 갯수가 positive 의 갯수의 3배가 되도록 negative 일부를 무시하고 날립니다.&lt;/p&gt;
+&lt;p&gt;이 과정을 Hard Negative Mining 이라고 합니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h3 id=&quot;Jaccard-Overlap-&amp;#45436;&amp;#47928;&amp;#45236;&amp;#50857;-(SSD)&quot;&gt;Jaccard Overlap &amp;#45436;&amp;#47928;&amp;#45236;&amp;#50857; (SSD)&lt;a class=&quot;anchor-link&quot; href=&quot;#Jaccard-Overlap-&amp;#45436;&amp;#47928;&amp;#45236;&amp;#50857;-(SSD)&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;
+&lt;img src=&quot;/images/tb/7.png&quot; alt=&quot;수식&quot;&gt;
+&lt;img src=&quot;/images/tb/9.png&quot; alt=&quot;이미지&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;hr/&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;blockquote&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Hard-Negative-Mining-&amp;#45436;&amp;#47928;-&amp;#45236;&amp;#50857;(SSD)&quot;&gt;Hard Negative Mining &amp;#45436;&amp;#47928; &amp;#45236;&amp;#50857;(SSD)&lt;a class=&quot;anchor-link&quot; href=&quot;#Hard-Negative-Mining-&amp;#45436;&amp;#47928;-&amp;#45236;&amp;#50857;(SSD)&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;
+&lt;img src=&quot;/images/tb/8.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;분류가 끝나면, default box들 중&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;location loss 에서는 positive box 들만을 사용하고 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;confidence loss 에서는 positive box 들에서는 c1 을 사용하고 negative box 들에서는 c2 를 사용합니다. &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;total loss 는 (location loss + confidence loss)/N  이 됩니다.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;N 은 positive 로 검출된 box의 갯수입니다.&lt;/p&gt;
+&lt;p&gt;이 값을 Optimizer 를 통해 줄여나가면서 모델을 학습시키면 됩니다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h2 id=&quot;3-2.-Validation/Test-Phase&quot;&gt;3-2. Validation/Test Phase&lt;a class=&quot;anchor-link&quot; href=&quot;#3-2.-Validation/Test-Phase&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;hr/&gt; 
+
+&lt;h3 id=&quot;Non-Maximum-Supression-(NMS)&quot;&gt;Non Maximum Supression (NMS)&lt;a class=&quot;anchor-link&quot; href=&quot;#Non-Maximum-Supression-(NMS)&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Training 이 끝난 모델에 input image 를 넣으면 output 으로 Textbox Layer 가 나옵니다.&lt;/p&gt;
+&lt;p&gt;하지만 Textbox Layer 자체로는 Detecting 완성되었다고 할 수 없습니다.&lt;/p&gt;
+&lt;p&gt;수많은 값들 중 무엇이 진짜 Predicted Box 인지 골라주어야 합니다.&lt;/p&gt;
+&lt;p&gt;이 부분에 NMS 라는 방법이 사용됩니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;참고 링크 : &lt;a href=&quot;http://www.voidcn.com/blog/u014365862/article/p-5749434.html&quot;&gt;Non-Maximum Suppression for Object Detection in Python&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;img src=&quot;/images/tb/10.jpg&quot; alt=&quot;수식&quot;&gt;
+NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 Most predicted box로 추려줍니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Model-Accuracy-&amp;#52769;&amp;#51221;&quot;&gt;Model Accuracy &amp;#52769;&amp;#51221;&lt;a class=&quot;anchor-link&quot; href=&quot;#Model-Accuracy-&amp;#52769;&amp;#51221;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;학습을 마친 모델의 성능을 보려면 어떻게 Accuracy 를 측정할 것인지도 매우 중요합니다.&lt;/p&gt;
+&lt;p&gt;Accuracy 측정에는 &lt;strong&gt;F-Mesure&lt;/strong&gt; 를 이용합니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h3 id=&quot;F-Mesure&quot;&gt;F-Mesure&lt;a class=&quot;anchor-link&quot; href=&quot;#F-Mesure&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;F measure 는 실제로 정확도를 측정하는데 매우 자주 이용되고, 중요합니다.&lt;/p&gt;
+&lt;p&gt;기계학습에서 정확도를 평가하는데 중요한 지표중 두가지가 &lt;strong&gt;정확도(precision)&lt;/strong&gt; 와 &lt;strong&gt;재현율(recall)&lt;/strong&gt; 입니다.&lt;/p&gt;
+&lt;p&gt;정확도와 재현율에 대한 이해를 돕고자 그림을 그려보았습니다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/tb/12.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;p&gt;정확도(precision)는 우리가 &lt;strong&gt;Positive 라고 예상한 것&lt;/strong&gt; 중 &lt;strong&gt;맞춘 것&lt;/strong&gt;의 비율입니다.&lt;/p&gt;
+&lt;p&gt;재현율(recall)은 &lt;strong&gt;실제 ground truth&lt;/strong&gt; 중 &lt;strong&gt;맞춘 것&lt;/strong&gt; 의 비율입니다.&lt;/p&gt;
+&lt;p&gt;이 두 지표 모두 중요한데&lt;/p&gt;
+&lt;p&gt;F-Mesure 는 precision 과 recall 의 비중을 적절히 혼합한 정확도 수치라고 할 수 있습니다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;h4 id=&quot;&amp;lt;-F-Mesure-&amp;#44277;&amp;#49885;-&amp;gt;&quot;&gt;&amp;lt; F-Mesure &amp;#44277;&amp;#49885; &amp;gt;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;lt;-F-Mesure-&amp;#44277;&amp;#49885;-&amp;gt;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;/images/tb/13.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;p&gt;precision 과 recall 의 조화평균&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;F-Mesure 를 이용해 Textboxes 모델의 Accuracy 를 구하는 방법은 다음과 같습니다.&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+&lt;img src=&quot;/images/tb/14.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+논문에서도 다양한 데이터셋에 대해 자신들이 훈련한 실제 Textboxes detection Model 의 성능을&lt;/p&gt;
+&lt;p&gt;P(Precision) / R(Recall) / F(F-Measure)&lt;/p&gt;
+&lt;p&gt;세가지 지표로 Accuracy 를 계산해 자랑해놓았습니다.&lt;/p&gt;
+&lt;p&gt;다양한 text detection 모델들과의 비교도 해놓았습니다.&lt;/p&gt;
+&lt;p&gt;&lt;hr/&gt;
+&lt;img src=&quot;/images/tb/15.png&quot; alt=&quot;수식&quot;&gt;&lt;/p&gt;
+&lt;hr/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;&amp;#45436;&amp;#47928;&amp;#47532;&amp;#48624;&amp;#47484;-&amp;#47560;&amp;#52824;&amp;#47728;&quot;&gt;&amp;#45436;&amp;#47928;&amp;#47532;&amp;#48624;&amp;#47484; &amp;#47560;&amp;#52824;&amp;#47728;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#45436;&amp;#47928;&amp;#47532;&amp;#48624;&amp;#47484;-&amp;#47560;&amp;#52824;&amp;#47728;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;
+실제로 Textboxes 는 C_RNN 과 같은 Recognition 모델과 연결해 한번에 학습시킬 수 있는 장점도 있습니다.&lt;/p&gt;
+&lt;p&gt;기회가 된다면 그 연결된 완성형 모델까지 리뷰해볼 생각입니다.&lt;/p&gt;
+&lt;p&gt;Textboxes 의 실제 구현도 python tensorflow 로 구현해 곧 post 로 올릴 예정이니&lt;/p&gt;
+&lt;p&gt;관심있으시면&lt;/p&gt;
+&lt;p&gt;블로그를 둘러봐주시면 감사하겠습니다.&lt;/p&gt;
+&lt;p&gt;궁금한점이나 틀린 부분은 댓글로 편하게 말씀해주시면 기쁘게 수정하겠습니다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="DeepLearning" /><summary type="html">이번 글에서는 Textboxes: A Fast Text Detector with a single Deep Neural Network(2016) 란 딥러닝 최신 논문을 가볍게 정리해보도록 하겠습니다. &amp;#52280;&amp;#44256; &amp;#47553;&amp;#53356;&amp;#182; textboxes 논문 원본(arxiv.org) textboxes tensorflow 구현 코드(github) 1. Introduction&amp;#182; scene text detection &amp;#51032; &amp;#54952;&amp;#50857;&amp;#49457;&amp;#182;scene text 가 일상 환경에서 많이 접할 수 있는 visual object 이며, scene text detection 의 일상에서의 높은 효용성을 강조합니다. scene text detection &amp;#48156;&amp;#51204;&amp;#51032; &amp;#50612;&amp;#47140;&amp;#50880;&amp;#182;기존의 traditional OCR(전통적인 광학적 문자인식)과 매우 유사한 task를 가지고 있음에도 불구하고, scene text detection 은 많은 어려움으로 더딘 발전을 겪고 있었다고 합니다. 그 어려움에는 '너무 다양한 배경과 글자의 형태' , '빛 상태에 따른 글자 상태의 다양성' 등이 있습니다. &amp;#44592;&amp;#51316;&amp;#51032; &amp;#48373;&amp;#51105;&amp;#54616;&amp;#44256; &amp;#45712;&amp;#47536; scene text detection &amp;#47784;&amp;#45944;&amp;#182;기존의 scene text detection 은 &quot;글자/단어 후보 생성&quot; -&amp;gt; &quot;후보 필터링&quot; -&amp;gt; &quot;grouping&quot; 과 같은 여러 단계로 나누어져 있어서, 모델 학습 중의 tuning 이 매우 어려웠고, 완성된 모델의 속도도 매우 느려서 real-time detection 에 적용하기 힘들었다고 합니다. &amp;#54620;&amp;#44228;&amp;#47484; &amp;#44537;&amp;#48373;&amp;#54620; textboxes&amp;#182;저자는 Textboxes 는 object detection 에서 큰 성능 향상을 보여준 SSD(2015) 논문 을 본따 만들었으며, single network 로 구성되어있기 때문에 기존의 모델들에 비해 현저히 빠른 성능을 보여주고, 정확도 또한 기존 모델들로부터 크게 향상시켰다고 말합니다. SSD &amp;#50752;&amp;#51032; &amp;#50976;&amp;#49324;&amp;#49457;&amp;#182;Textboxes 모델은 SSD(sigle shot mulitbox detector) 와 구조가 매우 유사하며, 오직 모델 내부의 몇가지 하이퍼-파라메터들만 텍스트 인식에 알맞도록 조정하였다고 합니다. ( default box 와 convolutional kernel(filter) 의 종횡비(ratio) 를 가로로 길게 늘린 것이 그것입니다 ) word recognition &amp;#51032; feedback &amp;#51012; &amp;#53685;&amp;#54644; detection &amp;#49457;&amp;#45733;&amp;#51012; &amp;#45908;&amp;#50865; &amp;#54693;&amp;#49345; &amp;#44032;&amp;#45733;&amp;#182;보통 scene text reading 분야는 text detection 과 text recognition 의 두가지 task로 나뉘는데 Textboxes 모델은 이중에 text detection 을 수행합니다. 하지만 Textboxes 는 detection 후 다양한 text recognition 모델들과 연계가 가능하며, 특정한 given set (lexicon, 단어무리) 이 주어졌을 때에는 text recognition 의 feedback이 detection 모델의 학습 성능을 향상시켜준다고 논문에서는 말합니다. 2. Related Works&amp;#182; &amp;#49440;&amp;#54665; &amp;#45436;&amp;#47928;&amp;#182;scene text reading 분야는 detection 과 recognition 으로 나뉘고, detection 은 다시한번 charicter based(글자 단위) 와 word based(단어 단위) 로 나뉩니다. 1. charicter based(&amp;#44544;&amp;#51088; &amp;#45800;&amp;#50948;) &amp;#49440;&amp;#54665; &amp;#45436;&amp;#47928;&amp;#182;Lukas Neumann, Jiri Matas 의 real time scene textlocalization and recognition(2012) 2. word based(&amp;#45800;&amp;#50612; &amp;#45800;&amp;#50948;) &amp;#49440;&amp;#54665; &amp;#45436;&amp;#47928;&amp;#182;&amp;lt; R-CNN based &amp;gt; Max Jaderberg, Karen Simonyan, Andrea Vedaldi, Andrew Zisserman 의 Reading Text in the Wild with Convolutional Neural Networks(2015) &amp;lt; YOLO based &amp;gt; Ankush Gupta, Andrea Vedaldi, Andrew Zisserman 의 Synthetic Data for Text Localisation in Natural Images(2016) Textboxes &amp;#45716; word based &amp;#47784;&amp;#45944;&amp;#182;Textboxes 는 단어별로 detection 하는 word based 모델입니다. Textboxes &amp;#45716; SSD &amp;#50640;&amp;#49436; &amp;#50689;&amp;#44048;&amp;#182;Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg 의 Single Shot Mulitbox Detector(2015) Textboxes 의 모델 구조는 SSD(Single shot mulitbox detector) 에서 영감을 얻었습니다. ( 실제로 SSD 에서 사용하는 모델 구조, box matching scheme , loss function 등을 인용해 거의 그대로 사용합니다.) Textboxes( detection ) -&amp;gt; CRNN( recognition ) &amp;#51032; &amp;#50672;&amp;#44208;&amp;#46020; &amp;#44396;&amp;#54788;&amp;#54632;&amp;#182;Shi, Baoguang; Bai, Xiang; Yao, Cong 의 An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition(2015) end-to-end(detection to recognition) 모델 학습을 위해 Textboxes 모델과 CRNN 을 통한 text recognition 모델을 연결하여 사용하였습니다. 논문은 뒷단에 다양한 recognition 모델을 붙여 end-to-end training 이 가능한 것이 Textboxes 의 장점이라고 밝혔습니다. 3. Detecting with Textboxes&amp;#182; 3-1. Training Phase&amp;#182; &amp;#47784;&amp;#45944; &amp;#44396;&amp;#51312; Architecture&amp;#182;Textboxes 는 오직 convolution과 pooling 으로만 이루어진 fully-convolutional-network 입니다. &amp;lt;&amp;#45436;&amp;#47928;&amp;#51032; &amp;#47784;&amp;#45944; &amp;#44536;&amp;#47548;&amp;gt;&amp;#182; 위는 논문에 실린 모델의 모습입니다. 이 모델 그림을 기반으로 아래에 제가 해석한 모델 그림을 그려보았습니다. &amp;lt;&amp;#51649;&amp;#51217; &amp;#45796;&amp;#49884; &amp;#44536;&amp;#47536; &amp;#47784;&amp;#45944; &amp;#44536;&amp;#47548;&amp;gt;&amp;#182; input images 는 RGB 로 3개의 채널로 되어있습니다. input images 의 사이즈는 임의로 300*300 으로 설정하고 진행하였습니다. (다른 사이즈의 input 도 가능합니다) 연속적인 convolution layer 가 이어진 부분을 &quot;Base network&quot; 이라고 하고, Base network 에서 중간중간 feature map 을 가져오는 위치를 &quot;Map Point&quot; 라고 일컫습니다. Map Point 에서 가져온 feature map 들을 새로운 convolution 을 수행해서 만들어낸 이 모델의 output 들을 &quot;Textbox Layer&quot; 라고 부릅니다. 즉 Textboxes 모델은 training (loss function) 에 사용되는 output 이 한 값이 아닌, Textbox Layer 가 됩니다. input images 는 Base network 을 거치면서 수많은 feature map들을 만들고, 중간중간 Map point 에서 feature map 들을 추출해 가로로 긴 filter([1,5]) 를 이용한 convolution 을 수행해 channel 이 72개인 Texbox Layer( output ) 를 생성해냅니다. 다양한 크기의 feature map 을 중간중간 이용하는 이유는 다양한 크기의 text 들을 detection 하기 위해서입니다. Base network &amp;#45236;&amp;#48512; &amp;#45936;&amp;#51060;&amp;#53552; &amp;#55120;&amp;#47492; &amp;#54364;&amp;#182;표에서 노란색으로 하이라이트 된 부분이 Map Point 입니다. Textbox Layer &amp;#51032; &amp;#52292;&amp;#45328;&amp;#51060; 72&amp;#44060;&amp;#51064; &amp;#51060;&amp;#50976;&amp;#182;72 라는 숫자는 무엇일까요? Textboxes 모델은 각 Map Point 의 각 픽셀마다 Default Box 를 다양한 종횡비로 12개씩 미리 설정해놓습니다. (SSD 와 같습니다) (무수히 많은 default box 들이 생깁니다.) 하나의 Default box 는 하나의 predicted box 를 만들어냅니다. predicted box는 offset 4값(dx, dy, dw, dh) 과 confidence 2값(c1, c2) 으로 이루어져 있습니다. 하나의 feature map 픽셀당 12개씩의 default box들이 존재하므로 총 12 * 6(4+2) = 72 개의 결과값이 나옵니다. offset?&amp;#182;predicted box 가 산출된 defualt box 로부터의 형태 변화량입니다. 하나의 default box는 하나의 predicted box 를 만들어낼 때 한 default box 가 (x0,y0) 에 위치하고 너비가 w0, 높이가 h0 라고 하면 (모든 box들은 0~1 로 scaling 된 맵 위의 (x,y,w,h) 값을 가집니다. 그래야 서로 다른 크기의 map location 들사이에서의 비교가 가능하기 때문입니다. ) 그리고 그 default box로부터 예측된 predicted box 의 offset 이 (dx, dy ,dw, dh) 라면 predicted box 의 위치 정보(x, y, w, h)는 다음과 같이 복구할 수 있습니다. Default box &amp;#47484; &amp;#47564;&amp;#46300;&amp;#45716; &amp;#48169;&amp;#48277;&amp;#182;모델을 훈련시키기 전, 우선 각 Map Location 의 각 픽셀당 12개씩 , 총 수만개의 Default box 들을 만들어주어야 합니다. 각 default box의 x0,y0 값(0~1 사이로 scaling된 값) 은 각 Map Location 의 각 픽셀마다 모두 다르지만 w0,h0 값은 아닙니다. 종횡비(ratio) 와 Scale 이라는 값으로 컨트롤합니다. &amp;#54620; Map Location &amp;#51032; 12&amp;#44060;&amp;#51032; Default Box&amp;#46308;&amp;#51008; &amp;#44033; &amp;#54589;&amp;#49472;&amp;#47560;&amp;#45796; &amp;#47784;&amp;#50577;&amp;#51060; &amp;#47784;&amp;#46160; &amp;#44057;&amp;#45796;.&amp;#182;12개의 종횡비(ratio)를 미리 설정해놓기 때문이다. (w:h) &amp;#54616;&amp;#51648;&amp;#47564; &amp;#44033; Map Location &amp;#47560;&amp;#45796; Default Box&amp;#51032; (w0,h0) &amp;#46308;&amp;#51008; &amp;#44033;&amp;#44033; &amp;#45796;&amp;#47476;&amp;#45796;.&amp;#182;6개의 Map Location 마다 정해진 종횡비에 특정 Scale 을 곱해서 w0, h0 를 구성하기 때문이다. 1) &amp;#51333;&amp;#54945;&amp;#48708; &amp;#44396;&amp;#49457;&amp;#182;텍스트는 기본적으로 옆으로 긴 형태를 띄고 있기 때문에 Default box 의 종횡비 또한 가로로 깁니다. 논문에서는 종횡비 6가지 (1,2,3,5,7,10) 을 설정해서 픽셀의 중심에 한번, 픽셀의 아래에 한번 적용해 총 12개를 한 픽셀의 default box로 정합니다. 중심에 모든 박스를 넣지 않고 살짝 아래로 6개를 내린 이유는 촘촘한 detection 을 위해서입니다. 그림에서 파란색은 (중심, 종횡비 1) , 검은색은 (중심, 종횡비 5), 빨간색은 (아래, 종횡비 1), 초록색은 (아래, 종횡비 5) 입니다. 2) Scale &amp;#44396;&amp;#49457;&amp;#182;Scale 에 관한 내용은 본 논문에는 나와있지 않지만 SSD 논문에 기술되어있고, 실제로 Textboxes 구현에서도 사용됩니다. 6개의 Map location 의 각 Scale 들은 등차수열을 이룹니다. Loss Function&amp;#182; 이렇게 모든 default box 들을 준비하고, Network Model 까지 준비한 후 이 모델에 image 를 넣고 동작시키면 수만개의 default box 들에서 각각 (dx, dy, dw, dh, c1, c2) 값이 산출됩니다. 이 값들은 loss function 을 구성하는 데에 쓰이고, 우린 Optimizer 를 통해 이 loss function 을 최소화 시키는 방향으로 매 iteration 마다 나아갈 것이고, 이 과정을 무수히 많이 반복하게 됩니다. loss function 의 수식은 아래와 같습니다. 간단히 요약하자면 total loss = confidnece loss + location loss&amp;#182; 입니다. confidence loss 에는 softmax loss 함수를 사용합니다. location loss 에는 smooth_L1 loss 함수를 사용합니다. (아래 수식은 SSD 논문에서 가져왔습니다.) 그런데 중요한 것은 우리가 모든 default box 에서 나온 prediction 값을 사용하지 않는다는 것입니다. default box 들을 positive 와 negative 로 분류합니다. Jaccard Overlap &amp;amp; Hard Negative Mining&amp;#182;우리가 미리 만들어놓은 모든 default box 들과 한 이미지의 모든 ground truth box 들의 Jaccard Overlap 을 비교하여 Jaccard Overlap &amp;gt; 0.5 이상인 dafualt box 들을 positive Jaccard Over &amp;lt; 0.5 이하인 default box 들을 negative 라고 지정합니다. 이렇게 나누면 negative 의 갯수가 positive 의 갯수보다 현저히 많기 때문에 negative 의 갯수가 positive 의 갯수의 3배가 되도록 negative 일부를 무시하고 날립니다. 이 과정을 Hard Negative Mining 이라고 합니다. Jaccard Overlap &amp;#45436;&amp;#47928;&amp;#45236;&amp;#50857; (SSD)&amp;#182; Hard Negative Mining &amp;#45436;&amp;#47928; &amp;#45236;&amp;#50857;(SSD)&amp;#182; 분류가 끝나면, default box들 중 location loss 에서는 positive box 들만을 사용하고 confidence loss 에서는 positive box 들에서는 c1 을 사용하고 negative box 들에서는 c2 를 사용합니다. total loss 는 (location loss + confidence loss)/N 이 됩니다. N 은 positive 로 검출된 box의 갯수입니다. 이 값을 Optimizer 를 통해 줄여나가면서 모델을 학습시키면 됩니다. 3-2. Validation/Test Phase&amp;#182; Non Maximum Supression (NMS)&amp;#182;Training 이 끝난 모델에 input image 를 넣으면 output 으로 Textbox Layer 가 나옵니다. 하지만 Textbox Layer 자체로는 Detecting 완성되었다고 할 수 없습니다. 수많은 값들 중 무엇이 진짜 Predicted Box 인지 골라주어야 합니다. 이 부분에 NMS 라는 방법이 사용됩니다. 참고 링크 : Non-Maximum Suppression for Object Detection in Python NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 Most predicted box로 추려줍니다. Model Accuracy &amp;#52769;&amp;#51221;&amp;#182;학습을 마친 모델의 성능을 보려면 어떻게 Accuracy 를 측정할 것인지도 매우 중요합니다. Accuracy 측정에는 F-Mesure 를 이용합니다. F-Mesure&amp;#182;F measure 는 실제로 정확도를 측정하는데 매우 자주 이용되고, 중요합니다. 기계학습에서 정확도를 평가하는데 중요한 지표중 두가지가 정확도(precision) 와 재현율(recall) 입니다. 정확도와 재현율에 대한 이해를 돕고자 그림을 그려보았습니다. 정확도(precision)는 우리가 Positive 라고 예상한 것 중 맞춘 것의 비율입니다. 재현율(recall)은 실제 ground truth 중 맞춘 것 의 비율입니다. 이 두 지표 모두 중요한데 F-Mesure 는 precision 과 recall 의 비중을 적절히 혼합한 정확도 수치라고 할 수 있습니다. &amp;lt; F-Mesure &amp;#44277;&amp;#49885; &amp;gt;&amp;#182; precision 과 recall 의 조화평균 F-Mesure 를 이용해 Textboxes 모델의 Accuracy 를 구하는 방법은 다음과 같습니다. 논문에서도 다양한 데이터셋에 대해 자신들이 훈련한 실제 Textboxes detection Model 의 성능을 P(Precision) / R(Recall) / F(F-Measure) 세가지 지표로 Accuracy 를 계산해 자랑해놓았습니다. 다양한 text detection 모델들과의 비교도 해놓았습니다. &amp;#45436;&amp;#47928;&amp;#47532;&amp;#48624;&amp;#47484; &amp;#47560;&amp;#52824;&amp;#47728;&amp;#182; 실제로 Textboxes 는 C_RNN 과 같은 Recognition 모델과 연결해 한번에 학습시킬 수 있는 장점도 있습니다. 기회가 된다면 그 연결된 완성형 모델까지 리뷰해볼 생각입니다. Textboxes 의 실제 구현도 python tensorflow 로 구현해 곧 post 로 올릴 예정이니 관심있으시면 블로그를 둘러봐주시면 감사하겠습니다. 궁금한점이나 틀린 부분은 댓글로 편하게 말씀해주시면 기쁘게 수정하겠습니다.</summary></entry><entry><title type="html">Efficient Back Propagation(1998) 논문 리뷰(1)</title><link href="https://shinjayne.github.io//deeplearning/2017/07/07/efficeint-back-prop-paper-review-1.html" rel="alternate" type="text/html" title="Efficient Back Propagation(1998) 논문 리뷰(1)" /><published>2017-07-07T16:30:50+09:00</published><updated>2017-07-07T16:30:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/07/07/efficeint-back-prop-paper-review-1</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/07/07/efficeint-back-prop-paper-review-1.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
 &lt;div class=&quot;prompt input_prompt&quot;&gt;
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
@@ -445,7 +732,9 @@
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;Extracting MNIST_data/train-images-idx3-ubyte.gz
 Extracting MNIST_data/train-labels-idx1-ubyte.gz
@@ -478,7 +767,9 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;(55000, 784) (55000,)
 &lt;/pre&gt;
@@ -845,7 +1136,9 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;=======Epoch :  1  =======================================
 생성기 성능 :  -3.06128
@@ -951,7 +1244,9 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[1]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[1]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -983,7 +1278,9 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[2]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[2]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1020,7 +1317,9 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[5]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[5]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1052,7 +1351,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;3
 4
@@ -1062,7 +1363,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[6]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[6]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1132,7 +1435,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[7]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[7]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1178,7 +1483,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;object&lt;/span&gt; &lt;span
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[15]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[15]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1212,7 +1519,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;0
 1
@@ -1232,7 +1541,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[16]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[16]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1276,7 +1587,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[18]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[18]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1310,7 +1623,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;object&lt;/span&gt; &lt;span
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[20]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[20]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1354,7 +1669,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[19]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[19]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1400,7 +1717,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[21]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[21]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1441,7 +1760,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[22]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[22]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1471,7 +1792,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[23]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[23]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1591,7 +1914,9 @@ Ord[A] 는 type A 의 무언가를 크기비교하는 기능을 가진 type clas
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[1]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[1]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1640,7 +1965,9 @@ Ord[A] 의 type parameter A 에 다양한 type 을 집어넣음으로써 각각�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stderr output_text&quot;&gt;
 &lt;pre&gt;cmd0.sc:1: not found: type Ord
 implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화
@@ -1650,7 +1977,9 @@ implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_text output_error&quot;&gt;
 &lt;pre&gt;
 Compilation Failed&lt;/pre&gt;
@@ -1691,7 +2020,9 @@ Compilation Failed&lt;/pre&gt;
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[3]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[3]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1741,7 +2072,9 @@ Compilation Failed&lt;/pre&gt;
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[4]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[4]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1791,7 +2124,9 @@ Compilation Failed&lt;/pre&gt;
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[5]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[5]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1830,7 +2165,9 @@ Compilation Failed&lt;/pre&gt;
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[6]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[6]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1884,7 +2221,9 @@ Iter[I,A] 는 type A 를 저장하고있는 type I 에서 , A를 조회하거나
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[7]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[7]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1934,7 +2273,9 @@ Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[8]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[8]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -1983,7 +2324,9 @@ Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[9]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[9]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2033,7 +2376,9 @@ Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[10]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[10]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2074,7 +2419,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;3
 4
@@ -2132,7 +2479,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[12]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[12]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2179,7 +2528,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[13]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[13]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2226,7 +2577,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[14]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[14]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2268,7 +2621,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[15]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[15]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2310,7 +2665,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[16]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[16]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2360,7 +2717,9 @@ Higher-kind 는 type 들을 다시 상위의 하나의 개념으로 묶는, 상�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[23]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[23]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2411,7 +2770,9 @@ Higher-kind 는 type 들을 다시 상위의 하나의 개념으로 묶는, 상�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[18]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[18]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2454,7 +2815,9 @@ Higher-kind 는 type 들을 다시 상위의 하나의 개념으로 묶는, 상�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[19]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[19]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2507,7 +2870,9 @@ Higher-kind 는 type 들을 다시 상위의 하나의 개념으로 묶는, 상�
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[20]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[20]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2554,7 +2919,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;4
 5
@@ -2565,7 +2932,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[22]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[22]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2613,7 +2982,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[23]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[23]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2655,7 +3026,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[17]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[17]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2703,7 +3076,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[24]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[24]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2749,7 +3124,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[26]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[26]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2826,7 +3203,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[27]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[27]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2866,7 +3245,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[28]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[28]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2896,7 +3277,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;3
 4
@@ -2905,7 +3288,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[29]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[29]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2949,7 +3334,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[30]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[30]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -2981,7 +3368,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;function&lt;/span&gt; &lt;sp
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[33]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[33]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -3025,7 +3414,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[31]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[31]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -3074,7 +3465,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[34]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[34]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -3117,7 +3510,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[35]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[35]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -3156,7 +3551,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[28]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[28]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -3185,7 +3582,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;3
 4
@@ -3194,7 +3593,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[29]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[29]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -3317,7 +3718,9 @@ defined &lt;span class=&quot;ansi-green-fg&quot;&gt;class&lt;/span&gt; &lt;span 
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;Found and verified ./notMNIST_large.tar.gz
 Found and verified ./notMNIST_small.tar.gz
@@ -3381,7 +3784,9 @@ This should give you a set of directories, labeled A through J.&lt;/p&gt;
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;./notMNIST_large already present - Skipping extraction of ./notMNIST_large.tar.gz.
 [&amp;#39;./notMNIST_large/A&amp;#39;, &amp;#39;./notMNIST_large/B&amp;#39;, &amp;#39;./notMNIST_large/C&amp;#39;, &amp;#39;./notMNIST_large/D&amp;#39;, &amp;#39;./notMNIST_large/E&amp;#39;, &amp;#39;./notMNIST_large/F&amp;#39;, &amp;#39;./notMNIST_large/G&amp;#39;, &amp;#39;./notMNIST_large/H&amp;#39;, &amp;#39;./notMNIST_large/I&amp;#39;, &amp;#39;./notMNIST_large/J&amp;#39;]
@@ -3427,7 +3832,9 @@ This should give you a set of directories, labeled A through J.&lt;/p&gt;
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3449,7 +3856,9 @@ AAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3469,7 +3878,9 @@ AABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3488,7 +3899,9 @@ QmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3507,7 +3920,9 @@ baqX+rCWrRFOTRM3iJqbhVrmBxDOHefrR0ynCsRWFipFYee7mF4c59tuFkIFmji0Au39/8SuA3oF
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3529,7 +3944,9 @@ binjAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3547,7 +3964,9 @@ Y9PKS3EAXecQzgavejdrvWskEz/CSzmpTxsAqP0TSPYVdX3Q5HcbVjboCgAQ/86Q/2F9NFj//vA5
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3566,7 +3985,9 @@ SXI/zOFmsx53D+znl7lF69ixuzqNQPHI5j5/q3vZ4i5MbAA9Ra3zm+LrSAAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3585,7 +4006,9 @@ gg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3604,7 +4027,9 @@ QQDO6sCnzmMEBNfZKhzfDleX09BVse/7v0hBRYoLc/HTAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3623,7 +4048,9 @@ r/T37W9+FZL+Ae4RBdXWCLX3AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3647,7 +4074,9 @@ RK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3666,7 +4095,9 @@ JeNQhxvO24CtKQwhmIXCGUPImSAr2FfK5fpSbUqw60oplnqSQcaIyhhjTLdO7N+56+C5aZWSdLMC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3687,7 +4118,9 @@ MksAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3706,7 +4139,9 @@ As8sDCi3Fy/3/l0rmRtjZ2dz9eWLJiIpwB8scx5CSLhKNwAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3728,7 +4163,9 @@ pzeUYNMqeu8W1msnbuWVtISB7Mn+e0sL0sGwV1vdLRMlr9wm3c1t2VjkAhhTFBvOBBz+D5FxvSPV
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3747,7 +4184,9 @@ lDQr5pra7WTrq5+WN3aQkAT+Ax10ihg6FUAEAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3768,7 +4207,9 @@ TkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3788,7 +4229,9 @@ GrTgQN0s8drq70+zTx59Rz3APzSXU3oOjqFlAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3806,7 +4249,9 @@ JEetdTiE8j42HP7ptb936Q0PIIR7/ir4tTsAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3826,7 +4271,9 @@ o7sszBt8Oi8/zcJ7Wz7MfJvJ7et8Pjdf2s7iy5H1wEjCv+WXTOwdpcb2AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3848,7 +4295,9 @@ IAFrx/4qVAlQ4R3+AvRIAkjLR9cFAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3868,7 +4317,9 @@ SUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3886,7 +4337,9 @@ tY44ev/5u3aMjHnn0fSqS9kjQ2nl+Jnx+mgVOu8Wnr9cJ1LBL83ujbgVaJuAAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3905,7 +4358,9 @@ Sj/OAMNFGD974sCecim0mp/mX0yvsPkVfgP+NOfXT/brxgAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3926,7 +4381,9 @@ BUzVOi8W+ekmDNS3wB+vCOI88kqphAAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3946,7 +4403,9 @@ I8pijH+uN6+uzBlXFoNKmHFHWYi5pk64+gw9JYVcRcMo3L4cQV7TY1OVXy3be0+fLASLSRkwx+C8
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3964,7 +4423,9 @@ pkRj89NnP1Cvsn75jmcJYt6ifHJ87NCeyLe3q8tr30MLgN/dqYOkXkGnTgAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -3984,7 +4445,9 @@ YII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4004,7 +4467,9 @@ QmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4023,7 +4488,9 @@ FFH8D8qIMj/yIV5kAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4046,7 +4513,9 @@ FnJB6OlE85I4UgkkPChqSP4LWLY5ylFX9YgAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4065,7 +4534,9 @@ RU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4085,7 +4556,9 @@ YII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4104,7 +4577,9 @@ L/xF/QrO7CJoAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4125,7 +4600,9 @@ wpH4+sSSP0tf1cTgPstpbJ5SxaziKFOaVvP3Q/wGxmxGhtoL1DUAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4143,7 +4620,9 @@ elJVdTqP39yVS6pJZ/3D7JC0Sp01j5ydHtWqG2tfdln4Dv8Aos59R9xQItIAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4163,7 +4642,9 @@ oaC+nl/Y6/IAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4183,7 +4664,9 @@ RK5CYII=
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4201,7 +4684,9 @@ rkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4221,7 +4706,9 @@ tWej76ZIvWL4F/+9Xfkt1Gc6AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4245,7 +4732,9 @@ Vmj4yxNsAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4264,7 +4753,9 @@ Dx/9xEeFRo08AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4282,7 +4773,9 @@ FwAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4301,7 +4794,9 @@ c262QpaP3bkXEtf3jUvdrvRkIhg+i/YeQEpYpcq3h48xwaKyYePLhTGCAd4oXEPdP2vtV0vvYbCo
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4322,7 +4817,9 @@ l34UfcmrGDIYLAGx1doGBqDn/MM9Oc3JK8eHkzVP51wfFocBO+8dnF2hcgGAUF6LTBAUAcYwGxID
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4341,7 +4838,9 @@ MpQVA6wEilOzM+fPnhkvR1H0Dz3vC0wfwOQHAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4361,7 +4860,9 @@ TIztPAXgL6vKzplhLTo1AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4379,7 +4880,9 @@ TyTeqATqZOI3r0j8BZe93DE5ZPjpAAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4393,7 +4896,9 @@ vSmh1e1j4iwN3c+apPVpaX3JONWenYaE/OnfvgAbKDv8tFAviAAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -4497,7 +5002,9 @@ s2GiOvb0q+QUUgX/AKSeNiHWHjEEAAAAAElFTkSuQmCC
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;./notMNIST_large/A.pickle already present - Skipping pickling.
 ./notMNIST_large/B.pickle already present - Skipping pickling.
@@ -4555,7 +5062,9 @@ s2GiOvb0q+QUUgX/AKSeNiHWHjEEAAAAAElFTkSuQmCC
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;./notMNIST_small/A
 Could not read: ./notMNIST_small/A/RGVtb2NyYXRpY2FCb2xkT2xkc3R5bGUgQm9sZC50dGY=.png : cannot identify image file &amp;#39;./notMNIST_small/A/RGVtb2NyYXRpY2FCb2xkT2xkc3R5bGUgQm9sZC50dGY=.png&amp;#39; - it&amp;#39;s ok, skipping.
@@ -4588,7 +5097,9 @@ Standard deviation: 0.445128
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;[[-0.5        -0.5        -0.5        -0.5        -0.5        -0.5        -0.5
   -0.5        -0.5        -0.5        -0.45294118 -0.45686275 -0.49607843
@@ -4734,7 +5245,9 @@ Standard deviation: 0.445128
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;
@@ -6218,7 +6731,9 @@ T4gLCV9wwQUXPCEuJHzBBRdc8IS4kPAFF1xwwRPi/wfMAwHIvH9p1gAAAABJRU5ErkJggg==
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;Training: (200000, 28, 28) (200000,)
 Validation: (10000, 28, 28) (10000,)
@@ -6260,7 +6775,9 @@ Testing: (10000, 28, 28) (10000,)
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[9]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[9]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -6360,7 +6877,9 @@ Testing: (10000, 28, 28) (10000,)
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[11]:&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt output_prompt&quot;&gt;Out[11]:&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
@@ -6429,7 +6948,9 @@ Testing: (10000, 28, 28) (10000,)
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;Compressed pickle size: 690800512
 &lt;/pre&gt;
@@ -6481,7 +7002,9 @@ Measure how much overlap there is between training, validation and test samples.
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;(200000, 28, 28)
 (200000,)
@@ -6563,7 +7086,9 @@ Measure how much overlap there is between training, validation and test samples.
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;3 [0 0 0 1 0 0 0 0 0 0]
 6 [0 0 0 0 0 0 1 0 0 0]
@@ -6626,7 +7151,9 @@ Measure how much overlap there is between training, validation and test samples.
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;(200000, 784) (200000, 10)
 &lt;/pre&gt;
@@ -6770,7 +7297,9 @@ Measure how much overlap there is between training, validation and test samples.
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 &lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
 &lt;pre&gt;step : 0  loss in current mini_batch :  4601.67
 step : 100  loss in current mini_batch :  1326.26
@@ -6952,7 +7481,9 @@ Accuracy for validation set: 0.8785
 &lt;div class=&quot;output&quot;&gt;
 
 
-&lt;div class=&quot;output_area&quot;&gt;&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
 
 
 &lt;div class=&quot;output_png output_subarea &quot;&gt;

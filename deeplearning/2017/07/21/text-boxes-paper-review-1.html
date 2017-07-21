@@ -1,0 +1,466 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Analytics js-->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101872700-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- code highlight js / css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- BootStrap js / css-->
+    <link href="/bootstrap-3.3.2/css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+     <script src="/bootstrap-3.3.2/js/bootstrap.js"></script>
+
+    <!-- JUPYTER NOTEBOOK js / css-->
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+     <link href="/jupyterstyle/jupyterstyle.css" rel="stylesheet">
+
+
+  <!-- Semantic UI js / css-->
+    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="/semantic/semantic.js"></script>
+
+
+
+
+    <title>Textboxes(2016) : Image Text Detection 논문 리뷰</title>
+
+  </head>
+  <body>
+
+    <div class = "ui container">
+<!---
+      <div class="ui visible left vertical inverted sidebar labeled icon menu">
+        <div class="item">
+          shinjayne
+        </div>
+        <h5> <a class="item" href = "https://shinjayne.github.io/">Home</a> </h5>
+        <h5> <a class="item" href = "https://shinjayne.github.io//category">Categories</a> </h5>
+        <h5> <a class="item" href = "https://shinjayne.github.io//about">About</a> </h5>
+      </div>
+-->
+      <div class="ui stackable grid">
+        <div class="two wide column">
+
+        </div>
+
+        <div class="twelve wide column">
+
+            <div class="ui center aligned inverted segment" >
+
+              <h1  class="ui inverted header" ></h1>
+              <h1  class="ui inverted header" >shinjayne</h1>
+              <h1  class="ui inverted header" ></h1>
+
+              <div class="right item">
+                <a class="ui inverted button" href = "https://shinjayne.github.io/">Home</a>
+                <a class="ui inverted button" href = "https://shinjayne.github.io//category">Categories</a>
+                <a class="ui inverted button" href = "https://shinjayne.github.io//about">About</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="two wide column">
+
+        </div>
+
+        <div class="two wide column">
+
+</div>
+
+<div class="twelve wide column">
+  <div class = "ui segment">
+    <h1>Textboxes(2016) : Image Text Detection 논문 리뷰</h1>
+
+    <li>
+      작성일 : 21 July 2017
+    </li>
+    <li>
+      카테고리 : <a href = "https://shinjayne.github.io//category">DeepLearning</a>
+    </li>
+  </div>
+
+  <div class = "ui segment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이번 글에서는 <strong><em>Textboxes: A Fast Text Detector with a single Deep Neural Network(2016)</em></strong> 란 딥러닝 최신 논문을</p>
+<p>가볍게 정리해보도록 하겠습니다.</p>
+<blockquote><h4 id="&#52280;&#44256;-&#47553;&#53356;">&#52280;&#44256; &#47553;&#53356;<a class="anchor-link" href="#&#52280;&#44256;-&#47553;&#53356;">&#182;</a></h4><ol>
+<li><a href="https://arxiv.org/abs/1611.06779">textboxes 논문 원본(arxiv.org)</a></li>
+<li><a href="https://github.com/shinjayne/textboxes">textboxes tensorflow 구현 코드(github)</a> </li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="scene-text-detection-&#51032;-&#54952;&#50857;&#49457;">scene text detection &#51032; &#54952;&#50857;&#49457;<a class="anchor-link" href="#scene-text-detection-&#51032;-&#54952;&#50857;&#49457;">&#182;</a></h3><p>scene text 가 일상 환경에서 많이 접할 수 있는 visual object 이며, scene text detection 의 일상에서의</p>
+<p>높은 효용성을 강조합니다.</p>
+<h3 id="scene-text-detection-&#48156;&#51204;&#51032;-&#50612;&#47140;&#50880;">scene text detection &#48156;&#51204;&#51032; &#50612;&#47140;&#50880;<a class="anchor-link" href="#scene-text-detection-&#48156;&#51204;&#51032;-&#50612;&#47140;&#50880;">&#182;</a></h3><p>기존의 traditional OCR(전통적인 광학적 문자인식)과 매우 유사한 task를 가지고 있음에도 불구하고,</p>
+<p>scene text detection 은 많은 어려움으로 더딘 발전을 겪고 있었다고 합니다.</p>
+<p>그 어려움에는 '너무 다양한 배경과 글자의 형태' , '빛 상태에 따른 글자 상태의 다양성' 등이 있습니다.</p>
+<h3 id="&#44592;&#51316;&#51032;-&#48373;&#51105;&#54616;&#44256;-&#45712;&#47536;-scene-text-detection-&#47784;&#45944;">&#44592;&#51316;&#51032; &#48373;&#51105;&#54616;&#44256; &#45712;&#47536; scene text detection &#47784;&#45944;<a class="anchor-link" href="#&#44592;&#51316;&#51032;-&#48373;&#51105;&#54616;&#44256;-&#45712;&#47536;-scene-text-detection-&#47784;&#45944;">&#182;</a></h3><p>기존의 scene text detection 은</p>
+<p>"글자/단어 후보 생성" -&gt; "후보 필터링" -&gt; "grouping" 과 같은 여러 단계로 나누어져 있어서,</p>
+<p>모델 학습 중의 tuning 이 매우 어려웠고,</p>
+<p>완성된 모델의 속도도 매우 느려서 real-time detection 에 적용하기 힘들었다고 합니다.</p>
+<h3 id="&#54620;&#44228;&#47484;-&#44537;&#48373;&#54620;-textboxes">&#54620;&#44228;&#47484; &#44537;&#48373;&#54620; textboxes<a class="anchor-link" href="#&#54620;&#44228;&#47484;-&#44537;&#48373;&#54620;-textboxes">&#182;</a></h3><p>저자는 Textboxes 는 object detection 에서 큰 성능 향상을 보여준 <a href="https://arxiv.org/abs/1512.02325">SSD(2015) 논문</a> 을 본따 만들었으며,</p>
+<p>single network 로 구성되어있기 때문에 기존의 모델들에 비해 현저히 빠른 성능을 보여주고,</p>
+<p>정확도 또한 기존 모델들로부터 크게 향상시켰다고 말합니다.</p>
+<h3 id="SSD-&#50752;&#51032;-&#50976;&#49324;&#49457;">SSD &#50752;&#51032; &#50976;&#49324;&#49457;<a class="anchor-link" href="#SSD-&#50752;&#51032;-&#50976;&#49324;&#49457;">&#182;</a></h3><p>Textboxes 모델은 SSD(sigle shot mulitbox detector) 와 구조가 매우 유사하며,</p>
+<p>오직 모델 내부의 몇가지 하이퍼-파라메터들만 텍스트 인식에 알맞도록 조정하였다고 합니다.</p>
+<p><em>( default box 와 convolutional kernel(filter) 의 종횡비(ratio) 를 가로로 길게 늘린 것이 그것입니다 )</em></p>
+<h3 id="word-recognition-&#51032;-feedback-&#51012;-&#53685;&#54644;-detection-&#49457;&#45733;&#51012;-&#45908;&#50865;-&#54693;&#49345;-&#44032;&#45733;">word recognition &#51032; feedback &#51012; &#53685;&#54644; detection &#49457;&#45733;&#51012; &#45908;&#50865; &#54693;&#49345; &#44032;&#45733;<a class="anchor-link" href="#word-recognition-&#51032;-feedback-&#51012;-&#53685;&#54644;-detection-&#49457;&#45733;&#51012;-&#45908;&#50865;-&#54693;&#49345;-&#44032;&#45733;">&#182;</a></h3><p>보통 <em>scene text reading</em> 분야는 text detection 과 text recognition 의 두가지 task로 나뉘는데</p>
+<p>Textboxes 모델은 이중에 text detection 을 수행합니다.</p>
+<p>하지만 Textboxes 는 detection 후 다양한 text recognition 모델들과 연계가 가능하며,</p>
+<p>특정한 given set (lexicon, 단어무리) 이 주어졌을 때에는 text recognition 의 feedback이  detection 모델의 학습 성능을 향상시켜준다고</p>
+<p>논문에서는 말합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="2.-Related-Works">2. Related Works<a class="anchor-link" href="#2.-Related-Works">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#49440;&#54665;-&#45436;&#47928;">&#49440;&#54665; &#45436;&#47928;<a class="anchor-link" href="#&#49440;&#54665;-&#45436;&#47928;">&#182;</a></h3><p><em>scene text reading</em> 분야는 detection 과 recognition 으로 나뉘고,</p>
+<p>detection 은 다시한번 charicter based(글자 단위) 와 word based(단어 단위) 로 나뉩니다.</p>
+<blockquote><h4 id="1.-charicter-based(&#44544;&#51088;-&#45800;&#50948;)-&#49440;&#54665;-&#45436;&#47928;">1. charicter based(&#44544;&#51088; &#45800;&#50948;) &#49440;&#54665; &#45436;&#47928;<a class="anchor-link" href="#1.-charicter-based(&#44544;&#51088;-&#45800;&#50948;)-&#49440;&#54665;-&#45436;&#47928;">&#182;</a></h4><p>Lukas Neumann, Jiri Matas 의 <a href="https://www.semanticscholar.org/paper/Real-time-scene-text-localization-and-recognition-Neumann-Matas/323649409db200d2eebed0091f9ea25151a1c36b">real time scene textlocalization and recognition(2012)</a></p>
+<h4 id="2.-word-based(&#45800;&#50612;-&#45800;&#50948;)-&#49440;&#54665;-&#45436;&#47928;">2. word based(&#45800;&#50612; &#45800;&#50948;) &#49440;&#54665; &#45436;&#47928;<a class="anchor-link" href="#2.-word-based(&#45800;&#50612;-&#45800;&#50948;)-&#49440;&#54665;-&#45436;&#47928;">&#182;</a></h4><p>&lt; R-CNN based &gt;</p>
+<p>Max Jaderberg, Karen Simonyan, Andrea Vedaldi, Andrew Zisserman 의 <a href="https://www.semanticscholar.org/paper/Reading-Text-in-the-Wild-with-Convolutional-Neural-Jaderberg-Simonyan/b1a25f665cd18b2a22e5804a2a012af282d59f1b">Reading Text in the Wild with Convolutional Neural Networks(2015)</a></p>
+<p>&lt; YOLO based &gt;</p>
+<p>Ankush Gupta, Andrea Vedaldi, Andrew Zisserman 의 <a href="https://www.semanticscholar.org/paper/Synthetic-Data-for-Text-Localisation-in-Natural-Im-Gupta-Vedaldi/18f51e9bdc1abdb6f1601c5c0692d6c150421a48">Synthetic Data for Text Localisation in Natural Images(2016)</a></p>
+</blockquote>
+<h3 id="Textboxes-&#45716;-word-based-&#47784;&#45944;">Textboxes &#45716; word based &#47784;&#45944;<a class="anchor-link" href="#Textboxes-&#45716;-word-based-&#47784;&#45944;">&#182;</a></h3><p>Textboxes 는 단어별로 detection 하는 word based 모델입니다.</p>
+<h3 id="Textboxes-&#45716;-SSD-&#50640;&#49436;-&#50689;&#44048;">Textboxes &#45716; SSD &#50640;&#49436; &#50689;&#44048;<a class="anchor-link" href="#Textboxes-&#45716;-SSD-&#50640;&#49436;-&#50689;&#44048;">&#182;</a></h3><blockquote><p>Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu, Alexander C. Berg 의</p>
+<p><a href="https://arxiv.org/abs/1512.02325">Single Shot Mulitbox Detector(2015)</a></p>
+</blockquote>
+<p>Textboxes 의 모델 구조는 SSD(Single shot mulitbox detector) 에서 영감을 얻었습니다.</p>
+<p>( 실제로 SSD 에서 사용하는 모델 구조, box matching scheme , loss function 등을 인용해 거의 그대로 사용합니다.)</p>
+<h3 id="Textboxes(-detection-)--&gt;-CRNN(-recognition-)-&#51032;-&#50672;&#44208;&#46020;-&#44396;&#54788;&#54632;">Textboxes( detection ) -&gt; CRNN( recognition ) &#51032; &#50672;&#44208;&#46020; &#44396;&#54788;&#54632;<a class="anchor-link" href="#Textboxes(-detection-)--&gt;-CRNN(-recognition-)-&#51032;-&#50672;&#44208;&#46020;-&#44396;&#54788;&#54632;">&#182;</a></h3><blockquote><p>Shi, Baoguang; Bai, Xiang; Yao, Cong 의 
+<a href="http://adsabs.harvard.edu/abs/2015arXiv150705717S">An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition(2015)</a></p>
+</blockquote>
+<p>end-to-end(detection to recognition) 모델 학습을 위해 Textboxes 모델과 CRNN 을 통한 text recognition 모델을 연결하여 사용하였습니다.</p>
+<p>논문은  뒷단에 다양한 recognition 모델을 붙여 end-to-end training 이 가능한 것이 Textboxes 의 장점이라고 밝혔습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="3.-Detecting-with-Textboxes">3. Detecting with Textboxes<a class="anchor-link" href="#3.-Detecting-with-Textboxes">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3-1.-Training-Phase">3-1. Training Phase<a class="anchor-link" href="#3-1.-Training-Phase">&#182;</a></h2><p><hr/></p>
+<h3 id="&#47784;&#45944;-&#44396;&#51312;-Architecture">&#47784;&#45944; &#44396;&#51312; Architecture<a class="anchor-link" href="#&#47784;&#45944;-&#44396;&#51312;-Architecture">&#182;</a></h3><p>Textboxes 는 오직 convolution과 pooling 으로만 이루어진 fully-convolutional-network 입니다.</p>
+<blockquote><h4 id="&lt;&#45436;&#47928;&#51032;-&#47784;&#45944;-&#44536;&#47548;&gt;">&lt;&#45436;&#47928;&#51032; &#47784;&#45944; &#44536;&#47548;&gt;<a class="anchor-link" href="#&lt;&#45436;&#47928;&#51032;-&#47784;&#45944;-&#44536;&#47548;&gt;">&#182;</a></h4><p><img src="/images/tb/model1.png" alt="모델그림"></p>
+</blockquote>
+<p>위는 논문에 실린 모델의 모습입니다. 이 모델 그림을 기반으로 아래에 제가 해석한 모델 그림을 그려보았습니다.</p>
+<p><hr/></p>
+<blockquote><h4 id="&lt;&#51649;&#51217;-&#45796;&#49884;-&#44536;&#47536;-&#47784;&#45944;-&#44536;&#47548;&gt;">&lt;&#51649;&#51217; &#45796;&#49884; &#44536;&#47536; &#47784;&#45944; &#44536;&#47548;&gt;<a class="anchor-link" href="#&lt;&#51649;&#51217;-&#45796;&#49884;-&#44536;&#47536;-&#47784;&#45944;-&#44536;&#47548;&gt;">&#182;</a></h4><p><img src="/images/tb/1.png" alt="표"></p>
+<p><img src="/images/tb/2.png" alt="표"></p>
+</blockquote>
+<p>input images 는 RGB 로 3개의 채널로 되어있습니다.</p>
+<p>input images 의 사이즈는 임의로 300*300 으로 설정하고 진행하였습니다. (다른 사이즈의 input 도 가능합니다)</p>
+<blockquote><용어>
+
+<p>연속적인 convolution layer 가 이어진 부분을 <strong>"Base network"</strong> 이라고 하고,</p>
+<p>Base network 에서 중간중간 feature map 을 가져오는 위치를 <strong>"Map Point"</strong> 라고 일컫습니다.</p>
+<p>Map Point 에서 가져온 feature map 들을 새로운 convolution 을 수행해서 만들어낸 이 모델의 <strong>output</strong> 들을 <strong>"Textbox Layer"</strong> 라고 부릅니다.</p>
+<p>즉 Textboxes 모델은 training (loss function) 에 사용되는 output 이 한 값이 아닌, <em>Textbox Layer</em> 가 됩니다.</p>
+</blockquote>
+<p>input images 는 Base network 을 거치면서 수많은 feature map들을 만들고,</p>
+<p>중간중간 Map point 에서 feature map 들을 추출해 가로로 긴 filter([1,5]) 를 이용한 convolution 을 수행해</p>
+<p>channel 이 72개인 Texbox Layer( output ) 를 생성해냅니다.</p>
+<p>다양한 크기의 feature map 을 중간중간 이용하는 이유는 다양한 크기의 text 들을 detection 하기 위해서입니다.</p>
+<h3 id="Base-network-&#45236;&#48512;-&#45936;&#51060;&#53552;-&#55120;&#47492;-&#54364;">Base network &#45236;&#48512; &#45936;&#51060;&#53552; &#55120;&#47492; &#54364;<a class="anchor-link" href="#Base-network-&#45236;&#48512;-&#45936;&#51060;&#53552;-&#55120;&#47492;-&#54364;">&#182;</a></h3><p>표에서 노란색으로 하이라이트 된 부분이 <strong>Map Point</strong> 입니다. 
+<img src="/images/tb/model2.png" alt="표"></p>
+<h3 id="Textbox-Layer-&#51032;-&#52292;&#45328;&#51060;-72&#44060;&#51064;-&#51060;&#50976;">Textbox Layer &#51032; &#52292;&#45328;&#51060; 72&#44060;&#51064; &#51060;&#50976;<a class="anchor-link" href="#Textbox-Layer-&#51032;-&#52292;&#45328;&#51060;-72&#44060;&#51064;-&#51060;&#50976;">&#182;</a></h3><p>72 라는 숫자는 무엇일까요?</p>
+<p>Textboxes 모델은 각 Map Point 의 각 픽셀마다 Default Box 를 다양한 종횡비로 12개씩 미리 설정해놓습니다. (SSD 와 같습니다)</p>
+<p><em>(무수히 많은 default box 들이 생깁니다.)</em></p>
+<p>하나의 Default box 는 하나의 predicted box 를 만들어냅니다.</p>
+<p>predicted box는 offset 4값(dx, dy, dw, dh) 과  confidence 2값(c1, c2) 으로 이루어져 있습니다.</p>
+<p>하나의 feature map 픽셀당 12개씩의 default box들이 존재하므로</p>
+<p>총 12 * 6(4+2) = 72 개의 결과값이 나옵니다.</p>
+<blockquote><h3 id="offset?">offset?<a class="anchor-link" href="#offset?">&#182;</a></h3><p>predicted box 가 산출된 defualt box 로부터의 형태 변화량입니다.</p>
+<p>하나의 default box는 하나의 predicted box 를 만들어낼 때</p>
+<p>한 default box 가 <strong>(x0,y0) 에 위치</strong>하고 <strong>너비가 w0, 높이가 h0 </strong> 라고 하면</p>
+<blockquote><p><strong><em>(모든 box들은 0~1 로 scaling 된 맵 위의 (x,y,w,h) 값을 가집니다. 그래야 서로 다른 크기의 map location 들사이에서의 비교가 가능하기 때문입니다. )</em></strong></p>
+</blockquote>
+<p>그리고 그 default box로부터 예측된 predicted box 의 offset 이 <strong>(dx, dy ,dw, dh)</strong> 라면</p>
+<p>predicted box 의 위치 정보(x, y, w, h)는 다음과 같이 복구할 수 있습니다.</p>
+<p><img src="/images/tb/3.png" alt="수식"></p>
+</blockquote>
+<h3 id="Default-box-&#47484;-&#47564;&#46300;&#45716;-&#48169;&#48277;">Default box &#47484; &#47564;&#46300;&#45716; &#48169;&#48277;<a class="anchor-link" href="#Default-box-&#47484;-&#47564;&#46300;&#45716;-&#48169;&#48277;">&#182;</a></h3><p>모델을 훈련시키기 전, 우선 각 Map Location 의 각 픽셀당 12개씩 , 총 수만개의 Default box 들을 만들어주어야 합니다.</p>
+<p>각 default box의 x0,y0 값(0~1 사이로 scaling된 값) 은 각 Map Location 의 각 픽셀마다 모두 다르지만</p>
+<p>w0,h0 값은 아닙니다.</p>
+<p><strong>종횡비(ratio)</strong> 와 <strong>Scale</strong> 이라는 값으로 컨트롤합니다.</p>
+<blockquote><h4 id="&#54620;-Map-Location-&#51032;-12&#44060;&#51032;-Default-Box&#46308;&#51008;-&#44033;-&#54589;&#49472;&#47560;&#45796;-&#47784;&#50577;&#51060;-&#47784;&#46160;-&#44057;&#45796;.">&#54620; Map Location &#51032; 12&#44060;&#51032; Default Box&#46308;&#51008; &#44033; &#54589;&#49472;&#47560;&#45796; &#47784;&#50577;&#51060; &#47784;&#46160; &#44057;&#45796;.<a class="anchor-link" href="#&#54620;-Map-Location-&#51032;-12&#44060;&#51032;-Default-Box&#46308;&#51008;-&#44033;-&#54589;&#49472;&#47560;&#45796;-&#47784;&#50577;&#51060;-&#47784;&#46160;-&#44057;&#45796;.">&#182;</a></h4><p>12개의 <strong>종횡비(ratio)</strong>를 미리 설정해놓기 때문이다.  (w:h)</p>
+<h4 id="&#54616;&#51648;&#47564;-&#44033;-Map-Location-&#47560;&#45796;-Default-Box&#51032;-(w0,h0)-&#46308;&#51008;-&#44033;&#44033;-&#45796;&#47476;&#45796;.">&#54616;&#51648;&#47564; &#44033; Map Location &#47560;&#45796; Default Box&#51032; (w0,h0) &#46308;&#51008; &#44033;&#44033; &#45796;&#47476;&#45796;.<a class="anchor-link" href="#&#54616;&#51648;&#47564;-&#44033;-Map-Location-&#47560;&#45796;-Default-Box&#51032;-(w0,h0)-&#46308;&#51008;-&#44033;&#44033;-&#45796;&#47476;&#45796;.">&#182;</a></h4><p>6개의 Map Location 마다 정해진 종횡비에 특정 <strong>Scale</strong> 을 곱해서 w0, h0 를 구성하기 때문이다.</p>
+</blockquote>
+<h4 id="1)-&#51333;&#54945;&#48708;-&#44396;&#49457;">1) &#51333;&#54945;&#48708; &#44396;&#49457;<a class="anchor-link" href="#1)-&#51333;&#54945;&#48708;-&#44396;&#49457;">&#182;</a></h4><p>텍스트는 기본적으로 옆으로 긴 형태를 띄고 있기 때문에 Default box 의 종횡비 또한 가로로 깁니다.</p>
+<p>논문에서는 종횡비 6가지 (1,2,3,5,7,10) 을 설정해서 픽셀의 중심에 한번, 픽셀의 아래에 한번 적용해</p>
+<p>총 12개를 한 픽셀의 default box로 정합니다.</p>
+<p>중심에 모든 박스를 넣지 않고 살짝 아래로 6개를 내린 이유는 촘촘한 detection 을 위해서입니다.</p>
+<p><hr/>
+<img src="/images/tb/4.png" alt="수식"></p>
+<p><hr/>
+그림에서 파란색은 (중심, 종횡비 1) , 검은색은 (중심, 종횡비 5), 빨간색은 (아래, 종횡비 1), 초록색은 (아래, 종횡비 5) 입니다.</p>
+<h4 id="2)-Scale-&#44396;&#49457;">2) Scale &#44396;&#49457;<a class="anchor-link" href="#2)-Scale-&#44396;&#49457;">&#182;</a></h4><p>Scale 에 관한 내용은 본 논문에는 나와있지 않지만 SSD 논문에 기술되어있고, 실제로 Textboxes 구현에서도 사용됩니다.</p>
+<p>6개의 Map location 의 각 Scale 들은 등차수열을 이룹니다.</p>
+<h3 id="Loss-Function">Loss Function<a class="anchor-link" href="#Loss-Function">&#182;</a></h3><p><hr />
+이렇게 모든 default box 들을 준비하고, Network Model 까지 준비한 후</p>
+<p>이 모델에 image 를 넣고 동작시키면</p>
+<p>수만개의 default box 들에서 각각 (dx, dy, dw, dh, c1, c2) 값이 산출됩니다.</p>
+<p>이 값들은 loss function 을 구성하는 데에 쓰이고,</p>
+<p>우린  Optimizer 를 통해 이 loss function 을 최소화 시키는 방향으로 매 iteration 마다 나아갈 것이고,</p>
+<p>이 과정을 무수히 많이 반복하게 됩니다.</p>
+<hr/>
+
+<p>loss function 의 수식은 아래와 같습니다.</p>
+<p>간단히 요약하자면</p>
+<blockquote><h4 id="total-loss-=-confidnece-loss-+-location-loss"><code>total loss = confidnece loss + location loss</code><a class="anchor-link" href="#total-loss-=-confidnece-loss-+-location-loss">&#182;</a></h4>
+</blockquote>
+<p>입니다.</p>
+<p>confidence loss 에는 softmax loss 함수를 사용합니다.</p>
+<p>location loss 에는 smooth_L1 loss 함수를 사용합니다.</p>
+<p>(아래 수식은 SSD 논문에서 가져왔습니다.)</p>
+<p><hr/>
+<img src="/images/tb/5.png" alt="수식"></p>
+<p><hr/>
+그런데 중요한 것은 우리가 모든 default box 에서 나온 prediction 값을 사용하지 않는다는 것입니다.</p>
+<p><strong>default box 들을 positive 와 negative 로 분류합니다. </strong></p>
+<blockquote><h3 id="Jaccard-Overlap-&amp;-Hard-Negative-Mining">Jaccard Overlap &amp; Hard Negative Mining<a class="anchor-link" href="#Jaccard-Overlap-&amp;-Hard-Negative-Mining">&#182;</a></h3><p>우리가 미리 만들어놓은 <strong>모든 default box 들</strong>과 한 이미지의 <strong>모든 ground truth box 들</strong>의 Jaccard Overlap 을 비교하여</p>
+<p>Jaccard Overlap &gt; 0.5 이상인 dafualt box 들을 <strong>positive</strong></p>
+<p>Jaccard Over &lt; 0.5 이하인 default box 들을 <strong>negative</strong> 라고 지정합니다.</p>
+<p>이렇게 나누면 negative 의 갯수가 positive 의 갯수보다 현저히 많기 때문에</p>
+<p>negative 의 갯수가 positive 의 갯수의 3배가 되도록 negative 일부를 무시하고 날립니다.</p>
+<p>이 과정을 Hard Negative Mining 이라고 합니다.</p>
+<blockquote><h3 id="Jaccard-Overlap-&#45436;&#47928;&#45236;&#50857;-(SSD)">Jaccard Overlap &#45436;&#47928;&#45236;&#50857; (SSD)<a class="anchor-link" href="#Jaccard-Overlap-&#45436;&#47928;&#45236;&#50857;-(SSD)">&#182;</a></h3><p>
+<img src="/images/tb/7.png" alt="수식">
+<img src="/images/tb/9.png" alt="이미지"></p>
+</blockquote>
+</blockquote>
+<p><hr/></p>
+<blockquote><blockquote><p></p>
+<h3 id="Hard-Negative-Mining-&#45436;&#47928;-&#45236;&#50857;(SSD)">Hard Negative Mining &#45436;&#47928; &#45236;&#50857;(SSD)<a class="anchor-link" href="#Hard-Negative-Mining-&#45436;&#47928;-&#45236;&#50857;(SSD)">&#182;</a></h3><p>
+<img src="/images/tb/8.png" alt="수식"></p>
+</blockquote>
+</blockquote>
+<p>분류가 끝나면, default box들 중</p>
+<p><strong>location loss 에서는 positive box 들만을 사용하고 </strong></p>
+<p><strong>confidence loss 에서는 positive box 들에서는 c1 을 사용하고 negative box 들에서는 c2 를 사용합니다. </strong></p>
+<p><strong>total loss 는 (location loss + confidence loss)/N  이 됩니다.</strong></p>
+<p>N 은 positive 로 검출된 box의 갯수입니다.</p>
+<p>이 값을 Optimizer 를 통해 줄여나가면서 모델을 학습시키면 됩니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h2 id="3-2.-Validation/Test-Phase">3-2. Validation/Test Phase<a class="anchor-link" href="#3-2.-Validation/Test-Phase">&#182;</a></h2><hr/> 
+
+<h3 id="Non-Maximum-Supression-(NMS)">Non Maximum Supression (NMS)<a class="anchor-link" href="#Non-Maximum-Supression-(NMS)">&#182;</a></h3><p>Training 이 끝난 모델에 input image 를 넣으면 output 으로 Textbox Layer 가 나옵니다.</p>
+<p>하지만 Textbox Layer 자체로는 Detecting 완성되었다고 할 수 없습니다.</p>
+<p>수많은 값들 중 무엇이 진짜 Predicted Box 인지 골라주어야 합니다.</p>
+<p>이 부분에 NMS 라는 방법이 사용됩니다.</p>
+<blockquote><p>참고 링크 : <a href="http://www.voidcn.com/blog/u014365862/article/p-5749434.html">Non-Maximum Suppression for Object Detection in Python</a></p>
+<blockquote><p><img src="/images/tb/10.jpg" alt="수식">
+NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 Most predicted box로 추려줍니다.</p>
+</blockquote>
+</blockquote>
+<h3 id="Model-Accuracy-&#52769;&#51221;">Model Accuracy &#52769;&#51221;<a class="anchor-link" href="#Model-Accuracy-&#52769;&#51221;">&#182;</a></h3><p>학습을 마친 모델의 성능을 보려면 어떻게 Accuracy 를 측정할 것인지도 매우 중요합니다.</p>
+<p>Accuracy 측정에는 <strong>F-Mesure</strong> 를 이용합니다.</p>
+<blockquote><h3 id="F-Mesure">F-Mesure<a class="anchor-link" href="#F-Mesure">&#182;</a></h3><p>F measure 는 실제로 정확도를 측정하는데 매우 자주 이용되고, 중요합니다.</p>
+<p>기계학습에서 정확도를 평가하는데 중요한 지표중 두가지가 <strong>정확도(precision)</strong> 와 <strong>재현율(recall)</strong> 입니다.</p>
+<p>정확도와 재현율에 대한 이해를 돕고자 그림을 그려보았습니다.</p>
+<p><img src="/images/tb/12.png" alt="수식"></p>
+<p>정확도(precision)는 우리가 <strong>Positive 라고 예상한 것</strong> 중 <strong>맞춘 것</strong>의 비율입니다.</p>
+<p>재현율(recall)은 <strong>실제 ground truth</strong> 중 <strong>맞춘 것</strong> 의 비율입니다.</p>
+<p>이 두 지표 모두 중요한데</p>
+<p>F-Mesure 는 precision 과 recall 의 비중을 적절히 혼합한 정확도 수치라고 할 수 있습니다.</p>
+<blockquote><h4 id="&lt;-F-Mesure-&#44277;&#49885;-&gt;">&lt; F-Mesure &#44277;&#49885; &gt;<a class="anchor-link" href="#&lt;-F-Mesure-&#44277;&#49885;-&gt;">&#182;</a></h4><p><img src="/images/tb/13.png" alt="수식"></p>
+<p>precision 과 recall 의 조화평균</p>
+</blockquote>
+</blockquote>
+<p>F-Mesure 를 이용해 Textboxes 모델의 Accuracy 를 구하는 방법은 다음과 같습니다.</p>
+<p><hr/>
+<img src="/images/tb/14.png" alt="수식"></p>
+<p><hr/>
+논문에서도 다양한 데이터셋에 대해 자신들이 훈련한 실제 Textboxes detection Model 의 성능을</p>
+<p>P(Precision) / R(Recall) / F(F-Measure)</p>
+<p>세가지 지표로 Accuracy 를 계산해 자랑해놓았습니다.</p>
+<p>다양한 text detection 모델들과의 비교도 해놓았습니다.</p>
+<p><hr/>
+<img src="/images/tb/15.png" alt="수식"></p>
+<hr/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="&#45436;&#47928;&#47532;&#48624;&#47484;-&#47560;&#52824;&#47728;">&#45436;&#47928;&#47532;&#48624;&#47484; &#47560;&#52824;&#47728;<a class="anchor-link" href="#&#45436;&#47928;&#47532;&#48624;&#47484;-&#47560;&#52824;&#47728;">&#182;</a></h1><p><hr/>
+<br/>
+실제로 Textboxes 는 C_RNN 과 같은 Recognition 모델과 연결해 한번에 학습시킬 수 있는 장점도 있습니다.</p>
+<p>기회가 된다면 그 연결된 완성형 모델까지 리뷰해볼 생각입니다.</p>
+<p>Textboxes 의 실제 구현도 python tensorflow 로 구현해 곧 post 로 올릴 예정이니</p>
+<p>관심있으시면</p>
+<p>블로그를 둘러봐주시면 감사하겠습니다.</p>
+<p>궁금한점이나 틀린 부분은 댓글로 편하게 말씀해주시면 기쁘게 수정하겠습니다.</p>
+
+</div>
+</div>
+</div>
+ 
+
+
+  </div>
+
+</div>
+
+<div class="two wide column">
+
+</div>
+
+
+        <div class="two wide column"></div>
+
+        <div class="twelve wide column">
+          <hr />
+          <div id="disqus_thread" class = "ui segment"></div>
+          <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+          /*
+          var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          */
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://shinjayne.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+
+        <div class="two wide column"></div>
+
+
+
+        <div class="two wide column">
+        </div>
+        <div class="twelve wide column">
+          <hr />
+          <p>
+            powered by <a>Jupyter NoteBook</a> / <a>Jekyll</a> / <a>BootStrap</a> / <a>Semantic-UI</a> / <a>Github Pages</a>
+          </p>
+          <p>
+            source code available on <a href="https://github.com/shinjayne/shinjayne.github.io">here</a>
+          </p>
+
+        </div>
+        <div class="two wide column">
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
