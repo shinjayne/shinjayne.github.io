@@ -9284,7 +9284,8 @@ div.cell {
   margin: 0px;
   outline: none;
   border-left-width: 1px;
-  padding-left: 5px;
+  padding-left: 0px;
+  padding-right : 7% ;
   background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
 }
 div.cell.jupyter-soft-selected {
