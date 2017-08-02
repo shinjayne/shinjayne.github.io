@@ -1,4 +1,583 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-08-01T15:29:59+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Fly with Deep Learning! Deep Leanring / Server(Linux) / Android / etc ...</subtitle><entry><title type="html">tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용</title><link href="https://shinjayne.github.io//deeplearning/2017/07/29/tf-ckpt-use.html" rel="alternate" type="text/html" title="tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용" /><published>2017-07-29T02:59:50+09:00</published><updated>2017-07-29T02:59:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/07/29/tf-ckpt-use</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/07/29/tf-ckpt-use.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-08-02T21:22:54+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Fly with Deep Learning! Deep Leanring / Server(Linux) / Android / etc ...</subtitle><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;ae/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;Autoencoder 의 간략한 구조는 위와 같다.&lt;/p&gt;
+&lt;p&gt;=&amp;gt; self supervised learning 에 가깝다.&lt;/p&gt;
+&lt;p&gt;자기 자신을 target(label) 값으로 사용하기 때문이다.&lt;/p&gt;
+&lt;p&gt;가운데 초록색 노드들(Hidden nodes) 을 coding layer, 또는 bottleneck 이라고 부른다.&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1.-Autoencoder-&amp;#47484;-&amp;#50612;&amp;#46356;&amp;#50640;-&amp;#50416;&amp;#45208;&quot;&gt;1. Autoencoder &amp;#47484; &amp;#50612;&amp;#46356;&amp;#50640; &amp;#50416;&amp;#45208;&lt;a class=&quot;anchor-link&quot; href=&quot;#1.-Autoencoder-&amp;#47484;-&amp;#50612;&amp;#46356;&amp;#50640;-&amp;#50416;&amp;#45208;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;
+&lt;strong&gt;1.feature detection &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;학습된 autoencoder에서는 coding layer 가 input 의 중요한 feature 들을 나타내게된다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.recommendation system&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;추후 튜토리얼을 확인하자.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.encoding &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Decoder로 디코딩할수 있는 코드로 input 값을 encoding(암호화) 하는 기능을 할 수 있다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2.-Autoencoder-&amp;#51032;-&amp;#51089;&amp;#46041;&quot;&gt;2. Autoencoder &amp;#51032; &amp;#51089;&amp;#46041;&lt;a class=&quot;anchor-link&quot; href=&quot;#2.-Autoencoder-&amp;#51032;-&amp;#51089;&amp;#46041;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;ae/3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://probablydance.com/2016/04/30/neural-networks-are-impressively-good-at-compression/&quot;&gt;이 사이트&lt;/a&gt; 를 참고한 모델을 설명한다.&lt;/p&gt;
+&lt;p&gt;주로 activation function 으로 tanh 를 사용한다. (hidden 직전과 visible 직전에)&lt;/p&gt;
+&lt;p&gt;output 값에 softmax 를 사용한다.&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;3.-Autoencoder-&amp;#51032;-Bias&quot;&gt;3. Autoencoder &amp;#51032; Bias&lt;a class=&quot;anchor-link&quot; href=&quot;#3.-Autoencoder-&amp;#51032;-Bias&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;ae/5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;이렇게 Bias 를 추가할 수도 있고, 그림으론 이렇게 표현한다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;4.-Autoencoder-&amp;#51032;-Training&quot;&gt;4. Autoencoder &amp;#51032; Training&lt;a class=&quot;anchor-link&quot; href=&quot;#4.-Autoencoder-&amp;#51032;-Training&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;step&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;내용&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;부가&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;input vector x_u = (r1,r2,.., ri,...,rm) 은 user u 의 m개의 영화에 대한 rating이다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;rating은 1~5 사이의 값이고, rating 없으면 0이다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;2&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;input vector(user 단위) 가 하나 network 로 들어간다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;3&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;input vector x_u 는 vector z 로 인코딩된다.x 에서 z 로 갈 때 mapping function 에 의해 차원이 축소된다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;mapping function : z = f(Wx+b) (f : sigmoid, tanh , etc)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;4&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;z 가 output vector y로 decoding 된다. y는 x vector 와 같은 차원을 가진다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;y가 x의 복사본이 되게 하는 것이 학습의 목적이다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;5&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;reconstruction error d(x,y) 를 계산한다. 이 error function 을 최소화시킨다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;error function : d(x,y)=//x-y//&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;6&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;back-propagation 을 이용해, error 의 값이 역전파되고, W,b 값들이 tuning 된다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;learning rate 에 따라 학습 정도가 달라진다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;7&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;step 1~6 을 반복하면서 파라메터들을 업데이트한다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;만약 vector 하나씩 넣으면서 update 시키면 Reinforcement Learning 이고, 여러 batch 씩 한꺼번에 넣으면서 학습시키면 Batch Learning&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;8&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;전체 데이터셋을 한번 다 학습시켰다면, epoch 단위로 몇번 더 학습한다.&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;5.-Hidden-Layer-&amp;#51032;-&amp;#44079;&amp;#49688;&amp;#44032;-&amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197;-&amp;#51339;&amp;#51012;&amp;#44620;?&quot;&gt;5. Hidden Layer &amp;#51032; &amp;#44079;&amp;#49688;&amp;#44032; &amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197; &amp;#51339;&amp;#51012;&amp;#44620;?&lt;a class=&quot;anchor-link&quot; href=&quot;#5.-Hidden-Layer-&amp;#51032;-&amp;#44079;&amp;#49688;&amp;#44032;-&amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197;-&amp;#51339;&amp;#51012;&amp;#44620;?&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;
+&lt;img src=&quot;ae/8.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;위와같이 hidden node 의 갯수를 input 갯수보다 늘리면 좋을까?&lt;/p&gt;
+&lt;p&gt;언뜻 생각하면, 더 많은 feature를 뽑아낼 수 있어서 좋겠다 라고 생각할 수 있지만 실제론 그렇지 않다.&lt;/p&gt;
+&lt;p&gt;맨 상단과 맨 아래 있는 node 가 사용되지 않고, 가운데 5개의 node 가 input 을 output  으로 그대로 복사하는 문제가 생긴다.&lt;/p&gt;
+&lt;p&gt;encoding 의 기능이 없어지는 것이다. 그렇게되면 의미있는 feature 를 뽑아낼 수 없다.&lt;/p&gt;
+&lt;p&gt;이러한 문제, 즉 Autoencoder 의 Overfitting(과적합) 문제를 해결하기 위한 Regularization 방법들을 소개한다.&lt;/p&gt;
+&lt;p&gt;Sparse AE,&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;6.-Regularization1-:-Sparse-Autoencoder&quot;&gt;6. Regularization1 : Sparse Autoencoder&lt;a class=&quot;anchor-link&quot; href=&quot;#6.-Regularization1-:-Sparse-Autoencoder&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;매우 유명하다. 굉장히 많이 사용된다.&lt;/p&gt;
+&lt;p&gt;위처럼 데이터를 그대로 옮기는 hidden node 가 생기는  overfitting  문제를 해결한다.&lt;/p&gt;
+&lt;p&gt;간단히 말하자면 hidden node 중 매번 일부 node 만 사용해서 학습한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;ae/9.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;7.-Regularization2-:-Denoising-Autoencoder&quot;&gt;7. Regularization2 : Denoising Autoencoder&lt;a class=&quot;anchor-link&quot; href=&quot;#7.-Regularization2-:-Denoising-Autoencoder&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;Stochastic 한 Auto Encoder 다.&lt;/p&gt;
+&lt;p&gt;input X 중의 일부만 사용한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;ae/10.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;8.-Regularization3-:-Contractive-Autoencoder&quot;&gt;8. Regularization3 : Contractive Autoencoder&lt;a class=&quot;anchor-link&quot; href=&quot;#8.-Regularization3-:-Contractive-Autoencoder&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;정리 후 내용을 추후 추가하겠다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;9.-Stacked-Autoencoder&quot;&gt;9. Stacked Autoencoder&lt;a class=&quot;anchor-link&quot; href=&quot;#9.-Stacked-Autoencoder&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;Stacked Autoencoder 는 간단히 encoding layer를 하나 더 추가한 것인데, 성능은 매우 강력하다.&lt;/p&gt;
+&lt;p&gt;이 간단한 모델이 Deep Belief Network 의 성능을 넘어서는 경우도 있다고 하니, 정말 대단하다.&lt;/p&gt;
+&lt;p&gt;참고자료를 읽고, 다시 정리하겠다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;ae/11.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;10.-Deep-Autoencoder&quot;&gt;10. Deep Autoencoder&lt;a class=&quot;anchor-link&quot; href=&quot;#10.-Deep-Autoencoder&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;Deep autoencoder 를 알기 전에 확실하게 짚고 넘어가야할 부분은, &lt;strong&gt;Deep Autoencoder 와 Stacked Autoencoder 는 전혀 다른것이다. &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;반드시 구분해야한다.&lt;/p&gt;
+&lt;p&gt;Deep autoencoder 는 RBM ( Ristricted Boltzman Machine ) 을 쌓아 만들었고,&lt;/p&gt;
+&lt;p&gt;Stacked autoencoder 는 autoencoder 의 encoding layer 를 깊게 쌓아 만든 것이다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h1 id=&quot;Python-&amp;#51032;-&amp;#49345;&amp;#49549;&quot;&gt;Python &amp;#51032; &amp;#49345;&amp;#49549;&lt;a class=&quot;anchor-link&quot; href=&quot;#Python-&amp;#51032;-&amp;#49345;&amp;#49549;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h1 id=&quot;&amp;#44053;&amp;#51228;&amp;#49345;&amp;#49549;-?-&amp;#51088;&amp;#46041;&amp;#49345;&amp;#49549;?&quot;&gt;&amp;#44053;&amp;#51228;&amp;#49345;&amp;#49549; ? &amp;#51088;&amp;#46041;&amp;#49345;&amp;#49549;?&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#44053;&amp;#51228;&amp;#49345;&amp;#49549;-?-&amp;#51088;&amp;#46041;&amp;#49345;&amp;#49549;?&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;강제상속 : 나에게 없을때, 부모클래스 namespace 로 거슬러 올라가 강제 사용&lt;/p&gt;
+&lt;p&gt;자동상속 : 내가 부모 클래스 메서드를 덮어썼지만, 부모클래스메서드를 사용하고 싶을 때 super(__class__, self).method() 로 부모메서드 호출&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[42]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;fm&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+    
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[41]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#자동상속&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#s1 은 __init__ 이 없어서 Base 것을 참조한다&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;jayne&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#강제상속&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#s2 는 자체 __init__ 이 있어서 Base 것을 덮어쓴다. Base 것을 강제 이용하려면, super를 통해 강제상속시킬 수 있다. &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;jayne&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;182&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h1 id=&quot;&amp;#45796;&amp;#51473;&amp;#49345;&amp;#49549;&amp;#49884;-super-&amp;#45716;-&amp;#45572;&amp;#44396;&amp;#44163;&amp;#51012;-&amp;#44032;&amp;#51256;&amp;#50724;&amp;#45208;?&quot;&gt;&amp;#45796;&amp;#51473;&amp;#49345;&amp;#49549;&amp;#49884; super &amp;#45716; &amp;#45572;&amp;#44396;&amp;#44163;&amp;#51012; &amp;#44032;&amp;#51256;&amp;#50724;&amp;#45208;?&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#45796;&amp;#51473;&amp;#49345;&amp;#49549;&amp;#49884;-super-&amp;#45716;-&amp;#45572;&amp;#44396;&amp;#44163;&amp;#51012;-&amp;#44032;&amp;#51256;&amp;#50724;&amp;#45208;?&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[56]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;fm&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+    
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;fm&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;위처럼 코드를 만들면, super는 누구의 init 메서드를 강제상속할까.&lt;/p&gt;
+&lt;p&gt;후보는 Sub1 과 Sub2 이다.&lt;/p&gt;
+&lt;p&gt;후보1 : Sub2 의 메서드를 강제 상속하므로 인자로 name, tall, age 모두 넘겨줘야한다.&lt;/p&gt;
+&lt;p&gt;후보2 : Sub1 의 메서드를 찾다가, Base 의 init 메서드를 강제상속해오므로, name 만 넘겨주면 된다.&lt;/p&gt;
+&lt;p&gt;이 답을 알아보는 방법은 help() 함수이다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[57]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;so&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[58]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;output_wrapper&quot;&gt;
+&lt;div class=&quot;output&quot;&gt;
+
+
+&lt;div class=&quot;output_area&quot;&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
+&lt;pre&gt;Help on SubSub in module __main__ object:
+
+class SubSub(Sub1, Sub2)
+ |  Method resolution order:
+ |      SubSub
+ |      Sub1
+ |      Sub2
+ |      Base
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, name)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from Base:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;Method resolution order 를 보면 알 있다.&lt;/p&gt;
+&lt;p&gt;SubSub 는 자신에게 메서드가 없을 때(자동상속)나 부모의 메서드를 super 로 가져올 때 (강제상속) 위의 ordering 을 따르므로&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;super().__init__()&lt;/code&gt; 을 호출 할 때에도, Sub1 에 &lt;code&gt;__init__&lt;/code&gt; 이 있기에  그 init 부터 가져와 사용하게 된다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h1 id=&quot;&amp;#44208;&amp;#47200;-:-&amp;#47784;&amp;#46304;&amp;#44163;&amp;#51008;-namespace-&amp;#52280;&amp;#51312;-&amp;#49692;&amp;#49436;&amp;#50640;-&amp;#45804;&amp;#47160;&amp;#45796;.&quot;&gt;&amp;#44208;&amp;#47200; : &amp;#47784;&amp;#46304;&amp;#44163;&amp;#51008; namespace &amp;#52280;&amp;#51312; &amp;#49692;&amp;#49436;&amp;#50640; &amp;#45804;&amp;#47160;&amp;#45796;.&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#44208;&amp;#47200;-:-&amp;#47784;&amp;#46304;&amp;#44163;&amp;#51008;-namespace-&amp;#52280;&amp;#51312;-&amp;#49692;&amp;#49436;&amp;#50640;-&amp;#45804;&amp;#47160;&amp;#45796;.&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;</content><author><name></name></author><category term="DeepLearning" /><summary type="html">Autoencoder 의 간략한 구조는 위와 같다. =&amp;gt; self supervised learning 에 가깝다. 자기 자신을 target(label) 값으로 사용하기 때문이다. 가운데 초록색 노드들(Hidden nodes) 을 coding layer, 또는 bottleneck 이라고 부른다. 1. Autoencoder &amp;#47484; &amp;#50612;&amp;#46356;&amp;#50640; &amp;#50416;&amp;#45208;&amp;#182; 1.feature detection 학습된 autoencoder에서는 coding layer 가 input 의 중요한 feature 들을 나타내게된다. 2.recommendation system 추후 튜토리얼을 확인하자. 3.encoding Decoder로 디코딩할수 있는 코드로 input 값을 encoding(암호화) 하는 기능을 할 수 있다. 2. Autoencoder &amp;#51032; &amp;#51089;&amp;#46041;&amp;#182; 이 사이트 를 참고한 모델을 설명한다. 주로 activation function 으로 tanh 를 사용한다. (hidden 직전과 visible 직전에) output 값에 softmax 를 사용한다. 3. Autoencoder &amp;#51032; Bias&amp;#182; 이렇게 Bias 를 추가할 수도 있고, 그림으론 이렇게 표현한다. 4. Autoencoder &amp;#51032; Training&amp;#182; step 내용 부가 1 input vector x_u = (r1,r2,.., ri,...,rm) 은 user u 의 m개의 영화에 대한 rating이다. rating은 1~5 사이의 값이고, rating 없으면 0이다. 2 input vector(user 단위) 가 하나 network 로 들어간다. 3 input vector x_u 는 vector z 로 인코딩된다.x 에서 z 로 갈 때 mapping function 에 의해 차원이 축소된다. mapping function : z = f(Wx+b) (f : sigmoid, tanh , etc) 4 z 가 output vector y로 decoding 된다. y는 x vector 와 같은 차원을 가진다. y가 x의 복사본이 되게 하는 것이 학습의 목적이다. 5 reconstruction error d(x,y) 를 계산한다. 이 error function 을 최소화시킨다. error function : d(x,y)=//x-y// 6 back-propagation 을 이용해, error 의 값이 역전파되고, W,b 값들이 tuning 된다. learning rate 에 따라 학습 정도가 달라진다. 7 step 1~6 을 반복하면서 파라메터들을 업데이트한다. 만약 vector 하나씩 넣으면서 update 시키면 Reinforcement Learning 이고, 여러 batch 씩 한꺼번에 넣으면서 학습시키면 Batch Learning 8 전체 데이터셋을 한번 다 학습시켰다면, epoch 단위로 몇번 더 학습한다. 5. Hidden Layer &amp;#51032; &amp;#44079;&amp;#49688;&amp;#44032; &amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197; &amp;#51339;&amp;#51012;&amp;#44620;?&amp;#182; 위와같이 hidden node 의 갯수를 input 갯수보다 늘리면 좋을까? 언뜻 생각하면, 더 많은 feature를 뽑아낼 수 있어서 좋겠다 라고 생각할 수 있지만 실제론 그렇지 않다. 맨 상단과 맨 아래 있는 node 가 사용되지 않고, 가운데 5개의 node 가 input 을 output 으로 그대로 복사하는 문제가 생긴다. encoding 의 기능이 없어지는 것이다. 그렇게되면 의미있는 feature 를 뽑아낼 수 없다. 이러한 문제, 즉 Autoencoder 의 Overfitting(과적합) 문제를 해결하기 위한 Regularization 방법들을 소개한다. Sparse AE, 6. Regularization1 : Sparse Autoencoder&amp;#182; 매우 유명하다. 굉장히 많이 사용된다. 위처럼 데이터를 그대로 옮기는 hidden node 가 생기는 overfitting 문제를 해결한다. 간단히 말하자면 hidden node 중 매번 일부 node 만 사용해서 학습한다. 7. Regularization2 : Denoising Autoencoder&amp;#182; Stochastic 한 Auto Encoder 다. input X 중의 일부만 사용한다. 8. Regularization3 : Contractive Autoencoder&amp;#182; 정리 후 내용을 추후 추가하겠다. 9. Stacked Autoencoder&amp;#182; Stacked Autoencoder 는 간단히 encoding layer를 하나 더 추가한 것인데, 성능은 매우 강력하다. 이 간단한 모델이 Deep Belief Network 의 성능을 넘어서는 경우도 있다고 하니, 정말 대단하다. 참고자료를 읽고, 다시 정리하겠다. 10. Deep Autoencoder&amp;#182; Deep autoencoder 를 알기 전에 확실하게 짚고 넘어가야할 부분은, Deep Autoencoder 와 Stacked Autoencoder 는 전혀 다른것이다. 반드시 구분해야한다. Deep autoencoder 는 RBM ( Ristricted Boltzman Machine ) 을 쌓아 만들었고, Stacked autoencoder 는 autoencoder 의 encoding layer 를 깊게 쌓아 만든 것이다. Python &amp;#51032; &amp;#49345;&amp;#49549;&amp;#182; &amp;#44053;&amp;#51228;&amp;#49345;&amp;#49549; ? &amp;#51088;&amp;#46041;&amp;#49345;&amp;#49549;?&amp;#182;강제상속 : 나에게 없을때, 부모클래스 namespace 로 거슬러 올라가 강제 사용 자동상속 : 내가 부모 클래스 메서드를 덮어썼지만, 부모클래스메서드를 사용하고 싶을 때 super(__class__, self).method() 로 부모메서드 호출 In&amp;nbsp;[42]: class Base : def __init__(self, name) : self.name = name class Sub1(Base): pass class Sub2(Base): def __init__(self, name, tall, age) : super(Sub2, self).__init__(name) self.tall = tall self.age = age In&amp;nbsp;[41]: #자동상속 #s1 은 __init__ 이 없어서 Base 것을 참조한다 s1 = Sub1(&amp;quot;jayne&amp;quot;) #강제상속 #s2 는 자체 __init__ 이 있어서 Base 것을 덮어쓴다. Base 것을 강제 이용하려면, super를 통해 강제상속시킬 수 있다. s2 = Sub2(&amp;quot;jayne&amp;quot;,182, 22) &amp;#45796;&amp;#51473;&amp;#49345;&amp;#49549;&amp;#49884; super &amp;#45716; &amp;#45572;&amp;#44396;&amp;#44163;&amp;#51012; &amp;#44032;&amp;#51256;&amp;#50724;&amp;#45208;?&amp;#182; In&amp;nbsp;[56]: class Base : def __init__(self, name) : self.name = name class Sub1(Base): def __init__(self, name) : self.name = name class Sub2(Base): def __init__(self, name, tall, age) : super(Sub2, self).__init__(name) self.tall = tall self.age = age class SubSub(Sub1, Sub2): def __init__(self, name) : super(SubSub, self).__init__(name) 위처럼 코드를 만들면, super는 누구의 init 메서드를 강제상속할까. 후보는 Sub1 과 Sub2 이다. 후보1 : Sub2 의 메서드를 강제 상속하므로 인자로 name, tall, age 모두 넘겨줘야한다. 후보2 : Sub1 의 메서드를 찾다가, Base 의 init 메서드를 강제상속해오므로, name 만 넘겨주면 된다. 이 답을 알아보는 방법은 help() 함수이다. In&amp;nbsp;[57]: ss = SubSub(&amp;quot;so&amp;quot;) In&amp;nbsp;[58]: help(ss) Help on SubSub in module __main__ object: class SubSub(Sub1, Sub2) | Method resolution order: | SubSub | Sub1 | Sub2 | Base | builtins.object | | Methods defined here: | | __init__(self, name) | Initialize self. See help(type(self)) for accurate signature. | | ---------------------------------------------------------------------- | Data descriptors inherited from Base: | | __dict__ | dictionary for instance variables (if defined) | | __weakref__ | list of weak references to the object (if defined) Method resolution order 를 보면 알 있다. SubSub 는 자신에게 메서드가 없을 때(자동상속)나 부모의 메서드를 super 로 가져올 때 (강제상속) 위의 ordering 을 따르므로 super().__init__() 을 호출 할 때에도, Sub1 에 __init__ 이 있기에 그 init 부터 가져와 사용하게 된다. &amp;#44208;&amp;#47200; : &amp;#47784;&amp;#46304;&amp;#44163;&amp;#51008; namespace &amp;#52280;&amp;#51312; &amp;#49692;&amp;#49436;&amp;#50640; &amp;#45804;&amp;#47160;&amp;#45796;.&amp;#182; In&amp;nbsp;[&amp;nbsp;]:</summary></entry><entry><title type="html">tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용</title><link href="https://shinjayne.github.io//deeplearning/2017/07/29/tf-ckpt-use.html" rel="alternate" type="text/html" title="tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용" /><published>2017-07-29T02:59:50+09:00</published><updated>2017-07-29T02:59:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/07/29/tf-ckpt-use</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/07/29/tf-ckpt-use.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
 &lt;div class=&quot;prompt input_prompt&quot;&gt;
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
