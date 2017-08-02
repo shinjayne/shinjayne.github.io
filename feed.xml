@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-08-02T21:22:54+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Fly with Deep Learning! Deep Leanring / Server(Linux) / Android / etc ...</subtitle><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-08-02T21:27:46+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Fly with Deep Learning! Deep Leanring / Server(Linux) / Android / etc ...</subtitle><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
 &lt;div class=&quot;prompt input_prompt&quot;&gt;
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;&lt;img src=&quot;ae/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/ae/1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -40,7 +40,7 @@
 &lt;br/&gt;&lt;/p&gt;
 &lt;h1 id=&quot;2.-Autoencoder-&amp;#51032;-&amp;#51089;&amp;#46041;&quot;&gt;2. Autoencoder &amp;#51032; &amp;#51089;&amp;#46041;&lt;a class=&quot;anchor-link&quot; href=&quot;#2.-Autoencoder-&amp;#51032;-&amp;#51089;&amp;#46041;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
 &lt;br/&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;ae/3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/ae/3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -66,7 +66,7 @@
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;&lt;img src=&quot;ae/5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/ae/5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -171,7 +171,7 @@
 &lt;br/&gt;&lt;/p&gt;
 &lt;h1 id=&quot;5.-Hidden-Layer-&amp;#51032;-&amp;#44079;&amp;#49688;&amp;#44032;-&amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197;-&amp;#51339;&amp;#51012;&amp;#44620;?&quot;&gt;5. Hidden Layer &amp;#51032; &amp;#44079;&amp;#49688;&amp;#44032; &amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197; &amp;#51339;&amp;#51012;&amp;#44620;?&lt;a class=&quot;anchor-link&quot; href=&quot;#5.-Hidden-Layer-&amp;#51032;-&amp;#44079;&amp;#49688;&amp;#44032;-&amp;#47566;&amp;#51012;&amp;#49688;&amp;#47197;-&amp;#51339;&amp;#51012;&amp;#44620;?&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
 &lt;br/&gt;
-&lt;img src=&quot;ae/8.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/ae/8.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -221,7 +221,7 @@
 &lt;p&gt;매우 유명하다. 굉장히 많이 사용된다.&lt;/p&gt;
 &lt;p&gt;위처럼 데이터를 그대로 옮기는 hidden node 가 생기는  overfitting  문제를 해결한다.&lt;/p&gt;
 &lt;p&gt;간단히 말하자면 hidden node 중 매번 일부 node 만 사용해서 학습한다.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;ae/9.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/ae/9.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -255,7 +255,7 @@
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
 &lt;p&gt;Stochastic 한 Auto Encoder 다.&lt;/p&gt;
 &lt;p&gt;input X 중의 일부만 사용한다.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;ae/10.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/ae/10.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -322,7 +322,7 @@
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;&lt;img src=&quot;ae/11.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/ae/11.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
