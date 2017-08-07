@@ -1,0 +1,376 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Analytics js-->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-101872700-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- code highlight js / css-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- BootStrap js / css-->
+    <link href="/bootstrap-3.3.2/css/bootstrap.css" rel="stylesheet">
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+     <script src="/bootstrap-3.3.2/js/bootstrap.js"></script>
+
+    <!-- JUPYTER NOTEBOOK js / css-->
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+     <link href="/jupyterstyle/jupyterstyle.css" rel="stylesheet">
+
+
+  <!-- Semantic UI js / css-->
+    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="/semantic/semantic.js"></script>
+
+
+
+
+    <title>open-AI 의 gym (python package) 이용해 강화학습 훈련하기 : Q-leanring </title>
+
+  </head>
+  <body>
+
+    <div class = "ui container">
+<!---
+      <div class="ui visible left vertical inverted sidebar labeled icon menu">
+        <div class="item">
+          shinjayne
+        </div>
+        <h5> <a class="item" href = "https://shinjayne.github.io/">Home</a> </h5>
+        <h5> <a class="item" href = "https://shinjayne.github.io//category">Categories</a> </h5>
+        <h5> <a class="item" href = "https://shinjayne.github.io//about">About</a> </h5>
+      </div>
+-->
+      <div class="ui stackable grid">
+        <div class="one wide column">
+
+        </div>
+
+        <div class="fourteen wide column">
+
+            <div class="ui center aligned inverted segment" >
+
+              <h1  class="ui inverted header" ></h1>
+              <h1  class="ui inverted header" >shinjayne</h1>
+              <h1  class="ui inverted header" ></h1>
+
+              <div class="right item">
+                <a class="ui inverted button" href = "https://shinjayne.github.io/">Home</a>
+                <a class="ui inverted button" href = "https://shinjayne.github.io//category">Categories</a>
+                <a class="ui inverted button" href = "https://shinjayne.github.io//projects">Projects</a>
+              </div>
+            </div>
+        </div>
+
+        <div class="one wide column">
+
+        </div>
+
+        <div class="one wide column">
+
+</div>
+
+<div class="fourteen wide column">
+  <div class = "ui segment">
+    <h1>open-AI 의 gym (python package) 이용해 강화학습 훈련하기 : Q-leanring </h1>
+
+    <li>
+      작성일 : 08 August 2017
+    </li>
+    <li>
+      카테고리 : <a href = "https://shinjayne.github.io//category">DeepLearning</a>
+    </li>
+  </div>
+
+  <div class = "ui segment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다.</p>
+<p>gym package 를 이용해서 강화학습 훈련 환경을 만들어보고, Q-learning 이라는 강화학습 알고리즘에 대해 알아보고 적용시켜보자.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="1.-gym-package-&#51060;&#50857;&#54616;&#44592;">1. gym package &#51060;&#50857;&#54616;&#44592;<a class="anchor-link" href="#1.-gym-package-&#51060;&#50857;&#54616;&#44592;">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>open-AI 에서 만든 gym 이란 파이썬 패키지를 이용하면 강화학습( Reinforcement Learning ) 훈련을 수행할 수 있는 Agent와 Environment 를 제공받을 수 있다.</p>
+<blockquote><p><a href="https://gym.openai.com/">open-AI gym 홈페이지</a></p>
+</blockquote>
+<p>gym 을 간단하게 pip install 통해서 설치할 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># command line</span>
+<span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">gym</span>
+<span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">readchar</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>실제로 gym 을 사용해본다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># gym_example.py</span>
+
+<span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">from</span> <span class="nn">gym.envs.registration</span> <span class="k">import</span> <span class="n">register</span>
+<span class="kn">import</span> <span class="nn">readchar</span>
+
+
+<span class="n">LEFT</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">DOWN</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">RIGHT</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">UP</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">arrow_keys</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[A&#39;</span> <span class="p">:</span> <span class="n">UP</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[B&#39;</span> <span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[C&#39;</span> <span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span>
+    <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[D&#39;</span> <span class="p">:</span> <span class="n">LEFT</span>
+<span class="p">}</span>
+
+
+<span class="n">register</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;FrozenLake-v3&#39;</span><span class="p">,</span>
+    <span class="n">entry_point</span><span class="o">=</span><span class="s2">&quot;gym.envs.toy_text:FrozenLakeEnv&quot;</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;map_name&#39;</span><span class="p">:</span><span class="s1">&#39;4x4&#39;</span><span class="p">,</span><span class="s1">&#39;is_slippery&#39;</span><span class="p">:</span><span class="kc">False</span><span class="p">})</span>
+
+
+<span class="sd">&#39;&#39;&#39;여기서부터 gym 코드의 시작이다. env 는 agent 가 활동할 수 있는 environment 이다.&#39;&#39;&#39;</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;FrozenLake-v3&quot;</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span> <span class="c1">#환경을 화면으로 출력</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">readchar</span><span class="o">.</span><span class="n">readkey</span><span class="p">()</span>  <span class="c1">#키보드 입력을 받는다 </span>
+    
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">arrow_keys</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Game aborted!&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+        
+    <span class="n">action</span> <span class="o">=</span> <span class="n">arrow_keys</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="c1">#에이젼트의 움직임</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="c1">#움직임에 따른 결과값들 </span>
+    <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span> <span class="c1">#화면을 다시 출력</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State:&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="s2">&quot;Action&quot;</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;Reward:&quot;</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="s2">&quot;Info:&quot;</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">done</span><span class="p">:</span> <span class="c1">#도착하면 게임을 끝낸다. </span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished with reward&quot;</span><span class="p">,</span> <span class="n">reward</span><span class="p">)</span>
+        <span class="k">break</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>위와 같은 코드로, 내가 직접 게임을 진행해볼 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="2.-Q-learning-&#51060;&#46976;?">2. Q-learning &#51060;&#46976;?<a class="anchor-link" href="#2.-Q-learning-&#51060;&#46976;?">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="/images/aigym/1.jpeg" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>위의 gym-example.py 코드같은 environment 에서, agent 가 무작위로 방향을 결정하면 학습이 잘 되지 않는다.</p>
+<p>시도 횟수는 엄청 많은데에 비해 reward는 성공할 때 한번만 지급되기 때문이다.</p>
+<p>그에 대한 해결책이 바로 Q-learning 이다.</p>
+<p>agent는 방향을 결정해야할 때마다 가상의 Q 에게 행보를 물어본다.</p>
+<p>Q 는 agent 의 state를 보고 그가 action1 을 취하면 기대되는 reward1(quality1) 을 알려주고, action2 를 취하면 기대되는 reward2(quality2) 를 알려준다.</p>
+<p>agent 는 Q의 도움을 받아 더 빠른 학습이 가능하다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="-"> <a class="anchor-link" href="#-">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br/>
+<br/></p>
+<h1 id="-"> <a class="anchor-link" href="#-">&#182;</a></h1><p><hr/>
+<br/></p>
+
+</div>
+</div>
+</div>
+ 
+
+
+  </div>
+
+</div>
+
+<div class="one wide column">
+
+</div>
+
+
+        <div class="one wide column"></div>
+
+        <div class="fourteen wide column">
+          <hr />
+          <div id="disqus_thread" class = "ui segment"></div>
+          <script>
+
+          /**
+          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+          /*
+          var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+          };
+          */
+          (function() { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://shinjayne.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+
+        <div class="one wide column"></div>
+
+
+
+        <div class="one wide column">
+        </div>
+        <div class="fourteen wide column">
+          <hr />
+          <p>
+            powered by <a>Jupyter NoteBook</a> / <a>Jekyll</a> / <a>BootStrap</a> / <a>Semantic-UI</a> / <a>Github Pages</a>
+          </p>
+          <p>
+            source code available on <a href="https://github.com/shinjayne/shinjayne.github.io">here</a>
+          </p>
+          <p>
+            <h2 class=header>shinjayne.github.io</h2>
+            <h3 class=header>developer blog</h2>
+          </p>
+
+        </div>
+        <div class="one wide column">
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
