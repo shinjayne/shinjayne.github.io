@@ -1,10 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-08-08T03:49:40+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Fly with Deep Learning! Deep Leanring / Server(Linux) / Android / etc ...</subtitle><entry><title type="html">open-AI 의 gym (python package) 이용해 강화학습 훈련하기 : Q-leanring</title><link href="https://shinjayne.github.io//deeplearning/2017/08/08/open-ai-gym.html" rel="alternate" type="text/html" title="open-AI 의 gym (python package) 이용해 강화학습 훈련하기 : Q-leanring " /><published>2017-08-08T03:43:50+09:00</published><updated>2017-08-08T03:43:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/08/open-ai-gym</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/08/open-ai-gym.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io//" rel="alternate" type="text/html" /><updated>2017-08-08T14:57:20+09:00</updated><id>https://shinjayne.github.io//</id><title type="html">shinjayne</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Fly with Deep Learning! Deep Leanring / Server(Linux) / Android / etc ...</subtitle><entry><title type="html">open-AI 의 gym (python package) 이용해 강화학습 훈련하기 1: Q-leanring</title><link href="https://shinjayne.github.io//deeplearning/2017/08/08/open-ai-gym.html" rel="alternate" type="text/html" title="open-AI 의 gym (python package) 이용해 강화학습 훈련하기 1: Q-leanring " /><published>2017-08-08T03:43:50+09:00</published><updated>2017-08-08T03:43:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/08/open-ai-gym</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/08/open-ai-gym.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
 &lt;div class=&quot;prompt input_prompt&quot;&gt;
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
 &lt;p&gt;open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다.&lt;/p&gt;
 &lt;p&gt;gym package 를 이용해서 강화학습 훈련 환경을 만들어보고, Q-learning 이라는 강화학습 알고리즘에 대해 알아보고 적용시켜보자.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;blockquote&gt;&lt;h3 id=&quot;&amp;#47785;&amp;#52264;&quot;&gt;&amp;#47785;&amp;#52264;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#47785;&amp;#52264;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;#1.-gym-package-이용하기&quot;&gt;1. gym package 이용하기&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#2.-Q-learning-이란?&quot;&gt;2. Q-learning 이란? &lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;#Q-learning-의-학습-(Greedy,-Dummy&quot;&gt;2-1. Q-learning 의 학습(Dummy Q learning)&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#Dummy-Q-learning-학습---python-code&quot;&gt;2-2. Dummy Q-learning python code&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;#3.-완벽한-Q-learning-(-Dummy-Q-learning-의-문제-&quot;&gt;3. 완벽한 Q-learning ( Dummy Q-learning 의 문제 )&lt;/a&gt;)&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;&lt;a href=&quot;#해결책-1-:--E-greedy&quot;&gt;3-1. 해결책 1 :  E-greedy &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#해결책-2-:-add-Random-noise&quot;&gt;3-2. 해결책 2 : add Random Noise&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#새로운-문제-:-여러-경로가-생긴다&quot;&gt;3-3. 새로운 문제 : 여러 경로 &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#Q-learning-python-코드와-실행결과&quot;&gt;3-4. 완벽한 Q-learning python code &lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -40,7 +61,7 @@
 &lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
     &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# command line&lt;/span&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# command line (bash)&lt;/span&gt;
 &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gym&lt;/span&gt;
 &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readchar&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -162,6 +183,11 @@
 &lt;p&gt;agent는 방향을 결정해야할 때마다 가상의 Q 에게 행보를 물어본다.&lt;/p&gt;
 &lt;p&gt;Q 는 agent 의 state를 보고 그가 action1 을 취하면 기대되는 reward1(quality1) 을 알려주고, action2 를 취하면 기대되는 reward2(quality2) 를 알려준다.&lt;/p&gt;
 &lt;p&gt;agent 는 Q의 도움을 받아 더 빠른 학습이 가능하다.&lt;/p&gt;
+&lt;p&gt;수식적으로는&lt;/p&gt;
+&lt;p&gt;Q(s, a) = π  처럼 쓸 수 있으며&lt;/p&gt;
+&lt;p&gt;현재 s(state)에서 취할수 있는 가장 큰 reward 인 max Q  max(Q(s,a)) 로&lt;/p&gt;
+&lt;p&gt;현재 s(state)에서 max(Q(s,a))로 가게 해주는 action 은 argmax(Q(s,a)) 로 표현한다.&lt;/p&gt;
+&lt;p&gt;argmax(Q(s,a))는 π*(s) 로도 표현하며 여기서 *은 optimal 함을 의미한다.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -171,9 +197,219 @@
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/2.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;Q-learning-&amp;#51032;-&amp;#54617;&amp;#49845;-(Greedy,-Dummy)&quot;&gt;Q-learning &amp;#51032; &amp;#54617;&amp;#49845; (Greedy, Dummy)&lt;a class=&quot;anchor-link&quot; href=&quot;#Q-learning-&amp;#51032;-&amp;#54617;&amp;#49845;-(Greedy,-Dummy)&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;Q-learning 알고리즘에서 학습한다는 것은 아래 그림처럼 모두 0으로 초기화되어있는 모든 Q 값들을 하나씩 업데이트시킨다는 것과 같다.&lt;/p&gt;
+&lt;p&gt;모든 칸의 0은 각각의 Q(s,a) 값을 나타낸다.&lt;/p&gt;
+&lt;p&gt;도착지점으로 넘어갈 때에만 reward = 1 이 주어지고, 나머지 부분으로 넘어갈 때에는 reward = 0 이다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;우선 각 칸의 Q 값을 업데이트 하는 방법은 다음과같다.&lt;/p&gt;
+&lt;p&gt;Q(s,a) 의 값은 (다음칸의 Q 중 가장 큰 값 + reward) 로 표현해서 적는다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;처음에는 어디로 가든 reward 도 0이고 max Q(s', a') 도 0이다. 그래서 agent가 무작위로 방향을 결정한다. 그러다 우연히 아래 그림처럼 도착지점 바로 왼쪽칸에 도착했다.&lt;/p&gt;
+&lt;p&gt;이때 Q(s14, right) 의 값은 reward = 1 값 더하기 maxQ(s15,a') = 0 으로 1 로 업데이트된다.&lt;/p&gt;
+&lt;p&gt;이게 첫번째 학습이다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;한번 학습이 끝난 후 agent 는 다시 시작지점에서 출발한다. 역시나 대부분의 Q가 0으로 초기화되어있고, 주변의 reward 도 0이기 때문에 무작위로 나아간다.&lt;/p&gt;
+&lt;p&gt;그러다 다시 우연히 s13 칸에 도착했다고 하자.&lt;/p&gt;
+&lt;p&gt;이때 Q(s13,right) 를 계산해보았더니, reward = 0 이지만 max Q(s',a') 이 1이다.&lt;/p&gt;
+&lt;p&gt;이렇게 다시 Q(s13,right) = 1 로 업데이트하고 다시 agent 를 시작점으로 보낸다.&lt;/p&gt;
 &lt;p&gt;&lt;br/&gt;
 &lt;br/&gt;&lt;/p&gt;
-&lt;h1 id=&quot;-&quot;&gt; &lt;a class=&quot;anchor-link&quot; href=&quot;#-&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
+&lt;p&gt;이런식으로 계속해서 학습을 하다보면 결국 아래 그림처럼 시작 지점의 Q 까지 학습이 되고, 이렇게 Dummy Q-learning 의 학습이 끝난다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;루틴을 정리하자면 다음과 같다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;Dummy-Q-learning-&amp;#54617;&amp;#49845;---python-code&quot;&gt;Dummy Q-learning &amp;#54617;&amp;#49845; - python code&lt;a class=&quot;anchor-link&quot; href=&quot;#Dummy-Q-learning-&amp;#54617;&amp;#49845;---python-code&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# dummy_q_learning.py&lt;/span&gt;
+
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;gym&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;gym.envs.registration&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pr&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;qmax_action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;four_q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; 상태 s 에서 네가지 a 에 따른 네가지 Q 중 가장 큰 것을 선택 (같으면 랜덤하게 선택)&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;maxq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;four_q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonzero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;four_q&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;maxq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FrozenLake-v3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;entry_point&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gym.envs.toy_text:FrozenLakeEnv&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;map_name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;4x4&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;&amp;#39;is_slippery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FrozenLake-v3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# shape = [States num, 4(left,down,right,up)]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;observation_space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action_space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Set learning parameters&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;num_episodes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# create lists to contain total rewards and steps per episode&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_episodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Reset environment and get first new observation&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;rAll&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;done&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;False&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# The Q-Table learning algorithm&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qmax_action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Get new state and reward from environment&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;new_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Update Q-Table with new knowledge using learning rate&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reward&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;rAll&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reward&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_state&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Success rate: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_episodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Final Q-Table Values&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;LEFT DOWN RIGHT UP&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;blue&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;/p&gt;
+&lt;h1 id=&quot;3.-&amp;#50756;&amp;#48317;&amp;#54620;-Q-learning-(-Dummy-Q-learning-&amp;#51032;-&amp;#47928;&amp;#51228;-)&quot;&gt;3. &amp;#50756;&amp;#48317;&amp;#54620; Q-learning ( Dummy Q-learning &amp;#51032; &amp;#47928;&amp;#51228; )&lt;a class=&quot;anchor-link&quot; href=&quot;#3.-&amp;#50756;&amp;#48317;&amp;#54620;-Q-learning-(-Dummy-Q-learning-&amp;#51032;-&amp;#47928;&amp;#51228;-)&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
 &lt;br/&gt;&lt;/p&gt;
 
 &lt;/div&gt;
@@ -184,14 +420,242 @@
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
 &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;&lt;br/&gt;
-&lt;br/&gt;&lt;/p&gt;
-&lt;h1 id=&quot;-&quot;&gt; &lt;a class=&quot;anchor-link&quot; href=&quot;#-&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;&lt;hr/&gt;
-&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;dummy Q-learning 의 문제는 아래 그림처럼 가장 optimal 한 경로를 따라 Q 가 업데이트 되지 않을 수 있는 가능성이 있다는 것이다.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="DeepLearning" /><summary type="html">open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다. gym package 를 이용해서 강화학습 훈련 환경을 만들어보고, Q-learning 이라는 강화학습 알고리즘에 대해 알아보고 적용시켜보자. 1. gym package &amp;#51060;&amp;#50857;&amp;#54616;&amp;#44592;&amp;#182; open-AI 에서 만든 gym 이란 파이썬 패키지를 이용하면 강화학습( Reinforcement Learning ) 훈련을 수행할 수 있는 Agent와 Environment 를 제공받을 수 있다. open-AI gym 홈페이지 gym 을 간단하게 pip install 통해서 설치할 수 있다. In&amp;nbsp;[&amp;nbsp;]: # command line $ pip install gym $ pip install readchar 실제로 gym 을 사용해본다. In&amp;nbsp;[&amp;nbsp;]: # gym_example.py import gym from gym.envs.registration import register import readchar LEFT = 0 DOWN = 1 RIGHT = 2 UP = 3 arrow_keys = { &amp;#39;\x1b[A&amp;#39; : UP, &amp;#39;\x1b[B&amp;#39; : DOWN, &amp;#39;\x1b[C&amp;#39; : RIGHT, &amp;#39;\x1b[D&amp;#39; : LEFT } register( id=&amp;#39;FrozenLake-v3&amp;#39;, entry_point=&amp;quot;gym.envs.toy_text:FrozenLakeEnv&amp;quot;, kwargs={&amp;#39;map_name&amp;#39;:&amp;#39;4x4&amp;#39;,&amp;#39;is_slippery&amp;#39;:False}) &amp;#39;&amp;#39;&amp;#39;여기서부터 gym 코드의 시작이다. env 는 agent 가 활동할 수 있는 environment 이다.&amp;#39;&amp;#39;&amp;#39; env = gym.make(&amp;quot;FrozenLake-v3&amp;quot;) env.render() #환경을 화면으로 출력 while True: key = readchar.readkey() #키보드 입력을 받는다 if key not in arrow_keys.keys(): print(&amp;quot;Game aborted!&amp;quot;) break action = arrow_keys[key] #에이젼트의 움직임 state, reward, done, info = env.step(action) #움직임에 따른 결과값들 env.render() #화면을 다시 출력 print(&amp;quot;State:&amp;quot;, state, &amp;quot;Action&amp;quot;, action, &amp;quot;Reward:&amp;quot;, reward, &amp;quot;Info:&amp;quot;, info) if done: #도착하면 게임을 끝낸다. print(&amp;quot;Finished with reward&amp;quot;, reward) break 위와 같은 코드로, 내가 직접 게임을 진행해볼 수 있다. 2. Q-learning &amp;#51060;&amp;#46976;?&amp;#182; 위의 gym-example.py 코드같은 environment 에서, agent 가 무작위로 방향을 결정하면 학습이 잘 되지 않는다. 시도 횟수는 엄청 많은데에 비해 reward는 성공할 때 한번만 지급되기 때문이다. 그에 대한 해결책이 바로 Q-learning 이다. agent는 방향을 결정해야할 때마다 가상의 Q 에게 행보를 물어본다. Q 는 agent 의 state를 보고 그가 action1 을 취하면 기대되는 reward1(quality1) 을 알려주고, action2 를 취하면 기대되는 reward2(quality2) 를 알려준다. agent 는 Q의 도움을 받아 더 빠른 학습이 가능하다. &amp;#182; &amp;#182;</summary></entry><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/3_1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;해결할 수 있는 방법은 단 하나다.&lt;/p&gt;
+&lt;p&gt;가끔은 최적의 Q로 이동하는 action 이 아닌 랜덤한 action을 취해주는 것이다.&lt;/p&gt;
+&lt;p&gt;(예를들어 위 그림에서 첫번째 state 일때, 오른쪽으로 가지 않고 한번 아래로 가보는 action을 취해보는 것이다.)&lt;/p&gt;
+&lt;p&gt;그 방법으로 2가지가 있다.&lt;/p&gt;
+&lt;blockquote&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;E-greedy (랜덤한 확률로 아무데나 가본다.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;add Random noise (Q 에 random noise 를 더해 랜덤한 action 을 취한다.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;위 두가지에 대해 자세히 알아보자.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;&amp;#54644;&amp;#44208;&amp;#52293;-1-:--E-greedy&quot;&gt;&amp;#54644;&amp;#44208;&amp;#52293; 1 :  E-greedy&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#54644;&amp;#44208;&amp;#52293;-1-:--E-greedy&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/7.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;일정 확률로 가끔은 최적의 action 을 따라가지 않도록 설정한다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;&amp;#54644;&amp;#44208;&amp;#52293;-2-:-add-Random-noise&quot;&gt;&amp;#54644;&amp;#44208;&amp;#52293; 2 : add Random noise&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#54644;&amp;#44208;&amp;#52293;-2-:-add-Random-noise&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/9.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;action 을 결정할 때 참고하는 각 Q 값에 random 한 noise 를 주어서 action 이 조금 random 해지도록  한다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;&amp;#49352;&amp;#47196;&amp;#50868;-&amp;#47928;&amp;#51228;-:-&amp;#50668;&amp;#47084;-&amp;#44221;&amp;#47196;&amp;#44032;-&amp;#49373;&amp;#44596;&amp;#45796;&quot;&gt;&amp;#49352;&amp;#47196;&amp;#50868; &amp;#47928;&amp;#51228; : &amp;#50668;&amp;#47084; &amp;#44221;&amp;#47196;&amp;#44032; &amp;#49373;&amp;#44596;&amp;#45796;&lt;a class=&quot;anchor-link&quot; href=&quot;#&amp;#49352;&amp;#47196;&amp;#50868;-&amp;#47928;&amp;#51228;-:-&amp;#50668;&amp;#47084;-&amp;#44221;&amp;#47196;&amp;#44032;-&amp;#49373;&amp;#44596;&amp;#45796;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;위와 같이 dummy Q learning 문제를 보완하는 기법들을 사용하면 agent 가 최종적으로 경로를 결정하려고 할 때 선택의 문제에 놓인다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/10.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;이런 상황을 막으려면 학습과정에서 Q를 업데이트할 때, 다음 max Q(s', a') 값에다 특정 감마(\&amp;lt;1) 값을 곱해준다.&lt;/p&gt;
+&lt;p&gt;그러면 상대적으로 구불하고 긴 경로로 인도하는 Q 값들은 작아지고, 가장 짧은 경로로 인도하는 Q 값들은 커진다.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/11.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;h2 id=&quot;Q-learning-python-&amp;#53076;&amp;#46300;&amp;#50752;-&amp;#49892;&amp;#54665;&amp;#44208;&amp;#44284;&quot;&gt;Q-learning python &amp;#53076;&amp;#46300;&amp;#50752; &amp;#49892;&amp;#54665;&amp;#44208;&amp;#44284;&lt;a class=&quot;anchor-link&quot; href=&quot;#Q-learning-python-&amp;#53076;&amp;#46300;&amp;#50752;-&amp;#49892;&amp;#54665;&amp;#44208;&amp;#44284;&quot;&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
+&lt;div class=&quot;input&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+    &lt;div class=&quot;input_area&quot;&gt;
+&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# q_learning.py&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;gym&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;gym.envs.registration&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pr&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FrozenLake-v3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;entry_point&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;gym.envs.toy_text:FrozenLakeEnv&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;map_name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;4x4&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;&amp;#39;is_slippery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FrozenLake-v3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Initialize table with all zeros&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;observation_space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action_space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;&amp;#39;&amp;#39;&amp;#39;1. Q 값이 업데이트될 때 maxQ(s&amp;#39;,a&amp;#39;) 에 곱할 감마 값을 설정한다.&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dis&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;num_episodes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2000&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# create lists to contain total rewards and steps per episode&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_episodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Reset environment and get first new observation&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;rAll&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;done&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;False&lt;/span&gt;
+
+    &lt;span class=&quot;sd&quot;&gt;&amp;#39;&amp;#39;&amp;#39;2. E-Greedy 를 위한 확률값을 만들어준다. (step i이 지남에 따라 decay 되도록 설정)&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+
+    &lt;span class=&quot;c1&quot;&gt;# The Q-Table learning algorithm : 한번 수행할 때 마다 Q 한칸 업데이트&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        
+        &lt;span class=&quot;sd&quot;&gt;&amp;#39;&amp;#39;&amp;#39;E-Greedy 를 따라 작은 확률로 랜덤하게 가고, 큰 확률로 높은 Q 를 따르는 쪽으로 간다.&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action_space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Get new state and reward from environment&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;new_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reward&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;step&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# Update Q-Table with new knowledge using learning rate&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reward&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dis&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;rAll&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reward&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_state&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Success rate: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_episodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Final Q-Table Values&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Q&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;blue&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
+&lt;div class=&quot;prompt input_prompt&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;inner_cell&quot;&gt;
+&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/12.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content><author><name></name></author><category term="DeepLearning" /><summary type="html">open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다. gym package 를 이용해서 강화학습 훈련 환경을 만들어보고, Q-learning 이라는 강화학습 알고리즘에 대해 알아보고 적용시켜보자. &amp;#47785;&amp;#52264;&amp;#182;1. gym package 이용하기 2. Q-learning 이란? 2-1. Q-learning 의 학습(Dummy Q learning)) 2-2. Dummy Q-learning python code 3. 완벽한 Q-learning ( Dummy Q-learning 의 문제 )) 3-1. 해결책 1 : E-greedy 3-2. 해결책 2 : add Random Noise 3-3. 새로운 문제 : 여러 경로 3-4. 완벽한 Q-learning python code 1. gym package &amp;#51060;&amp;#50857;&amp;#54616;&amp;#44592;&amp;#182; open-AI 에서 만든 gym 이란 파이썬 패키지를 이용하면 강화학습( Reinforcement Learning ) 훈련을 수행할 수 있는 Agent와 Environment 를 제공받을 수 있다. open-AI gym 홈페이지 gym 을 간단하게 pip install 통해서 설치할 수 있다. In&amp;nbsp;[&amp;nbsp;]: # command line (bash) $ pip install gym $ pip install readchar 실제로 gym 을 사용해본다. In&amp;nbsp;[&amp;nbsp;]: # gym_example.py import gym from gym.envs.registration import register import readchar LEFT = 0 DOWN = 1 RIGHT = 2 UP = 3 arrow_keys = { &amp;#39;\x1b[A&amp;#39; : UP, &amp;#39;\x1b[B&amp;#39; : DOWN, &amp;#39;\x1b[C&amp;#39; : RIGHT, &amp;#39;\x1b[D&amp;#39; : LEFT } register( id=&amp;#39;FrozenLake-v3&amp;#39;, entry_point=&amp;quot;gym.envs.toy_text:FrozenLakeEnv&amp;quot;, kwargs={&amp;#39;map_name&amp;#39;:&amp;#39;4x4&amp;#39;,&amp;#39;is_slippery&amp;#39;:False}) &amp;#39;&amp;#39;&amp;#39;여기서부터 gym 코드의 시작이다. env 는 agent 가 활동할 수 있는 environment 이다.&amp;#39;&amp;#39;&amp;#39; env = gym.make(&amp;quot;FrozenLake-v3&amp;quot;) env.render() #환경을 화면으로 출력 while True: key = readchar.readkey() #키보드 입력을 받는다 if key not in arrow_keys.keys(): print(&amp;quot;Game aborted!&amp;quot;) break action = arrow_keys[key] #에이젼트의 움직임 state, reward, done, info = env.step(action) #움직임에 따른 결과값들 env.render() #화면을 다시 출력 print(&amp;quot;State:&amp;quot;, state, &amp;quot;Action&amp;quot;, action, &amp;quot;Reward:&amp;quot;, reward, &amp;quot;Info:&amp;quot;, info) if done: #도착하면 게임을 끝낸다. print(&amp;quot;Finished with reward&amp;quot;, reward) break 위와 같은 코드로, 내가 직접 게임을 진행해볼 수 있다. 2. Q-learning &amp;#51060;&amp;#46976;?&amp;#182; 위의 gym-example.py 코드같은 environment 에서, agent 가 무작위로 방향을 결정하면 학습이 잘 되지 않는다. 시도 횟수는 엄청 많은데에 비해 reward는 성공할 때 한번만 지급되기 때문이다. 그에 대한 해결책이 바로 Q-learning 이다. agent는 방향을 결정해야할 때마다 가상의 Q 에게 행보를 물어본다. Q 는 agent 의 state를 보고 그가 action1 을 취하면 기대되는 reward1(quality1) 을 알려주고, action2 를 취하면 기대되는 reward2(quality2) 를 알려준다. agent 는 Q의 도움을 받아 더 빠른 학습이 가능하다. 수식적으로는 Q(s, a) = π 처럼 쓸 수 있으며 현재 s(state)에서 취할수 있는 가장 큰 reward 인 max Q max(Q(s,a)) 로 현재 s(state)에서 max(Q(s,a))로 가게 해주는 action 은 argmax(Q(s,a)) 로 표현한다. argmax(Q(s,a))는 π*(s) 로도 표현하며 여기서 *은 optimal 함을 의미한다. Q-learning &amp;#51032; &amp;#54617;&amp;#49845; (Greedy, Dummy)&amp;#182; Q-learning 알고리즘에서 학습한다는 것은 아래 그림처럼 모두 0으로 초기화되어있는 모든 Q 값들을 하나씩 업데이트시킨다는 것과 같다. 모든 칸의 0은 각각의 Q(s,a) 값을 나타낸다. 도착지점으로 넘어갈 때에만 reward = 1 이 주어지고, 나머지 부분으로 넘어갈 때에는 reward = 0 이다. 우선 각 칸의 Q 값을 업데이트 하는 방법은 다음과같다. Q(s,a) 의 값은 (다음칸의 Q 중 가장 큰 값 + reward) 로 표현해서 적는다. 처음에는 어디로 가든 reward 도 0이고 max Q(s', a') 도 0이다. 그래서 agent가 무작위로 방향을 결정한다. 그러다 우연히 아래 그림처럼 도착지점 바로 왼쪽칸에 도착했다. 이때 Q(s14, right) 의 값은 reward = 1 값 더하기 maxQ(s15,a') = 0 으로 1 로 업데이트된다. 이게 첫번째 학습이다. 한번 학습이 끝난 후 agent 는 다시 시작지점에서 출발한다. 역시나 대부분의 Q가 0으로 초기화되어있고, 주변의 reward 도 0이기 때문에 무작위로 나아간다. 그러다 다시 우연히 s13 칸에 도착했다고 하자. 이때 Q(s13,right) 를 계산해보았더니, reward = 0 이지만 max Q(s',a') 이 1이다. 이렇게 다시 Q(s13,right) = 1 로 업데이트하고 다시 agent 를 시작점으로 보낸다. 이런식으로 계속해서 학습을 하다보면 결국 아래 그림처럼 시작 지점의 Q 까지 학습이 되고, 이렇게 Dummy Q-learning 의 학습이 끝난다. 루틴을 정리하자면 다음과 같다. Dummy Q-learning &amp;#54617;&amp;#49845; - python code&amp;#182; In&amp;nbsp;[&amp;nbsp;]: # dummy_q_learning.py import gym import numpy as np import matplotlib.pyplot as plt from gym.envs.registration import register import random as pr def qmax_action(four_q): &amp;quot;&amp;quot;&amp;quot; 상태 s 에서 네가지 a 에 따른 네가지 Q 중 가장 큰 것을 선택 (같으면 랜덤하게 선택)&amp;quot;&amp;quot;&amp;quot; maxq = np.amax(four_q) indices = np.nonzero(four_q == maxq)[0] return pr.choice(indices) register( id=&amp;#39;FrozenLake-v3&amp;#39;, entry_point=&amp;#39;gym.envs.toy_text:FrozenLakeEnv&amp;#39;, kwargs={&amp;#39;map_name&amp;#39;: &amp;#39;4x4&amp;#39;, &amp;#39;is_slippery&amp;#39;: False} ) env = gym.make(&amp;#39;FrozenLake-v3&amp;#39;) # shape = [States num, 4(left,down,right,up)] Q = np.zeros([env.observation_space.n, env.action_space.n]) # Set learning parameters num_episodes = 2000 # create lists to contain total rewards and steps per episode rList = [] for i in range(num_episodes): # Reset environment and get first new observation state = env.reset() rAll = 0 done = False # The Q-Table learning algorithm while not done: action = qmax_action(Q[state, :]) # Get new state and reward from environment new_state, reward, done, _ = env.step(action) # Update Q-Table with new knowledge using learning rate Q[state, action] = reward + np.max(Q[new_state, :]) rAll += reward state = new_state rList.append(rAll) print(&amp;quot;Success rate: &amp;quot; + str(sum(rList) / num_episodes)) print(&amp;quot;Final Q-Table Values&amp;quot;) print(&amp;quot;LEFT DOWN RIGHT UP&amp;quot;) print(Q) plt.bar(range(len(rList)), rList, color=&amp;quot;blue&amp;quot;) plt.show() 3. &amp;#50756;&amp;#48317;&amp;#54620; Q-learning ( Dummy Q-learning &amp;#51032; &amp;#47928;&amp;#51228; )&amp;#182; dummy Q-learning 의 문제는 아래 그림처럼 가장 optimal 한 경로를 따라 Q 가 업데이트 되지 않을 수 있는 가능성이 있다는 것이다. 해결할 수 있는 방법은 단 하나다. 가끔은 최적의 Q로 이동하는 action 이 아닌 랜덤한 action을 취해주는 것이다. (예를들어 위 그림에서 첫번째 state 일때, 오른쪽으로 가지 않고 한번 아래로 가보는 action을 취해보는 것이다.) 그 방법으로 2가지가 있다. E-greedy (랜덤한 확률로 아무데나 가본다.) add Random noise (Q 에 random noise 를 더해 랜덤한 action 을 취한다.) 위 두가지에 대해 자세히 알아보자. &amp;#54644;&amp;#44208;&amp;#52293; 1 : E-greedy&amp;#182; 일정 확률로 가끔은 최적의 action 을 따라가지 않도록 설정한다. &amp;#54644;&amp;#44208;&amp;#52293; 2 : add Random noise&amp;#182; action 을 결정할 때 참고하는 각 Q 값에 random 한 noise 를 주어서 action 이 조금 random 해지도록 한다. &amp;#49352;&amp;#47196;&amp;#50868; &amp;#47928;&amp;#51228; : &amp;#50668;&amp;#47084; &amp;#44221;&amp;#47196;&amp;#44032; &amp;#49373;&amp;#44596;&amp;#45796;&amp;#182; 위와 같이 dummy Q learning 문제를 보완하는 기법들을 사용하면 agent 가 최종적으로 경로를 결정하려고 할 때 선택의 문제에 놓인다. 이런 상황을 막으려면 학습과정에서 Q를 업데이트할 때, 다음 max Q(s', a') 값에다 특정 감마(\&amp;lt;1) 값을 곱해준다. 그러면 상대적으로 구불하고 긴 경로로 인도하는 Q 값들은 작아지고, 가장 짧은 경로로 인도하는 Q 값들은 커진다. Q-learning python &amp;#53076;&amp;#46300;&amp;#50752; &amp;#49892;&amp;#54665;&amp;#44208;&amp;#44284;&amp;#182; In&amp;nbsp;[&amp;nbsp;]: # q_learning.py import gym import numpy as np import matplotlib.pyplot as plt from gym.envs.registration import register import random as pr register( id=&amp;#39;FrozenLake-v3&amp;#39;, entry_point=&amp;#39;gym.envs.toy_text:FrozenLakeEnv&amp;#39;, kwargs={&amp;#39;map_name&amp;#39;: &amp;#39;4x4&amp;#39;, &amp;#39;is_slippery&amp;#39;: False} ) env = gym.make(&amp;#39;FrozenLake-v3&amp;#39;) # Initialize table with all zeros Q = np.zeros([env.observation_space.n, env.action_space.n]) &amp;#39;&amp;#39;&amp;#39;1. Q 값이 업데이트될 때 maxQ(s&amp;#39;,a&amp;#39;) 에 곱할 감마 값을 설정한다.&amp;#39;&amp;#39;&amp;#39; dis = .99 num_episodes = 2000 # create lists to contain total rewards and steps per episode rList = [] for i in range(num_episodes): # Reset environment and get first new observation state = env.reset() rAll = 0 done = False &amp;#39;&amp;#39;&amp;#39;2. E-Greedy 를 위한 확률값을 만들어준다. (step i이 지남에 따라 decay 되도록 설정)&amp;#39;&amp;#39;&amp;#39; e = 1. / ((i // 100) + 1) # The Q-Table learning algorithm : 한번 수행할 때 마다 Q 한칸 업데이트 while not done: &amp;#39;&amp;#39;&amp;#39;E-Greedy 를 따라 작은 확률로 랜덤하게 가고, 큰 확률로 높은 Q 를 따르는 쪽으로 간다.&amp;#39;&amp;#39;&amp;#39; if np.random.rand(1) &amp;lt; e: action = env.action_space.sample() else: action = np.argmax(Q[state, :]) # Get new state and reward from environment new_state, reward, done, _ = env.step(action) # Update Q-Table with new knowledge using learning rate Q[state, action] = reward + dis * np.max(Q[new_state, :]) rAll += reward state = new_state rList.append(rAll) print(&amp;quot;Success rate: &amp;quot; + str(sum(rList) / num_episodes)) print(&amp;quot;Final Q-Table Values&amp;quot;) print(Q) plt.bar(range(len(rList)), rList, color=&amp;quot;blue&amp;quot;) plt.show()</summary></entry><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae</id><content type="html" xml:base="https://shinjayne.github.io//deeplearning/2017/08/02/udemy-ae.html">&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
 &lt;div class=&quot;prompt input_prompt&quot;&gt;
 &lt;/div&gt;
 &lt;div class=&quot;inner_cell&quot;&gt;
