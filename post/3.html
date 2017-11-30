@@ -1,0 +1,883 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Scala 의 Type Class 코드로 살펴보기 1 | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <style>
+      @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+      body {
+          font-family: 'Noto Sans KR', serif;
+          padding-top: 50px;
+        }
+      a {
+        color : #90b3d8;
+      }
+    </style>
+  </head>
+  <body>
+
+    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who();
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+.post h1,h2,h3,h4,h5,h6 {
+
+}
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width : 100% ;
+}
+pre {
+  background-color: #2e2f30 ;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/3/scala-icon.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.3rem;">Scala 의 Type Class 코드로 살펴보기 1</h1>
+  <p class="card-text text-white"><p class="text-muted">scala | 29 June 2017</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-info">scala</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p>이번 글에서는 <strong>scala 의 Type class</strong> 에 대해서 코드와 함께 알아보도록 하겠습니다.</p>
+
+<p><strong>Type class</strong> 를 이용하면</p>
+
+<p>기존의 object oriented programming 에서 사용하던</p>
+
+<p><strong>상속이나 객체, 클래스의 개념 없이도</strong> 다양한 기능을 구현할 수 있습니다.</p>
+
+<p>(개인적인 소감으로는, Object Oriented Programming 의 소중함을 느끼게 해주는 공부였습니다…)</p>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="1-type-class-의-구성">1. Type Class 의 구성</h1>
+<p><br />
+<br />
+<br /></p>
+<ol>
+  <li>
+    <p>type class 본체</p>
+  </li>
+  <li>
+    <p>type class 의 instance (customizing)</p>
+  </li>
+  <li>
+    <p>type class 의 interface (함수 사용)</p>
+  </li>
+</ol>
+
+<p>Type class 는 크게 위와같은  3가지 구성으로 이루어져 있습니다 .</p>
+<hr />
+
+<p><strong>Type class 본체</strong>는 <code class="highlighter-rouge">abstract class</code> 또는 <code class="highlighter-rouge">trait</code>로 만듭니다.</p>
+
+<p>자세한 메서드의 구현은 생략하고, 공통된 동작만 기술되어 있습니다.</p>
+<hr />
+
+<p><strong>Type class 의 instance</strong> 는 Type class 의 본체에 특정 Type 을 대입하여 구체화시켰다고 생각할 수 있습니다.</p>
+
+<p>Type class 의 인터페이스(interface) 에 특정 Type 이 들어왔을 때 어떤 동작을 할 것인지 구체적으로 Type Class 의 인스턴스로 표현 할 수 있습니다.</p>
+
+<p><code class="highlighter-rouge">implicit def</code>, 또는 <code class="highlighter-rouge">implicit val</code> 로 많이 표현합니다. 자세한 예는 아래서 다루도록 하겠습니다.</p>
+<hr />
+
+<p><strong>Type Class 의 interface</strong>는 두 가지 파라메터(인자)를 받습니다.</p>
+
+<p>하나는 실제 함수에서 다룰 데이터이고, 하나는 데이터를 처리하는 동작이 기술되어있는 Type class 의 instance 입니다.</p>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="2-type-class-개요">2. Type Class 개요</h1>
+<p><br />
+<br />
+<br /></p>
+
+<p>기본적으로 type class 는 type 을 parameter로 받는 class 입니다.</p>
+
+<p>이제 이 아래부터는 실제 스칼라 코드를 통해서 여러가지 Type Class 와 그의 인스턴스, 인터페이스들을 구현해보도록 하겠습니다.</p>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="3-하나의-type-parameter-를-받는-type-class">3. 하나의 type parameter 를 받는 Type class</h1>
+<p><br />
+<br />
+<br /></p>
+
+<h3 id="part1--type-class-의-본체">part1 : type class 의 본체</h3>
+<hr />
+
+<p>Ord[A] 는 type A 의 무언가를 크기비교하는 기능을 가진 type class 입니다.</p>
+
+<p>Type Class 는 간단히 <code class="highlighter-rouge">abstract class</code> 또는 <code class="highlighter-rouge">traits</code>를 통해 구현합니다.</p>
+
+<p>메서드는 정의하지만 정확한 동작은 인스턴스에서 구현합니다.</p>
+
+<pre><code class="language-scala211">abstract class Ord[A]{
+  def cmp(me : A, you : A) : Int  // instnace 에서 구현될 것입니다.
+
+  //A의 type 과 관계 없는 공통된 메서드들은 미리 작성해놓기도 합니다.   
+  def ===(me : A, you : A) : Boolean = cmp(me, you) == 0
+  def &lt;(me : A, you : A) : Boolean = cmp(me, you) &lt; 0
+  def &gt;(me : A, you : A) : Boolean = cmp(me, you) &gt; 0
+  def &lt;=(me : A, you : A) : Boolean = cmp(me, you) &lt;= 0
+  def &gt;=(me : A, you : A) : Boolean = cmp(me, you) &gt;= 0
+}
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mOrd[39m
+</code></pre>
+</div>
+
+<h3 id="part2--type-class-의-instance-customize">part2 : type class 의 instance (customize)</h3>
+<hr />
+
+<p>Ord[A] 의 type parameter A 에 다양한 type 을 집어넣음으로써 각각의 instance 를 구현합니다.</p>
+
+<p>type parameter 의 instance 는
+<code class="highlighter-rouge">implicit val</code> 또는 <code class="highlighter-rouge">implicit def</code> 를 통해 구현합니다.</p>
+
+<p><strong>(<code class="highlighter-rouge">implicit def</code>는 보통 생성할 instance에 parameter type 을 한번 더 주고 싶을 때 사용합니다. )</strong></p>
+
+<p>잘 감이 안오신다면, 밑에 코드에서 한번 더 언급될 것입니다. 그때 다시 설명하겠습니다.</p>
+
+<h4 id="1-ordint-인스턴스">1. Ord[Int] 인스턴스</h4>
+
+<p>Int 라는 타입을 다룰 수 있는 Type class 의 인스턴스입니다.</p>
+
+<p>이 인스턴스를 인자로 받는 interface는 Int 타입의 데이터를 조작할 수 있습니다.</p>
+
+<pre><code class="language-scala211">// A = Int
+implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화
+  def cmp(me : Int , you : Int) : Int  = me - you
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cmd0.sc:1: not found: type Ord
+implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화
+                      ^cmd0.sc:1: not found: type Ord
+implicit val intOrd : Ord[Int] = new Ord[Int]{  //Ord[A] 의 A 에 Int를 대입하고 new Ord[Int] 로 초기화
+                                     ^
+
+
+Compilation Failed
+</code></pre>
+</div>
+
+<h4 id="2-orddouble-인스턴스">2. Ord[Double] 인스턴스</h4>
+
+<p>마찬가지고 Double 이라는 타입을 다룰 수 있는 Type class 의 인스턴스입니다.</p>
+
+<p>이 인스턴스를 인자로 받는 interface는 Double 타입의 데이터를 조작할 수 있습니다.</p>
+
+<pre><code class="language-scala211">// A = Double
+implicit val doubleOrd : Ord[Double] = new Ord[Double]{
+  def cmp(me : Double, you : Double) : Int = (me - you).toInt
+}
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mdoubleOrd[39m: [32mOrd[39m[[32mDouble[39m] = $sess.cmd2Wrapper$Helper$$anon$1@3368bc6f
+</code></pre>
+</div>
+
+<h4 id="3-ord-xy--인스턴스">3. Ord[ (X,Y) ] 인스턴스</h4>
+<p>여기에선 특별하게 implicit instance 안에 인자로 다시한번 implicit parameter를 받았습니다.</p>
+
+<p>(X,Y) 형식의 type 을 다룰 수 있도록 해주는 Type class 의 인스턴스이고,</p>
+
+<p>이 인스턴스를 받는 interface는 모두 (X,Y) 형식의 type 의 데이터를 다룰 수 있습니다.</p>
+
+<p><strong>type class interface + instance</strong> 의 혼종이라고 생각하면 좋겠습니다.
+(아래 interface 부분을 보시고 다시 보시는게 이해에 도움 됩니다. 조금 어렵습니다.)</p>
+
+<pre><code class="language-scala211">// A = (X,Y)
+implicit def twoOrd[X,Y](implicit ordX : Ord[X], ordY : Ord[Y])  : Ord[(X,Y)] = new Ord[(X,Y)]{
+  def cmp(me : (X,Y), you : (X,Y)) : Int = {
+    val c1 = ordX.cmp(me._1, you._1)
+    if(c1 != 0) c1
+    else ordY.cmp(me._2 , you._2)
+  }
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mtwoOrd[39m
+</code></pre>
+</div>
+
+<h3 id="part3--type-class-interface-사용">part3 : type class interface (사용)</h3>
+<hr />
+
+<p>type class Ord[X] 의 interface 에는 두개의 입구가 있습니다.</p>
+
+<ol>
+  <li>type X 인 데이터 parameter 들을 받는 입구</li>
+  <li>Ord[X] 의 instance 를 implicit parameter 로 받는 입구</li>
+</ol>
+
+<p><em>**1번 입구에서 받은 data 들을 , 2번 입구에서 받은 type class instance 의 규칙을 이용해 처리합니다. **</em></p>
+
+<p>여기서 implicit parameter 의 입구는, scala 의 컴파일러에 의해 자동으로 코드 내의 implicit val / implicit def 로 구현된 Cls[X] 의 instance 를 찾아 연결합니다.</p>
+
+<p><em>** 즉, 1번 입구는 넣어주어야하지만, 2번 입구는 인스턴스들만 만들어 놓았다면 자동으로 채워집니다. **</em></p>
+
+<pre><code class="language-scala211">def max3[A](a : A, b : A, c: A)(implicit ord : Ord[A]) : A =
+  if (ord.&lt;=(a,b))  {if (ord.&lt;=(b,c)) c else b}
+  else              {if (ord.&lt;=(a,c)) c else a }
+
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mmax3[39m
+</code></pre>
+</div>
+
+<h3 id="result">result</h3>
+<hr />
+
+<pre><code class="language-scala211">max3[Int](1,2,3)  // ord = intOrd 인스턴스 자동 사용됨
+max3[Double](1.1, 2.2, 3.3) // ord = doubleOrd 인스턴스 자동 사용됨
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mres5_0[39m: [32mInt[39m = [32m3[39m
+[36mres5_1[39m: [32mDouble[39m = [32m3.3[39m
+</code></pre>
+</div>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="4-두개-의-type-parameter-를-받는-type-class">4. 두개 의 type parameter 를 받는 Type class</h1>
+<p><br />
+<br />
+<br /></p>
+
+<p>같은 방식으로, 이번엔 두개의 type parameter 를 받는 type class 를 보겠습니다.</p>
+
+<h3 id="part1--type-class-의-본체-1">part1 : type class 의 본체</h3>
+<hr />
+
+<p>Iter[I,A] 는 type A 를 저장하고있는 type I 에서 , A를 조회하거나 다음 I 로 넘어가는 기능을 구현합니다.</p>
+
+<p>예를 들자면,</p>
+
+<p>A 가 Int 이면 I 는 이를 저장하는 List[Int]가 될 것이고</p>
+
+<p>A 가 String 이면 I는 이를 저장하는 List[String] 이 될 것입니다.</p>
+
+<pre><code class="language-scala211">abstract class Iter[I, A]{    
+  def getValue(i : I) : Option[A]  //메서드의 디테일은 인스턴스에서 구현합니다.
+  def getNext(i : I) : I
+}
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIter[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part2--type-class-의-instance-customize-1">part2 : type class 의 instance (customize)</h3>
+<hr />
+
+<p>Iter[I, A] 의 parameter I, A 에 다양한 type 을 집어넣음으로써 각각의 instance 를 구현합니다.</p>
+
+<p>다시한번..<br />
+<strong>(<code class="highlighter-rouge">implicit def</code>는 보통 생성할 instance에 parameter type 을 한번 더 주고 싶을 때 사용합니다. )</strong></p>
+
+<p><br /></p>
+<h4 id="1-iterint-int-인스턴스">1. Iter[Int, Int] 인스턴스</h4>
+
+<pre><code class="language-scala211">// I = Int, A = Int
+
+// Int 라는 저장 구조(I) 안에서 Int 데이터(A)를 조회할 수 있습니다.
+implicit val intIter : Iter[Int, Int] = new Iter[Int, Int]{
+  def getValue(i : Int) = if (i&gt;0) Some(i) else None  
+  def getNext(i : Int) = if(i-1 &gt; 0 ) i-1 else 0
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mintIter[39m: [32mIter[39m[[32mInt[39m, [32mInt[39m] = $sess.cmd7Wrapper$Helper$$anon$1@5a79ff31
+</code></pre>
+</div>
+
+<p><br /></p>
+<h4 id="2-iter-listx--x--인스턴스">2. Iter[ List[X],  X ] 인스턴스</h4>
+
+<p>이 인스턴스의 독특한 점은, 인스턴스의 완성을 interface 로  떠넘겼다는 것입니다.</p>
+
+<p>X는 결국 이 인스턴스가 사용되는 interface 에서 결정됩니다.</p>
+
+<p>즉 interface에서 X를 Int 로 주면 Iter[List[Int], Int] 가 되고</p>
+
+<p>다른 값으로 주면 달라집니다.</p>
+
+<pre><code class="language-scala211">// I = List[X], A = X
+
+//List 라는 저장구조 (I) 안에서 X 타입의 데이터(A) 를 조회할 수 있습니다.  
+implicit def listIter[X] : Iter[List[X], X] = new Iter[List[X], X]{
+  def getValue(i : List[X]) = i.headOption
+  def getNext(i  : List[X]) = i.tail
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mlistIter[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part3--type-class-interface-사용-1">part3 : type class interface (사용)</h3>
+<hr />
+
+<pre><code class="language-scala211">// listIter 의 X를 인스턴스 파라메터에서 Int로 고정해놓았습니다.
+def sumElements[I](xs : I)(implicit proxy : Iter[I, Int]) : Int = proxy.getValue(xs) match{
+  case None =&gt; 0
+  case Some(n) =&gt; n + sumElements(proxy.getNext(xs))
+}
+
+
+// listIter 의 X는 xs(I) 의 타입에 따라 결정됩니다. I 가 List[Int] 이면, A 도 Int 가 됩니다.
+def printElements[I](xs : I)(implicit proxy : Iter[I, A]) :Unit = proxy.getValue(xs) match{
+  case None =&gt;
+  case Some(n) =&gt; {println(n) ; printElements(proxy.getNext(xs))}
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements[39m
+defined [32mfunction[39m [36mprintElements[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="result-1">result</h3>
+<hr />
+
+<pre><code class="language-scala211">printElements[List[Int]](List(3,4,5,6))
+printElements[Int](10)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>3
+4
+5
+6
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+</code></pre>
+</div>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="5-좀-더-복잡한-문제들">5. 좀 더 복잡한 문제들</h1>
+<p><br />
+<br />
+<br /></p>
+<h3 id="재료">재료</h3>
+<hr />
+
+<pre><code class="language-scala211">//재료
+sealed abstract class MyTree[A]
+case class Empty[A]() extends MyTree[A]
+case class Node[A](value : A, left : MyTree[A], right : MyTree[A]) extends MyTree[A]
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mMyTree[39m
+defined [32mclass[39m [36mEmpty[39m
+defined [32mclass[39m [36mNode[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part1--type-class-본체">part1 : type class 본체</h3>
+<hr />
+
+<p>순환적이지 않은 type R 의 무언가를 순환적으로 만들어준다.</p>
+
+<p>iter()는 순환적이지 않은 type R 의 무언가를 순환적인 I 로 바꾸고, I는 A들을 포함한다.</p>
+
+<pre><code class="language-scala211">abstract class Iterable[R, I ,A] {
+  def iter(a: R) : I
+  def iterProxy : Iter[I,A]
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIterable[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part2--type-class-의-instance-customize-2">part2 : type class 의 instance (customize)</h3>
+<hr />
+<p><br /></p>
+<h4 id="iterable-mytreex--listx--x--인스턴스--------------x-유동적-">Iterable[ MyTree[X] , List[X],  X ] 인스턴스            (&lt;- X 유동적 )</h4>
+
+<pre><code class="language-scala211">implicit def treeIterable[X](implicit proxy : Iter[List[X], X]) : Iterable[MyTree[X], List[X], X] = new Iterable[MyTree[X], List[X], X]{
+  def iter(a : MyTree[X]) : List[X] = a match{
+    case Empty() =&gt;  Nil
+    case Node(v, left, right) =&gt; v :: (iter(left) ++ iter(right))
+  }
+  def iterProxy : Iter[List[X], X] =  proxy
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mtreeIterable[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part3--type-class-의-interface-사용">part3 : type class 의 interface (사용)</h3>
+<hr />
+
+<pre><code class="language-scala211">def sumElements2[R, I](xs : R)(implicit proxy : Iterable[R, I ,Int]) = sumElements(proxy.iter(xs))(proxy.iterProxy)
+
+def printElements2[R, I](xs : R)(implicit proxy : Iterable[R, I, Int]) = printElements(proxy.iter(xs))(proxy.iterProxy)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements2[39m
+defined [32mfunction[39m [36mprintElements2[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="result-2">result</h3>
+
+<pre><code class="language-scala211">val tree : MyTree[Int] = Node(10, Node(9, Empty(), Empty()), Node(8, Empty(), Empty()))
+
+sumElements2[MyTree[Int], List[Int]](tree)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mtree[39m: [32mMyTree[39m[[32mInt[39m] = Node(10,Node(9,Empty(),Empty()),Node(8,Empty(),Empty()))
+[36mres15_1[39m: [32mInt[39m = [32m27[39m
+</code></pre>
+</div>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="6-higher-kind-type-classes">6. Higher-kind Type classes</h1>
+<p><br />
+<br />
+<br />
+Higher-kind 는 type 들을 다시 상위의 하나의 개념으로 묶는, 상위 카테고리라고 할 수 있고, 변역은 “상류” 로 한다.</p>
+
+<p>아래 링크를 참고하면 좋다.</p>
+<blockquote>
+  <p>twitter 의 scalaschool : scala의 상류 타입</p>
+</blockquote>
+
+<blockquote>
+  <p>https://twitter.github.io/scala_school/ko/advanced-types.html#higher</p>
+</blockquote>
+
+<h3 id="재료-1">재료</h3>
+<hr />
+
+<pre><code class="language-scala211">import scala.language.higherKinds
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[32mimport [39m[36mscala.language.higherKinds[39m
+</code></pre>
+</div>
+
+<p>higher kind 를 사용하려면 scala 에서 위처럼 higerKinds 패키지를 import 해줘야한다.</p>
+
+<h3 id="part1--type-class-본체-1">part1 : type class 본체</h3>
+
+<pre><code class="language-scala211">abstract class Iter2[I[_]]{
+    def getValue[A](a : I[A]) : Option[A]
+    def getNext[A](a : I[A]) : I[A]
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIter2[39m
+</code></pre>
+</div>
+
+<h3 id="part2--type-class-의-instance-customize-3">part2 : type class 의 instance (customize)</h3>
+<hr />
+<p><code class="highlighter-rouge">Iter2[I[_]]</code> 를 일종의 익명함수 처럼 생각하고 , 빈칸안에 들어올 인자타입은 나중에 받는 것으로 보류하고 나머지를 구현한다.</p>
+
+<pre><code class="language-scala211">implicit val listIter2 : Iter2[List] = new Iter2[List]{
+    def getValue[A](a : List[A]) = a.headOption
+    def getNext[A](a : List[A]) = a.tail
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mlistIter2[39m: [32mIter2[39m[[32mList[39m] = $sess.cmd18Wrapper$Helper$$anon$1@1188d429
+</code></pre>
+</div>
+
+<h3 id="part3--type-class-의-interface-사용-1">part3 : type class 의 interface (사용)</h3>
+<hr />
+
+<pre><code class="language-scala211">// Int 를 담는 higerkind I 에 대해서만 동작한다.
+def sumElements3[I[_]](xs : I[Int])(implicit itr2 : Iter2[I]) : Int = {
+    itr2.getValue(xs) match {
+        case None =&gt; 0
+        case Some(n) =&gt; n + sumElements3(itr2.getNext(xs))
+    }
+}
+
+// higerkind I 에 담긴 type X에 구애를 받지 않는다.
+def printElements3[I[_],X](xs : I[X])(implicit itr2 : Iter2[I]) : Unit = {
+    itr2.getValue(xs) match {
+        case None =&gt;
+        case Some(n) =&gt; {println(n) ; printElements3(itr2.getNext(xs))}
+    }
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements3[39m
+defined [32mfunction[39m [36mprintElements3[39m
+</code></pre>
+</div>
+
+<h3 id="result-3">result</h3>
+<hr />
+
+<pre><code class="language-scala211">val lst = List(4, 5, 10 ,8, 9)
+
+sumElements3(xs = lst)
+
+// 과정1.    lst 가 들어가면서 I = List 타입인자 전달 ;
+// 과정2.    itr2 : Iter2[List] = listIter2   자동으로 채워짐 (implicit 끼리의 연동)
+
+printElements3(xs = lst)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>4
+5
+10
+8
+9
+
+
+
+
+
+[36mlst[39m: [32mList[39m[[32mInt[39m] = [33mList[39m([32m4[39m, [32m5[39m, [32m10[39m, [32m8[39m, [32m9[39m)
+[36mres21_1[39m: [32mInt[39m = [32m36[39m
+</code></pre>
+</div>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="7-higher-kind-type-classes--좀-더-어려운-문제들">7. Higher-kind Type classes + 좀 더 어려운 문제들</h1>
+<p><br />
+<br />
+<br />
+순환가능하지 않은 타입 R 을 순환 가능한 타입 I 으로 바꿔주는 동작과 (<code class="highlighter-rouge">def iter : I</code>),</p>
+
+<p>그 순환가능한 타입 I에 대한 순환동작(<code class="highlighter-rouge">type class Iter2[I]</code>) 을 접근할 수 있게 해주는 동작(<code class="highlighter-rouge">def iterProxy : Iter2[I]</code>)</p>
+
+<p>으로 구성된 새로운 <code class="highlighter-rouge">type class Iterable2[R[_], I[_]]</code> 를 만들어보자.</p>
+
+<h3 id="재료-2">재료</h3>
+<hr />
+
+<pre><code class="language-scala211">import scala.language.higherKinds
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[32mimport [39m[36mscala.language.higherKinds[39m
+</code></pre>
+</div>
+
+<p>아래는 예제에 사용될 MyTree 라는 데이터타입이다.</p>
+
+<pre><code class="language-scala211">//재료
+sealed abstract class MyTree[A]
+case class Empty[A]() extends MyTree[A]
+case class Node[A](value : A, left : MyTree[A], right : MyTree[A]) extends MyTree[A]
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[32mimport [39m[36mscala.language.higherKinds
+
+[39m
+defined [32mclass[39m [36mMyTree[39m
+defined [32mclass[39m [36mEmpty[39m
+defined [32mclass[39m [36mNode[39m
+</code></pre>
+</div>
+
+<p>&lt;/br&gt;</p>
+<h3 id="part1--type-class-본체-2">part1 : type class 본체</h3>
+<hr />
+
+<pre><code class="language-scala211">abstract class Iterable2[R[_], I[_]]{
+    def iter[A](a : R[A]) : I[A]
+    def iterProxy : Iter2[I]
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIterable2[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part2--type-class-의-instance-customize-4">part2 : type class 의 instance (customize)</h3>
+<hr />
+
+<pre><code class="language-scala211">implicit def treeIterable2(implicit proxy : Iter2[List]) : Iterable2[MyTree, List] = new Iterable2[MyTree, List]{
+    def iter[A](a : MyTree[A]) : List[A] = a match {
+        case Empty() =&gt; Nil
+        case Node(v, left, right) =&gt; v :: (iter(left) ++ iter(right))
+    }
+    def iterProxy : Iter2[List]  =  proxy
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mtreeIterable2[39m
+</code></pre>
+</div>
+
+<p>TIP ::  위의 코드는 아래와같이도 사용할 수 있다.</p>
+
+<pre><code class="language-scala211">/**
+implicit def treeIterable2: Iterable2[MyTree, List] = new Iterable2[MyTree, List]{
+    def iter[A](a : MyTree[A]) : List[A] = a match {
+        case Empty() =&gt; Nil
+        case Node(v, left, right) =&gt; v :: (iter(left) ++ iter(right))
+    }
+    def iterProxy : Iter2[List]  =  implicitly[Iter2[List]] // type 주어진 채로 연동하기  
+}
+**/
+</code></pre>
+
+<p><br /></p>
+<h3 id="part3--type-class-의-interface-사용-2">part3 : type class 의 interface (사용)</h3>
+<hr />
+
+<pre><code class="language-scala211">def sumElements4[R[_],I[_]](xs : R[Int])(implicit proxy : Iterable2[R, I]) = sumElements3(proxy.iter(xs))(proxy.iterProxy)
+
+//1. xs 에 인자가 전달된다. R과 _가 결정된다.
+//2. 결정된 R과 _ 를 확인한 implicit 가 proxy 를 결정한다. I가 결정된다.
+
+
+def printElements4[R[X], I[X], X](xs : R[X])(implicit proxy : Iterable2[R,I]) = printElements3(proxy.iter(xs))(proxy.iterProxy)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements4[39m
+defined [32mfunction[39m [36mprintElements4[39m
+</code></pre>
+</div>
+
+<h3 id="result-4">result</h3>
+<hr />
+
+<pre><code class="language-scala211">val t2 : MyTree[Int] = Node(3, Node(4, Node(5, Empty(), Empty()), Empty()), Empty())
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mt2[39m: [32mMyTree[39m[[32mInt[39m] = Node(3,Node(4,Node(5,Empty(),Empty()),Empty()),Empty())
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">sumElements4(t2)
+printElements4(t2)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>3
+4
+5
+
+
+
+
+
+[36mres28_0[39m: [32mInt[39m = [32m12[39m
+</code></pre>
+</div>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="8-higher-kind-type-classes--functor-specification">8. Higher-kind Type classes + Functor Specification</h1>
+<p><br />
+<br />
+<br /></p>
+
+<h3 id="재료-3">재료</h3>
+<hr />
+
+<pre><code class="language-scala211">import scala.language.higherKinds
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[32mimport [39m[36mscala.language.higherKinds[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">//재료
+sealed abstract class MyTree[A]
+case class Empty[A]() extends MyTree[A]
+case class Node[A](value : A, left : MyTree[A], right : MyTree[A]) extends MyTree[A]
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mMyTree[39m
+defined [32mclass[39m [36mEmpty[39m
+defined [32mclass[39m [36mNode[39m
+</code></pre>
+</div>
+
+<p>&lt;/br&gt;</p>
+<h3 id="part1--type-class-본체-3">part1 : type class 본체</h3>
+<hr />
+
+<pre><code class="language-scala211">trait Functor[F[_]] {
+    def map[A, B](f : A=&gt;B)(x : F[A]) : F[B]
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mtrait[39m [36mFunctor[39m
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part2--type-class-의-instance-customize-5">part2 : type class 의 instance (customize)</h3>
+<hr />
+
+<pre><code class="language-scala211">implicit val ListFunctor : Functor[List] = new Functor[List]{
+    def map[A,B](f : A=&gt;B)(x : List[A]) : List[B] = x.map(f)
+}
+
+implicit val TreeFunctor : Functor[MyTree] = new Functor[MyTree]{
+    def map[A,B](f : A=&gt;B)(x : MyTree[A]) : MyTree[B] = x match{
+        case Empty() =&gt; Empty()
+        case Node(v, left, right) =&gt; Node(f(v), map(f)(left), map(f)(right))
+    }
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mListFunctor[39m: [32mFunctor[39m[[32mList[39m] = $sess.cmd33Wrapper$Helper$$anon$1@3bbdd7c8
+[36mTreeFunctor[39m: [32mFunctor[39m[[32mMyTree[39m] = $sess.cmd33Wrapper$Helper$$anon$2@6f83087e
+</code></pre>
+</div>
+
+<p><br /></p>
+<h3 id="part3--type-class-의-interface-사용-3">part3 : type class 의 interface (사용)</h3>
+<hr />
+
+<pre><code class="language-scala211">def compose[F[_],X,Y,Z](g : Y=&gt;Z)(f : X=&gt;Y)(xs : F[X])(implicit proxy : Functor[F]) : F[Z] ={
+    proxy.map(g)(proxy.map(f)(xs))
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mcompose[39m
+</code></pre>
+</div>
+
+<h3 id="result-5">result</h3>
+<hr />
+
+<pre><code class="language-scala211">
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mt2[39m: [32mMyTree[39m[[32mInt[39m] = Node(3,Node(4,Node(5,Empty(),Empty()),Empty()),Empty())
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>3
+4
+5
+
+
+
+
+
+[36mres28_0[39m: [32mInt[39m = [32m12[39m
+</code></pre>
+</div>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>

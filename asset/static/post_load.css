@@ -1,0 +1,7 @@
+
+.load-thing {
+    display: none;
+}
+.load-thing.active {
+    display: block;
+}

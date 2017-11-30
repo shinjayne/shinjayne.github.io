@@ -1,0 +1,427 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Efficient Back Propagation(1998) 논문 리뷰(1) | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <style>
+      @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+      body {
+          font-family: 'Noto Sans KR', serif;
+          padding-top: 50px;
+        }
+      a {
+        color : #90b3d8;
+      }
+    </style>
+  </head>
+  <body>
+
+    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who();
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+.post h1,h2,h3,h4,h5,h6 {
+
+}
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width : 100% ;
+}
+pre {
+  background-color: #2e2f30 ;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/5/backprop.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.3rem;">Efficient Back Propagation(1998) 논문 리뷰(1)</h1>
+  <p class="card-text text-white"><p class="text-muted">deeplearning | 07 July 2017</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-info">deeplearning</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p>이번 글에서는 deep learning 에서 아주 중요한 back propagation 에 대한 insight를 얻기 위해,</p>
+
+<p>Yann LeCun 외 3명이 참여한 1998년 논문 “Efficent BackProp” 을 부분적으로 리뷰해보겠습니다.</p>
+
+<blockquote>
+  <p><strong>다운로드 링크</strong></p>
+</blockquote>
+
+<blockquote>
+  <p><a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf">이 링크</a> 에서 논문 다운받아보실 수 있습니다.</p>
+</blockquote>
+
+<blockquote>
+  <p><img src="/images/backprop/backprop.png" alt="paper" /></p>
+</blockquote>
+
+<p>총 10개의 챕터로 구성된 이 논문은</p>
+
+<p>3장까지 간단하게 simple gradient descent 을 통한 Back Propagation 을 설명하고,</p>
+
+<p>4장에 몇가지 트릭들(Few Tricks) 들을 통해 그 성능을 높이는 방법들을 제시하고 있습니다.</p>
+
+<p>저는 제가 관심이 있었던 이 4장의 내용, 즉</p>
+
+<h4 id="back-propagation-으로-학습하는-모델들의-학습-성능을-높이는-trick-들">“Back Propagation 으로 학습하는 모델들의 학습 성능을 높이는 Trick 들”</h4>
+
+<p>을 집중적으로 리뷰해보려고 합니다.</p>
+
+<p><em>(저희가 요즘 다루는 거의 대부분의 모델들은 back propagation 으로 학습하는 모델이므로 의미가 있습니다)</em></p>
+
+<p>논문 4장까지의 챕터 구성은 아래와 같습니다.</p>
+
+<ol>
+  <li>
+    <p>introduction</p>
+  </li>
+  <li>
+    <p>Learning and Generalization</p>
+  </li>
+  <li>
+    <p>Standard Back Propagation</p>
+  </li>
+  <li>
+    <p>Few Practical Tricks</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>4-1 Stochastic vs Batch Learning</p>
+</blockquote>
+
+<blockquote>
+  <p>4-2 Shuffling the examples</p>
+</blockquote>
+
+<blockquote>
+  <p>4.3 Normalizing inputs</p>
+</blockquote>
+
+<blockquote>
+  <p>4.4 The Sigmoid</p>
+</blockquote>
+
+<blockquote>
+  <p>4.5 Choosing Target Value</p>
+</blockquote>
+
+<blockquote>
+  <p>4.6 Initializing Weight</p>
+</blockquote>
+
+<blockquote>
+  <p>4.7 Choose Learning Rate</p>
+</blockquote>
+
+<p><strong><em>(논문의 뒷 내용이 궁금하신 분들은 직접 다운받아서 읽어보시기 바랍니다)</em></strong></p>
+
+<p>Back Propagation 과 그 방식으로 학습하는 모델의 구조(Neural Network 등) 을 아신다면,</p>
+
+<p>“4. Few Practical Tricks” 을 다루는 단원으로 바로 넘어가셔도 좋습니다.</p>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="일반적인-gradient-based-학습-모델">일반적인 gradient-based 학습 모델</h1>
+<h2 id="2-learning-and-generalization">(2 .Learning and Generalization)</h2>
+<hr />
+
+<p><br /></p>
+
+<p><img src="/images/backprop/model.png" alt="model" /></p>
+
+<p>이 논문에서 이야기하는 모델의 모습입니다.</p>
+
+<p><em>(이런 구조를 가지는 학습 모델은 이 논문에서 말하는 trick들로 성능을 향상시킬 수 있다는 말이겠죠?)</em></p>
+
+<p>처음 입력값, 즉 input 은 Z 로 표현하였고,</p>
+
+<p>학습 가능한 Parameter 인 W 가 있고 ,</p>
+
+<p>모델에 W, Z가 들어가면 output M(W,Z) 가 나옵니다.</p>
+
+<p>output M(W,Z) 와  desired output D 를 (이 논문에서 말하는) 가장 일반적인 cost fuction 인</p>
+
+<p><strong>mean-square</strong> 를 이용하여 E 를 산출하였습니다.</p>
+
+<p>E (error) 는 모델의 성능을 평가하는 유일한 스칼라값입니다.</p>
+
+<p>E (error) 의 값이 작을수록, 모델이 잘 학습했다고 말할 수 있습니다.</p>
+
+<p>즉, 머신 러닝에서의 가장 중요한 부분은</p>
+
+<p><strong>cost function 을 통해 나온 저 E(error) 값을 줄이는 방법을 찾는 일</strong>이라고 해도 과언이 아닙니다.</p>
+
+<p>위와 같은 Gradient-based 학습 모델은 이 error 을 줄이는 일을</p>
+
+<p><strong>Back Propagation</strong> 이라는 과정을 통해 수행하게 됩니다.</p>
+
+<p><em>( 그 과정에서 Gradient 가 쓰이기 때문에 Gradient based 학습 모델이라고 부르는 것입니다. )</em></p>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="기본적인-back-propagation">기본적인 Back Propagation</h1>
+<h2 id="3--standard-back-propagation">(3 . Standard Back Propagation)</h2>
+<hr />
+
+<p><br /></p>
+
+<p>요즘엔 Back Propagation 을 효과적으로 빠르게 수행해주는 방법들이 많이 나와있습니다.</p>
+
+<p>저도 아직 그 종류들과 작동 방식들을 잘 몰라서, 참고 링크를 가져왔습니다.</p>
+
+<blockquote>
+  <다양한 Back="" Propagation="" 알고리즘들="">
+</다양한>
+</blockquote>
+
+<blockquote>
+  <p>http://shuuki4.github.io/deep%20learning/2016/05/20/Gradient-Descent-Algorithm-Overview.html</p>
+</blockquote>
+
+<p>이 글에서는 간단히 Back Propagation 의 작동 방식을 보고 넘어갈 것이기 때문에,</p>
+
+<p><strong>가장 기본적인 Gradient descent 알고리즘</strong> 을 통해 back propagation을 살펴보겠습니다.</p>
+
+<hr />
+
+<p>Back Propagation 은 학습 모델에서의 W(trainable parameter) 를 업데이트 하는 방법입니다.</p>
+
+<p>W의 값을 업데이트해서 cost function 의 결과값인 error 가 작아지게 하면 성공입니다.</p>
+
+<p>이 W의 업데이트과정(back propagation) 을 수백번, 수천번 반복해서 천천히 error를 줄여나가는 것입니다.</p>
+
+<p><img src="/images/backprop/wupdate2.png" alt="mibun" /></p>
+
+<p>그렇다면 W 를 얼마씩 업데이트 해주어야 할까요?</p>
+
+<p><em>(그 방법으로 지금까지 많은 사람들이 다양한 알고리즘을 찾아내었고, 그것이 바로 위에 소개해드린 링크의 내용입니다. )</em></p>
+
+<p>가장 기본적인 Gradient Descent에서는 이전의 W_(t-1)  이  이 모델의 error 에 미친 영향을 편미분을 통해 계산해서,</p>
+
+<p>그 값을 업데이트값으로 사용합니다.</p>
+
+<p><img src="/images/backprop/wupdate1.png" alt="mibun" />
+<em>(E 는 cost function 의 결과값)</em></p>
+
+<p><br />
+<br />
+<br /></p>
+
+<p>업데이트 값을 구하는 식은 아래와 같습니다.</p>
+
+<hr />
+
+<p>조건
+<img src="/images/backprop/render4.gif" alt="mibun" /></p>
+
+<p>에서의 y의 x 에 대한 편미분을 구하는 식은</p>
+
+<p><img src="/images/backprop/render2.gif" alt="mibun" /></p>
+
+<p>입니다.</p>
+
+<hr />
+
+<p>마찬가지로 조건</p>
+
+<p><img src="/images/backprop/render3.gif" alt="mibun" /></p>
+
+<p>에서의 E 의 Wn에 대한 편미분을 구하는 식은</p>
+
+<p><img src="/images/backprop/render.gif" alt="mibun" /></p>
+
+<p>이와 같습니다.</p>
+
+<p>천천히 살펴보시면</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">기호</th>
+      <th style="text-align: center">의미</th>
+      <th style="text-align: center">편미분 공식 매칭</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Wn</td>
+      <td style="text-align: center">n-th layer 의 weight</td>
+      <td style="text-align: center">x</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Xn</td>
+      <td style="text-align: center">n-th layer 의 output</td>
+      <td style="text-align: center">g(x)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">E(Xn, D)</td>
+      <td style="text-align: center">…</td>
+      <td style="text-align: center">f(g(x))</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">E</td>
+      <td style="text-align: center">모델의 error</td>
+      <td style="text-align: center">y</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이해가 되실 겁니다.</p>
+
+<p><br />
+<br />
+<br /></p>
+<hr />
+
+<p>같은 방법으로 n-1 번째 layer 의 Wn-1 이 error 에 미친 영향을 구하면 아래와 같습니다.</p>
+
+<p><img src="/images/backprop/render 5.gif" alt="mibun" /></p>
+
+<p>편미분의 연속입니다.</p>
+
+<p>이와같은 방법으로 n-th layer(Wn), n-1-th layer(Wn-1) , … , 2nd layer(W2), input layer(W1) 에 대해</p>
+
+<p>E 에 대한 각각의 편미분을 구해줍니다.</p>
+
+<p>그리고 그 편미분 값을 업데이트 값으로 각각의 W 에 대해 아래 연산을 해줍니다.</p>
+
+<p><img src="/images/backprop/wupdate1.png" alt="mibun" /></p>
+
+<p>t는 학습 반복횟수고, 몇번째 layer 의 W 인지는 생략되어있습니다.</p>
+
+<p>여기서 저 업데이트 값 앞의 상수는 <strong>learning rate</strong> 로,</p>
+
+<p>이 값을 어떻게 지정하느냐에 따라 학습의 효과가 달라집니다.</p>
+
+<p>이 값을 조정하는 방법도 4장의 trick에서 다룹니다.</p>
+
+<p>t값이 학습 반복 횟수라고 말씀드렸는데,</p>
+
+<p>이렇게 W 를 업데이트 하는 과정을 수백 수천번 반복하여 t를 올리면, E 는 점점 줄어들게 되고, 모델은 학습을 잘 하게 됩니다.</p>
+
+<p>이것이 기본적인 Back Propagation 을 통한 학습 모델의 학습방법입니다.</p>
+
+<p><br />
+<br />
+<br /></p>
+<h1 id="메인-back-propagation-으로-학습하는-모델들의-학습-성능을-높이는-trick-들">(메인) Back Propagation 으로 학습하는 모델들의 학습 성능을 높이는 Trick 들</h1>
+<h2 id="4-few-practical-tricks">(4. Few Practical Tricks)</h2>
+<hr />
+
+<p><br /></p>
+
+<blockquote>
+  <p>4-1 Stochastic vs Batch Learning</p>
+</blockquote>
+
+<blockquote>
+  <p>4-2 Shuffling the examples</p>
+</blockquote>
+
+<blockquote>
+  <p>4.3 Normalizing inputs</p>
+</blockquote>
+
+<blockquote>
+  <p>4.4 The Sigmoid</p>
+</blockquote>
+
+<blockquote>
+  <p>4.5 Choosing Target Value</p>
+</blockquote>
+
+<blockquote>
+  <p>4.6 Initializing Weight</p>
+</blockquote>
+
+<blockquote>
+  <p>4.7 Choose Learning Rate</p>
+</blockquote>
+
+<p>다음 포스트들에서는 이제 이런 학습 모델들의 학습 성능을 높일 수 있는 trick 들을</p>
+
+<p>개별적인 포스트를 통해 자세히 살펴보겠습니다.</p>
+
+<p>감사합니다.</p>
+
+<p>(질문이나 잘못된 부분 지적은 환영입니다.)</p>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>

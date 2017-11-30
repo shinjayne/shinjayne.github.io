@@ -1,0 +1,371 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Scala 의 Type Class 코드로 살펴보기 2 | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <style>
+      @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+      body {
+          font-family: 'Noto Sans KR', serif;
+          padding-top: 50px;
+        }
+      a {
+        color : #90b3d8;
+      }
+    </style>
+  </head>
+  <body>
+
+    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who();
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+.post h1,h2,h3,h4,h5,h6 {
+
+}
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width : 100% ;
+}
+pre {
+  background-color: #2e2f30 ;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/3/scala-icon.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.3rem;">Scala 의 Type Class 코드로 살펴보기 2</h1>
+  <p class="card-text text-white"><p class="text-muted">scala | 29 June 2017</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-info">scala</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><h1 id="1-turning-type-classes-into-oo-classes">1. Turning Type Classes into OO Classes</h1>
+<p><br />
+<br />
+<br /></p>
+
+<pre><code class="language-scala211">abstract class Iter[I,A]{
+    def getValue(i : I) : Option[A]
+    def getNext(i : I) : I
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIter[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">implicit def ListIter[A] : Iter[List[A], A] = new Iter[List[A], A]{
+    def getValue(i : List[A]) : Option[A] = i.headOption
+    def getNext( i : List[A]) : List[A] = i.tail
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mListIter[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">def sumElements[I](xs : I)(implicit proxy : Iter[I, Int]) : Int = proxy.getValue(xs) match{
+    case None =&gt; 0
+    case Some(n) =&gt; n + sumElement(proxy.getNext(xs))
+}
+
+def printElements[I, X](xs : I)(implicit proxy : Iter[I, X]) : Unit = proxy.getValue(xs) match{
+    case None =&gt;
+    case Some(n) =&gt; {println(n) ; printElements(proxy.getNext(xs)) ; }
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements[39m
+defined [32mfunction[39m [36mprintElements[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">val I = List(3, 4, 5, 1)
+sumElements(I)
+printElements(I)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>3
+4
+5
+1
+
+
+
+
+
+[36mI[39m: [32mList[39m[[32mInt[39m] = [33mList[39m([32m3[39m, [32m4[39m, [32m5[39m, [32m1[39m)
+[36mres5_1[39m: [32mInt[39m = [32m13[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">import scala.language.higherKinds
+import scala.language.implicitConversions
+
+abstract class Dyn2[S[_,_], A]{
+    type Data
+    val d: Data
+    val i : S[Data, A]
+}
+
+object Dyn2 {
+    // 실제 동작 함수. ii 에 incIter 동작 인스턴스가 들어가고
+    implicit def apply[S[_,_],D,A](dd : D)(implicit ii : S[D,A]) : Dyn2[S,A] = new Dyn2[S,A]{
+        type Data = D
+        val d : Data = dd
+        val i : S[Data, A] = ii
+    }
+    implicit def methods[S[_,_], A](d : Dyn2[S,A]) : S[d.Data, A] = d.i
+}
+
+
+/*********************************************************************
+&lt;&lt;  Dyn2 인스턴스 는 &lt;타입클래스 정보 S &gt; &lt;반환할 데이터 타입 A&gt; 로 초기화하고  
+    &lt;타입 클래스가 다룰 데이터 구조 D&gt;를 입력받는다.    &gt;&gt;&gt;   
+
+    val  x : Dyn2[S,A](D)  &gt;&gt;&gt;  x.d = 데이터구조 (주인공)  
+                                    x.i = 타입클래스 인스턴스 정보( 실행기 )
+
+    &lt;Dyn2 인스턴스 x&gt; 를 만들면 무엇을 할 수 있는가?
+    x : Dyn2[Iter, Int]  =  Dyn2(List(1,2,3))   
+    y : Dyn2[Iter, Int]  = Dyn2(MyNode(1, Empty(), Empty()))   
+    각각의 x, y 에 안에 들어있는 데이터구조와 타입클래스 인스턴스 정보로, Iter 타입클래스로 구현된 메서드를 모두 사용 가능하다.
+
+    Iter type class 의  interface method 들
+
+    sumElements(x.d)(x.i)
+    printElements(y.d)(y.i)
+
+
+
+
+***********************************************************************/
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[32mimport [39m[36mscala.language.higherKinds
+[39m
+[32mimport [39m[36mscala.language.implicitConversions
+
+[39m
+defined [32mclass[39m [36mDyn2[39m
+defined [32mobject[39m [36mDyn2[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">// type class 인스턴스  .... Int 데이터구조 들어왔을때  동작을 기술함 ... 하지만 직접 넣어줄 것이기 때문에 implicit 적지 않았다.
+def incIter(max : Int) : Iter[Int, Int] = new Iter[Int, Int] {
+    def getValue(i : Int) = if (i &lt;= max) Some(i) else None
+    def getNext(i : Int) = i + 1
+}
+
+// Dyn2 인스턴스를 생성해내는 방법
+// getMyIter
+def getMyIter(isInc: Boolean) : Dyn2[Iter, Int] = { //Dyn2[Iter, Int] 로 초기화한다.
+    if (isInc) Dyn2(0)(incIter(10)) //Dyn2.apply(0)(incIter(10))   // Dyn2(0) Int라는 데이터구조 를 다룬다.
+    else List(3, 1, 5)  // Dyn2.apply(List(3,1,5))(listIter[Int])   // Dyn2(List[Int])   List[Int] 라는 데이터구조를 다룬다.
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mincIter[39m
+defined [32mfunction[39m [36mgetMyIter[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">val i1  : Dyn2[Iter, Int] = getMyIter(true)
+printElements(i1.d)(i1.i)  //printElements(0)(incIter(10))
+
+val i2 : Dyn2[Iter, Int] = getMyIter(false)
+printElements(i2.d)(i2.i) //printElements()
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+3
+1
+5
+
+
+
+
+
+[36mi1[39m: [32mDyn2[39m[[32mIter[39m, [32mInt[39m] = $sess.cmd6Wrapper$Helper$Dyn2$$anon$1@74086131
+[36mi2[39m: [32mDyn2[39m[[32mIter[39m, [32mInt[39m] = $sess.cmd6Wrapper$Helper$Dyn2$$anon$1@67d4c1f6
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">abstract class Dyn[T[_]]{
+    type Data
+    val d : Data
+    val proxy : T[Data]
+}
+
+object Dyn{
+    implicit def apply[D, T[_]](dd : D)(implicit tt : T[D]) : Dyn[T] = new Dyn[T] {
+
+        type Data = D
+        val d : Data = dd
+        val proxy : T[D] = tt
+
+    }
+}
+
+
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mDyn[39m
+defined [32mobject[39m [36mDyn[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">// 데이터 구조 정보
+
+sealed abstract class MyTree[A]
+case class Empty[A]() extends MyTree[A]
+case class Node[A](value : A, left : MyTree[A], right : MyTree[A]) extends MyTree[A]
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mMyTree[39m
+defined [32mclass[39m [36mEmpty[39m
+defined [32mclass[39m [36mNode[39m
+</code></pre>
+</div>
+
+<h1 id="type-class-본체">type class 본체</h1>
+
+<pre><code class="language-scala211">// 데이터 구조 R 를 다루는 type class 본체  
+// iter 메서드는 Dyn2
+abstract class Iterable[R,A]{
+    def iter(a: R) : Dyn2[Iter , A] // 데이터구조 R 을 넣으면 R 을 다루는 Dyn2[Iter, A](R) 를 돌려줄 것이다.
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIterable[39m
+</code></pre>
+</div>
+
+<h1 id="type-class-인스턴스">type class 인스턴스</h1>
+
+<pre><code class="language-scala211">implicit def treeIterable : Iterable[MyTree[Int], Int] = new Iterable[MyTree[Int], Int]{
+    def iter(a : MyTree[Int]) : Dyn2[Iter, Int] = {
+        def go(I : MyTree[Int]) : List[Int] = I match{
+            case Empty() =&gt; Nil
+            case Node(v, left, right) =&gt; v :: (go(left) ++ go(right))
+        }
+        go(a)   // List[Int]   --&gt; Dyn2[Iter, Int](List[Int]) --&gt; Dyn2[Iter,Int](List[Int])(listIter(List[Int], Int))
+    }
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mtreeIterable[39m
+</code></pre>
+</div>
+
+<h1 id="type-class-인터페이스-사용">type class 인터페이스 (사용)</h1>
+
+<pre><code class="language-scala211">def sumElements2[R](xs : R)(implicit proxy : Iterable[R, Int]) = {
+    val cs = proxy.iter(xs)  // Dyn2[Iter, Int](Iter 로 다룰수 있게 변형된 xs)
+    sumElements(cs.d)(cs.i)
+}
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements2[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">val t : MyTree[Int] = Node(1, Empty(), Empty())
+sumElements2(t)
+</code></pre>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[36mt[39m: [32mMyTree[39m[[32mInt[39m] = Node(1,Empty(),Empty())
+[36mres22_1[39m: [32mInt[39m = [32m1[39m
+</code></pre>
+</div>
+
+<pre><code class="language-scala211">
+</code></pre>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>

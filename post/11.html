@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Jekyll Cheatsheet : 정적 블로그 관리 Ruby Gem | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <style>
+      @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+      body {
+          font-family: 'Noto Sans KR', serif;
+          padding-top: 50px;
+        }
+      a {
+        color : #90b3d8;
+      }
+    </style>
+  </head>
+  <body>
+
+    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who();
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+.post h1,h2,h3,h4,h5,h6 {
+
+}
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  width : 100% ;
+}
+pre {
+  background-color: #2e2f30 ;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/11/1.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.3rem;">Jekyll Cheatsheet : 정적 블로그 관리 Ruby Gem</h1>
+  <p class="card-text text-white"><p class="text-muted">jekyll | 15 November 2017</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-info">ruby</a>
+    
+    <a href="#" class="badge badge-info">jekyll</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p>jekyll 로 신나게 static 한 블로그를 만들거나 수정하고 나서, 한참 뒤에 다시 블로그 코드를 고치려고 하면 jekyll 다루는 법이 잘 기억이 나지 않곤 한다.</p>
+
+<p>jekyll 의 작동 방식은 비교적 간단한 편인데, 이것 저것 다른 일들을 하다보면 종종 까먹어서, 나를 위한 jekyll cheatsheet 를 정리해보려고 한다.</p>
+
+<h1 id="jekyll-기본-동작-방식">jekyll 기본 동작 방식</h1>
+
+<h2 id="1-텍스트-파일을-html-파일-변환">1. 텍스트 파일을 html 파일 변환</h2>
+
+<p>jekyll 은 정적인 웹사이트를 만들어주는 프로그램(ruby gem)이다.</p>
+
+<p>jekyll 에서 동적인 작업은 모두 ruby 로 처리되고, 동적 변환을 마친  정적 결과물들 (html, css, javascript, contents 파일 등) 은 <code class="highlighter-rouge">_site</code> 폴더 안에 저장된다.</p>
+
+<p>** [다양한 형식의 텍스트 함유 파일(md, markdown, html 등)] -&gt; [Converter] -&gt; [Liquid Renderer] -&gt; [html 파일] **</p>
+
+<p>Converter, Renderer 등 동적인 작업을 해주는 파일은 ruby 로 작성된다.</p>
+
+<p>Converter, Liquid Renderer 들은 <code class="highlighter-rouge">_plugins</code> 폴더에 새로운 ruby 파일을 작성해 추가할 수 있다.</p>
+
+<p><img src="/asset/media/image/post/11/1.jpg" alt="" /></p>
+
+<h3 id="converter--md-markdown---html">[Converter] : .md, .markdown -&gt; .html</h3>
+
+<p>Converter 는 아래에 해당되는 디렉터리를 모두 긁어서 텍스트파일을 html로 변환한다.</p>
+
+<ol>
+  <li>jekyll project 디렉터리 하에 있는 시스템 폴더(폴더명 앞에 <code class="highlighter-rouge">_folder</code> 이렇게 붙어있는 폴더)를 제외한 모든 폴더</li>
+  <li><code class="highlighter-rouge">_posts</code> 폴더</li>
+</ol>
+
+<h3 id="liquid-renderer--global--page-variables-들을-이용해-변환-제어">[Liquid Renderer] : global / page variables 들을 이용해 변환 제어</h3>
+
+<p>jekyll 은 사실 “[텍스트파일]-&gt;[html파일]” 의 변환이 전부이다.</p>
+
+<p>이 동적인 변환 과정을 <strong>global variables 와 page variables 을 이용</strong> 해서 디테일하게 프로그래밍적으로 조종하고 중복(redundancy) 를 줄일 수 있다.</p>
+
+<p>Liqiud Renderer 는 jekyll project 디렉터리 내에 존재하는 global/page variables 들을 수집해 페이지 렌더링에 사용한다.</p>
+
+<p>liquid 문법에 관한 자세한 내용은 <a href="http://shopify.github.io/liquid/">Liquid Hompage</a> 에서 참고할 수 있다.</p>
+
+<h4 id="1-global-variables">1) global variables</h4>
+
+<p>jekyll project 디렉터리 최상단 _config.yml 파일에 기술된 variable 들이다.</p>
+
+<p>담당하는 역할은 2가지이다.</p>
+
+<ol>
+  <li>
+    <p>모든 page 객체들 속의 page variables 들의 default 값을 제공한다.</p>
+  </li>
+  <li>
+    <p>jekyll system 의 설정값 역할을 한다.</p>
+  </li>
+</ol>
+
+<h4 id="2-page-variables">2) page variables</h4>
+
+<p>jekyll project 내 존재하는 Converter 가 인식하는 모든 파일들(.html, .md, .markdown 또는 커스텀 텍스트 파일 등)의 상단에 yml 형식으로 기술되는 page variables 들이다.</p>
+
+<p>page.page_variable_name 으로 조회 가능하다.</p>
+
+<p>예를 들어 <code class="highlighter-rouge">index.html</code> 의 상단에 기술된 yml 이 아래와 같다면</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">---</code></p>
+
+  <p><code class="highlighter-rouge">title : "this is the title" </code></p>
+
+  <p><code class="highlighter-rouge">id : 10</code></p>
+
+  <p><code class="highlighter-rouge">---</code></p>
+</blockquote>
+
+<p>index.html 문서 내에서 다음과 같이 조회할 수 있다.</p>
+
+<p><code class="highlighter-rouge">Jekyll Cheatsheet : 정적 블로그 관리 Ruby Gem</code></p>
+
+<p><code class="highlighter-rouge">/post/11</code></p>
+
+<h1 id="jekyll-command-line-다루는-법">jekyll Command Line 다루는 법</h1>
+
+<h2 id="1-설치">1. 설치</h2>
+
+<p>두개의 ruby gem을 설치해야한다. (jekyll, bundler)</p>
+
+<p>ruby gem 은 ruby 의 규칙으로 작성된 프로그램을 말한다. command line 의 gem 명령어로 설치할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span>
+<span class="o">&gt;</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
+</code></pre>
+</div>
+
+<ol>
+  <li><strong>jekyll</strong> : jekyll 프로젝트를 다루는 프로그램(gem)이다. 새로운 프로젝트 생성, 빌드, 배포 등을 처리할 수 있다.</li>
+  <li><strong>bundler</strong> : Ruby gem 을 관리해주는 프로그램(gem)이다. 패키지 매니져 같은 느낌(?). 프로젝트 디렉터리의 Gemfile, Gemfile.lock 파일이 프로젝트에 필요한 ruby gem 목록을 bundler 에게 알려준다.</li>
+</ol>
+
+<h2 id="2-프로젝트-생성">2. 프로젝트 생성</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">project_dir</span>
+<span class="o">&gt;</span> <span class="n">jekyll</span> <span class="n">new</span> <span class="n">project_name</span>
+<span class="p">(</span><span class="o">&gt;</span> <span class="n">bundle</span> <span class="n">install</span><span class="p">)</span> <span class="c">#자동실행</span>
+<span class="o">---</span>
+<span class="n">project_dir</span><span class="o">/</span><span class="n">project_name</span><span class="o">/...</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2 id="3-로컬-서버-테스트">3. 로컬 서버 테스트</h2>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">bundle</span> <span class="k">exec</span>  
+<span class="o">&gt;</span> <span class="n">jekyll</span> <span class="n">serve</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">watch</span> <span class="o">--</span><span class="n">detach</span>
+</code></pre>
+</div>
+
+<h2 id="4-프로젝트-배포">4. 프로젝트 배포</h2>
+
+<p>프로젝트 디렉터리에 _site 라는 이름을 가진 폴더를 생성하고, 그 안에 정적 웹사이트 빌드 결과물을 생성한다.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">bundle</span> <span class="k">exec</span>  
+<span class="o">&gt;</span> <span class="n">jekyll</span> <span class="n">build</span> <span class="o">--</span><span class="n">watch</span>
+</code></pre>
+</div>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>
