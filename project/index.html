@@ -34,7 +34,7 @@
 
     
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
   background-size: cover;">
   <a class="navbar-brand" href="/">
     <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
@@ -59,13 +59,296 @@
 </nav>
 
     <div class ="container mt-5">
-  <h2 class="text-center">Projects</h2>
+  <h2 class="text-center" style="color: #f43e30;">Projects</h2>
   <hr  />
 </div>
 
-  this is the project main page.
+  <div id="load-list">
 
-all project will be listed.
+  
+  <div id="load-thing" class="load-thing">
+    <div class="row mt-5 mx-auto" style="min-margin" >
+  <div class="col-1 d-none d-md-inline">
+  </div>
+  <div class="col-sm-auto">
+    <style>
+.card{
+  width:36vw ;
+  max-width:360px;
+  min-width:270px;
+  border-radius:1rem;
+}
+.card-body{
+  height: 40vw;
+  max-height: 400px;
+  min-height: 300px;
+  width: 100%;
+  display: block;
+  background-color: #00010299;
+  background-blend-mode: color;
+  background-size: cover;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+</style>
+
+
+<div class="card mx-auto text-center">
+  <div class="card-header">Project</div>
+  <div class="card-body" style="background-image:url('');">
+    <a href="/project/1"><h1 class="card-title text-white" style="font-size : 1.8rem;">Textboxes in Tensorflow</h1></a>
+    <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
+    <p class="card-text text-white">
+      <p class="text-muted"> | 01 June 2017</p>
+    </p>
+    <p class="card-text text-white">
+      Tags |
+      
+      <a href="#" class="badge badge-danger">python</a>
+      
+      <a href="#" class="badge badge-danger">tensorflow</a>
+      
+      <a href="#" class="badge badge-danger">deeplearning</a>
+      
+      <a href="#" class="badge badge-danger">ocr</a>
+      
+    </p>
+  </div>
+</div>
+
+  </div>
+  <div class="col" style="max-width:600px">
+    <style>
+.card-side-info h1,h2,h3,h4,h5{
+  color: #f43e30;
+}
+</style>
+
+<div class="card-side-info d-block ">
+  <hr class="d-block d-sm-none" style="width:270px;"/>
+  <h5>Description</h5>
+  <p class="text-secondary"> Image Text Detection 분야 Deep Learning 알고리즘 Python 구현 </p>
+  <div class="row justify-content-start">
+    <div class="col-6 col-lg-3">
+      <h5>Code</h5>
+      <a href="https://github.com/shinjayne/shinTB"><button type="button" class="btn btn-outline-danger mb-3"><img src="/asset/media/image/GitHub-Mark-120px-plus.png" width="30" height="30" class="mr-2"/>github</button></a>
+    </div>
+    <div class="col-6 ">
+      <h5>Related Post</h5>
+      <a href="/post/6"><button type="button" class="btn btn-outline-danger mb-3"><img src="/asset/media/image/logo.jpg" width="30" height="30" class="mr-2"/>post</button></a>
+    </div>
+  </div>
+
+  <h5 class="text-secondary">Progress</h5>
+  <p class="text-uppercase font-italic">
+  done
+</p>
+
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+
+</div>
+
+  </div>
+  </div>
+</div>
+
+  </div>
+  
+  <div id="load-thing" class="load-thing">
+    <div class="row mt-5 mx-auto" style="min-margin" >
+  <div class="col-1 d-none d-md-inline">
+  </div>
+  <div class="col-sm-auto">
+    <style>
+.card{
+  width:36vw ;
+  max-width:360px;
+  min-width:270px;
+  border-radius:1rem;
+}
+.card-body{
+  height: 40vw;
+  max-height: 400px;
+  min-height: 300px;
+  width: 100%;
+  display: block;
+  background-color: #00010299;
+  background-blend-mode: color;
+  background-size: cover;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+</style>
+
+
+<div class="card mx-auto text-center">
+  <div class="card-header">Project</div>
+  <div class="card-body" style="background-image:url('');">
+    <a href="/project/2"><h1 class="card-title text-white" style="font-size : 1.8rem;">두번째 프로젝트</h1></a>
+    <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
+    <p class="card-text text-white">
+      <p class="text-muted"> | 01 June 2017</p>
+    </p>
+    <p class="card-text text-white">
+      Tags |
+      
+      <a href="#" class="badge badge-danger">python</a>
+      
+      <a href="#" class="badge badge-danger">tensorflow</a>
+      
+      <a href="#" class="badge badge-danger">deeplearning</a>
+      
+      <a href="#" class="badge badge-danger">ocr</a>
+      
+    </p>
+  </div>
+</div>
+
+  </div>
+  <div class="col" style="max-width:600px">
+    <style>
+.card-side-info h1,h2,h3,h4,h5{
+  color: #f43e30;
+}
+</style>
+
+<div class="card-side-info d-block ">
+  <hr class="d-block d-sm-none" style="width:270px;"/>
+  <h5>Description</h5>
+  <p class="text-secondary"> Image Text Detection 분야 Deep Learning 알고리즘 Python 구현 </p>
+  <div class="row justify-content-start">
+    <div class="col-6 col-lg-3">
+      <h5>Code</h5>
+      <a href="https://github.com/shinjayne/shinTB"><button type="button" class="btn btn-outline-danger mb-3"><img src="/asset/media/image/GitHub-Mark-120px-plus.png" width="30" height="30" class="mr-2"/>github</button></a>
+    </div>
+    <div class="col-6 ">
+      <h5>Related Post</h5>
+      <a href="/post/6"><button type="button" class="btn btn-outline-danger mb-3"><img src="/asset/media/image/logo.jpg" width="30" height="30" class="mr-2"/>post</button></a>
+    </div>
+  </div>
+
+  <h5 class="text-secondary">Progress</h5>
+  <p class="text-uppercase font-italic">
+  done
+</p>
+
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+
+</div>
+
+  </div>
+  </div>
+</div>
+
+  </div>
+  
+  <div id="load-thing" class="load-thing">
+    <div class="row mt-5 mx-auto" style="min-margin" >
+  <div class="col-1 d-none d-md-inline">
+  </div>
+  <div class="col-sm-auto">
+    <style>
+.card{
+  width:36vw ;
+  max-width:360px;
+  min-width:270px;
+  border-radius:1rem;
+}
+.card-body{
+  height: 40vw;
+  max-height: 400px;
+  min-height: 300px;
+  width: 100%;
+  display: block;
+  background-color: #00010299;
+  background-blend-mode: color;
+  background-size: cover;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+</style>
+
+
+<div class="card mx-auto text-center">
+  <div class="card-header">Project</div>
+  <div class="card-body" style="background-image:url('');">
+    <a href="/project/3"><h1 class="card-title text-white" style="font-size : 1.8rem;">Textboxes in Tensorflow</h1></a>
+    <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
+    <p class="card-text text-white">
+      <p class="text-muted"> | 01 June 2017</p>
+    </p>
+    <p class="card-text text-white">
+      Tags |
+      
+      <a href="#" class="badge badge-danger">python</a>
+      
+      <a href="#" class="badge badge-danger">tensorflow</a>
+      
+      <a href="#" class="badge badge-danger">deeplearning</a>
+      
+      <a href="#" class="badge badge-danger">ocr</a>
+      
+    </p>
+  </div>
+</div>
+
+  </div>
+  <div class="col" style="max-width:600px">
+    <style>
+.card-side-info h1,h2,h3,h4,h5{
+  color: #f43e30;
+}
+</style>
+
+<div class="card-side-info d-block ">
+  <hr class="d-block d-sm-none" style="width:270px;"/>
+  <h5>Description</h5>
+  <p class="text-secondary"> Image Text Detection 분야 Deep Learning 알고리즘 Python 구현 </p>
+  <div class="row justify-content-start">
+    <div class="col-6 col-lg-3">
+      <h5>Code</h5>
+      <a href=""><button type="button" class="btn btn-outline-danger mb-3"><img src="/asset/media/image/GitHub-Mark-120px-plus.png" width="30" height="30" class="mr-2"/>github</button></a>
+    </div>
+    <div class="col-6 ">
+      <h5>Related Post</h5>
+      <a href=""><button type="button" class="btn btn-outline-danger mb-3"><img src="/asset/media/image/logo.jpg" width="30" height="30" class="mr-2"/>post</button></a>
+    </div>
+  </div>
+
+  <h5 class="text-secondary">Progress</h5>
+  <p class="text-uppercase font-italic">
+  done
+</p>
+
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+
+</div>
+
+  </div>
+  </div>
+</div>
+
+  </div>
+  
+
+</div>
+
+<button type="button" class="btn btn-outline-secondary btn-block mx-auto mt-5 mb-5" id="load-button" style="max-width : 85%">
+  5개 더보기
+</button>
+
 
 
     <div class ="container mt-5 mb-5">
@@ -87,6 +370,19 @@ all project will be listed.
   $(document).ready(function() {
     var main_route = (window.location.pathname.split("/")[1]);
     $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
   });
 </script>
 

@@ -34,7 +34,7 @@
 
     
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
   background-size: cover;">
   <a class="navbar-brand" href="/">
     <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
@@ -59,17 +59,17 @@
 </nav>
 
     <style>
+/*post titles style*/
 .post h1,h2,h3,h4,h5,h6 {
-
+  color: #3f71f4;
 }
+/*for image*/
 .post img {
   max-width: 100%;
   height: auto;
 }
 
-.card {
-  width : 100% ;
-}
+/*for code highlighter*/
 pre {
   background-color: #494b4c ;
   border-radius: 6px;
@@ -80,16 +80,16 @@ pre {
 
 </style>
 
-<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/9/1.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; height: 350px;">
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/9/1.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
   <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
   <h1 class="card-title text-white" style="font-size : 2.3rem;">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</h1>
   <p class="card-text text-white"><p class="text-muted">deeplearning | 02 August 2017</p></p>
   <p class="card-text text-white">
     Tags |
     
-    <a href="#" class="badge badge-info">sklearn</a>
+    <a href="#" class="badge badge-primary">sklearn</a>
     
-    <a href="#" class="badge badge-info">python</a>
+    <a href="#" class="badge badge-primary">python</a>
     
   </p>
 </div>
@@ -428,6 +428,19 @@ class SubSub(Sub1, Sub2)
   $(document).ready(function() {
     var main_route = (window.location.pathname.split("/")[1]);
     $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
   });
 </script>
 

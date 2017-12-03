@@ -34,7 +34,7 @@
 
     
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
   background-size: cover;">
   <a class="navbar-brand" href="/">
     <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
@@ -59,7 +59,7 @@
 </nav>
 
     <div class ="container mt-5">
-  <h2 class="text-center">Posts</h2>
+  <h2 class="text-center" style="color: #3f71f4;">Posts</h2>
   <hr  />
   <style>
 .nav-link{
@@ -88,19 +88,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/12/1.jpg');">
-    <a href="/post/12"><h1 class="card-title text-white" style="font-size : 2.3rem;">웹 브라우저를 제어하는 Javascript 1</h1></a>
+    <a href="/post/12"><h1 class="card-title text-white" style="font-size : 2.1rem;">웹 브라우저를 제어하는 Javascript 1</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">web | 15 November 2017</p>
@@ -108,9 +114,9 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">web</a>
+      <a href="#" class="badge badge-primary">web</a>
       
-      <a href="#" class="badge badge-info">javascript</a>
+      <a href="#" class="badge badge-primary">javascript</a>
       
     </p>
 
@@ -121,19 +127,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/11/1.jpg');">
-    <a href="/post/11"><h1 class="card-title text-white" style="font-size : 2.3rem;">Jekyll Cheatsheet : 정적 블로그 관리 Ruby Gem</h1></a>
+    <a href="/post/11"><h1 class="card-title text-white" style="font-size : 2.1rem;">Jekyll Cheatsheet : 정적 블로그 관리 Ruby Gem</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">jekyll | 15 November 2017</p>
@@ -141,9 +153,9 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">ruby</a>
+      <a href="#" class="badge badge-primary">ruby</a>
       
-      <a href="#" class="badge badge-info">jekyll</a>
+      <a href="#" class="badge badge-primary">jekyll</a>
       
     </p>
 
@@ -154,19 +166,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/10/main.jpg');">
-    <a href="/post/10"><h1 class="card-title text-white" style="font-size : 2.3rem;">open-AI 의 gym (python package) 이용해 강화학습 훈련하기 1: Q-learning </h1></a>
+    <a href="/post/10"><h1 class="card-title text-white" style="font-size : 2.1rem;">open-AI 의 gym (python package) 이용해 강화학습 훈련하기 1: Q-learning </h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 08 August 2017</p>
@@ -174,11 +192,11 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
-      <a href="#" class="badge badge-info">tensorflow</a>
+      <a href="#" class="badge badge-primary">tensorflow</a>
       
-      <a href="#" class="badge badge-info">openai</a>
+      <a href="#" class="badge badge-primary">openai</a>
       
     </p>
 
@@ -189,19 +207,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/9/1.png');">
-    <a href="/post/9"><h1 class="card-title text-white" style="font-size : 2.3rem;">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</h1></a>
+    <a href="/post/9"><h1 class="card-title text-white" style="font-size : 2.1rem;">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 02 August 2017</p>
@@ -209,9 +233,9 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">sklearn</a>
+      <a href="#" class="badge badge-primary">sklearn</a>
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
     </p>
 
@@ -222,19 +246,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/8/1.png');">
-    <a href="/post/8"><h1 class="card-title text-white" style="font-size : 2.3rem;">tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용</h1></a>
+    <a href="/post/8"><h1 class="card-title text-white" style="font-size : 2.1rem;">tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 29 July 2017</p>
@@ -242,9 +272,9 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">tensorflow</a>
+      <a href="#" class="badge badge-primary">tensorflow</a>
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
     </p>
 
@@ -255,19 +285,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/7/4.png');">
-    <a href="/post/7"><h1 class="card-title text-white" style="font-size : 2.3rem;">SOM: Self Organazing Map 으로 Clustering 코드구현 까지</h1></a>
+    <a href="/post/7"><h1 class="card-title text-white" style="font-size : 2.1rem;">SOM: Self Organazing Map 으로 Clustering 코드구현 까지</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 27 July 2017</p>
@@ -275,9 +311,9 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">sklearn</a>
+      <a href="#" class="badge badge-primary">sklearn</a>
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
     </p>
 
@@ -288,19 +324,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/6/1.png');">
-    <a href="/post/6"><h1 class="card-title text-white" style="font-size : 2.3rem;">Textboxes(2016) : Image Text Detection 논문 리뷰</h1></a>
+    <a href="/post/6"><h1 class="card-title text-white" style="font-size : 2.1rem;">Textboxes(2016) : Image Text Detection 논문 리뷰</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 21 July 2017</p>
@@ -308,11 +350,11 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">CNN</a>
+      <a href="#" class="badge badge-primary">CNN</a>
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
-      <a href="#" class="badge badge-info">tensorflow</a>
+      <a href="#" class="badge badge-primary">tensorflow</a>
       
     </p>
 
@@ -323,19 +365,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/5/backprop.png');">
-    <a href="/post/5"><h1 class="card-title text-white" style="font-size : 2.3rem;">Efficient Back Propagation(1998) 논문 리뷰(1)</h1></a>
+    <a href="/post/5"><h1 class="card-title text-white" style="font-size : 2.1rem;">Efficient Back Propagation(1998) 논문 리뷰(1)</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 07 July 2017</p>
@@ -343,7 +391,7 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">deeplearning</a>
+      <a href="#" class="badge badge-primary">deeplearning</a>
       
     </p>
 
@@ -354,19 +402,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/2/main.png');">
-    <a href="/post/2"><h1 class="card-title text-white" style="font-size : 2.3rem;">tensorflow 로 mnist 흉내내는 GAN 만들기</h1></a>
+    <a href="/post/2"><h1 class="card-title text-white" style="font-size : 2.1rem;">tensorflow 로 mnist 흉내내는 GAN 만들기</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 29 June 2017</p>
@@ -374,11 +428,11 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
-      <a href="#" class="badge badge-info">tensorflow</a>
+      <a href="#" class="badge badge-primary">tensorflow</a>
       
-      <a href="#" class="badge badge-info">GAN</a>
+      <a href="#" class="badge badge-primary">GAN</a>
       
     </p>
 
@@ -389,19 +443,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/3/scala-icon.png');">
-    <a href="/post/4"><h1 class="card-title text-white" style="font-size : 2.3rem;">Scala 의 Type Class 코드로 살펴보기 2</h1></a>
+    <a href="/post/4"><h1 class="card-title text-white" style="font-size : 2.1rem;">Scala 의 Type Class 코드로 살펴보기 2</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">scala | 29 June 2017</p>
@@ -409,7 +469,7 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">scala</a>
+      <a href="#" class="badge badge-primary">scala</a>
       
     </p>
 
@@ -420,19 +480,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('/asset/media/image/post/3/scala-icon.png');">
-    <a href="/post/3"><h1 class="card-title text-white" style="font-size : 2.3rem;">Scala 의 Type Class 코드로 살펴보기 1</h1></a>
+    <a href="/post/3"><h1 class="card-title text-white" style="font-size : 2.1rem;">Scala 의 Type Class 코드로 살펴보기 1</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">scala | 29 June 2017</p>
@@ -440,7 +506,7 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">scala</a>
+      <a href="#" class="badge badge-primary">scala</a>
       
     </p>
 
@@ -451,19 +517,25 @@
   
   <div id="load-thing" class="load-thing">
     <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
 .card-body{
-  height: 300px;
+  min-height: 300px;
   width: 100%;
   display: block;
   background-color: #00010299;
   background-blend-mode: color;
   background-size: cover;
+  border-radius: 1rem ;
 }
 </style>
 
-<div class="card mt-5 mb-5 mx-auto text-center rounded center" style="width : 85%;">
+<div class="card mt-5 mb-5 mx-auto text-center">
   <div class="card-body" style="background-image:url('');">
-    <a href="/post/1"><h1 class="card-title text-white" style="font-size : 2.3rem;">not mnist 데이터 Neural Network</h1></a>
+    <a href="/post/1"><h1 class="card-title text-white" style="font-size : 2.1rem;">not mnist 데이터 Neural Network</h1></a>
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
       <p class="text-muted">deeplearning | 01 June 2017</p>
@@ -471,9 +543,9 @@
     <p class="card-text text-white">
       Tags |
       
-      <a href="#" class="badge badge-info">python</a>
+      <a href="#" class="badge badge-primary">python</a>
       
-      <a href="#" class="badge badge-info">tensorflow</a>
+      <a href="#" class="badge badge-primary">tensorflow</a>
       
     </p>
 
@@ -485,7 +557,10 @@
 
 </div>
 
-<button type="button" class="btn btn-outline-secondary btn-block mx-auto mb-5" id="load-button" style="max-width : 85%">5개 더보기</button>
+<button type="button" class="btn btn-outline-secondary btn-block mx-auto mt-5 mb-5" id="load-button" style="max-width : 85%">
+  5개 더보기
+</button>
+
 
 
     <div class ="container mt-5 mb-5">
@@ -507,6 +582,19 @@
   $(document).ready(function() {
     var main_route = (window.location.pathname.split("/")[1]);
     $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
   });
 </script>
 
