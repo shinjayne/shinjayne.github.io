@@ -15,7 +15,7 @@
     <style>
       body {
           font-family: 'Noto Sans Korean', sans-serif;
-          font-weight: 500;
+          font-weight: 450;
           padding-top: 50px;
         }
       h1,h2,h3,h4,h5,h6 {
@@ -62,9 +62,10 @@
 /*post titles style*/
 .post h1,h2,h3,h4,h5,h6 {
   color: #3f71f4;
+
 }
-.post h1 {font-size: 2.0rem;}
-.post h2 {font-size: 1.8rem;}
+.post h1 {font-size: 2.0rem;padding-top: 4.5rem;padding-bottom:1rem;}
+.post h2 {font-size: 1.7rem;}
 .post h3 {font-size: 1.6rem;}
 .post h4 {font-size: 1.4rem;}
 .post h5 {font-size: 1.2rem;}
@@ -285,6 +286,7 @@ pre {
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
      <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
      <script>
   $(document).ready(function() {
     var main_route = (window.location.pathname.split("/")[1]);

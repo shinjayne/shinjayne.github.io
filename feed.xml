@@ -1,4 +1,262 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2017-12-04T04:24:52+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">웹 브라우저를 제어하는 Javascript 1</title><link href="https://shinjayne.github.io/post/12" rel="alternate" type="text/html" title="웹 브라우저를 제어하는 Javascript 1" /><published>2017-11-15T03:43:50+09:00</published><updated>2017-11-15T03:43:50+09:00</updated><id>https://shinjayne.github.io/post/12</id><content type="html" xml:base="https://shinjayne.github.io/post/12">&lt;p&gt;요즘 웹 개발에 관심이 많아지다보니 자연스레 Javascript 에 대한 관심도 엄청 많아졌다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2017-12-04T21:33:16+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">Python 의 상속</title><link href="https://shinjayne.github.io/post/15" rel="alternate" type="text/html" title="Python 의 상속" /><published>2017-12-04T21:26:50+09:00</published><updated>2017-12-04T21:26:50+09:00</updated><id>https://shinjayne.github.io/post/15</id><content type="html" xml:base="https://shinjayne.github.io/post/15">&lt;p&gt;(예전에 적어두었던 글을 이제서야 올려본다)&lt;/p&gt;
+
+&lt;p&gt;python 의 상속에 대해 정리해보자.&lt;/p&gt;
+
+&lt;h1 id=&quot;강제상속--자동상속&quot;&gt;강제상속 ? 자동상속?&lt;/h1&gt;
+
+&lt;p&gt;강제상속 : 나에게 없을때, 부모클래스 namespace 로 거슬러 올라가 강제 사용&lt;/p&gt;
+
+&lt;p&gt;자동상속 : 내가 부모 클래스 메서드를 덮어썼지만, 부모클래스메서드를 사용하고 싶을 때 super(_&lt;em&gt;class_&lt;/em&gt;, self).method() 로 부모메서드 호출&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#자동상속&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#s1 은 __init__ 이 없어서 Base 것을 참조한다&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jayne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#강제상속&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#s2 는 자체 __init__ 이 있어서 Base 것을 덮어쓴다. Base 것을 강제 이용하려면, super를 통해 강제상속시킬 수 있다.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jayne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;182&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;다중상속시-super-는-누구것을-가져오나&quot;&gt;다중상속시 super 는 누구것을 가져오나?&lt;/h1&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
+
+
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;위처럼 코드를 만들면, super는 누구의 init 메서드를 강제상속할까.&lt;/p&gt;
+
+&lt;p&gt;후보는 Sub1 과 Sub2 이다.&lt;/p&gt;
+
+&lt;p&gt;후보1 : Sub2 의 메서드를 강제 상속하므로 인자로 name, tall, age 모두 넘겨줘야한다.&lt;/p&gt;
+
+&lt;p&gt;후보2 : Sub1 의 메서드를 찾다가, Base 의 init 메서드를 강제상속해오므로, name 만 넘겨주면 된다.&lt;/p&gt;
+
+&lt;p&gt;이 답을 알아보는 방법은 help() 함수이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;so&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Help on SubSub in module __main__ object:
+
+class SubSub(Sub1, Sub2)
+ |  Method resolution order:
+ |      SubSub
+ |      Sub1
+ |      Sub2
+ |      Base
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, name)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from Base:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Method resolution order 를 보면 알 있다.&lt;/p&gt;
+
+&lt;p&gt;SubSub 는 자신에게 메서드가 없을 때(자동상속)나 부모의 메서드를 super 로 가져올 때 (강제상속) 위의 ordering 을 따르므로&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;super().__init__()&lt;/code&gt; 을 호출 할 때에도, Sub1 에 &lt;code class=&quot;highlighter-rouge&quot;&gt;__init__&lt;/code&gt; 이 있기에  그 init 부터 가져와 사용하게 된다.&lt;/p&gt;
+
+&lt;h1 id=&quot;결론--모든것은-namespace-참조-순서에-달렸다&quot;&gt;결론 : 모든것은 namespace 참조 순서에 달렸다.&lt;/h1&gt;</content><author><name></name></author><category term="class" /><category term="python" /><category term="object" /><category term="namespace" /><category term="inheritance" /><summary type="html">(예전에 적어두었던 글을 이제서야 올려본다)</summary></entry><entry><title type="html">빌드과정에 따른 프로그래밍 언어의 분류</title><link href="https://shinjayne.github.io/post/14" rel="alternate" type="text/html" title="빌드과정에 따른 프로그래밍 언어의 분류" /><published>2017-12-04T18:33:50+09:00</published><updated>2017-12-04T18:33:50+09:00</updated><id>https://shinjayne.github.io/post/14</id><content type="html" xml:base="https://shinjayne.github.io/post/14">&lt;p&gt;&lt;em&gt;본 글은 이 글( &lt;a href=&quot;http://the1900.tistory.com/73&quot;&gt;link&lt;/a&gt; ) 을 읽고 작성합니다.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;텍스트로 된 소스코드가 실행가능한 프로그램 파일로 변하는 과정을 빌드(Build) 라고 부른다. Build 안에는 compile, preparse, preprocess, link 등의 다양한 과정이 포함되어있다.&lt;/p&gt;
+
+&lt;p&gt;소스코드가 빌드가 되는 방식에 따라 프로그래밍 언어의 종류를 몇가지로 나눌 수 있다. 그 분류는 아래와 같다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;type&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Compile language&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;소스코드가 기계어로 바로 번역되어 실행파일이 됨&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Byte Code language&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;소스코드가 가상 머신이 읽는 바이트코드 파일로 번역되고, 그 바이트코드가 인터프리터처럼 한줄씩 기계어로 번역되 실행됨&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Interpreter language&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;소스코드가 한줄씩 기계어로 번역되어 실행됨&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;compile-language&quot;&gt;Compile Language&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;http://cfile28.uf.tistory.com/image/2653324A54B5E296262CED&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;컴파일 언어는 소스코드가 기계어 실행파일로 바로 빌드된다. 컴파일 언어의 빌드 과정은 보통 &lt;strong&gt;Preprocessing-&amp;gt;Parser-&amp;gt;Translation-&amp;gt;Assembler-&amp;gt;Linker&lt;/strong&gt; 의 과정을 거친다. C, C++ 등의 언어가 이곳에 속한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;빌드를 마친 기계어 실행파일의 실행속도가 매우 빠르다&lt;/li&gt;
+  &lt;li&gt;빌드를 마친 기계어 실행파일은 배포시 코드 독해가 어려워서 보안에 유리하다&lt;/li&gt;
+  &lt;li&gt;직접 하드웨어가 실행하는 실행파일을 만드므로, 하드웨어 제어가 가능하다&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;소스 코드를 수정하고 실행파일에 반영하기 위해선 또다시 긴 빌드 작업을 거쳐야하기 때문에 개발 생산성이 떨어진다&lt;/li&gt;
+  &lt;li&gt;서로 다른 OS 에 맞춰 빌드된 실행파일을 다른 OS 에서 실행하지 못한다 (맥은 &lt;code class=&quot;highlighter-rouge&quot;&gt;.exec&lt;/code&gt;,윈도우는 &lt;code class=&quot;highlighter-rouge&quot;&gt;.exe&lt;/code&gt; 확장자명의 실행파일)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;빌드-과정&quot;&gt;빌드 과정&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;순서&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;과정&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Preprocessor (전처리기)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#define&lt;/code&gt; 같은 매크로나 지시자를 소스코드로 변경하고, c파일이 i파일이 된다&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Parser (문법검사)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Syntax(코드 문법)을 검사하고, 문법에 따라 코드를 쪼갠다&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Translation (번역)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;문법 파싱이 끝난 소스코드를 어셈블리어로 번역하고, i파일이 s파일이 된다&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Assembler (번역)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;어셈블리어를 기계어만큼 낮은 수준의 언어로 번역하고, s파일이 o(object,바이너리,기계어) 파일이 된다&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;-&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;-&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;em&gt;여기까지를 보통 Compile (소스코드-&amp;gt;기계어) 이라고 칭함&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Linker (object파일연결)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;작성된 소스코드가 사용하는 OS API(시스템 콜) 이나 표준 라이브러리를 연결시켜서, exe 파일(실행파일)로 만든다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;byte-code-language&quot;&gt;Byte Code language&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;http://cfile2.uf.tistory.com/image/260F863454B5EC5E067177&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;작성된 소스코드가 컴파일러(Compiler)를 거치면서 가상머신이 읽을 수 있는 바이트코드(가상머신 기계어)로 번역(Compile)된다. 가상머신은 하나의 프로그램으로, 어느 OS 위에나 설치할 수 있다. 가상머신은 자신이 읽을 수 있는 기계어로 번역된 바이트코드를 다시 Native OS 가 읽을 수 있는 바이트코드(기계어)로 번역한다. JVM (java virtual machine) 을 사용하는 언어들 (Java, Kotlin, Scala 등)이 이곳에 속한다.&lt;/p&gt;
+
+&lt;p&gt;가상머신을 Runtime Environment 라고 부를 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;OS 에 상관없이, 가상 머신 프로그램만 깔려있다면 어디서나 컴파일된 프로그램이 사용 가능하다&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;직접적인 하드웨어 제어는 불가능하다&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;java-소스코드-실행-과정&quot;&gt;Java 소스코드 실행 과정&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: right&quot;&gt;순서&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;과정&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Compile (컴파일)&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;가상머신일 읽을 수 있는 바이트코드로 번역되고, &lt;code class=&quot;highlighter-rouge&quot;&gt;.java&lt;/code&gt;파일이 &lt;code class=&quot;highlighter-rouge&quot;&gt;.class&lt;/code&gt; 파일로 변한다&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Virtual Machine&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;가상머신에서 바이트코드가 기계어로 번역되어진다&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;interpreter-language&quot;&gt;Interpreter Language&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;http://cfile24.uf.tistory.com/image/2542FC4454B5F52E362DC0&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;소스코드를 한 줄씩 번역해서 실행한다. 이 한 줄씩 번역하는 프로그램을 Interpreter 라고 한다. 한 줄씩 번역되므로 실행시 메모리 소비가 적다. Python 등의 언어가 이렇다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;실시간 실행이 가능해서 코드의 실시간 분석이 가능하다&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;빌드된 상태의 컴파일 언어 실행파일보다는 속도가 느리다&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><category term="programming" /><category term="build" /><category term="interpreter" /><category term="compile" /><summary type="html">본 글은 이 글( link ) 을 읽고 작성합니다.</summary></entry><entry><title type="html">웹 브라우저를 제어하는 Javascript 1</title><link href="https://shinjayne.github.io/post/12" rel="alternate" type="text/html" title="웹 브라우저를 제어하는 Javascript 1" /><published>2017-11-15T03:43:50+09:00</published><updated>2017-11-15T03:43:50+09:00</updated><id>https://shinjayne.github.io/post/12</id><content type="html" xml:base="https://shinjayne.github.io/post/12">&lt;p&gt;요즘 웹 개발에 관심이 많아지다보니 자연스레 Javascript 에 대한 관심도 엄청 많아졌다.&lt;/p&gt;
 
 &lt;p&gt;다양한 javascript 의 라이브러리랑 프레임워크들을 써왔지만, 정확한 작동 방식을 모른 채 감으로 써왔다.&lt;/p&gt;
 
@@ -652,7 +910,7 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="tensorflow" /><category term="openai" /><summary type="html">open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다.</summary></entry><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io/post/9" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io/post/9</id><content type="html" xml:base="https://shinjayne.github.io/post/9">&lt;p&gt;&lt;img src=&quot;/images/ae/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/aigym/12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="tensorflow" /><category term="openai" /><summary type="html">open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다.</summary></entry><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io/post/9" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io/post/9</id><content type="html" xml:base="https://shinjayne.github.io/post/9">&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Autoencoder 의 간략한 구조는 위와 같다.&lt;/p&gt;
 
@@ -687,7 +945,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ae/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://probablydance.com/2016/04/30/neural-networks-are-impressively-good-at-compression/&quot;&gt;이 사이트&lt;/a&gt; 를 참고한 모델을 설명한다.&lt;/p&gt;
 
@@ -702,7 +960,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ae/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이렇게 Bias 를 추가할 수도 있고, 그림으론 이렇게 표현한다.&lt;/p&gt;
 
@@ -771,7 +1029,7 @@
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
-&lt;img src=&quot;/images/ae/8.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/asset/media/image/post/9/8.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위와같이 hidden node 의 갯수를 input 갯수보다 늘리면 좋을까?&lt;/p&gt;
 
@@ -798,7 +1056,7 @@
 
 &lt;p&gt;간단히 말하자면 hidden node 중 매번 일부 node 만 사용해서 학습한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ae/9.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/9.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -811,7 +1069,7 @@
 
 &lt;p&gt;input X 중의 일부만 사용한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ae/10.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/10.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -835,7 +1093,7 @@
 
 &lt;p&gt;참고자료를 읽고, 다시 정리하겠다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/ae/11.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/11.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -850,120 +1108,7 @@
 
 &lt;p&gt;Deep autoencoder 는 RBM ( Ristricted Boltzman Machine ) 을 쌓아 만들었고,&lt;/p&gt;
 
-&lt;p&gt;Stacked autoencoder 는 autoencoder 의 encoding layer 를 깊게 쌓아 만든 것이다.&lt;/p&gt;
-
-&lt;h1 id=&quot;python-의-상속&quot;&gt;Python 의 상속&lt;/h1&gt;
-
-&lt;h1 id=&quot;강제상속--자동상속&quot;&gt;강제상속 ? 자동상속?&lt;/h1&gt;
-
-&lt;p&gt;강제상속 : 나에게 없을때, 부모클래스 namespace 로 거슬러 올라가 강제 사용&lt;/p&gt;
-
-&lt;p&gt;자동상속 : 내가 부모 클래스 메서드를 덮어썼지만, 부모클래스메서드를 사용하고 싶을 때 super(_&lt;em&gt;class_&lt;/em&gt;, self).method() 로 부모메서드 호출&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#자동상속&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#s1 은 __init__ 이 없어서 Base 것을 참조한다&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jayne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#강제상속&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#s2 는 자체 __init__ 이 있어서 Base 것을 덮어쓴다. Base 것을 강제 이용하려면, super를 통해 강제상속시킬 수 있다.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jayne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;182&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;다중상속시-super-는-누구것을-가져오나&quot;&gt;다중상속시 super 는 누구것을 가져오나?&lt;/h1&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
-
-
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;위처럼 코드를 만들면, super는 누구의 init 메서드를 강제상속할까.&lt;/p&gt;
-
-&lt;p&gt;후보는 Sub1 과 Sub2 이다.&lt;/p&gt;
-
-&lt;p&gt;후보1 : Sub2 의 메서드를 강제 상속하므로 인자로 name, tall, age 모두 넘겨줘야한다.&lt;/p&gt;
-
-&lt;p&gt;후보2 : Sub1 의 메서드를 찾다가, Base 의 init 메서드를 강제상속해오므로, name 만 넘겨주면 된다.&lt;/p&gt;
-
-&lt;p&gt;이 답을 알아보는 방법은 help() 함수이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;so&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Help on SubSub in module __main__ object:
-
-class SubSub(Sub1, Sub2)
- |  Method resolution order:
- |      SubSub
- |      Sub1
- |      Sub2
- |      Base
- |      builtins.object
- |  
- |  Methods defined here:
- |  
- |  __init__(self, name)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from Base:
- |  
- |  __dict__
- |      dictionary for instance variables (if defined)
- |  
- |  __weakref__
- |      list of weak references to the object (if defined)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Method resolution order 를 보면 알 있다.&lt;/p&gt;
-
-&lt;p&gt;SubSub 는 자신에게 메서드가 없을 때(자동상속)나 부모의 메서드를 super 로 가져올 때 (강제상속) 위의 ordering 을 따르므로&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;super().__init__()&lt;/code&gt; 을 호출 할 때에도, Sub1 에 &lt;code class=&quot;highlighter-rouge&quot;&gt;__init__&lt;/code&gt; 이 있기에  그 init 부터 가져와 사용하게 된다.&lt;/p&gt;
-
-&lt;h1 id=&quot;결론--모든것은-namespace-참조-순서에-달렸다&quot;&gt;결론 : 모든것은 namespace 참조 순서에 달렸다.&lt;/h1&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="sklearn" /><category term="python" /><summary type="html"></summary></entry><entry><title type="html">tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용</title><link href="https://shinjayne.github.io/post/8" rel="alternate" type="text/html" title="tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용" /><published>2017-07-29T02:59:50+09:00</published><updated>2017-07-29T02:59:50+09:00</updated><id>https://shinjayne.github.io/post/8</id><content type="html" xml:base="https://shinjayne.github.io/post/8">&lt;p&gt;tensorflow 로 학습시킨 딥러닝 모델을 저장하는 방법중 하나로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Checkpoint&lt;/code&gt; 을 이용하는 방법이 있다.&lt;/p&gt;
+&lt;p&gt;Stacked autoencoder 는 autoencoder 의 encoding layer 를 깊게 쌓아 만든 것이다.&lt;/p&gt;</content><author><name></name></author><category term="sklearn" /><category term="python" /><summary type="html"></summary></entry><entry><title type="html">tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용</title><link href="https://shinjayne.github.io/post/8" rel="alternate" type="text/html" title="tensorflow 로 checkpoint 파일(.ckpt)과 ckeckpoint state proto 이용하기 : Variable 저장과 재활용" /><published>2017-07-29T02:59:50+09:00</published><updated>2017-07-29T02:59:50+09:00</updated><id>https://shinjayne.github.io/post/8</id><content type="html" xml:base="https://shinjayne.github.io/post/8">&lt;p&gt;tensorflow 로 학습시킨 딥러닝 모델을 저장하는 방법중 하나로 &lt;code class=&quot;highlighter-rouge&quot;&gt;Checkpoint&lt;/code&gt; 을 이용하는 방법이 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Checkpoint&lt;/code&gt; 은 학습된 모델의 Variable 값을 저장하는 파일이다.&lt;/p&gt;
 
@@ -3829,806 +3974,4 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;감사합니다.&lt;/p&gt;
 
-&lt;p&gt;(질문이나 잘못된 부분 지적은 환영입니다.)&lt;/p&gt;</content><author><name></name></author><category term="deeplearning" /><summary type="html">이번 글에서는 deep learning 에서 아주 중요한 back propagation 에 대한 insight를 얻기 위해,</summary></entry><entry><title type="html">tensorflow 로 mnist 흉내내는 GAN 만들기</title><link href="https://shinjayne.github.io/post/2" rel="alternate" type="text/html" title="tensorflow 로 mnist 흉내내는 GAN 만들기" /><published>2017-06-29T18:00:30+09:00</published><updated>2017-06-29T18:00:30+09:00</updated><id>https://shinjayne.github.io/post/2</id><content type="html" xml:base="https://shinjayne.github.io/post/2">&lt;p&gt;잠깐!&lt;/p&gt;
-
-&lt;h4 id=&quot;pre-requisite-knowledge&quot;&gt;pre-requisite knowledge&lt;/h4&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;아래의 지식들을 알고 계셔야 읽기 편한 글입니다.&lt;/p&gt;
-&lt;blockquote&gt;
-
-  &lt;ol&gt;
-    &lt;li&gt;
-      &lt;p&gt;tensorflow, numpy, matplotlib 사용법&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;p&gt;Nueral Network (특히 Binary Classification)&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;p&gt;epoch, batch 단위 학습 방식&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번 글에서는 &lt;strong&gt;GAN (Generative Adversarial Networks)&lt;/strong&gt; 를 tensorflow code 로 구현하는 방법을 알아보려고 합니다.&lt;/p&gt;
-
-&lt;p&gt;간단한 GAN 알고리즘을 통해서, MNIST 숫자 손글씨 데이터와 닮은 가짜 손글씨 데이터를 만들어내는 모델(&lt;code class=&quot;highlighter-rouge&quot;&gt;mnist_GAN&lt;/code&gt;)을 만들어 보겠습니다.&lt;/p&gt;
-
-&lt;p&gt;결과물을 미리 살짝 엿보자면 아래와 같은 실제 MNIST 데이터를&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/mnist_digits.png&quot; alt=&quot;real_mnist&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;모델에게 계속 보여주면서 훈련시키면&lt;/p&gt;
-
-&lt;p&gt;나중에는 아래처럼 비스무리한 숫자를 스스로 만들어낼 수 있습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/099.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;이는 실제 제가 얻은 결과입니다.&lt;/p&gt;
-
-&lt;p&gt;이번 공부를 하면서 참고한 자료는 아래 링크의 코드입니다.&lt;/p&gt;
-
-&lt;p&gt;https://github.com/golbin/TensorFlow-Tutorials/blob/master/07%20-%20GAN/01%20-%20GAN.py&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-그럼 이제&lt;/p&gt;
-
-&lt;p&gt;어떻게 mnist 손글씨와 비슷한 이미지를 생성하는 mnist_GAN 모델을 구현하는지 보도록 하겠습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;01--mnist_gan-의-구조와-데이터의-흐름&quot;&gt;01  mnist_GAN 의 구조와 데이터의 흐름&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;만들어볼 모델의 구조를 설명드리겠습니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/goblin_gan.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;GAN 은 두개의 서로 다른 학습 가능한 모델이 서로 경쟁하면서 학습합니다.&lt;/p&gt;
-
-&lt;p&gt;두 모델의 이름은 각각 &lt;em&gt;**Genarator(생성기) , Discriminator (분류기) **&lt;/em&gt;입니다 .&lt;/p&gt;
-
-&lt;h3 id=&quot;discriminator-분류기&quot;&gt;Discriminator (분류기)&lt;/h3&gt;
-
-&lt;p&gt;분류기는 단순한 classification 을 수행하는 모델입니다.&lt;/p&gt;
-
-&lt;p&gt;이미지 데이터를 input 으로 받으면 그 이미지가 실제 이미지(real)인지 가짜 이미지(fake) 인지 분류합니다.&lt;/p&gt;
-
-&lt;p&gt;실제 이미지일 확률이 높으면 1에 가까운 수를,&lt;/p&gt;
-
-&lt;p&gt;가짜 이미지일 확률이 높으면 0에 가까운 수를 반환합니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;분류기의 성능(성취도)&lt;/strong&gt;는 실제 이미지를 잘 구분할수록, 즉 실제 이미지에 1에 가까운 수를 부여할수록 좋다고 할 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;분류기는 간단한 binary classification 기능을 할 수 있는 2 layer NN 구조를 사용했습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;genarator-생성기&quot;&gt;Genarator (생성기)&lt;/h3&gt;
-
-&lt;p&gt;생성기는 가짜 이미지를 만들어냅니다.&lt;/p&gt;
-
-&lt;p&gt;noise 데이터 [128] 을 input 으로 받으면, 그 noise 를 바탕으로&lt;/p&gt;
-
-&lt;p&gt;output 으로 만들어낸 이미지 데이터[784] 를 생성합니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;생성기의 성능(성취도)&lt;/strong&gt;는 자신이 만든 가짜 이미지를 분류기에 보여주었을 때 1에 가까운 수를 부여할 수록 좋다고 할 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;생성기 내부를 구현하는 방법에는 다양한 방법이 있을 수 있지만,&lt;/p&gt;
-
-&lt;p&gt;저는 단순히 2 layer NN 의 구조를 사용해보았습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;placeholder-z&quot;&gt;placeholder Z&lt;/h3&gt;
-
-&lt;p&gt;Z 는 우리가 random 한 noise 를 넣어줄 placeholder 입니다.&lt;/p&gt;
-
-&lt;p&gt;미세하게 어떤 noise 가 들어갔는지에 따라서 생성기가 만들어내는 가짜이미지가 달라질 것입니다.&lt;/p&gt;
-
-&lt;p&gt;noise 의 크기는 임의로 128로 지정해놓았습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;placeholder-x&quot;&gt;placeholder X&lt;/h3&gt;
-
-&lt;p&gt;X 는 분류기에게 보여줄 실제 이미지입니다.&lt;/p&gt;
-
-&lt;p&gt;mnist 에서 제공하는 손글씨 숫자데이터 55000개를 이용할 것입니다.&lt;/p&gt;
-
-&lt;p&gt;[55000, 784]&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;02-학습-방법-loss-function-train&quot;&gt;02 학습 방법 (loss function, train)&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;그렇다면 두개의 모델(분류기와 생성기)를 어떻게 학습시켜야할까요?&lt;/p&gt;
-
-&lt;p&gt;학습을 위해서는 적절한 loss function 이 필요합니다.&lt;/p&gt;
-
-&lt;p&gt;GAN 에는 loss function 이 손실을 나타낸다기보다 , 각 모델의 성취도 혹은 성능을 나타낸다고 하는 것이 좋을 것 같습니다.&lt;/p&gt;
-
-&lt;p&gt;각 모델의 &lt;strong&gt;loss function(성능) 을 최대화&lt;/strong&gt; 하는 것이 학습의 목표이기 때문입니다.&lt;/p&gt;
-
-&lt;p&gt;위의 모델 설명에서 언급한 내용을 잠시 다시 보겠습니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;분류기의 성능(성취도)&lt;/strong&gt;는 실제 이미지를 잘 구분할수록, 즉 실제 이미지에 1에 가까운 수를 부여할수록 좋다고 할 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;생성기의 성능(성취도)&lt;/strong&gt;는 자신이 만든 가짜 이미지를 분류기에 보여주었을 때 1에 가까운 수를 부여할 수록 좋다고 할 수 있습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이 두 성취도는 위 모델 그림의 fake-result 와 real-result 로 다시 나타낼 수 있습니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;분류기의 성능(성취도)&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;d_loss&lt;/code&gt;  는 real-result 는 높을수록, fake-result 는 낮을수록 좋습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;생성기의 성능(성취도)&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;g_loss&lt;/code&gt;  는 fake-result 가 높을수록 좋습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이 d_loss 와 g_loss 를 각각 학습시켜, 최대화하도록 하면&lt;/p&gt;
-
-&lt;p&gt;생성기의 성능과 분류기의 성능이 서로 경쟁적으로 올라가게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;03-학습을-마친-후에는-&quot;&gt;03 학습을 마친 후에는 …&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;생성기에 새로운 noise 를 넣어서 실제 손글씨와 비슷한 이미지를 만들어내는지 확인해볼 것입니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;04-tensorflow-code-로-직접-짜보기&quot;&gt;04 Tensorflow Code 로 직접 짜보기&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;이제 개념 정리와 어떻게 모델을 구성하고 학습할지에 대한 계획이 끝났으니,&lt;/p&gt;
-
-&lt;p&gt;실제 tensorflow 로 코드를 짜보도록 하겠습니다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;(1) Import Packages&lt;/p&gt;
-
-&lt;p&gt;(2) 사용할 데이터 load&lt;/p&gt;
-
-&lt;p&gt;(3) Hyper-Parameters 설정&lt;/p&gt;
-
-&lt;p&gt;(4) 필요한 module 만들기&lt;/p&gt;
-
-&lt;p&gt;(5) Graph 짜기&lt;/p&gt;
-
-&lt;p&gt;(6) Graph Run 해서 반복 training 으로 variable update&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;1-import-packages&quot;&gt;(1) Import Packages&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tensorflow&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tf&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;2-사용할-데이터-load&quot;&gt;(2) 사용할 데이터 load&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;tensorflow.examples.tutorials.mnist&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_data&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;mnist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_data_sets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MNIST_data/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Extracting MNIST_data/train-images-idx3-ubyte.gz
-Extracting MNIST_data/train-labels-idx1-ubyte.gz
-Extracting MNIST_data/t10k-images-idx3-ubyte.gz
-Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mnist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;images&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mnist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(55000, 784) (55000,)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;3-hyper-parameters-설정&quot;&gt;(3) Hyper-Parameters 설정&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;total_epochs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;learning_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0002&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;4-필요한-module-만들기&quot;&gt;(4) 필요한 module 만들기&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;모듈이름&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;기능&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;input&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;output&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;trainable_variables&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;generator&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2 layer NN 로 구성된 가짜이미지 생성기를 호출합니다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;noise z [-, 128]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;fake images [-,784]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Gen/w1, Gen/b1, Gen/w2, Gen/gb2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;discriminator&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2 layer NN 로 구성된 binary 분류기를 호출합니다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;real/fake images x [-,784]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;scores [-,1]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Dis/w1, Dis/b1, Dis/w2, Dis/b2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;random_noise&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;호출할 때마다 random normal한 batch_size 갯수의 noise 를 생성합니다.&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;batch_size&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;noise [batch_size, 128]&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;-&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&quot;-module1--generator--생성기--&quot;&gt;&amp;lt; module1 : Generator ( 생성기 ) &amp;gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reuse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reuse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name_or_scope&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Gen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;gw1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;c&quot;&gt;# quiz : weight 의 초깃값을 random normal 로 주는 이유는 무엇일까요?&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gb1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gw2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gb2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name_or_scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Gen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reuse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;gw1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gb1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gw2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gb2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                 &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stddev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-
-    &lt;span class=&quot;n&quot;&gt;hidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;relu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matmul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gw1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gb1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matmul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gw2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gb2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;#출력층에 시그모이드를 쓰는 이유는 무엇일까요?&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;#[784] 가짜 생성된 이미지&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;-module2--discriminator--분류기--&quot;&gt;&amp;lt; module2 : Discriminator ( 분류기 ) &amp;gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discriminator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reuse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reuse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name_or_scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Dis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dw1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;db1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dw2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;db2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable_scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name_or_scope&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Dis&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reuse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scope&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dw1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;db1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dw2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;db2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;b2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                                  &lt;span class=&quot;n&quot;&gt;initializer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random_normal_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;hidden&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;relu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matmul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dw1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#[-, 256]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matmul&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dw2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;db2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;#[-, 1]  진품인지(1) 가품인지(0)의 label 결과값&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;-module3---random-noise-생성기-&quot;&gt;&amp;lt; module3 :  random noise 생성기 &amp;gt;&lt;/h4&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;random_noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;5-graph-짜기&quot;&gt;(5) Graph 짜기&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;as_default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;######################################################&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 1 .Feedable part  :: 그래프에서 유일하게 데이터가 유입될 수 있는 장소&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;######################################################&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;784&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#GAN 은 autoencoder 와 마찬가지로 unsupervised learning 이므로 y(label)을 사용하지 않습니다.&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;placeholder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#Z 는 생성기의 입력값으로 사용될 노이즈 입니다.&lt;/span&gt;
-
-
-    &lt;span class=&quot;c&quot;&gt;################################&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 2. generator 와 discriminator 의 사용&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;##################################&lt;/span&gt;
-
-
-    &lt;span class=&quot;n&quot;&gt;fake_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;result_of_fake&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discriminator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fake_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;result_of_real&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discriminator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-    &lt;span class=&quot;c&quot;&gt;################################&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 3. Loss( 성취도평가 ) : g_loss 와 d_loss&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;# g_loss &amp;amp; d_loss 모두 높을 수록 좋다.&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# g_loss : 얼마나 fake_x 가 진짜같은가&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# d_loss : 얼마나 discriminator 가 정확한가&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;# 두 수치를 모두 높이도록 train 하면 생성기와 분류기의 성능이 모두 올라간다.&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;################################&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;g_loss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reduce_mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result_of_fake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;d_loss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reduce_mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result_of_real&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result_of_fake&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-    &lt;span class=&quot;c&quot;&gt;################################&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 4. Train : Maximizing g_loss &amp;amp; d_loss&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;################################&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;t_vars&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;trainable_variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# return list&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;g_vars&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t_vars&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Gen&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;d_vars&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t_vars&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Dis&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;optimizer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AdamOptimizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;learning_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;g_train&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optimizer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minimize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g_loss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var_list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g_vars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;d_train&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optimizer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minimize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_loss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var_list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_vars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    
-
-    &lt;span class=&quot;c&quot;&gt;# g_loss &amp;amp; d_loss 를 최대화 시켜야하는데 minimize 함수밖에 없기 때문에 - 음수부호 붙인다.&lt;/span&gt;
-
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;6-graph-run-해서-반복-training-으로-variable-update&quot;&gt;(6) Graph Run 해서 반복 training 으로 variable update&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;global_variables_initializer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;total_batchs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_epochs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_batchs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# [batch_size , 784]&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;batch_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# [batch_size,]&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;noise&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random_noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;batch_size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# [batch_size, 128]&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g_train&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feed_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feed_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;gl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;g_loss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_loss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feed_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batch_x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-
-
-        &lt;span class=&quot;c&quot;&gt;#매 20 epoch 마다 학습된 성능을 중간점검  (실제론 더 자주하시는 것이 좋습니다. )&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;=======Epoch : &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; =======================================&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;생성기 성능 : &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;분류기 성능 : &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;생성기와 분류기 선의의 경쟁중...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-        &lt;span class=&quot;c&quot;&gt;#10개의 epoch 마다 Generator 가 만들어내는 실제 결과물을 얻어보며 , 성능 발전을 시각적으로 확인&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;sample_noise&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random_noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;generated&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fake_x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feed_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Z&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample_noise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_axis_off&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'goblin-gan-generated/{}.png'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epoch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zfill&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bbox_inches&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'tight'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'최적화 완료!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;=======Epoch :  1  =======================================
-생성기 성능 :  -3.06128
-분류기 성능 :  -0.200115
-생성기와 분류기 선의의 경쟁중...
-=======Epoch :  19  =======================================
-생성기 성능 :  -2.32224
-분류기 성능 :  -0.4686
-생성기와 분류기 선의의 경쟁중...
-=======Epoch :  39  =======================================
-생성기 성능 :  -1.91436
-분류기 성능 :  -0.619524
-생성기와 분류기 선의의 경쟁중...
-=======Epoch :  59  =======================================
-생성기 성능 :  -1.69127
-분류기 성능 :  -0.593143
-생성기와 분류기 선의의 경쟁중...
-=======Epoch :  79  =======================================
-생성기 성능 :  -1.62559
-분류기 성능 :  -0.574774
-생성기와 분류기 선의의 경쟁중...
-=======Epoch :  99  =======================================
-생성기 성능 :  -1.76843
-분류기 성능 :  -0.501177
-생성기와 분류기 선의의 경쟁중...
-최적화 완료!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;05-결과물-보기&quot;&gt;05 결과물 보기&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;위의 코드에서 , 매 10 epoch 마다 generator(생성기) 에 임의의 noise 10개를 주어서 생성되는 10개의 이미지를 저장했습니다.&lt;/p&gt;
-
-&lt;p&gt;이 결과를 보면 , 학습이 진행되면 진행될수록 생성기가 실제 사람 손글씨와 비슷한 이미지 형태를 생성해냄을 볼 수 있습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-0&quot;&gt;epoch 0&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/000.png&quot; alt=&quot;000&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-9&quot;&gt;epoch 9&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/009.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-19&quot;&gt;epoch 19&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/019.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-29&quot;&gt;epoch 29&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/029.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-39&quot;&gt;epoch 39&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/039.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-49&quot;&gt;epoch 49&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/049.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-59&quot;&gt;epoch 59&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/059.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-69&quot;&gt;epoch 69&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/069.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-79&quot;&gt;epoch 79&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/079.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-89&quot;&gt;epoch 89&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/089.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;epoch-99&quot;&gt;epoch 99&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/images/goblin-gan-generated/099.png&quot; alt=&quot;title&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;마치며-&quot;&gt;마치며 …&lt;/h1&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;간단한 2 layer NN 와 mnist data, 그리고 GAN 구조를 이용해 mnist 손글씨를 흉내내는 모델을 tensorflow 만들어보았습니다.&lt;/p&gt;
-
-&lt;p&gt;코드를 보시다 궁금한 점이나 오류가 있다면&lt;/p&gt;
-
-&lt;p&gt;아래 댓글로 남겨주시면 감사하겠습니다 ^^ .&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="tensorflow" /><category term="GAN" /><summary type="html">잠깐!</summary></entry><entry><title type="html">Scala 의 Type Class 코드로 살펴보기 2</title><link href="https://shinjayne.github.io/post/4" rel="alternate" type="text/html" title="Scala 의 Type Class 코드로 살펴보기 2" /><published>2017-06-29T00:46:40+09:00</published><updated>2017-06-29T00:46:40+09:00</updated><id>https://shinjayne.github.io/post/4</id><content type="html" xml:base="https://shinjayne.github.io/post/4">&lt;h1 id=&quot;1-turning-type-classes-into-oo-classes&quot;&gt;1. Turning Type Classes into OO Classes&lt;/h1&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;abstract class Iter[I,A]{
-    def getValue(i : I) : Option[A]
-    def getNext(i : I) : I
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mclass[39m [36mIter[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;implicit def ListIter[A] : Iter[List[A], A] = new Iter[List[A], A]{
-    def getValue(i : List[A]) : Option[A] = i.headOption
-    def getNext( i : List[A]) : List[A] = i.tail
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mfunction[39m [36mListIter[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;def sumElements[I](xs : I)(implicit proxy : Iter[I, Int]) : Int = proxy.getValue(xs) match{
-    case None =&amp;gt; 0
-    case Some(n) =&amp;gt; n + sumElement(proxy.getNext(xs))
-}
-
-def printElements[I, X](xs : I)(implicit proxy : Iter[I, X]) : Unit = proxy.getValue(xs) match{
-    case None =&amp;gt;
-    case Some(n) =&amp;gt; {println(n) ; printElements(proxy.getNext(xs)) ; }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mfunction[39m [36msumElements[39m
-defined [32mfunction[39m [36mprintElements[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;val I = List(3, 4, 5, 1)
-sumElements(I)
-printElements(I)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;3
-4
-5
-1
-
-
-
-
-
-[36mI[39m: [32mList[39m[[32mInt[39m] = [33mList[39m([32m3[39m, [32m4[39m, [32m5[39m, [32m1[39m)
-[36mres5_1[39m: [32mInt[39m = [32m13[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;import scala.language.higherKinds
-import scala.language.implicitConversions
-
-abstract class Dyn2[S[_,_], A]{
-    type Data
-    val d: Data
-    val i : S[Data, A]
-}
-
-object Dyn2 {
-    // 실제 동작 함수. ii 에 incIter 동작 인스턴스가 들어가고
-    implicit def apply[S[_,_],D,A](dd : D)(implicit ii : S[D,A]) : Dyn2[S,A] = new Dyn2[S,A]{
-        type Data = D
-        val d : Data = dd
-        val i : S[Data, A] = ii
-    }
-    implicit def methods[S[_,_], A](d : Dyn2[S,A]) : S[d.Data, A] = d.i
-}
-
-
-/*********************************************************************
-&amp;lt;&amp;lt;  Dyn2 인스턴스 는 &amp;lt;타입클래스 정보 S &amp;gt; &amp;lt;반환할 데이터 타입 A&amp;gt; 로 초기화하고  
-    &amp;lt;타입 클래스가 다룰 데이터 구조 D&amp;gt;를 입력받는다.    &amp;gt;&amp;gt;&amp;gt;   
-
-    val  x : Dyn2[S,A](D)  &amp;gt;&amp;gt;&amp;gt;  x.d = 데이터구조 (주인공)  
-                                    x.i = 타입클래스 인스턴스 정보( 실행기 )
-
-    &amp;lt;Dyn2 인스턴스 x&amp;gt; 를 만들면 무엇을 할 수 있는가?
-    x : Dyn2[Iter, Int]  =  Dyn2(List(1,2,3))   
-    y : Dyn2[Iter, Int]  = Dyn2(MyNode(1, Empty(), Empty()))   
-    각각의 x, y 에 안에 들어있는 데이터구조와 타입클래스 인스턴스 정보로, Iter 타입클래스로 구현된 메서드를 모두 사용 가능하다.
-
-    Iter type class 의  interface method 들
-
-    sumElements(x.d)(x.i)
-    printElements(y.d)(y.i)
-
-
-
-
-***********************************************************************/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[32mimport [39m[36mscala.language.higherKinds
-[39m
-[32mimport [39m[36mscala.language.implicitConversions
-
-[39m
-defined [32mclass[39m [36mDyn2[39m
-defined [32mobject[39m [36mDyn2[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;// type class 인스턴스  .... Int 데이터구조 들어왔을때  동작을 기술함 ... 하지만 직접 넣어줄 것이기 때문에 implicit 적지 않았다.
-def incIter(max : Int) : Iter[Int, Int] = new Iter[Int, Int] {
-    def getValue(i : Int) = if (i &amp;lt;= max) Some(i) else None
-    def getNext(i : Int) = i + 1
-}
-
-// Dyn2 인스턴스를 생성해내는 방법
-// getMyIter
-def getMyIter(isInc: Boolean) : Dyn2[Iter, Int] = { //Dyn2[Iter, Int] 로 초기화한다.
-    if (isInc) Dyn2(0)(incIter(10)) //Dyn2.apply(0)(incIter(10))   // Dyn2(0) Int라는 데이터구조 를 다룬다.
-    else List(3, 1, 5)  // Dyn2.apply(List(3,1,5))(listIter[Int])   // Dyn2(List[Int])   List[Int] 라는 데이터구조를 다룬다.
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mfunction[39m [36mincIter[39m
-defined [32mfunction[39m [36mgetMyIter[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;val i1  : Dyn2[Iter, Int] = getMyIter(true)
-printElements(i1.d)(i1.i)  //printElements(0)(incIter(10))
-
-val i2 : Dyn2[Iter, Int] = getMyIter(false)
-printElements(i2.d)(i2.i) //printElements()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-3
-1
-5
-
-
-
-
-
-[36mi1[39m: [32mDyn2[39m[[32mIter[39m, [32mInt[39m] = $sess.cmd6Wrapper$Helper$Dyn2$$anon$1@74086131
-[36mi2[39m: [32mDyn2[39m[[32mIter[39m, [32mInt[39m] = $sess.cmd6Wrapper$Helper$Dyn2$$anon$1@67d4c1f6
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;abstract class Dyn[T[_]]{
-    type Data
-    val d : Data
-    val proxy : T[Data]
-}
-
-object Dyn{
-    implicit def apply[D, T[_]](dd : D)(implicit tt : T[D]) : Dyn[T] = new Dyn[T] {
-
-        type Data = D
-        val d : Data = dd
-        val proxy : T[D] = tt
-
-    }
-}
-
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mclass[39m [36mDyn[39m
-defined [32mobject[39m [36mDyn[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;// 데이터 구조 정보
-
-sealed abstract class MyTree[A]
-case class Empty[A]() extends MyTree[A]
-case class Node[A](value : A, left : MyTree[A], right : MyTree[A]) extends MyTree[A]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mclass[39m [36mMyTree[39m
-defined [32mclass[39m [36mEmpty[39m
-defined [32mclass[39m [36mNode[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;type-class-본체&quot;&gt;type class 본체&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;// 데이터 구조 R 를 다루는 type class 본체  
-// iter 메서드는 Dyn2
-abstract class Iterable[R,A]{
-    def iter(a: R) : Dyn2[Iter , A] // 데이터구조 R 을 넣으면 R 을 다루는 Dyn2[Iter, A](R) 를 돌려줄 것이다.
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mclass[39m [36mIterable[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;type-class-인스턴스&quot;&gt;type class 인스턴스&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;implicit def treeIterable : Iterable[MyTree[Int], Int] = new Iterable[MyTree[Int], Int]{
-    def iter(a : MyTree[Int]) : Dyn2[Iter, Int] = {
-        def go(I : MyTree[Int]) : List[Int] = I match{
-            case Empty() =&amp;gt; Nil
-            case Node(v, left, right) =&amp;gt; v :: (go(left) ++ go(right))
-        }
-        go(a)   // List[Int]   --&amp;gt; Dyn2[Iter, Int](List[Int]) --&amp;gt; Dyn2[Iter,Int](List[Int])(listIter(List[Int], Int))
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mfunction[39m [36mtreeIterable[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;type-class-인터페이스-사용&quot;&gt;type class 인터페이스 (사용)&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;def sumElements2[R](xs : R)(implicit proxy : Iterable[R, Int]) = {
-    val cs = proxy.iter(xs)  // Dyn2[Iter, Int](Iter 로 다룰수 있게 변형된 xs)
-    sumElements(cs.d)(cs.i)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defined [32mfunction[39m [36msumElements2[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;val t : MyTree[Int] = Node(1, Empty(), Empty())
-sumElements2(t)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[36mt[39m: [32mMyTree[39m[[32mInt[39m] = Node(1,Empty(),Empty())
-[36mres22_1[39m: [32mInt[39m = [32m1[39m
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-scala211&quot;&gt;
-&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="scala" /><summary type="html">1. Turning Type Classes into OO Classes</summary></entry></feed>
+&lt;p&gt;(질문이나 잘못된 부분 지적은 환영입니다.)&lt;/p&gt;</content><author><name></name></author><category term="deeplearning" /><summary type="html">이번 글에서는 deep learning 에서 아주 중요한 back propagation 에 대한 insight를 얻기 위해,</summary></entry></feed>

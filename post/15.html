@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Python 의 상속 | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <style>
+      body {
+          font-family: 'Noto Sans Korean', sans-serif;
+          font-weight: 450;
+          padding-top: 50px;
+        }
+      h1,h2,h3,h4,h5,h6 {
+        font-weight : 800;
+        color : #148b8e;
+      }
+      .navbar, .nav {
+        font-weight: 800;
+      }
+      a {
+        color : #90b3d8;
+      }
+    </style>
+  </head>
+  <body>
+
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover;">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who();
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+/*post titles style*/
+.post h1,h2,h3,h4,h5,h6 {
+  color: #3f71f4;
+
+}
+.post h1 {font-size: 2.0rem;padding-top: 4.5rem;padding-bottom:1rem;}
+.post h2 {font-size: 1.7rem;}
+.post h3 {font-size: 1.6rem;}
+.post h4 {font-size: 1.4rem;}
+.post h5 {font-size: 1.2rem;}
+/*for image*/
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*for code highlighter*/
+pre {
+  background-color: #494b4c ;
+  border-radius: 6px;
+  padding: 10px;
+  color : #d0d7de;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('https://carpedm20.github.io/140min-python/img/python.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.2rem;">Python 의 상속</h1>
+  <p class="card-text text-white"><p class="text-muted">language | 04 December 2017</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-primary">class</a>
+    
+    <a href="#" class="badge badge-primary">python</a>
+    
+    <a href="#" class="badge badge-primary">object</a>
+    
+    <a href="#" class="badge badge-primary">namespace</a>
+    
+    <a href="#" class="badge badge-primary">inheritance</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p>(예전에 적어두었던 글을 이제서야 올려본다)</p>
+
+<p>python 의 상속에 대해 정리해보자.</p>
+
+<h1 id="강제상속--자동상속">강제상속 ? 자동상속?</h1>
+
+<p>강제상속 : 나에게 없을때, 부모클래스 namespace 로 거슬러 올라가 강제 사용</p>
+
+<p>자동상속 : 내가 부모 클래스 메서드를 덮어썼지만, 부모클래스메서드를 사용하고 싶을 때 super(_<em>class_</em>, self).method() 로 부모메서드 호출</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Base</span> <span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Sub1</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Sub2</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">tall</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Sub2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tall</span> <span class="o">=</span> <span class="n">tall</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#자동상속</span>
+<span class="c">#s1 은 __init__ 이 없어서 Base 것을 참조한다</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">Sub1</span><span class="p">(</span><span class="s">"jayne"</span><span class="p">)</span>
+<span class="c">#강제상속</span>
+<span class="c">#s2 는 자체 __init__ 이 있어서 Base 것을 덮어쓴다. Base 것을 강제 이용하려면, super를 통해 강제상속시킬 수 있다.</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">Sub2</span><span class="p">(</span><span class="s">"jayne"</span><span class="p">,</span><span class="mi">182</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h1 id="다중상속시-super-는-누구것을-가져오나">다중상속시 super 는 누구것을 가져오나?</h1>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Base</span> <span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Sub1</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="k">class</span> <span class="nc">Sub2</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">tall</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Sub2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tall</span> <span class="o">=</span> <span class="n">tall</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+
+
+<span class="k">class</span> <span class="nc">SubSub</span><span class="p">(</span><span class="n">Sub1</span><span class="p">,</span> <span class="n">Sub2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SubSub</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>위처럼 코드를 만들면, super는 누구의 init 메서드를 강제상속할까.</p>
+
+<p>후보는 Sub1 과 Sub2 이다.</p>
+
+<p>후보1 : Sub2 의 메서드를 강제 상속하므로 인자로 name, tall, age 모두 넘겨줘야한다.</p>
+
+<p>후보2 : Sub1 의 메서드를 찾다가, Base 의 init 메서드를 강제상속해오므로, name 만 넘겨주면 된다.</p>
+
+<p>이 답을 알아보는 방법은 help() 함수이다.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ss</span> <span class="o">=</span> <span class="n">SubSub</span><span class="p">(</span><span class="s">"so"</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">help</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Help on SubSub in module __main__ object:
+
+class SubSub(Sub1, Sub2)
+ |  Method resolution order:
+ |      SubSub
+ |      Sub1
+ |      Sub2
+ |      Base
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, name)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from Base:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+</code></pre>
+</div>
+
+<p>Method resolution order 를 보면 알 있다.</p>
+
+<p>SubSub 는 자신에게 메서드가 없을 때(자동상속)나 부모의 메서드를 super 로 가져올 때 (강제상속) 위의 ordering 을 따르므로</p>
+
+<p><code class="highlighter-rouge">super().__init__()</code> 을 호출 할 때에도, Sub1 에 <code class="highlighter-rouge">__init__</code> 이 있기에  그 init 부터 가져와 사용하게 된다.</p>
+
+<h1 id="결론--모든것은-namespace-참조-순서에-달렸다">결론 : 모든것은 namespace 참조 순서에 달렸다.</h1>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>

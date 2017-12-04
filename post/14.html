@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>빌드과정에 따른 프로그래밍 언어의 분류 | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <style>
+      body {
+          font-family: 'Noto Sans Korean', sans-serif;
+          font-weight: 450;
+          padding-top: 50px;
+        }
+      h1,h2,h3,h4,h5,h6 {
+        font-weight : 800;
+        color : #148b8e;
+      }
+      .navbar, .nav {
+        font-weight: 800;
+      }
+      a {
+        color : #90b3d8;
+      }
+    </style>
+  </head>
+  <body>
+
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover;">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who();
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+/*post titles style*/
+.post h1,h2,h3,h4,h5,h6 {
+  color: #3f71f4;
+
+}
+.post h1 {font-size: 2.0rem;padding-top: 4.5rem;padding-bottom:1rem;}
+.post h2 {font-size: 1.7rem;}
+.post h3 {font-size: 1.6rem;}
+.post h4 {font-size: 1.4rem;}
+.post h5 {font-size: 1.2rem;}
+/*for image*/
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*for code highlighter*/
+pre {
+  background-color: #494b4c ;
+  border-radius: 6px;
+  padding: 10px;
+  color : #d0d7de;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/14/1.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.2rem;">빌드과정에 따른 프로그래밍 언어의 분류</h1>
+  <p class="card-text text-white"><p class="text-muted">language | 04 December 2017</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-primary">programming</a>
+    
+    <a href="#" class="badge badge-primary">build</a>
+    
+    <a href="#" class="badge badge-primary">interpreter</a>
+    
+    <a href="#" class="badge badge-primary">compile</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p><em>본 글은 이 글( <a href="http://the1900.tistory.com/73">link</a> ) 을 읽고 작성합니다.</em></p>
+
+<p>텍스트로 된 소스코드가 실행가능한 프로그램 파일로 변하는 과정을 빌드(Build) 라고 부른다. Build 안에는 compile, preparse, preprocess, link 등의 다양한 과정이 포함되어있다.</p>
+
+<p>소스코드가 빌드가 되는 방식에 따라 프로그래밍 언어의 종류를 몇가지로 나눌 수 있다. 그 분류는 아래와 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">id</th>
+      <th style="text-align: center">type</th>
+      <th style="text-align: center">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">Compile language</td>
+      <td style="text-align: center">소스코드가 기계어로 바로 번역되어 실행파일이 됨</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">Byte Code language</td>
+      <td style="text-align: center">소스코드가 가상 머신이 읽는 바이트코드 파일로 번역되고, 그 바이트코드가 인터프리터처럼 한줄씩 기계어로 번역되 실행됨</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">Interpreter language</td>
+      <td style="text-align: center">소스코드가 한줄씩 기계어로 번역되어 실행됨</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="compile-language">Compile Language</h1>
+<p><img src="http://cfile28.uf.tistory.com/image/2653324A54B5E296262CED" alt="" /></p>
+
+<p>컴파일 언어는 소스코드가 기계어 실행파일로 바로 빌드된다. 컴파일 언어의 빌드 과정은 보통 <strong>Preprocessing-&gt;Parser-&gt;Translation-&gt;Assembler-&gt;Linker</strong> 의 과정을 거친다. C, C++ 등의 언어가 이곳에 속한다.</p>
+
+<p><strong>장점</strong></p>
+<ol>
+  <li>빌드를 마친 기계어 실행파일의 실행속도가 매우 빠르다</li>
+  <li>빌드를 마친 기계어 실행파일은 배포시 코드 독해가 어려워서 보안에 유리하다</li>
+  <li>직접 하드웨어가 실행하는 실행파일을 만드므로, 하드웨어 제어가 가능하다</li>
+</ol>
+
+<p><strong>단점</strong></p>
+<ol>
+  <li>소스 코드를 수정하고 실행파일에 반영하기 위해선 또다시 긴 빌드 작업을 거쳐야하기 때문에 개발 생산성이 떨어진다</li>
+  <li>서로 다른 OS 에 맞춰 빌드된 실행파일을 다른 OS 에서 실행하지 못한다 (맥은 <code class="highlighter-rouge">.exec</code>,윈도우는 <code class="highlighter-rouge">.exe</code> 확장자명의 실행파일)</li>
+</ol>
+
+<h3 id="빌드-과정">빌드 과정</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">순서</th>
+      <th style="text-align: center">과정</th>
+      <th style="text-align: left">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: center">Preprocessor (전처리기)</td>
+      <td style="text-align: left"><code class="highlighter-rouge">#define</code> 같은 매크로나 지시자를 소스코드로 변경하고, c파일이 i파일이 된다</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: center">Parser (문법검사)</td>
+      <td style="text-align: left">Syntax(코드 문법)을 검사하고, 문법에 따라 코드를 쪼갠다</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: center">Translation (번역)</td>
+      <td style="text-align: left">문법 파싱이 끝난 소스코드를 어셈블리어로 번역하고, i파일이 s파일이 된다</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: center">Assembler (번역)</td>
+      <td style="text-align: left">어셈블리어를 기계어만큼 낮은 수준의 언어로 번역하고, s파일이 o(object,바이너리,기계어) 파일이 된다</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">-</td>
+      <td style="text-align: center">-</td>
+      <td style="text-align: left"><em>여기까지를 보통 Compile (소스코드-&gt;기계어) 이라고 칭함</em></td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5</td>
+      <td style="text-align: center">Linker (object파일연결)</td>
+      <td style="text-align: left">작성된 소스코드가 사용하는 OS API(시스템 콜) 이나 표준 라이브러리를 연결시켜서, exe 파일(실행파일)로 만든다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="byte-code-language">Byte Code language</h1>
+<p><img src="http://cfile2.uf.tistory.com/image/260F863454B5EC5E067177" alt="" /></p>
+
+<p>작성된 소스코드가 컴파일러(Compiler)를 거치면서 가상머신이 읽을 수 있는 바이트코드(가상머신 기계어)로 번역(Compile)된다. 가상머신은 하나의 프로그램으로, 어느 OS 위에나 설치할 수 있다. 가상머신은 자신이 읽을 수 있는 기계어로 번역된 바이트코드를 다시 Native OS 가 읽을 수 있는 바이트코드(기계어)로 번역한다. JVM (java virtual machine) 을 사용하는 언어들 (Java, Kotlin, Scala 등)이 이곳에 속한다.</p>
+
+<p>가상머신을 Runtime Environment 라고 부를 수 있다.</p>
+
+<p><strong>장점</strong></p>
+<ol>
+  <li>OS 에 상관없이, 가상 머신 프로그램만 깔려있다면 어디서나 컴파일된 프로그램이 사용 가능하다</li>
+</ol>
+
+<p><strong>단점</strong></p>
+<ol>
+  <li>직접적인 하드웨어 제어는 불가능하다</li>
+</ol>
+
+<h2 id="java-소스코드-실행-과정">Java 소스코드 실행 과정</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">순서</th>
+      <th style="text-align: center">과정</th>
+      <th style="text-align: left">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: center">Compile (컴파일)</td>
+      <td style="text-align: left">가상머신일 읽을 수 있는 바이트코드로 번역되고, <code class="highlighter-rouge">.java</code>파일이 <code class="highlighter-rouge">.class</code> 파일로 변한다</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: center">Virtual Machine</td>
+      <td style="text-align: left">가상머신에서 바이트코드가 기계어로 번역되어진다</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="interpreter-language">Interpreter Language</h1>
+<p><img src="http://cfile24.uf.tistory.com/image/2542FC4454B5F52E362DC0" alt="" /></p>
+
+<p>소스코드를 한 줄씩 번역해서 실행한다. 이 한 줄씩 번역하는 프로그램을 Interpreter 라고 한다. 한 줄씩 번역되므로 실행시 메모리 소비가 적다. Python 등의 언어가 이렇다.</p>
+
+<p><strong>장점</strong></p>
+<ol>
+  <li>실시간 실행이 가능해서 코드의 실시간 분석이 가능하다</li>
+</ol>
+
+<p><strong>단점</strong></p>
+<ol>
+  <li>빌드된 상태의 컴파일 언어 실행파일보다는 속도가 느리다</li>
+</ol>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>
