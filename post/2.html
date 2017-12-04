@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -135,13 +137,13 @@ pre {
 
 <p>결과물을 미리 살짝 엿보자면 아래와 같은 실제 MNIST 데이터를</p>
 
-<p><img src="/images/mnist_digits.png" alt="real_mnist" /></p>
+<p><img src="/asset/media/image/post/2/mnist_digits.png" alt="real_mnist" /></p>
 
 <p>모델에게 계속 보여주면서 훈련시키면</p>
 
 <p>나중에는 아래처럼 비스무리한 숫자를 스스로 만들어낼 수 있습니다.</p>
 
-<p><img src="/images/goblin-gan-generated/099.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/099.png" alt="title" /></p>
 
 <p>이는 실제 제가 얻은 결과입니다.</p>
 
@@ -162,7 +164,7 @@ pre {
 
 <p>만들어볼 모델의 구조를 설명드리겠습니다.</p>
 
-<p><img src="/images/goblin_gan.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/goblin_gan.png" alt="title" /></p>
 
 <p>GAN 은 두개의 서로 다른 학습 가능한 모델이 서로 경쟁하면서 학습합니다.</p>
 
@@ -612,37 +614,37 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 <p>이 결과를 보면 , 학습이 진행되면 진행될수록 생성기가 실제 사람 손글씨와 비슷한 이미지 형태를 생성해냄을 볼 수 있습니다.</p>
 
 <h3 id="epoch-0">epoch 0</h3>
-<p><img src="/images/goblin-gan-generated/000.png" alt="000" /></p>
+<p><img src="/asset/media/image/post/2/000.png" alt="000" /></p>
 
 <h3 id="epoch-9">epoch 9</h3>
-<p><img src="/images/goblin-gan-generated/009.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/009.png" alt="title" /></p>
 
 <h3 id="epoch-19">epoch 19</h3>
-<p><img src="/images/goblin-gan-generated/019.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/019.png" alt="title" /></p>
 
 <h3 id="epoch-29">epoch 29</h3>
-<p><img src="/images/goblin-gan-generated/029.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/029.png" alt="title" /></p>
 
 <h3 id="epoch-39">epoch 39</h3>
-<p><img src="/images/goblin-gan-generated/039.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/039.png" alt="title" /></p>
 
 <h3 id="epoch-49">epoch 49</h3>
-<p><img src="/images/goblin-gan-generated/049.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/049.png" alt="title" /></p>
 
 <h3 id="epoch-59">epoch 59</h3>
-<p><img src="/images/goblin-gan-generated/059.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/059.png" alt="title" /></p>
 
 <h3 id="epoch-69">epoch 69</h3>
-<p><img src="/images/goblin-gan-generated/069.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/069.png" alt="title" /></p>
 
 <h3 id="epoch-79">epoch 79</h3>
-<p><img src="/images/goblin-gan-generated/079.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/079.png" alt="title" /></p>
 
 <h3 id="epoch-89">epoch 89</h3>
-<p><img src="/images/goblin-gan-generated/089.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/089.png" alt="title" /></p>
 
 <h3 id="epoch-99">epoch 99</h3>
-<p><img src="/images/goblin-gan-generated/099.png" alt="title" /></p>
+<p><img src="/asset/media/image/post/2/099.png" alt="title" /></p>
 
 <p><br />
 <br /></p>

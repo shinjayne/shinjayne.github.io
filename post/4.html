@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -104,46 +106,50 @@ pre {
 <br />
 <br /></p>
 
-<pre><code class="language-scala211">abstract class Iter[I,A]{
-    def getValue(i : I) : Option[A]
-    def getNext(i : I) : I
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iter</span><span class="o">[</span><span class="kt">I</span>,<span class="kt">A</span><span class="o">]{</span>
+    <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+    <span class="k">def</span> <span class="n">getNext</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)</span> <span class="k">:</span> <span class="kt">I</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIter[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">implicit def ListIter[A] : Iter[List[A], A] = new Iter[List[A], A]{
-    def getValue(i : List[A]) : Option[A] = i.headOption
-    def getNext( i : List[A]) : List[A] = i.tail
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">implicit</span> <span class="k">def</span> <span class="nc">ListIter</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>, <span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iter</span><span class="o">[</span><span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>, <span class="kt">A</span><span class="o">]{</span>
+    <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Option</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="n">i</span><span class="o">.</span><span class="n">headOption</span>
+    <span class="k">def</span> <span class="n">getNext</span><span class="o">(</span> <span class="n">i</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="n">i</span><span class="o">.</span><span class="n">tail</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mListIter[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">def sumElements[I](xs : I)(implicit proxy : Iter[I, Int]) : Int = proxy.getValue(xs) match{
-    case None =&gt; 0
-    case Some(n) =&gt; n + sumElement(proxy.getNext(xs))
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">sumElements</span><span class="o">[</span><span class="kt">I</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">I</span>, <span class="kt">Int</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">getValue</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span> <span class="k">match</span><span class="o">{</span>
+    <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span> <span class="mi">0</span>
+    <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">sumElement</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">getNext</span><span class="o">(</span><span class="n">xs</span><span class="o">))</span>
+<span class="o">}</span>
 
-def printElements[I, X](xs : I)(implicit proxy : Iter[I, X]) : Unit = proxy.getValue(xs) match{
-    case None =&gt;
-    case Some(n) =&gt; {println(n) ; printElements(proxy.getNext(xs)) ; }
-}
+<span class="k">def</span> <span class="n">printElements</span><span class="o">[</span><span class="kt">I</span>, <span class="kt">X</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">I</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">I</span>, <span class="kt">X</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">getValue</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span> <span class="k">match</span><span class="o">{</span>
+    <span class="k">case</span> <span class="nc">None</span> <span class="k">=&gt;</span>
+    <span class="k">case</span> <span class="nc">Some</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">{</span><span class="n">println</span><span class="o">(</span><span class="n">n</span><span class="o">)</span> <span class="o">;</span> <span class="n">printElements</span><span class="o">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">getNext</span><span class="o">(</span><span class="n">xs</span><span class="o">))</span> <span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements[39m
 defined [32mfunction[39m [36mprintElements[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">val I = List(3, 4, 5, 1)
-sumElements(I)
-printElements(I)
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">val</span> <span class="n">I</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span>
+<span class="n">sumElements</span><span class="o">(</span><span class="n">I</span><span class="o">)</span>
+<span class="n">printElements</span><span class="o">(</span><span class="n">I</span><span class="o">)</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>3
 4
@@ -159,27 +165,27 @@ printElements(I)
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">import scala.language.higherKinds
-import scala.language.implicitConversions
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">import</span> <span class="nn">scala.language.higherKinds</span>
+<span class="k">import</span> <span class="nn">scala.language.implicitConversions</span>
 
-abstract class Dyn2[S[_,_], A]{
-    type Data
-    val d: Data
-    val i : S[Data, A]
-}
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">Dyn2</span><span class="o">[</span><span class="kt">S</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]</span>, <span class="kt">A</span><span class="o">]{</span>
+    <span class="k">type</span> <span class="kt">Data</span>
+    <span class="k">val</span> <span class="n">d</span><span class="k">:</span> <span class="kt">Data</span>
+    <span class="k">val</span> <span class="n">i</span> <span class="k">:</span> <span class="kt">S</span><span class="o">[</span><span class="kt">Data</span>, <span class="kt">A</span><span class="o">]</span>
+<span class="o">}</span>
 
-object Dyn2 {
-    // 실제 동작 함수. ii 에 incIter 동작 인스턴스가 들어가고
-    implicit def apply[S[_,_],D,A](dd : D)(implicit ii : S[D,A]) : Dyn2[S,A] = new Dyn2[S,A]{
-        type Data = D
-        val d : Data = dd
-        val i : S[Data, A] = ii
-    }
-    implicit def methods[S[_,_], A](d : Dyn2[S,A]) : S[d.Data, A] = d.i
-}
+<span class="k">object</span> <span class="nc">Dyn2</span> <span class="o">{</span>
+    <span class="c1">// 실제 동작 함수. ii 에 incIter 동작 인스턴스가 들어가고
+</span>    <span class="k">implicit</span> <span class="k">def</span> <span class="n">apply</span><span class="o">[</span><span class="kt">S</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]</span>,<span class="kt">D</span>,<span class="kt">A</span><span class="o">](</span><span class="n">dd</span> <span class="k">:</span> <span class="kt">D</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">ii</span> <span class="k">:</span> <span class="kt">S</span><span class="o">[</span><span class="kt">D</span>,<span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">S</span>,<span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Dyn2</span><span class="o">[</span><span class="kt">S</span>,<span class="kt">A</span><span class="o">]{</span>
+        <span class="k">type</span> <span class="kt">Data</span> <span class="o">=</span> <span class="n">D</span>
+        <span class="k">val</span> <span class="n">d</span> <span class="k">:</span> <span class="kt">Data</span> <span class="o">=</span> <span class="n">dd</span>
+        <span class="k">val</span> <span class="n">i</span> <span class="k">:</span> <span class="kt">S</span><span class="o">[</span><span class="kt">Data</span>, <span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="n">ii</span>
+    <span class="o">}</span>
+    <span class="k">implicit</span> <span class="k">def</span> <span class="n">methods</span><span class="o">[</span><span class="kt">S</span><span class="o">[</span><span class="k">_</span>,<span class="k">_</span><span class="o">]</span>, <span class="kt">A</span><span class="o">](</span><span class="n">d</span> <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">S</span>,<span class="kt">A</span><span class="o">])</span> <span class="k">:</span> <span class="kt">S</span><span class="o">[</span><span class="kt">d.Data</span>, <span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="n">d</span><span class="o">.</span><span class="n">i</span>
+<span class="o">}</span>
 
 
-/*********************************************************************
+<span class="cm">/*********************************************************************
 &lt;&lt;  Dyn2 인스턴스 는 &lt;타입클래스 정보 S &gt; &lt;반환할 데이터 타입 A&gt; 로 초기화하고  
     &lt;타입 클래스가 다룰 데이터 구조 D&gt;를 입력받는다.    &gt;&gt;&gt;   
 
@@ -199,8 +205,9 @@ object Dyn2 {
 
 
 
-***********************************************************************/
+***********************************************************************/</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>[32mimport [39m[36mscala.language.higherKinds
 [39m
@@ -212,31 +219,33 @@ defined [32mobject[39m [36mDyn2[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">// type class 인스턴스  .... Int 데이터구조 들어왔을때  동작을 기술함 ... 하지만 직접 넣어줄 것이기 때문에 implicit 적지 않았다.
-def incIter(max : Int) : Iter[Int, Int] = new Iter[Int, Int] {
-    def getValue(i : Int) = if (i &lt;= max) Some(i) else None
-    def getNext(i : Int) = i + 1
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="c1">// type class 인스턴스  .... Int 데이터구조 들어왔을때  동작을 기술함 ... 하지만 직접 넣어줄 것이기 때문에 implicit 적지 않았다.
+</span><span class="k">def</span> <span class="n">incIter</span><span class="o">(</span><span class="n">max</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Iter</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iter</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Int</span><span class="o">]</span> <span class="o">{</span>
+    <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="o">)</span> <span class="nc">Some</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="k">else</span> <span class="nc">None</span>
+    <span class="k">def</span> <span class="n">getNext</span><span class="o">(</span><span class="n">i</span> <span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="o">}</span>
 
-// Dyn2 인스턴스를 생성해내는 방법
+<span class="c1">// Dyn2 인스턴스를 생성해내는 방법
 // getMyIter
-def getMyIter(isInc: Boolean) : Dyn2[Iter, Int] = { //Dyn2[Iter, Int] 로 초기화한다.
-    if (isInc) Dyn2(0)(incIter(10)) //Dyn2.apply(0)(incIter(10))   // Dyn2(0) Int라는 데이터구조 를 다룬다.
-    else List(3, 1, 5)  // Dyn2.apply(List(3,1,5))(listIter[Int])   // Dyn2(List[Int])   List[Int] 라는 데이터구조를 다룬다.
-}
+</span><span class="k">def</span> <span class="n">getMyIter</span><span class="o">(</span><span class="n">isInc</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">Iter</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span> <span class="c1">//Dyn2[Iter, Int] 로 초기화한다.
+</span>    <span class="k">if</span> <span class="o">(</span><span class="n">isInc</span><span class="o">)</span> <span class="nc">Dyn2</span><span class="o">(</span><span class="mi">0</span><span class="o">)(</span><span class="n">incIter</span><span class="o">(</span><span class="mi">10</span><span class="o">))</span> <span class="c1">//Dyn2.apply(0)(incIter(10))   // Dyn2(0) Int라는 데이터구조 를 다룬다.
+</span>    <span class="k">else</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>  <span class="c1">// Dyn2.apply(List(3,1,5))(listIter[Int])   // Dyn2(List[Int])   List[Int] 라는 데이터구조를 다룬다.
+</span><span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mincIter[39m
 defined [32mfunction[39m [36mgetMyIter[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">val i1  : Dyn2[Iter, Int] = getMyIter(true)
-printElements(i1.d)(i1.i)  //printElements(0)(incIter(10))
-
-val i2 : Dyn2[Iter, Int] = getMyIter(false)
-printElements(i2.d)(i2.i) //printElements()
-</code></pre>
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">val</span> <span class="n">i1</span>  <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">Iter</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">getMyIter</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+<span class="n">printElements</span><span class="o">(</span><span class="n">i1</span><span class="o">.</span><span class="n">d</span><span class="o">)(</span><span class="n">i1</span><span class="o">.</span><span class="n">i</span><span class="o">)</span>  <span class="c1">//printElements(0)(incIter(10))
+</span>
+<span class="k">val</span> <span class="n">i2</span> <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">Iter</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">getMyIter</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+<span class="n">printElements</span><span class="o">(</span><span class="n">i2</span><span class="o">.</span><span class="n">d</span><span class="o">)(</span><span class="n">i2</span><span class="o">.</span><span class="n">i</span><span class="o">)</span> <span class="c1">//printElements()
+</span></code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>0
 1
@@ -262,36 +271,38 @@ printElements(i2.d)(i2.i) //printElements()
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">abstract class Dyn[T[_]]{
-    type Data
-    val d : Data
-    val proxy : T[Data]
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Dyn</span><span class="o">[</span><span class="kt">T</span><span class="o">[</span><span class="k">_</span><span class="o">]]{</span>
+    <span class="k">type</span> <span class="kt">Data</span>
+    <span class="k">val</span> <span class="n">d</span> <span class="k">:</span> <span class="kt">Data</span>
+    <span class="k">val</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">Data</span><span class="o">]</span>
+<span class="o">}</span>
 
-object Dyn{
-    implicit def apply[D, T[_]](dd : D)(implicit tt : T[D]) : Dyn[T] = new Dyn[T] {
+<span class="k">object</span> <span class="nc">Dyn</span><span class="o">{</span>
+    <span class="k">implicit</span> <span class="k">def</span> <span class="n">apply</span><span class="o">[</span><span class="kt">D</span>, <span class="kt">T</span><span class="o">[</span><span class="k">_</span><span class="o">]](</span><span class="n">dd</span> <span class="k">:</span> <span class="kt">D</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">tt</span> <span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">D</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Dyn</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Dyn</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
 
-        type Data = D
-        val d : Data = dd
-        val proxy : T[D] = tt
+        <span class="k">type</span> <span class="kt">Data</span> <span class="o">=</span> <span class="n">D</span>
+        <span class="k">val</span> <span class="n">d</span> <span class="k">:</span> <span class="kt">Data</span> <span class="o">=</span> <span class="n">dd</span>
+        <span class="k">val</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">T</span><span class="o">[</span><span class="kt">D</span><span class="o">]</span> <span class="k">=</span> <span class="n">tt</span>
 
-    }
-}
+    <span class="o">}</span>
+<span class="o">}</span>
 
 
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mDyn[39m
 defined [32mobject[39m [36mDyn[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">// 데이터 구조 정보
-
-sealed abstract class MyTree[A]
-case class Empty[A]() extends MyTree[A]
-case class Node[A](value : A, left : MyTree[A], right : MyTree[A]) extends MyTree[A]
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="c1">// 데이터 구조 정보
+</span>
+<span class="k">sealed</span> <span class="k">abstract</span> <span class="k">class</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<span class="nc">case</span> <span class="k">class</span> <span class="nc">Empty</span><span class="o">[</span><span class="kt">A</span><span class="o">]()</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
+<span class="k">case</span> <span class="k">class</span> <span class="nc">Node</span><span class="o">[</span><span class="kt">A</span><span class="o">](</span><span class="n">value</span> <span class="k">:</span> <span class="kt">A</span><span class="o">,</span> <span class="n">left</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">],</span> <span class="n">right</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">])</span> <span class="k">extends</span> <span class="nc">MyTree</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mMyTree[39m
 defined [32mclass[39m [36mEmpty[39m
@@ -301,12 +312,13 @@ defined [32mclass[39m [36mNode[39m
 
 <h1 id="type-class-본체">type class 본체</h1>
 
-<pre><code class="language-scala211">// 데이터 구조 R 를 다루는 type class 본체  
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="c1">// 데이터 구조 R 를 다루는 type class 본체  
 // iter 메서드는 Dyn2
-abstract class Iterable[R,A]{
-    def iter(a: R) : Dyn2[Iter , A] // 데이터구조 R 을 넣으면 R 을 다루는 Dyn2[Iter, A](R) 를 돌려줄 것이다.
-}
+</span><span class="k">abstract</span> <span class="k">class</span> <span class="nc">Iterable</span><span class="o">[</span><span class="kt">R</span>,<span class="kt">A</span><span class="o">]{</span>
+    <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span><span class="k">:</span> <span class="kt">R</span><span class="o">)</span> <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">Iter</span> , <span class="kt">A</span><span class="o">]</span> <span class="c1">// 데이터구조 R 을 넣으면 R 을 다루는 Dyn2[Iter, A](R) 를 돌려줄 것이다.
+</span><span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mclass[39m [36mIterable[39m
 </code></pre>
@@ -314,16 +326,17 @@ abstract class Iterable[R,A]{
 
 <h1 id="type-class-인스턴스">type class 인스턴스</h1>
 
-<pre><code class="language-scala211">implicit def treeIterable : Iterable[MyTree[Int], Int] = new Iterable[MyTree[Int], Int]{
-    def iter(a : MyTree[Int]) : Dyn2[Iter, Int] = {
-        def go(I : MyTree[Int]) : List[Int] = I match{
-            case Empty() =&gt; Nil
-            case Node(v, left, right) =&gt; v :: (go(left) ++ go(right))
-        }
-        go(a)   // List[Int]   --&gt; Dyn2[Iter, Int](List[Int]) --&gt; Dyn2[Iter,Int](List[Int])(listIter(List[Int], Int))
-    }
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">implicit</span> <span class="k">def</span> <span class="n">treeIterable</span> <span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Iterable</span><span class="o">[</span><span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>, <span class="kt">Int</span><span class="o">]{</span>
+    <span class="k">def</span> <span class="n">iter</span><span class="o">(</span><span class="n">a</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">:</span> <span class="kt">Dyn2</span><span class="o">[</span><span class="kt">Iter</span>, <span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="o">{</span>
+        <span class="k">def</span> <span class="n">go</span><span class="o">(</span><span class="n">I</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="n">I</span> <span class="k">match</span><span class="o">{</span>
+            <span class="k">case</span> <span class="nc">Empty</span><span class="o">()</span> <span class="k">=&gt;</span> <span class="nc">Nil</span>
+            <span class="k">case</span> <span class="nc">Node</span><span class="o">(</span><span class="n">v</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">v</span> <span class="o">::</span> <span class="o">(</span><span class="n">go</span><span class="o">(</span><span class="n">left</span><span class="o">)</span> <span class="o">++</span> <span class="n">go</span><span class="o">(</span><span class="n">right</span><span class="o">))</span>
+        <span class="o">}</span>
+        <span class="n">go</span><span class="o">(</span><span class="n">a</span><span class="o">)</span>   <span class="c1">// List[Int]   --&gt; Dyn2[Iter, Int](List[Int]) --&gt; Dyn2[Iter,Int](List[Int])(listIter(List[Int], Int))
+</span>    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36mtreeIterable[39m
 </code></pre>
@@ -331,27 +344,30 @@ abstract class Iterable[R,A]{
 
 <h1 id="type-class-인터페이스-사용">type class 인터페이스 (사용)</h1>
 
-<pre><code class="language-scala211">def sumElements2[R](xs : R)(implicit proxy : Iterable[R, Int]) = {
-    val cs = proxy.iter(xs)  // Dyn2[Iter, Int](Iter 로 다룰수 있게 변형된 xs)
-    sumElements(cs.d)(cs.i)
-}
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="n">sumElements2</span><span class="o">[</span><span class="kt">R</span><span class="o">](</span><span class="n">xs</span> <span class="k">:</span> <span class="kt">R</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">proxy</span> <span class="k">:</span> <span class="kt">Iterable</span><span class="o">[</span><span class="kt">R</span>, <span class="kt">Int</span><span class="o">])</span> <span class="k">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">cs</span> <span class="k">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">iter</span><span class="o">(</span><span class="n">xs</span><span class="o">)</span>  <span class="c1">// Dyn2[Iter, Int](Iter 로 다룰수 있게 변형된 xs)
+</span>    <span class="n">sumElements</span><span class="o">(</span><span class="n">cs</span><span class="o">.</span><span class="n">d</span><span class="o">)(</span><span class="n">cs</span><span class="o">.</span><span class="n">i</span><span class="o">)</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>defined [32mfunction[39m [36msumElements2[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">val t : MyTree[Int] = Node(1, Empty(), Empty())
-sumElements2(t)
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code><span class="k">val</span> <span class="n">t</span> <span class="k">:</span> <span class="kt">MyTree</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Node</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">Empty</span><span class="o">(),</span> <span class="nc">Empty</span><span class="o">())</span>
+<span class="n">sumElements2</span><span class="o">(</span><span class="n">t</span><span class="o">)</span>
 </code></pre>
+</div>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>[36mt[39m: [32mMyTree[39m[[32mInt[39m] = Node(1,Empty(),Empty())
 [36mres22_1[39m: [32mInt[39m = [32m1[39m
 </code></pre>
 </div>
 
-<pre><code class="language-scala211">
+<div class="language-scala highlighter-rouge"><pre class="highlight"><code>
 </code></pre>
+</div>
 </div>
 
     <div class ="container mt-5 mb-5">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2017-12-04T21:33:16+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">Python 의 상속</title><link href="https://shinjayne.github.io/post/15" rel="alternate" type="text/html" title="Python 의 상속" /><published>2017-12-04T21:26:50+09:00</published><updated>2017-12-04T21:26:50+09:00</updated><id>https://shinjayne.github.io/post/15</id><content type="html" xml:base="https://shinjayne.github.io/post/15">&lt;p&gt;(예전에 적어두었던 글을 이제서야 올려본다)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2017-12-04T22:06:55+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">Python 의 상속</title><link href="https://shinjayne.github.io/post/15" rel="alternate" type="text/html" title="Python 의 상속" /><published>2017-12-04T21:26:50+09:00</published><updated>2017-12-04T21:26:50+09:00</updated><id>https://shinjayne.github.io/post/15</id><content type="html" xml:base="https://shinjayne.github.io/post/15">&lt;p&gt;(예전에 적어두었던 글을 이제서야 올려본다)&lt;/p&gt;
 
 &lt;p&gt;python 의 상속에 대해 정리해보자.&lt;/p&gt;
 
@@ -655,7 +655,7 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/1.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/1.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위의 gym-example.py 코드같은 environment 에서, agent 가 무작위로 방향을 결정하면 학습이 잘 되지 않는다.&lt;/p&gt;
 
@@ -679,7 +679,7 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;argmax(Q(s,a))는 π*(s) 로도 표현하며 여기서 *은 optimal 함을 의미한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/2.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/2.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;q-learning-의-학습-greedy-dummy&quot;&gt;Q-learning 의 학습 (Greedy, Dummy)&lt;/h2&gt;
 
@@ -689,13 +689,13 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;도착지점으로 넘어갈 때에만 reward = 1 이 주어지고, 나머지 부분으로 넘어갈 때에는 reward = 0 이다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/6.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/6.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;우선 각 칸의 Q 값을 업데이트 하는 방법은 다음과같다.&lt;/p&gt;
 
 &lt;p&gt;Q(s,a) 의 값은 (다음칸의 Q 중 가장 큰 값 + reward) 로 표현해서 적는다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;처음에는 어디로 가든 reward 도 0이고 max Q(s’, a’) 도 0이다. 그래서 agent가 무작위로 방향을 결정한다. 그러다 우연히 아래 그림처럼 도착지점 바로 왼쪽칸에 도착했다.&lt;/p&gt;
 
@@ -703,7 +703,7 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;이게 첫번째 학습이다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/5.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/5.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;한번 학습이 끝난 후 agent 는 다시 시작지점에서 출발한다. 역시나 대부분의 Q가 0으로 초기화되어있고, 주변의 reward 도 0이기 때문에 무작위로 나아간다.&lt;/p&gt;
 
@@ -718,11 +718,11 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;이런식으로 계속해서 학습을 하다보면 결국 아래 그림처럼 시작 지점의 Q 까지 학습이 되고, 이렇게 Dummy Q-learning 의 학습이 끝난다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/3.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/3.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;루틴을 정리하자면 다음과 같다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/4.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/4.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;dummy-q-learning-학습---python-code&quot;&gt;Dummy Q-learning 학습 - python code&lt;/h2&gt;
 
@@ -797,7 +797,7 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;dummy Q-learning 의 문제는 아래 그림처럼 가장 optimal 한 경로를 따라 Q 가 업데이트 되지 않을 수 있는 가능성이 있다는 것이다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/3_1.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/3_1.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;해결할 수 있는 방법은 단 하나다.&lt;/p&gt;
 
@@ -822,13 +822,13 @@ class SubSub(Sub1, Sub2)
 
 &lt;h2 id=&quot;해결책-1---e-greedy&quot;&gt;해결책 1 :  E-greedy&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/7.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/7.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;일정 확률로 가끔은 최적의 action 을 따라가지 않도록 설정한다.&lt;/p&gt;
 
 &lt;h2 id=&quot;해결책-2--add-random-noise&quot;&gt;해결책 2 : add Random noise&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/9.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/9.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;action 을 결정할 때 참고하는 각 Q 값에 random 한 noise 를 주어서 action 이 조금 random 해지도록  한다.&lt;/p&gt;
 
@@ -836,13 +836,13 @@ class SubSub(Sub1, Sub2)
 
 &lt;p&gt;위와 같이 dummy Q learning 문제를 보완하는 기법들을 사용하면 agent 가 최종적으로 경로를 결정하려고 할 때 선택의 문제에 놓인다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/10.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/10.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이런 상황을 막으려면 학습과정에서 Q를 업데이트할 때, 다음 max Q(s’, a’) 값에다 특정 감마(&amp;lt;1) 값을 곱해준다.&lt;/p&gt;
 
 &lt;p&gt;그러면 상대적으로 구불하고 긴 경로로 인도하는 Q 값들은 작아지고, 가장 짧은 경로로 인도하는 Q 값들은 커진다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/11.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/11.PNG&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;q-learningpython-코드와-실행결과&quot;&gt;Q-learning python 코드와 실행결과&lt;/h2&gt;
 
@@ -910,7 +910,7 @@ class SubSub(Sub1, Sub2)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/aigym/12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="tensorflow" /><category term="openai" /><summary type="html">open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다.</summary></entry><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io/post/9" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io/post/9</id><content type="html" xml:base="https://shinjayne.github.io/post/9">&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/10/12.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="tensorflow" /><category term="openai" /><summary type="html">open-AI 에서 파이썬 패키지로 제공하는 gym 을 이용하면 , 손쉽게 강화학습 환경을 구성할 수 있다.</summary></entry><entry><title type="html">Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization</title><link href="https://shinjayne.github.io/post/9" rel="alternate" type="text/html" title="Auto Encoder 에 대하여 : Auto Encoder 의 개념과 사용법, 그리고 Regularization" /><published>2017-08-02T21:21:50+09:00</published><updated>2017-08-02T21:21:50+09:00</updated><id>https://shinjayne.github.io/post/9</id><content type="html" xml:base="https://shinjayne.github.io/post/9">&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/9/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Autoencoder 의 간략한 구조는 위와 같다.&lt;/p&gt;
 
@@ -1299,7 +1299,7 @@ save ckpt file: saved/train2-9
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/tf_ckpt_use/ckptstateproto.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/8/1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위의 사진은 &lt;a href=&quot;https://www.tensorflow.org/versions/r0.12/api_docs/python/state_ops/saving_and_restoring_variables&quot;&gt;tensorflow api 공식 doc : tf.train.Saver&lt;/a&gt; 사이트에서 볼 수 있는 &lt;strong&gt;&lt;em&gt;Checkpoint State Protocol Buffer&lt;/em&gt;&lt;/strong&gt; 에 대한 정보이다.&lt;/p&gt;
 
@@ -1440,11 +1440,11 @@ save ckpt file: saved/train2-9
 &lt;h2 id=&quot;k-mean-의-결과--clustering&quot;&gt;K-mean 의 결과 = Clustering&lt;/h2&gt;
 
 &lt;p&gt;아래의 그림은 K-mean 알고리즘으로 클러스터링 한 결과를 보여줍니다.
-&lt;img src=&quot;/images/udemy-som/1.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/asset/media/image/post/7/1.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;k-mean-의-학습-과정&quot;&gt;K-mean 의 학습 과정&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/udemy-som/2.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/7/2.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;K-mean 의 학습과정은 단순합니다.&lt;/p&gt;
 
@@ -1501,7 +1501,7 @@ save ckpt file: saved/train2-9
 
 &lt;p&gt;이들중 데이터와 가장 가까운 node 를 winning node 라고 마킹합니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/udemy-som/3.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/7/3.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;점(w1i,w2i,w3i)들과 데이터의 feature인 (x1,x2,x3) 점과의 distance 를 좁혀나갑니다.&lt;/p&gt;
 
@@ -1513,7 +1513,7 @@ save ckpt file: saved/train2-9
 
 &lt;p&gt;이런식으로 모든 데이터에 대해 SOMap 의 각 점을 끌어오면 SOMap 완성됩니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/udemy-som/4.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/7/4.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;som의-특징&quot;&gt;SOM의 특징&lt;/h1&gt;
 
@@ -1527,13 +1527,13 @@ save ckpt file: saved/train2-9
   &lt;li&gt;output node 간에 후속 연결이 없습니다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/udemy-som/5.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/7/5.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;training-전략&quot;&gt;Training 전략&lt;/h1&gt;
 
 &lt;p&gt;자세한  SOM 의 학습 과정은 아래와 같습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/udemy-som/6.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/7/6.png&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;python-code&quot;&gt;Python Code&lt;/h1&gt;
 &lt;ol&gt;
@@ -3354,7 +3354,7 @@ class TestMinisom:
 
   &lt;h4&gt;&lt;논문의 모델=&quot;&quot; 그림=&quot;&quot;&gt;&lt;/논문의&gt;&lt;/h4&gt;
 
-  &lt;p&gt;&lt;img src=&quot;/images/tb/model1.png&quot; alt=&quot;모델그림&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/model1.png&quot; alt=&quot;모델그림&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;위는 논문에 실린 모델의 모습입니다. 이 모델 그림을 기반으로 아래에 제가 해석한 모델 그림을 그려보았습니다.&lt;/p&gt;
@@ -3365,9 +3365,9 @@ class TestMinisom:
 
   &lt;h4 id=&quot;-1&quot;&gt;&lt;직접 다시=&quot;&quot; 그린=&quot;&quot; 모델=&quot;&quot; 그림=&quot;&quot;&gt;&lt;/직접&gt;&lt;/h4&gt;
 
-  &lt;p&gt;&lt;img src=&quot;/images/tb/1.png&quot; alt=&quot;표&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/1.png&quot; alt=&quot;표&quot; /&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;img src=&quot;/images/tb/2.png&quot; alt=&quot;표&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/2.png&quot; alt=&quot;표&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;input images 는 RGB 로 3개의 채널로 되어있습니다.&lt;/p&gt;
@@ -3406,7 +3406,7 @@ class TestMinisom:
 &lt;h3 id=&quot;base-network-내부-데이터-흐름-표&quot;&gt;Base network 내부 데이터 흐름 표&lt;/h3&gt;
 
 &lt;p&gt;표에서 노란색으로 하이라이트 된 부분이 &lt;strong&gt;Map Point&lt;/strong&gt; 입니다.
-&lt;img src=&quot;/images/tb/model2.png&quot; alt=&quot;표&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/asset/media/image/post/6/model2.png&quot; alt=&quot;표&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;textbox-layer-의-채널이-72개인-이유&quot;&gt;Textbox Layer 의 채널이 72개인 이유&lt;/h3&gt;
 
@@ -3441,7 +3441,7 @@ class TestMinisom:
 
   &lt;p&gt;predicted box 의 위치 정보(x, y, w, h)는 다음과 같이 복구할 수 있습니다.&lt;/p&gt;
 
-  &lt;p&gt;&lt;img src=&quot;/images/tb/3.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/3.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;default-box-를-만드는-방법&quot;&gt;Default box 를 만드는 방법&lt;/h3&gt;
@@ -3476,7 +3476,7 @@ class TestMinisom:
 &lt;p&gt;중심에 모든 박스를 넣지 않고 살짝 아래로 6개를 내린 이유는 촘촘한 detection 을 위해서입니다.&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/tb/4.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/4.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;그림에서 파란색은 (중심, 종횡비 1) , 검은색은 (중심, 종횡비 5), 빨간색은 (아래, 종횡비 1), 초록색은 (아래, 종횡비 5) 입니다.&lt;/p&gt;
@@ -3521,7 +3521,7 @@ class TestMinisom:
 &lt;p&gt;(아래 수식은 SSD 논문에서 가져왔습니다.)&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/tb/5.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/5.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;그런데 중요한 것은 우리가 모든 default box 에서 나온 prediction 값을 사용하지 않는다는 것입니다.&lt;/p&gt;
@@ -3546,8 +3546,8 @@ class TestMinisom:
 
     &lt;h3 id=&quot;jaccard-overlap-논문내용-ssd&quot;&gt;Jaccard Overlap 논문내용 (SSD)&lt;/h3&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/tb/7.png&quot; alt=&quot;수식&quot; /&gt;
-&lt;img src=&quot;/images/tb/9.png&quot; alt=&quot;이미지&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/7.png&quot; alt=&quot;수식&quot; /&gt;
+&lt;img src=&quot;/asset/media/image/post/6/9.png&quot; alt=&quot;이미지&quot; /&gt;&lt;/p&gt;
   &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 
@@ -3558,7 +3558,7 @@ class TestMinisom:
 
     &lt;h3 id=&quot;hard-negative-mining-논문-내용ssd&quot;&gt;Hard Negative Mining 논문 내용(SSD)&lt;/h3&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/tb/8.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/8.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
   &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 
@@ -3594,7 +3594,7 @@ class TestMinisom:
   &lt;p&gt;참고 링크 : &lt;a href=&quot;http://www.voidcn.com/blog/u014365862/article/p-5749434.html&quot;&gt;Non-Maximum Suppression for Object Detection in Python&lt;/a&gt;&lt;/p&gt;
   &lt;blockquote&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/tb/10.jpg&quot; alt=&quot;수식&quot; /&gt;
+    &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/10.jpg&quot; alt=&quot;수식&quot; /&gt;
 NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 Most predicted box로 추려줍니다.&lt;/p&gt;
   &lt;/blockquote&gt;
 &lt;/blockquote&gt;
@@ -3613,7 +3613,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
   &lt;p&gt;정확도와 재현율에 대한 이해를 돕고자 그림을 그려보았습니다.&lt;/p&gt;
 
-  &lt;p&gt;&lt;img src=&quot;/images/tb/12.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/12.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 
   &lt;p&gt;정확도(precision)는 우리가 &lt;strong&gt;Positive 라고 예상한 것&lt;/strong&gt; 중 &lt;strong&gt;맞춘 것&lt;/strong&gt;의 비율입니다.&lt;/p&gt;
 
@@ -3626,7 +3626,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
     &lt;h4 id=&quot;-f-mesure-공식-&quot;&gt;&amp;lt; F-Mesure 공식 &amp;gt;&lt;/h4&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/tb/13.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/13.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 
     &lt;p&gt;precision 과 recall 의 조화평균&lt;/p&gt;
   &lt;/blockquote&gt;
@@ -3635,7 +3635,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 &lt;p&gt;F-Mesure 를 이용해 Textboxes 모델의 Accuracy 를 구하는 방법은 다음과 같습니다.&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/tb/14.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/14.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;논문에서도 다양한 데이터셋에 대해 자신들이 훈련한 실제 Textboxes detection Model 의 성능을&lt;/p&gt;
@@ -3647,7 +3647,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 &lt;p&gt;다양한 text detection 모델들과의 비교도 해놓았습니다.&lt;/p&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/tb/15.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/6/15.png&quot; alt=&quot;수식&quot; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;br /&gt;
@@ -3679,7 +3679,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;img src=&quot;/images/backprop/backprop.png&quot; alt=&quot;paper&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/backprop.png&quot; alt=&quot;paper&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;총 10개의 챕터로 구성된 이 논문은&lt;/p&gt;
@@ -3756,7 +3756,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/model.png&quot; alt=&quot;model&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/model.png&quot; alt=&quot;model&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이 논문에서 이야기하는 모델의 모습입니다.&lt;/p&gt;
 
@@ -3820,7 +3820,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;이 W의 업데이트과정(back propagation) 을 수백번, 수천번 반복해서 천천히 error를 줄여나가는 것입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/wupdate2.png&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/wupdate2.png&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;그렇다면 W 를 얼마씩 업데이트 해주어야 할까요?&lt;/p&gt;
 
@@ -3830,7 +3830,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;그 값을 업데이트값으로 사용합니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/wupdate1.png&quot; alt=&quot;mibun&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/wupdate1.png&quot; alt=&quot;mibun&quot; /&gt;
 &lt;em&gt;(E 는 cost function 의 결과값)&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
@@ -3842,11 +3842,11 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 &lt;hr /&gt;
 
 &lt;p&gt;조건
-&lt;img src=&quot;/images/backprop/render4.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;img src=&quot;/asset/media/image/post/5/render4.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;에서의 y의 x 에 대한 편미분을 구하는 식은&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/render2.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/render2.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;입니다.&lt;/p&gt;
 
@@ -3854,11 +3854,11 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;마찬가지로 조건&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/render3.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/render3.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;에서의 E 의 Wn에 대한 편미분을 구하는 식은&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/render.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/render.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;이와 같습니다.&lt;/p&gt;
 
@@ -3905,7 +3905,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;같은 방법으로 n-1 번째 layer 의 Wn-1 이 error 에 미친 영향을 구하면 아래와 같습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/render 5.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/render 5.gif&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;편미분의 연속입니다.&lt;/p&gt;
 
@@ -3915,7 +3915,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
 &lt;p&gt;그리고 그 편미분 값을 업데이트 값으로 각각의 W 에 대해 아래 연산을 해줍니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/backprop/wupdate1.png&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/5/wupdate1.png&quot; alt=&quot;mibun&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;t는 학습 반복횟수고, 몇번째 layer 의 W 인지는 생략되어있습니다.&lt;/p&gt;
 

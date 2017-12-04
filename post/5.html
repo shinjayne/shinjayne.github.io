@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -112,7 +114,7 @@ pre {
 </blockquote>
 
 <blockquote>
-  <p><img src="/images/backprop/backprop.png" alt="paper" /></p>
+  <p><img src="/asset/media/image/post/5/backprop.png" alt="paper" /></p>
 </blockquote>
 
 <p>총 10개의 챕터로 구성된 이 논문은</p>
@@ -189,7 +191,7 @@ pre {
 
 <p><br /></p>
 
-<p><img src="/images/backprop/model.png" alt="model" /></p>
+<p><img src="/asset/media/image/post/5/model.png" alt="model" /></p>
 
 <p>이 논문에서 이야기하는 모델의 모습입니다.</p>
 
@@ -253,7 +255,7 @@ pre {
 
 <p>이 W의 업데이트과정(back propagation) 을 수백번, 수천번 반복해서 천천히 error를 줄여나가는 것입니다.</p>
 
-<p><img src="/images/backprop/wupdate2.png" alt="mibun" /></p>
+<p><img src="/asset/media/image/post/5/wupdate2.png" alt="mibun" /></p>
 
 <p>그렇다면 W 를 얼마씩 업데이트 해주어야 할까요?</p>
 
@@ -263,7 +265,7 @@ pre {
 
 <p>그 값을 업데이트값으로 사용합니다.</p>
 
-<p><img src="/images/backprop/wupdate1.png" alt="mibun" />
+<p><img src="/asset/media/image/post/5/wupdate1.png" alt="mibun" />
 <em>(E 는 cost function 의 결과값)</em></p>
 
 <p><br />
@@ -275,11 +277,11 @@ pre {
 <hr />
 
 <p>조건
-<img src="/images/backprop/render4.gif" alt="mibun" /></p>
+<img src="/asset/media/image/post/5/render4.gif" alt="mibun" /></p>
 
 <p>에서의 y의 x 에 대한 편미분을 구하는 식은</p>
 
-<p><img src="/images/backprop/render2.gif" alt="mibun" /></p>
+<p><img src="/asset/media/image/post/5/render2.gif" alt="mibun" /></p>
 
 <p>입니다.</p>
 
@@ -287,11 +289,11 @@ pre {
 
 <p>마찬가지로 조건</p>
 
-<p><img src="/images/backprop/render3.gif" alt="mibun" /></p>
+<p><img src="/asset/media/image/post/5/render3.gif" alt="mibun" /></p>
 
 <p>에서의 E 의 Wn에 대한 편미분을 구하는 식은</p>
 
-<p><img src="/images/backprop/render.gif" alt="mibun" /></p>
+<p><img src="/asset/media/image/post/5/render.gif" alt="mibun" /></p>
 
 <p>이와 같습니다.</p>
 
@@ -338,7 +340,7 @@ pre {
 
 <p>같은 방법으로 n-1 번째 layer 의 Wn-1 이 error 에 미친 영향을 구하면 아래와 같습니다.</p>
 
-<p><img src="/images/backprop/render 5.gif" alt="mibun" /></p>
+<p><img src="/asset/media/image/post/5/render 5.gif" alt="mibun" /></p>
 
 <p>편미분의 연속입니다.</p>
 
@@ -348,7 +350,7 @@ pre {
 
 <p>그리고 그 편미분 값을 업데이트 값으로 각각의 W 에 대해 아래 연산을 해줍니다.</p>
 
-<p><img src="/images/backprop/wupdate1.png" alt="mibun" /></p>
+<p><img src="/asset/media/image/post/5/wupdate1.png" alt="mibun" /></p>
 
 <p>t는 학습 반복횟수고, 몇번째 layer 의 W 인지는 생략되어있습니다.</p>
 

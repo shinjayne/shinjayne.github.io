@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -292,7 +294,7 @@ save ckpt file: saved/train2-9
 
 <p><br /></p>
 
-<p><img src="/images/tf_ckpt_use/ckptstateproto.png" alt="" /></p>
+<p><img src="/asset/media/image/post/8/1.png" alt="" /></p>
 
 <p>위의 사진은 <a href="https://www.tensorflow.org/versions/r0.12/api_docs/python/state_ops/saving_and_restoring_variables">tensorflow api 공식 doc : tf.train.Saver</a> 사이트에서 볼 수 있는 <strong><em>Checkpoint State Protocol Buffer</em></strong> 에 대한 정보이다.</p>
 

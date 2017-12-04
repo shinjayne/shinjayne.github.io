@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -116,11 +118,11 @@ pre {
 <h2 id="k-mean-의-결과--clustering">K-mean 의 결과 = Clustering</h2>
 
 <p>아래의 그림은 K-mean 알고리즘으로 클러스터링 한 결과를 보여줍니다.
-<img src="/images/udemy-som/1.png" alt="image.png" /></p>
+<img src="/asset/media/image/post/7/1.png" alt="image.png" /></p>
 
 <h2 id="k-mean-의-학습-과정">K-mean 의 학습 과정</h2>
 
-<p><img src="/images/udemy-som/2.png" alt="image.png" /></p>
+<p><img src="/asset/media/image/post/7/2.png" alt="image.png" /></p>
 
 <p>K-mean 의 학습과정은 단순합니다.</p>
 
@@ -177,7 +179,7 @@ pre {
 
 <p>이들중 데이터와 가장 가까운 node 를 winning node 라고 마킹합니다.</p>
 
-<p><img src="/images/udemy-som/3.png" alt="image.png" /></p>
+<p><img src="/asset/media/image/post/7/3.png" alt="image.png" /></p>
 
 <p>점(w1i,w2i,w3i)들과 데이터의 feature인 (x1,x2,x3) 점과의 distance 를 좁혀나갑니다.</p>
 
@@ -189,7 +191,7 @@ pre {
 
 <p>이런식으로 모든 데이터에 대해 SOMap 의 각 점을 끌어오면 SOMap 완성됩니다.</p>
 
-<p><img src="/images/udemy-som/4.png" alt="image.png" /></p>
+<p><img src="/asset/media/image/post/7/4.png" alt="image.png" /></p>
 
 <h1 id="som의-특징">SOM의 특징</h1>
 
@@ -203,13 +205,13 @@ pre {
   <li>output node 간에 후속 연결이 없습니다.</li>
 </ul>
 
-<p><img src="/images/udemy-som/5.png" alt="image.png" /></p>
+<p><img src="/asset/media/image/post/7/5.png" alt="image.png" /></p>
 
 <h1 id="training-전략">Training 전략</h1>
 
 <p>자세한  SOM 의 학습 과정은 아래와 같습니다.</p>
 
-<p><img src="/images/udemy-som/6.png" alt="image.png" /></p>
+<p><img src="/asset/media/image/post/7/6.png" alt="image.png" /></p>
 
 <h1 id="python-code">Python Code</h1>
 <ol>

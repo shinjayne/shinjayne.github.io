@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -250,7 +252,7 @@ pre {
 
   <h4><논문의 모델="" 그림=""></논문의></h4>
 
-  <p><img src="/images/tb/model1.png" alt="모델그림" /></p>
+  <p><img src="/asset/media/image/post/6/model1.png" alt="모델그림" /></p>
 </blockquote>
 
 <p>위는 논문에 실린 모델의 모습입니다. 이 모델 그림을 기반으로 아래에 제가 해석한 모델 그림을 그려보았습니다.</p>
@@ -261,9 +263,9 @@ pre {
 
   <h4 id="-1"><직접 다시="" 그린="" 모델="" 그림=""></직접></h4>
 
-  <p><img src="/images/tb/1.png" alt="표" /></p>
+  <p><img src="/asset/media/image/post/6/1.png" alt="표" /></p>
 
-  <p><img src="/images/tb/2.png" alt="표" /></p>
+  <p><img src="/asset/media/image/post/6/2.png" alt="표" /></p>
 </blockquote>
 
 <p>input images 는 RGB 로 3개의 채널로 되어있습니다.</p>
@@ -302,7 +304,7 @@ pre {
 <h3 id="base-network-내부-데이터-흐름-표">Base network 내부 데이터 흐름 표</h3>
 
 <p>표에서 노란색으로 하이라이트 된 부분이 <strong>Map Point</strong> 입니다.
-<img src="/images/tb/model2.png" alt="표" /></p>
+<img src="/asset/media/image/post/6/model2.png" alt="표" /></p>
 
 <h3 id="textbox-layer-의-채널이-72개인-이유">Textbox Layer 의 채널이 72개인 이유</h3>
 
@@ -337,7 +339,7 @@ pre {
 
   <p>predicted box 의 위치 정보(x, y, w, h)는 다음과 같이 복구할 수 있습니다.</p>
 
-  <p><img src="/images/tb/3.png" alt="수식" /></p>
+  <p><img src="/asset/media/image/post/6/3.png" alt="수식" /></p>
 </blockquote>
 
 <h3 id="default-box-를-만드는-방법">Default box 를 만드는 방법</h3>
@@ -372,7 +374,7 @@ pre {
 <p>중심에 모든 박스를 넣지 않고 살짝 아래로 6개를 내린 이유는 촘촘한 detection 을 위해서입니다.</p>
 <hr />
 
-<p><img src="/images/tb/4.png" alt="수식" /></p>
+<p><img src="/asset/media/image/post/6/4.png" alt="수식" /></p>
 <hr />
 
 <p>그림에서 파란색은 (중심, 종횡비 1) , 검은색은 (중심, 종횡비 5), 빨간색은 (아래, 종횡비 1), 초록색은 (아래, 종횡비 5) 입니다.</p>
@@ -417,7 +419,7 @@ pre {
 <p>(아래 수식은 SSD 논문에서 가져왔습니다.)</p>
 <hr />
 
-<p><img src="/images/tb/5.png" alt="수식" /></p>
+<p><img src="/asset/media/image/post/6/5.png" alt="수식" /></p>
 <hr />
 
 <p>그런데 중요한 것은 우리가 모든 default box 에서 나온 prediction 값을 사용하지 않는다는 것입니다.</p>
@@ -442,8 +444,8 @@ pre {
 
     <h3 id="jaccard-overlap-논문내용-ssd">Jaccard Overlap 논문내용 (SSD)</h3>
 
-    <p><img src="/images/tb/7.png" alt="수식" />
-<img src="/images/tb/9.png" alt="이미지" /></p>
+    <p><img src="/asset/media/image/post/6/7.png" alt="수식" />
+<img src="/asset/media/image/post/6/9.png" alt="이미지" /></p>
   </blockquote>
 </blockquote>
 
@@ -454,7 +456,7 @@ pre {
 
     <h3 id="hard-negative-mining-논문-내용ssd">Hard Negative Mining 논문 내용(SSD)</h3>
 
-    <p><img src="/images/tb/8.png" alt="수식" /></p>
+    <p><img src="/asset/media/image/post/6/8.png" alt="수식" /></p>
   </blockquote>
 </blockquote>
 
@@ -490,7 +492,7 @@ pre {
   <p>참고 링크 : <a href="http://www.voidcn.com/blog/u014365862/article/p-5749434.html">Non-Maximum Suppression for Object Detection in Python</a></p>
   <blockquote>
 
-    <p><img src="/images/tb/10.jpg" alt="수식" />
+    <p><img src="/asset/media/image/post/6/10.jpg" alt="수식" />
 NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 Most predicted box로 추려줍니다.</p>
   </blockquote>
 </blockquote>
@@ -509,7 +511,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
   <p>정확도와 재현율에 대한 이해를 돕고자 그림을 그려보았습니다.</p>
 
-  <p><img src="/images/tb/12.png" alt="수식" /></p>
+  <p><img src="/asset/media/image/post/6/12.png" alt="수식" /></p>
 
   <p>정확도(precision)는 우리가 <strong>Positive 라고 예상한 것</strong> 중 <strong>맞춘 것</strong>의 비율입니다.</p>
 
@@ -522,7 +524,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 
     <h4 id="-f-mesure-공식-">&lt; F-Mesure 공식 &gt;</h4>
 
-    <p><img src="/images/tb/13.png" alt="수식" /></p>
+    <p><img src="/asset/media/image/post/6/13.png" alt="수식" /></p>
 
     <p>precision 과 recall 의 조화평균</p>
   </blockquote>
@@ -531,7 +533,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 <p>F-Mesure 를 이용해 Textboxes 모델의 Accuracy 를 구하는 방법은 다음과 같습니다.</p>
 <hr />
 
-<p><img src="/images/tb/14.png" alt="수식" /></p>
+<p><img src="/asset/media/image/post/6/14.png" alt="수식" /></p>
 <hr />
 
 <p>논문에서도 다양한 데이터셋에 대해 자신들이 훈련한 실제 Textboxes detection Model 의 성능을</p>
@@ -543,7 +545,7 @@ NMS 를 수행하면 위처럼 여러개의 후보 predicted box 를 단일의 M
 <p>다양한 text detection 모델들과의 비교도 해놓았습니다.</p>
 <hr />
 
-<p><img src="/images/tb/15.png" alt="수식" /></p>
+<p><img src="/asset/media/image/post/6/15.png" alt="수식" /></p>
 <hr />
 
 <p><br />

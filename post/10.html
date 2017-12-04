@@ -9,7 +9,7 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/vim-highlight-rouge.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
@@ -73,6 +73,8 @@
 .post img {
   max-width: 100%;
   height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
 }
 
 /*for code highlighter*/
@@ -215,7 +217,7 @@ pre {
 
 <p><br /></p>
 
-<p><img src="/images/aigym/1.jpeg" alt="" /></p>
+<p><img src="/asset/media/image/post/10/1.jpeg" alt="" /></p>
 
 <p>위의 gym-example.py 코드같은 environment 에서, agent 가 무작위로 방향을 결정하면 학습이 잘 되지 않는다.</p>
 
@@ -239,7 +241,7 @@ pre {
 
 <p>argmax(Q(s,a))는 π*(s) 로도 표현하며 여기서 *은 optimal 함을 의미한다.</p>
 
-<p><img src="/images/aigym/2.jpeg" alt="" /></p>
+<p><img src="/asset/media/image/post/10/2.jpeg" alt="" /></p>
 
 <h2 id="q-learning-의-학습-greedy-dummy">Q-learning 의 학습 (Greedy, Dummy)</h2>
 
@@ -249,13 +251,13 @@ pre {
 
 <p>도착지점으로 넘어갈 때에만 reward = 1 이 주어지고, 나머지 부분으로 넘어갈 때에는 reward = 0 이다.</p>
 
-<p><img src="/images/aigym/6.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/6.PNG" alt="" /></p>
 
 <p>우선 각 칸의 Q 값을 업데이트 하는 방법은 다음과같다.</p>
 
 <p>Q(s,a) 의 값은 (다음칸의 Q 중 가장 큰 값 + reward) 로 표현해서 적는다.</p>
 
-<p><img src="/images/aigym/3.jpg" alt="" /></p>
+<p><img src="/asset/media/image/post/10/3.jpg" alt="" /></p>
 
 <p>처음에는 어디로 가든 reward 도 0이고 max Q(s’, a’) 도 0이다. 그래서 agent가 무작위로 방향을 결정한다. 그러다 우연히 아래 그림처럼 도착지점 바로 왼쪽칸에 도착했다.</p>
 
@@ -263,7 +265,7 @@ pre {
 
 <p>이게 첫번째 학습이다.</p>
 
-<p><img src="/images/aigym/5.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/5.PNG" alt="" /></p>
 
 <p>한번 학습이 끝난 후 agent 는 다시 시작지점에서 출발한다. 역시나 대부분의 Q가 0으로 초기화되어있고, 주변의 reward 도 0이기 때문에 무작위로 나아간다.</p>
 
@@ -278,11 +280,11 @@ pre {
 
 <p>이런식으로 계속해서 학습을 하다보면 결국 아래 그림처럼 시작 지점의 Q 까지 학습이 되고, 이렇게 Dummy Q-learning 의 학습이 끝난다.</p>
 
-<p><img src="/images/aigym/3.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/3.PNG" alt="" /></p>
 
 <p>루틴을 정리하자면 다음과 같다.</p>
 
-<p><img src="/images/aigym/4.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/4.PNG" alt="" /></p>
 
 <h2 id="dummy-q-learning-학습---python-code">Dummy Q-learning 학습 - python code</h2>
 
@@ -357,7 +359,7 @@ pre {
 
 <p>dummy Q-learning 의 문제는 아래 그림처럼 가장 optimal 한 경로를 따라 Q 가 업데이트 되지 않을 수 있는 가능성이 있다는 것이다.</p>
 
-<p><img src="/images/aigym/3_1.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/3_1.PNG" alt="" /></p>
 
 <p>해결할 수 있는 방법은 단 하나다.</p>
 
@@ -382,13 +384,13 @@ pre {
 
 <h2 id="해결책-1---e-greedy">해결책 1 :  E-greedy</h2>
 
-<p><img src="/images/aigym/7.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/7.PNG" alt="" /></p>
 
 <p>일정 확률로 가끔은 최적의 action 을 따라가지 않도록 설정한다.</p>
 
 <h2 id="해결책-2--add-random-noise">해결책 2 : add Random noise</h2>
 
-<p><img src="/images/aigym/9.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/9.PNG" alt="" /></p>
 
 <p>action 을 결정할 때 참고하는 각 Q 값에 random 한 noise 를 주어서 action 이 조금 random 해지도록  한다.</p>
 
@@ -396,13 +398,13 @@ pre {
 
 <p>위와 같이 dummy Q learning 문제를 보완하는 기법들을 사용하면 agent 가 최종적으로 경로를 결정하려고 할 때 선택의 문제에 놓인다.</p>
 
-<p><img src="/images/aigym/10.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/10.PNG" alt="" /></p>
 
 <p>이런 상황을 막으려면 학습과정에서 Q를 업데이트할 때, 다음 max Q(s’, a’) 값에다 특정 감마(&lt;1) 값을 곱해준다.</p>
 
 <p>그러면 상대적으로 구불하고 긴 경로로 인도하는 Q 값들은 작아지고, 가장 짧은 경로로 인도하는 Q 값들은 커진다.</p>
 
-<p><img src="/images/aigym/11.PNG" alt="" /></p>
+<p><img src="/asset/media/image/post/10/11.PNG" alt="" /></p>
 
 <h2 id="q-learningpython-코드와-실행결과">Q-learning python 코드와 실행결과</h2>
 
@@ -470,7 +472,7 @@ pre {
 </code></pre>
 </div>
 
-<p><img src="/images/aigym/12.png" alt="" /></p>
+<p><img src="/asset/media/image/post/10/12.png" alt="" /></p>
 </div>
 
     <div class ="container mt-5 mb-5">
