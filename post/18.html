@@ -152,17 +152,17 @@ master process 는 configuration file 을 읽고 worker processes 를 관리한�
 
   }
 }
-```<span class="n">conf</span>
-`<span class="n">http</span>` <span class="n">context</span> 안에 `<span class="n">server</span>` <span class="n">context</span> 안에 `<span class="n">location</span>` <span class="n">context</span> 가 있다. `<span class="n">location</span>` 뒤에 있는 <span class="n">url</span>(/) 로 접속 시에 서버의 디렉터리(/<span class="n">path</span>/<span class="n">to</span>/<span class="n">html</span>) 에 있는 정적 파일을 제공하겠다는 내용을 담고있다.
+</code></pre>
+</div>
+<p><code class="highlighter-rouge">http</code> context 안에 <code class="highlighter-rouge">server</code> context 안에 <code class="highlighter-rouge">location</code> context 가 있다. <code class="highlighter-rouge">location</code> 뒤에 있는 url(/) 로 접속 시에 서버의 디렉터리(/path/to/html) 에 있는 정적 파일을 제공하겠다는 내용을 담고있다.</p>
 
-<span class="c"># Proxy Server 로 이용하기
-</span>
-<span class="n">proxy</span> <span class="n">server</span> 가 무엇인지에 대해서는 [<span class="n">Wiki</span> : 프록시서버](<span class="n">https</span>://<span class="n">ko</span>.<span class="n">wikipedia</span>.<span class="n">org</span>/<span class="n">wiki</span>/프록시<span class="err">_</span>서버) 를 참조하면 된다. 간단히 말하면 서버로 들어온 <span class="n">request</span>를 다른 서버에 전달하고, 그 서버로부터 <span class="n">response</span> 를 전달받아 다시 클라이언트로 전달하는 중간상인 같은 서버가 <span class="n">proxy</span> <span class="n">server</span> 이다.
+<h1 id="proxy-server-로-이용하기">Proxy Server 로 이용하기</h1>
 
-새로운 `<span class="n">server</span>` 블록 디렉티브를 만들어 프록시서버를 기술한다.
+<p>proxy server 가 무엇인지에 대해서는 <a href="https://ko.wikipedia.org/wiki/프록시_서버">Wiki : 프록시서버</a> 를 참조하면 된다. 간단히 말하면 서버로 들어온 request를 다른 서버에 전달하고, 그 서버로부터 response 를 전달받아 다시 클라이언트로 전달하는 중간상인 같은 서버가 proxy server 이다.</p>
 
-```<span class="n">conf</span>
-<span class="n">http</span> {
+<p>새로운 <code class="highlighter-rouge">server</code> 블록 디렉티브를 만들어 프록시서버를 기술한다.</p>
+
+<div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">http</span> {
   <span class="n">server</span> {
     <span class="n">listen</span> <span class="m">8080</span>;  <span class="c">#기술 안하면 default 는 80 port
 </span>
