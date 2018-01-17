@@ -1,0 +1,359 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Nginx 에 대하여 (Nginx Basic Usage) | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <style>
+      body {font-family: 'Noto Sans Korean', sans-serif;font-weight: 450;padding-top: 50px;}
+      h1,h2,h3,h4,h5,h6 {font-weight : 800;color : #148b8e;}
+      .navbar, .nav {font-weight: 800;}
+      a {color : #90b3d8;}
+    </style>
+    <!--Tawk.to Script-->
+    <script src="/asset/static/tawk-chat-api.js"></script>
+  </head>
+  <body>
+
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover;">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+/*post titles style*/
+.post h1,h2,h3,h4,h5,h6 {
+  color: #3f71f4;
+
+}
+.post h1 {font-size: 2.0rem;padding-top: 4.5rem;padding-bottom:1rem;}
+.post h2 {font-size: 1.7rem;}
+.post h3 {font-size: 1.6rem;}
+.post h4 {font-size: 1.4rem;}
+.post h5 {font-size: 1.2rem;}
+/*for image*/
+.post img {
+  max-width: 100%;
+  height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
+}
+
+/*for code highlighter*/
+pre {
+  background-color: #494b4c ;
+  border-radius: 6px;
+  padding: 10px;
+  color : #d0d7de;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('https://i.ytimg.com/vi/Njx9VAvUBWs/maxresdefault.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.2rem;">Nginx 에 대하여 (Nginx Basic Usage)</h1>
+  <p class="card-text text-white"><p class="text-muted">web | 16 January 2018</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-primary">nginx</a>
+    
+    <a href="#" class="badge badge-primary">proxy</a>
+    
+    <a href="#" class="badge badge-primary">cgi</a>
+    
+    <a href="#" class="badge badge-primary">http</a>
+    
+    <a href="#" class="badge badge-primary">server</a>
+    
+    <a href="#" class="badge badge-primary">loadbalance</a>
+    
+    <a href="#" class="badge badge-primary">WAS</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p>현재 개발중인 웹 앱 서비스에서 대규모 데이터베이스 쿼리 연산을 하던중 502 서버 에러를 마주했다. 그동안은 주먹구구식으로 구글링해가면서 문제가 생길 때마다 대충 해결하고 넘어갔지만, 이번 에러는 쉽게 해결되지 않았다. 그래서, 자세히 모르면서 그냥 사용해 온 Nginx Http Server 에 대해 자세히 알아보고, 에러가 발생하는 원인과 해결 방법을 스스로 찾을 수 있는 능력을 기르고자 <a href="http://nginx.org/en/docs/">Nginx 공식 Documentation</a> 을 정독한 후기를 작성하려 한다.</p>
+
+<h1 id="nginx-의-구조">nginx 의 구조</h1>
+<p>nginx 는 하나의 master process 와 여러 worker processes 로 이루어져있다.
+master process 는 configuration file 을 읽고 worker processes 를 관리한다.</p>
+
+<h1 id="configuration-file-구조">configuration file 구조</h1>
+<p>nginx 의 configuration file 은 <code class="highlighter-rouge">/etc/nginx/nginx.config</code> 에 위치한다.  파일을 열면 directives(지시어) 가 나열되어있다. 이 지시어들은 nginx 의 modules 의 동작을 기술한다.</p>
+
+<p>directives 는 simple directives 와 block directives 로 나뉜다.</p>
+<blockquote>
+  <p><strong>simple directives 예시</strong></p>
+  <div class="language-conf highlighter-rouge"><pre class="highlight"><code> <span class="n">client_max_body_size</span> <span class="m">20</span><span class="n">M</span>;
+ <span class="n">listen</span> <span class="m">80</span>;
+ <span class="n">server_name</span> <span class="n">localhost</span>;
+ <span class="n">keepalive_timeout</span>  <span class="m">0</span>;
+</code></pre>
+  </div>
+</blockquote>
+
+<blockquote>
+  <p><strong>block directives 예시</strong></p>
+  <div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">upstream</span> <span class="n">web</span> {
+ <span class="n">ip_hash</span>;
+ <span class="n">server</span> <span class="n">web</span>:<span class="m">8000</span>;
+}
+</code></pre>
+  </div>
+</blockquote>
+
+<p>block directives 들 중에 그 안에 다른 block directives 를 기술할 수 있다면 그것은 <strong>context</strong>  라고 부른다. 대표적 context 로는 <code class="highlighter-rouge">main</code>,<code class="highlighter-rouge">http</code>,<code class="highlighter-rouge">server</code>,<code class="highlighter-rouge">location</code> 등이 있고, 순서대로 포함관계에 있다. (공식 documentation 을 읽다보면 각 지시어directives 를 사용 가능한 context를 지정해주는데, 그때의 context 가 바로 이것이다. )</p>
+
+<h1 id="간단한-static-file-을-serving">간단한 Static file 을 Serving</h1>
+
+<p>기본 구조를 작성한다.</p>
+<div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">http</span> {
+  <span class="n">server</span> {
+
+    <span class="n">location</span> / {
+      <span class="n">root</span> /<span class="n">path</span>/<span class="n">to</span>/<span class="n">html</span> ;
+    }
+
+    <span class="n">location</span> /<span class="n">images</span>/ {
+      <span class="n">root</span> /<span class="n">path</span>/<span class="n">to</span>/<span class="n">image</span> ;
+    }
+
+  }
+}
+```<span class="n">conf</span>
+`<span class="n">http</span>` <span class="n">context</span> 안에 `<span class="n">server</span>` <span class="n">context</span> 안에 `<span class="n">location</span>` <span class="n">context</span> 가 있다. `<span class="n">location</span>` 뒤에 있는 <span class="n">url</span>(/) 로 접속 시에 서버의 디렉터리(/<span class="n">path</span>/<span class="n">to</span>/<span class="n">html</span>) 에 있는 정적 파일을 제공하겠다는 내용을 담고있다.
+
+<span class="c"># Proxy Server 로 이용하기
+</span>
+<span class="n">proxy</span> <span class="n">server</span> 가 무엇인지에 대해서는 [<span class="n">Wiki</span> : 프록시서버](<span class="n">https</span>://<span class="n">ko</span>.<span class="n">wikipedia</span>.<span class="n">org</span>/<span class="n">wiki</span>/프록시<span class="err">_</span>서버) 를 참조하면 된다. 간단히 말하면 서버로 들어온 <span class="n">request</span>를 다른 서버에 전달하고, 그 서버로부터 <span class="n">response</span> 를 전달받아 다시 클라이언트로 전달하는 중간상인 같은 서버가 <span class="n">proxy</span> <span class="n">server</span> 이다.
+
+새로운 `<span class="n">server</span>` 블록 디렉티브를 만들어 프록시서버를 기술한다.
+
+```<span class="n">conf</span>
+<span class="n">http</span> {
+  <span class="n">server</span> {
+    <span class="n">listen</span> <span class="m">8080</span>;  <span class="c">#기술 안하면 default 는 80 port
+</span>
+    <span class="n">location</span> / {
+      <span class="n">proxy_pass</span> <span class="n">http</span>://<span class="n">localhost</span>:<span class="m">8080</span>;
+    }
+
+  }
+}
+</code></pre>
+</div>
+
+<h2 id="nginx-프록시---cgi서버---was---proxy-server-로-사용하는-대표적-사례">NGINX 프록시 -&gt; CGI서버 -&gt; WAS   (Proxy Server 로 사용하는 대표적 사례)</h2>
+
+<p>프록시 서버를 사용하는 경우 보통 다양한 언어로 쓰여진 내부의 WAS(Web Application Service) 와 통신하는 경우가 많다. WAS 와 정적 웹 서버가 통신하기 위한 규칙을 CGI(Common Gateway Interface) 라고 하고, 각 언어마다 다른 CGI 를 가진다. (python 은 WSGI, ruby는 Rack, perl은 PSGI 등)</p>
+
+<p>이런 CGI 통신이 가능한 서버를 CGI서버(fastCGI, uWSGI, SCGI 등)라고 하고, python WAS 에서 가장 널리 쓰이는 CGI서버의 이름은 uWSGI 이다. (실제로는 uWSGI 는 python 의 WSGI, ruby의 Rack, perl 의 PSGI 규칙 모두와 통신할 수 있다. ) CGI서버 자체로도 웹서버 기능을 사용하고 클라이언트에 데이터를 제공할 수 있지만, 보통 NGINX 와 같은 정적 웹서버의 정적 파일(Static file) 서빙 성능이 좋아서, Nginx 를 프록시 서버로 사용하여 Nginx 로 들어온 request 를 CGI서버로 넘기는 구조를 많이 채택한다.
+(<a href="https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html">uWSGI의 공식 문서에도 이런 방식에 대한 설명이 나와있다.</a>)</p>
+
+<blockquote>
+  <p><strong>주의할 점 : 각 CGI 규칙의 이름들과 각 CGI서버의 이름들이 굉장히 헷갈릴 수 있다.</strong></p>
+
+  <p>CGI 규칙 : WSGI, Rack, PSGI 등</p>
+
+  <p>CGI 서버 : uWSGI, fastCGI, SCGI 등</p>
+</blockquote>
+
+<p>Nginx에는 기본적으로 몇가지 CGI서버의 프록시서버로 사용시에 유용한 기능들을 탑재되어있다. 대표적으로 uwsgi_module 이라는 nginx 모듈의 다양한 기능을 이용하면 uwsgi 서버의 프록시 서버로 쉽게 이용이 가능하다.
+(<a href="http://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass">Nginx 공식 Doc :  uwsgi_module</a> 에 가면 다양한 기능들을 살펴볼 수 있다. )</p>
+
+<p><code class="highlighter-rouge">proxy_pass</code> 라는 directive 대신에 <code class="highlighter-rouge">uwsgi_pass</code> 라는 directive 를 사용한다. 그리고 <code class="highlighter-rouge">uwsgi_param</code> 이라는 지시어를 통해 인자를 전달할 수 있다.</p>
+
+<div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">http</span> {
+  <span class="n">server</span> {
+    <span class="n">listen</span> <span class="m">8080</span>;  <span class="c">#기술 안하면 default 는 80 port
+</span>
+    <span class="n">uwsgi_param</span> <span class="n">HTTPS</span> $<span class="n">https</span> <span class="n">if_not_empty</span>;
+    <span class="c"># HTTPS 라는 parameter 에 $https 값을 담는다.
+</span>    <span class="c"># (if_not_empty 를 적으면 비어있을 경우 전달하지 않는다.)
+</span>
+    <span class="n">location</span> / {
+      <span class="n">include</span> <span class="n">uwsgi_params</span>;      <span class="c">#uwsgi_param 을 전달한다.  
+</span>      <span class="n">uwsgi_pass</span> <span class="n">http</span>://<span class="n">localhost</span>:<span class="m">8080</span>;
+    }
+
+  }
+}
+</code></pre>
+</div>
+
+<h1 id="load-balancer-로-이용하기">Load Balancer 로 이용하기</h1>
+
+<blockquote>
+  <p><a href="http://nginx.org/en/docs/http/load_balancing.html">관련 공식 doc link: Using Nginx as HTTP load balancer</a></p>
+</blockquote>
+
+<p>하나의 Proxy server(Nginx) 에서 여러 WAS+CGI서버로 적절히 부하를 나누어 연결하는 기술을 load balancing 이라고 하고, 웹서버에서 아주 많이 사용되는 기술이다.</p>
+
+<p>configuration file 에 로드밸런싱을 명령하는 방법은 아래와 같다.</p>
+
+<div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">http</span>{
+
+  <span class="c"># load balancing 할 서버 그룹을 정의한다.
+</span>  <span class="n">upstream</span> <span class="n">servergroup1</span> {
+    <span class="c"># load balance 기법을 정한다.
+</span>    <span class="n">ip_hash</span>;
+
+    <span class="c"># 서버 (주소+port+[옵션])를 나열한다.
+</span>    <span class="n">server</span> <span class="n">srv1</span>.<span class="n">example</span>.<span class="n">com</span>:<span class="m">80</span>;
+    <span class="n">server</span> <span class="n">srv2</span>.<span class="n">example</span>.<span class="n">com</span>:<span class="m">3030</span> <span class="n">weight</span>=<span class="m">3</span>;
+    <span class="n">server</span> <span class="n">srv3</span>.<span class="n">example</span>.<span class="n">com</span>;
+  }
+
+  <span class="c"># 프록시 서버로서의 nginx 동작을 기술한다.
+</span>  <span class="n">server</span> {
+    <span class="n">listen</span> <span class="m">80</span>;
+
+    <span class="n">location</span> / {
+      <span class="n">proxy_pass</span> <span class="n">http</span>://<span class="n">servergroup1</span> ; <span class="c">#(프로토콜명+로드밸런싱 그룹 이름)을 적어주면 된다
+</span>    }
+  }
+
+}
+
+</code></pre>
+</div>
+
+<p>Nginx 에서 제공하는 <strong>Load Balancing method</strong> 는 3가지로 소개되어있다.</p>
+
+<blockquote>
+  <p><strong>round-robin</strong> : requests to the application servers are distributed in a round-robin fashion</p>
+
+  <p><strong>least-connected</strong> : next request is assigned to the server with the least number of active connections</p>
+
+  <p><strong>ip-hash</strong> : a hash-function is used to determine what server should be selected for the next request (based on the client’s IP address)</p>
+</blockquote>
+
+<h1 id="customizing-사례1--proxy-요청-timeout-늘리기">Customizing 사례1 : Proxy 요청 Timeout 늘리기</h1>
+
+<p>Nginx 는 다양한 처리에 Timeout 이라는 limit 이 설정되어있다. (<a href="http://nginx.org/en/docs/dirindex.html">Nginx 공식 Documentation 의 Directives dictionary</a> 에 timeout 이라고만 검색해도 엄청나게 많은 timeout 설정 관련한 directives 가 존재한다 )</p>
+
+<p>예를 들어 WAS(Web Application Service) 와 CGI서버의 프록시서버로 사용되고 있는 Nginx 에서는, CGI서버와 WAS로 전달된 요청(request)이 일정 시간 안에 응답(response)되지 않으면 client 에 504:Timeout Error 를 발생시킨다.</p>
+
+<p>이러한 문제를 timeout 설정에 관련된 directives 를 configuration file 에 기술해줌으로써 해결할 수 있다.</p>
+
+<div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">http</span>{
+  <span class="n">server</span> {
+      ...
+
+      <span class="n">location</span> / {
+          <span class="n">proxy_connect_timeout</span> <span class="m">300</span><span class="n">s</span>;
+          <span class="n">proxy_send_timeout</span> <span class="m">300</span><span class="n">s</span>;
+          <span class="n">proxy_read_timeout</span> <span class="m">300</span><span class="n">s</span>;
+          <span class="n">send_timeout</span> <span class="m">300</span><span class="n">s</span>;
+      }
+  }
+}
+</code></pre>
+</div>
+
+<p>공식 documentation 을 읽어보면 각 timeout 의 종류와 default 값들을 확인할 수 있다.</p>
+
+<h1 id="customizing-사례2-client-업로드-파일-용량-제한-늘리기">Customizing 사례2: Client 업로드 파일 용량 제한 늘리기</h1>
+
+<p>웹 앱을 운영하다보면 사용자로부터 대용량 업로드 파일을 받아야하는 경우가 생긴다. 이럴 경우에는 간단히 server 안에 <code class="highlighter-rouge">client_max_body_size</code> directive 만 작성해주면 된다.</p>
+
+<div class="language-conf highlighter-rouge"><pre class="highlight"><code><span class="n">http</span>{
+  <span class="n">server</span> {
+    <span class="n">server_name</span> <span class="n">nextop</span>.<span class="n">com</span>;
+    <span class="n">listen</span> <span class="m">80</span>;
+    <span class="c"># 용량 업로드 제한 : default=10M
+</span>    <span class="n">client_max_body_size</span> <span class="m">20</span><span class="n">M</span>;
+
+    <span class="n">location</span> / {
+      ...
+    }
+  }
+}
+</code></pre>
+</div>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>

@@ -29,7 +29,7 @@
   background-size: cover;">
   <a class="navbar-brand" href="/">
     <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
-    Jayne.who();
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -51,6 +51,7 @@
 
     <div class ="container mt-5">
   <h2 class="text-center" style="color: #3f71f4;">Posts</h2>
+  <p class="text-muted text-center">직접 공부하고 작성한 글들입니다</p>
   <hr  />
   <style>
 .nav-link{
@@ -422,14 +423,21 @@
     var main_route = (window.location.pathname.split("/")[1]);
     $('#navbar_' + main_route).addClass('active');
     navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
     if (main_route == "post"){
       navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
     }
     else if(main_route == "project"){
       navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
     }
     else if(main_route == "profile"){
       navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
     }
     else{
       navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");

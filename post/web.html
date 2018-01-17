@@ -29,7 +29,7 @@
   background-size: cover;">
   <a class="navbar-brand" href="/">
     <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
-    Jayne.who();
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -51,6 +51,7 @@
 
     <div class ="container mt-5">
   <h2 class="text-center" style="color: #3f71f4;">Posts</h2>
+  <p class="text-muted text-center">직접 공부하고 작성한 글들입니다</p>
   <hr  />
   <style>
 .nav-link{
@@ -76,6 +77,55 @@
 
   <div id="load-list">
 
+  
+  <div id="load-thing" class="load-thing">
+    <style>
+.card{
+  width:85% ;
+  max-width:700px;
+  border-radius: 1rem;
+}
+.card-body{
+  min-height: 300px;
+  width: 100%;
+  display: block;
+  background-color: #00010299;
+  background-blend-mode: color;
+  background-size: cover;
+  border-radius: 1rem ;
+}
+</style>
+
+<div class="card mt-5 mb-5 mx-auto text-center">
+  <div class="card-body" style="background-image:url('https://i.ytimg.com/vi/Njx9VAvUBWs/maxresdefault.jpg');">
+    <a href="/post/18"><h1 class="card-title text-white" style="font-size : 1.9rem;">Nginx 에 대하여 (Nginx Basic Usage)</h1></a>
+    <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
+    <p class="card-text text-white">
+      <p class="text-muted">web | 16 January 2018</p>
+    </p>
+    <p class="card-text text-white">
+      Tags |
+      
+      <a href="#" class="badge badge-primary">nginx</a>
+      
+      <a href="#" class="badge badge-primary">proxy</a>
+      
+      <a href="#" class="badge badge-primary">cgi</a>
+      
+      <a href="#" class="badge badge-primary">http</a>
+      
+      <a href="#" class="badge badge-primary">server</a>
+      
+      <a href="#" class="badge badge-primary">loadbalance</a>
+      
+      <a href="#" class="badge badge-primary">WAS</a>
+      
+    </p>
+
+  </div>
+</div>
+
+  </div>
   
   <div id="load-thing" class="load-thing">
     <style>
@@ -184,14 +234,21 @@
     var main_route = (window.location.pathname.split("/")[1]);
     $('#navbar_' + main_route).addClass('active');
     navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
     if (main_route == "post"){
       navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
     }
     else if(main_route == "project"){
       navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
     }
     else if(main_route == "profile"){
       navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
     }
     else{
       navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
