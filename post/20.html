@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>AngularJS 와 Django Template Tag 충돌 해결 | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <style>
+      body {font-family: 'Noto Sans Korean', sans-serif;font-weight: 450;padding-top: 50px;}
+      h1,h2,h3,h4,h5,h6 {font-weight : 800;color : #148b8e;}
+      .navbar, .nav {font-weight: 800;}
+      a {color : #90b3d8;}
+    </style>
+    <!--Tawk.to Script-->
+    <script src="/asset/static/tawk-chat-api.js"></script>
+  </head>
+  <body>
+
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover;">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+/*post titles style*/
+.post h1,h2,h3,h4,h5,h6 {
+  color: #3f71f4;
+
+}
+.post h1 {font-size: 2.0rem;padding-top: 4.5rem;padding-bottom:1rem;}
+.post h2 {font-size: 1.7rem;}
+.post h3 {font-size: 1.6rem;}
+.post h4 {font-size: 1.4rem;}
+.post h5 {font-size: 1.2rem;}
+/*for image*/
+.post img {
+  max-width: 100%;
+  height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
+}
+
+/*for code highlighter*/
+pre {
+  background-color: #494b4c ;
+  border-radius: 6px;
+  padding: 10px;
+  color : #d0d7de;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('https://docs.angularjs.org/img/angularjs-for-header-only.svg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.2rem;">AngularJS 와 Django Template Tag 충돌 해결</h1>
+  <p class="card-text text-white"><p class="text-muted">web | 26 January 2018</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-primary">django</a>
+    
+    <a href="#" class="badge badge-primary">angular</a>
+    
+    <a href="#" class="badge badge-primary">backend</a>
+    
+    <a href="#" class="badge badge-primary">frontend</a>
+    
+    <a href="#" class="badge badge-primary">javascript</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><p>AngularJS 는 웹 앱의 프런트엔드 부분을 만드는 Javascipt Framework 이고, Django 의 Template Engine 은 백엔드 Framework 에서 동적으로 html 문서를 생성해주는 시스템이다.</p>
+
+<p>이 두개를 함께 쓰려하면 한가지 문제가 생긴다. AngularJS 에서 Model(내부변수들)을 View(HTML 문서) 에 bind 할 때 사용하는 Symbol 과 Django Tempate Engine 에서 사용하는 Tag Symbol 이 동일하기 때문에, 함께 사용하면 AngularJS 의 Bind Symbol 이 작동하지 않는다.</p>
+
+<p>이를 해결하기 위한 방법은 여러가지 있는데, 그중 내가 사용해보려고 하는 방법은 AngularJS  module 의 설정(config) 중 하나인 <code class="highlighter-rouge">$interpolateProvider</code> 를 조정하는 것이다.</p>
+
+<h1 id="interpolateprovider-조정하기"><code class="highlighter-rouge">$interpolateProvider</code> 조정하기</h1>
+
+<p><a href="https://docs.angularjs.org/api/ng/provider/$interpolateProvider">AngularJS 의 공식 Documentation</a> 에 자세한 사용법이 나온다.</p>
+
+<p>아래의 예시는 기존의 <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">{</span></code> 와 <code class="highlighter-rouge">} }</code> 이던 Binding Symbol 을 <code class="highlighter-rouge">//</code> 와 <code class="highlighter-rouge">//</code> 로 변경한다.</p>
+
+<p>다만 이 설정은 config 설정을 조정한 해당 앱 내에서만 작동한다.</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">customInterpolationApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'customInterpolationApp'</span><span class="p">,</span> <span class="p">[]);</span>
+
+  <span class="nx">customInterpolationApp</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$interpolateProvider</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$interpolateProvider</span><span class="p">.</span><span class="nx">startSymbol</span><span class="p">(</span><span class="s1">'//'</span><span class="p">);</span>
+    <span class="nx">$interpolateProvider</span><span class="p">.</span><span class="nx">endSymbol</span><span class="p">(</span><span class="s1">'//'</span><span class="p">);</span>
+  <span class="p">});</span>
+
+
+  <span class="nx">customInterpolationApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'DemoController'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">label</span> <span class="o">=</span> <span class="s2">"This binding is brought you by // interpolation symbols."</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"DemoController as demo"</span><span class="nt">&gt;</span>
+    //demo.label//
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <!--Custom Javascript-->
+     <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>
