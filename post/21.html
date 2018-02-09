@@ -111,6 +111,9 @@ pre {
   <p><a href="https://store.docker.com/search?type=edition&amp;offering=community">Docker Store(링크)</a> 에서 설치 가능하다. 자신의 OS 에 맞는 Docker 를 설치하자.</p>
 </blockquote>
 
+<hr />
+
+<h5 id="서론">서론</h5>
 <p>그동안 <code class="highlighter-rouge">docker</code> 를 사용하여 웹 서버 개발을 하고 있었지만, Docker 공식 문서를 오랜만에 들어가보니 그곳에서 추구하는 개발-배포 flow 는 나의 그것과 사뭇 달랐다.</p>
 
 <p>나의 방식보다 훨씬 깔끔하고 스마트했다. 그래서 한번 제대로 익혀놓고, 앞으로 이렇게 개발-배포 하자 라고 마음먹으며 이 글을 쓴다.</p>
@@ -121,11 +124,11 @@ pre {
 
 <p>새로운 개발 배포 flow를 익히면서 중점적인 이슈로 둔 부분은 아래와 같다.</p>
 
-<ol>
-  <li>초기구축 : 초기 서비스 그룹(DB, WAS, Web Server 등) 구축이 쉬운가</li>
-  <li>스케일 조정 : Load Balancing 설정이 쉽고, Scale 조정이 쉬운가</li>
-  <li>코드 배포 : 추후 앱의 로직 코드 변경시 배포가 편리한가</li>
-</ol>
+<p><strong>1. 초기구축 : 초기 서비스 그룹(DB, WAS, Web Server 등) 구축이 쉬운가</strong></p>
+
+<p><strong>2. 스케일 조정 : Load Balancing 설정이 쉽고, Scale 조정이 쉬운가</strong></p>
+
+<p><strong>3. 코드 배포 : 추후 앱의 로직 코드 변경시 배포가 편리한가</strong></p>
 
 <p>클라우드를 제공하는 AWS 나 AZURE 는 자신들이 만들어놓은 여러 제품들을 이용하면 위 세가지를 편리하게 실현할 수 있게 하였다. (AWS 의 ELB-elastic load balancer 를 이용하면 로드밸런싱이 쉽게 가능한 것 처럼 …)</p>
 
@@ -207,14 +210,7 @@ rihwohkh3ph38fhillhhb84sk <span class="k">*</span>   myvm1               Ready  
 
 <p>참고 3: <a href="https://docs.docker.com/machine/drivers/">Docker machine 에서 지원하는 가상머신 드라이버들</a></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>참고 4: [driver 란?</td>
-      <td>Microsoft](https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx)</td>
-    </tr>
-  </tbody>
-</table>
+<p>참고 4: <a href="https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx">driver 란?  Microsoft</a></p>
 
 <h3 id="1-2-docker-composeyml-로-stack-구성하고-실행">1-2. <code class="highlighter-rouge">docker-compose.yml</code> 로 Stack 구성하고 실행</h3>
 
@@ -296,20 +292,15 @@ rihwohkh3ph38fhillhhb84sk <span class="k">*</span>   myvm1               Ready  
 
 <p>등이 필수적인 설정값인듯 하다.</p>
 
+<p>참고로 docker swarm 을 이용해 개발-배포 한다면 network driver 의 기본 설정값은 <code class="highlighter-rouge">overlay</code> 이다. <code class="highlighter-rouge">overlay</code> 는 여러대의 docker-machine 에 나누어진 container들이 마치 하나의 network 상에 존재하는 것처럼 접속 가능하게 해준다.</p>
+
 <p>참고 1 : <a href="https://docs.docker.com/compose/compose-file/#network-configuration-reference"><code class="highlighter-rouge">networks</code> top-level key 설정 관하여</a></p>
 
 <p>참고 2 : <a href="https://docs.docker.com/compose/compose-file/#volume-configuration-reference"><code class="highlighter-rouge">volumes</code> top-level key 설정 관하여</a></p>
 
 <p>참고 3 : <a href="https://docs.docker.com/compose/compose-file/#deploy"><code class="highlighter-rouge">deploy</code> service-level key 설정 관하여</a></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>참고 4 : [driver 란?</td>
-      <td>Microsoft](https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx)</td>
-    </tr>
-  </tbody>
-</table>
+<p>참고 4 : <a href="https://docs.docker.com/network/network-tutorial-overlay/">Docker 의 overlay network 에 대하여</a></p>
 
 <h4 id="stack-실행하기">Stack 실행하기</h4>
 

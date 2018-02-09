@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2018-02-10T01:48:13+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">Docker 공식문서 에서 제시하는 개발-배포 Flow 따라가기 (Docker Swarm 사용하기)</title><link href="https://shinjayne.github.io/post/21" rel="alternate" type="text/html" title="Docker 공식문서 에서 제시하는 개발-배포 Flow 따라가기 (Docker Swarm 사용하기)" /><published>2018-02-09T21:04:50+09:00</published><updated>2018-02-09T21:04:50+09:00</updated><id>https://shinjayne.github.io/post/21</id><content type="html" xml:base="https://shinjayne.github.io/post/21">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2018-02-10T02:00:00+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">Docker 공식문서 에서 제시하는 개발-배포 Flow 따라가기 (Docker Swarm 사용하기)</title><link href="https://shinjayne.github.io/post/21" rel="alternate" type="text/html" title="Docker 공식문서 에서 제시하는 개발-배포 Flow 따라가기 (Docker Swarm 사용하기)" /><published>2018-02-09T21:04:50+09:00</published><updated>2018-02-09T21:04:50+09:00</updated><id>https://shinjayne.github.io/post/21</id><content type="html" xml:base="https://shinjayne.github.io/post/21">&lt;blockquote&gt;
   &lt;h5 id=&quot;pre-requisite&quot;&gt;pre-requisite&lt;/h5&gt;
   &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine&lt;/code&gt; 이 세가지 프로그램이 설치되어야 한다.&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;https://store.docker.com/search?type=edition&amp;amp;offering=community&quot;&gt;Docker Store(링크)&lt;/a&gt; 에서 설치 가능하다. 자신의 OS 에 맞는 Docker 를 설치하자.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;hr /&gt;
+
+&lt;h5 id=&quot;서론&quot;&gt;서론&lt;/h5&gt;
 &lt;p&gt;그동안 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker&lt;/code&gt; 를 사용하여 웹 서버 개발을 하고 있었지만, Docker 공식 문서를 오랜만에 들어가보니 그곳에서 추구하는 개발-배포 flow 는 나의 그것과 사뭇 달랐다.&lt;/p&gt;
 
 &lt;p&gt;나의 방식보다 훨씬 깔끔하고 스마트했다. 그래서 한번 제대로 익혀놓고, 앞으로 이렇게 개발-배포 하자 라고 마음먹으며 이 글을 쓴다.&lt;/p&gt;
@@ -15,11 +18,11 @@
 
 &lt;p&gt;새로운 개발 배포 flow를 익히면서 중점적인 이슈로 둔 부분은 아래와 같다.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;초기구축 : 초기 서비스 그룹(DB, WAS, Web Server 등) 구축이 쉬운가&lt;/li&gt;
-  &lt;li&gt;스케일 조정 : Load Balancing 설정이 쉽고, Scale 조정이 쉬운가&lt;/li&gt;
-  &lt;li&gt;코드 배포 : 추후 앱의 로직 코드 변경시 배포가 편리한가&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;1. 초기구축 : 초기 서비스 그룹(DB, WAS, Web Server 등) 구축이 쉬운가&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. 스케일 조정 : Load Balancing 설정이 쉽고, Scale 조정이 쉬운가&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. 코드 배포 : 추후 앱의 로직 코드 변경시 배포가 편리한가&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;클라우드를 제공하는 AWS 나 AZURE 는 자신들이 만들어놓은 여러 제품들을 이용하면 위 세가지를 편리하게 실현할 수 있게 하였다. (AWS 의 ELB-elastic load balancer 를 이용하면 로드밸런싱이 쉽게 가능한 것 처럼 …)&lt;/p&gt;
 
@@ -101,14 +104,7 @@ rihwohkh3ph38fhillhhb84sk &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   myvm1
 
 &lt;p&gt;참고 3: &lt;a href=&quot;https://docs.docker.com/machine/drivers/&quot;&gt;Docker machine 에서 지원하는 가상머신 드라이버들&lt;/a&gt;&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;참고 4: [driver 란?&lt;/td&gt;
-      &lt;td&gt;Microsoft](https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;참고 4: &lt;a href=&quot;https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx&quot;&gt;driver 란?  Microsoft&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;1-2-docker-composeyml-로-stack-구성하고-실행&quot;&gt;1-2. &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 로 Stack 구성하고 실행&lt;/h3&gt;
 
@@ -190,20 +186,15 @@ rihwohkh3ph38fhillhhb84sk &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   myvm1
 
 &lt;p&gt;등이 필수적인 설정값인듯 하다.&lt;/p&gt;
 
+&lt;p&gt;참고로 docker swarm 을 이용해 개발-배포 한다면 network driver 의 기본 설정값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;overlay&lt;/code&gt; 이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;overlay&lt;/code&gt; 는 여러대의 docker-machine 에 나누어진 container들이 마치 하나의 network 상에 존재하는 것처럼 접속 가능하게 해준다.&lt;/p&gt;
+
 &lt;p&gt;참고 1 : &lt;a href=&quot;https://docs.docker.com/compose/compose-file/#network-configuration-reference&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;networks&lt;/code&gt; top-level key 설정 관하여&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;참고 2 : &lt;a href=&quot;https://docs.docker.com/compose/compose-file/#volume-configuration-reference&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;volumes&lt;/code&gt; top-level key 설정 관하여&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;참고 3 : &lt;a href=&quot;https://docs.docker.com/compose/compose-file/#deploy&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt; service-level key 설정 관하여&lt;/a&gt;&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;참고 4 : [driver 란?&lt;/td&gt;
-      &lt;td&gt;Microsoft](https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;참고 4 : &lt;a href=&quot;https://docs.docker.com/network/network-tutorial-overlay/&quot;&gt;Docker 의 overlay network 에 대하여&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;stack-실행하기&quot;&gt;Stack 실행하기&lt;/h4&gt;
 
