@@ -152,8 +152,8 @@ pre {
 
 <p>아래 그림처럼 Swarm 이 클라우드 서버 상의 두대의 Docker Machine 으로 구성되어 있다면, 우리가 제공하고자 하는 앱에 필요한 컨테이너들이 두 가상머신에 적절한 수로 배치된다.</p>
 
-<p>#### Manager node 와 Worker node
- Swarm 의 각 Docker Machine 들은 Node 라고 부르며, 하나의 Manager Node와 다수의 Worker Node 로 이루어져있다. 오직 Manager node 만이 다른 node 에 접근하고 제어할 수 있다. 우리는 이 모든 노드에 접속해 일일히 동작을 제어할 필요 없이, Manager Node 의 Shell 에 접속해서 마치 swarm 이 하나의 Docker 실행환경이라고 생각하고 docker 명령어를 실행하면 된다.</p>
+<h4 id="manager-node-와-worker-node">Manager node 와 Worker node</h4>
+<p>Swarm 의 각 Docker Machine 들은 Node 라고 부르며, 하나의 Manager Node와 다수의 Worker Node 로 이루어져있다. 오직 Manager node 만이 다른 node 에 접근하고 제어할 수 있다. 우리는 이 모든 노드에 접속해 일일히 동작을 제어할 필요 없이, Manager Node 의 Shell 에 접속해서 마치 swarm 이 하나의 Docker 실행환경이라고 생각하고 docker 명령어를 실행하면 된다.</p>
 
 <p><img src="https://docs.docker.com/get-started/images/visualizer-with-redis.png" alt="swarm" /></p>
 
