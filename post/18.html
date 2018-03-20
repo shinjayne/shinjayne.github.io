@@ -104,7 +104,10 @@ pre {
 </div>
 
 
-<div class="post container pt-5 " style = "max-width : 750px"><p>현재 개발중인 웹 앱 서비스에서 대규모 데이터베이스 쿼리 연산을 하던중 502 서버 에러를 마주했다. 그동안은 주먹구구식으로 구글링해가면서 문제가 생길 때마다 대충 해결하고 넘어갔지만, 이번 에러는 쉽게 해결되지 않았다. 그래서, 자세히 모르면서 그냥 사용해 온 Nginx Http Server 에 대해 자세히 알아보고, 에러가 발생하는 원인과 해결 방법을 스스로 찾을 수 있는 능력을 기르고자 <a href="http://nginx.org/en/docs/">Nginx 공식 Documentation</a> 을 정독한 후기를 작성하려 한다.</p>
+<div class="post container pt-5 " style = "max-width : 750px"><h4 id="notice">notice!</h4>
+<p><strong>유료 nginx가 아닌 opensource nginx documentation 을 참고했습니다. 그리고 CGI, WSGI 관련 내용이 부정확할 수 있습니다. 피드백 주시면 감사히 받겠습니다.</strong></p>
+
+<p>현재 개발중인 웹 앱 서비스에서 대규모 데이터베이스 쿼리 연산을 하던중 502 서버 에러를 마주했다. 그동안은 주먹구구식으로 구글링해가면서 문제가 생길 때마다 대충 해결하고 넘어갔지만, 이번 에러는 쉽게 해결되지 않았다. 그래서, 자세히 모르면서 그냥 사용해 온 Nginx Http Server 에 대해 자세히 알아보고, 에러가 발생하는 원인과 해결 방법을 스스로 찾을 수 있는 능력을 기르고자 <a href="http://nginx.org/en/docs/">Nginx 공식 Documentation</a> 을 정독한 후기를 작성하려 한다.</p>
 
 <h1 id="nginx-의-구조">nginx 의 구조</h1>
 <p>nginx 는 하나의 master process 와 여러 worker processes 로 이루어져있다.
