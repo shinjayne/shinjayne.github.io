@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>Jenkins on EC2 AWS | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <style>
+      body {font-family: 'Noto Sans Korean', sans-serif;font-weight: 350;padding-top: 50px;}
+      h1,h2,h3,h4,h5,h6 {font-weight : 800;color : #148b8e;}
+      .navbar, .nav {font-weight: 800;}
+      a {color : #90b3d8;}
+    </style>
+    <!--Tawk.to Script-->
+    <script src="/asset/static/tawk-chat-api.js"></script>
+  </head>
+  <body>
+
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover;">
+  <a class="navbar-brand" href="/">
+    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+/*post titles style*/
+.post h1,h2,h3,h4,h5,h6 {
+  color: #3f71f4;
+
+}
+.post h1 {font-size: 2.0rem;padding-top: 4.5rem;padding-bottom:1rem;}
+.post h2 {font-size: 1.7rem;}
+.post h3 {font-size: 1.6rem;}
+.post h4 {font-size: 1.4rem;}
+.post h5 {font-size: 1.2rem;}
+/*for image*/
+.post img {
+  max-width: 100%;
+  height: auto;
+  padding-top : 2rem ;
+  padding-bottom : 2rem;
+}
+
+/*for code highlighter*/
+pre {
+  background-color: #494b4c ;
+  border-radius: 6px;
+  padding: 10px;
+  color : #d0d7de;
+}
+
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/29/5.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.2rem;">Jenkins on EC2 AWS</h1>
+  <p class="card-text text-white"><p class="text-muted">infra | 13 July 2018</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-primary">CI/CD</a>
+    
+    <a href="#" class="badge badge-primary">automation</a>
+    
+    <a href="#" class="badge badge-primary">aws</a>
+    
+    <a href="#" class="badge badge-primary">jenkins</a>
+    
+    <a href="#" class="badge badge-primary">infra</a>
+    
+    <a href="#" class="badge badge-primary">ec2</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><h1 id="01--aws-ec2-instance-띄우기">01 : AWS EC2 instance 띄우기</h1>
+
+<p>ubuntu AMI 이용해서 진행하겠다.</p>
+
+<p>ssh 이용해서 EC2 instance 의 쉘로 진입한다.</p>
+
+<h1 id="02--ec2에-jenkins-구동-환경-조성">02 : EC2에 jenkins 구동 환경 조성</h1>
+
+<p>jenkins 는 다른 서버용 프로세스들과 마찬가지로 linux 에서 demon(service) 로 실행된다.</p>
+
+<p><a href="https://pkg.jenkins.io/debian-stable/">공식 홈페이지 ubuntu 다운로드 설명</a> 을 참조한다.</p>
+
+<h2 id="add-key-to-use-jenkins-debian-package-repo">add key to use jenkins` debian package repo</h2>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+</code></pre>
+</div>
+
+<h2 id="etcaptsourceslist-수정하기"><code class="highlighter-rouge">/etc/apt/sources.list:</code> 수정하기</h2>
+
+<p>아래 텍스트를 <code class="highlighter-rouge">/etc/apt/sources.list:</code> 에 추가한다. (<code class="highlighter-rouge">sudo vim</code> 을 사용해야 할 수도)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>deb https://pkg.jenkins.io/debian-stable binary/
+</code></pre>
+</div>
+
+<h2 id="java-7-또는-8-다운로드-java9-미지원">java 7 또는 8 다운로드 (java9 미지원)</h2>
+
+<p>jenkins 는 java 9 과 호환되지 않는다.</p>
+
+<p>java 를 설치해준다.</p>
+
+<p><a href="https://tecadmin.net/install-oracle-java-8-ubuntu-via-ppa/">이곳 링크</a> 에서 ubuntu 에 java 8을 설치하는 법을 자세하게 알려준다.</p>
+
+<h1 id="03--apt-get-에서-jenkins-download">03 : <code class="highlighter-rouge">apt-get</code> 에서 jenkins download</h1>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install jenkins  
+</code></pre>
+</div>
+
+<h1 id="04--jenkins-서버-service-demon-가동">04 : jenkins 서버 service (demon) 가동</h1>
+
+<p>아래의 명령어로 젠킨스를 실행시킨다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo service jenkins start
+</code></pre>
+</div>
+
+<p>이후 8080 포트로 웹 브라우저로 접속해 젠킨스 매니져에 진입한다.</p>
+
+<h1 id="05--pipeline-만들기">05 : pipeline 만들기</h1>
+
+<h2 id="새-프로젝트-new-pipeline-생성">새 프로젝트 (new pipeline) 생성</h2>
+
+<h4 id="주의">주의</h4>
+<p>프로젝트 명에 공백이 들어가면 안된다. 나중에 script 로 접근할 때 애먹는다.</p>
+
+<h4 id="순서">순서</h4>
+<ul>
+  <li>이름을 정한다.</li>
+  <li>“소스코드 관리 툴”에 GIT 을 선택하고 repository 에 github repo 주소를 적는다.</li>
+  <li>credential 을 새롭게 생성하고, github 아이디 비번을 저장한다.</li>
+  <li>“빌드 유발” 에서 GitHub hook trigger for GITScm polling 를 선택한다.</li>
+  <li>Github 에 푸시가 들어온 이후에 수행할 작업들을 “Build” 탭에 기술한다. (아래 사진 참조)
+<img src="/asset/media/image/post/29/1.png" alt="img" />
+—
+<img src="/asset/media/image/post/29/2.png" alt="img" /></li>
+</ul>
+
+<p>위에서 사용된 script 파일은 아래에 있다.</p>
+
+<h3 id="scripts">scripts</h3>
+
+<p>github 의 master branch 에 변경사항이 생기면 순차적으로 실행되는 두개의 script 이다.</p>
+
+<h4 id="script-1-build-pushsh">script 1: <code class="highlighter-rouge">build-push.sh</code></h4>
+
+<p>변경된 소스코드가 jenkins 에 의해 pull 되면 그 코드를 기반으로 docker image 를 새롭게 build 하고 docker hub 에 push 한다.</p>
+
+<p>docker hub 계정이 있어야한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+
+
+<span class="nv">USERNAME</span><span class="o">=</span>&lt;your username&gt;
+<span class="nv">PASSWORD</span><span class="o">=</span>&lt;your password&gt;
+<span class="nv">IMAGENAME</span><span class="o">=</span>&lt;choose your docker image name&gt;
+<span class="nv">DIR</span><span class="o">=</span>/var/lib/jenkins/workspace/&lt;pipeline-name&gt;/&lt;Dockerfile name&gt;
+
+
+sudo docker login -u <span class="nv">$USERNAME</span> -p <span class="nv">$PASSWORD</span>
+<span class="nb">echo</span> <span class="s2">"---LOGIN SUCCEEDED---"</span>
+sudo docker build -t <span class="nv">$USERNAME</span>/<span class="nv">$IMAGENAME</span> - &lt; <span class="nv">$DIR</span>
+<span class="nb">echo</span> <span class="s2">"---BUILD SUCCEEDED---"</span>
+sudo docker push <span class="nv">$USERNAME</span>/<span class="nv">$IMAGENAME</span>
+<span class="nb">echo</span> <span class="s2">"---PUSH SUCCEEDED---"</span>
+
+</code></pre>
+</div>
+<h5 id="tip--jenkins-에서-script-실행시-sudo-명령어-사용-가능하게-설정하는-법">TIP : jenkins 에서 script 실행시 sudo 명령어 사용 가능하게 설정하는 법</h5>
+
+<p><a href="https://gist.github.com/hayderimran7/9246dd195f785cf4783d">이 링크</a> 에 나와있는대로 조치하면 된다.</p>
+
+<h4 id="script-2-deploysh">script 2: <code class="highlighter-rouge">deploy.sh</code></h4>
+
+<p>docker hub 의 repository 에 푸시되어있는 새로운 도커 이미지를 원격의 웹서버에 접속해서 pull down 하는 script 이다.</p>
+
+<p>원격 서버의 key 파일을 jenkins 서버 안에 가지고 있어야한다.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#/bin/sh</span>
+
+<span class="nv">EC2_USER</span><span class="o">=</span>ubuntu
+<span class="nv">SERVICE_SERVER_IP</span><span class="o">=</span>&lt;ip adrress of your service server&gt;
+<span class="nv">KEY_DIR</span><span class="o">=</span> /key/jenkins-demo.pem
+
+
+ssh -i <span class="nv">$KEY_DIR</span> <span class="nv">$EC2_USER</span>@<span class="nv">$SERVICE_SERVER_IP</span> <span class="sh">&lt;&lt;EOF
+	DOCKER_USER=&lt;your username&gt;
+	DOCKER_PASSWORD=&lt;your password&gt;
+  IMAGENAME=&lt;choose your docker image name&gt;
+	CONTAINER=&lt;your container name&gt;
+
+	sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+	sudo docker pull $DOCKER_USER/$IMAGENAME
+
+	sudo docker stop $CONTAINER
+
+	sudo docker run -d --rm  --name $CONTAINER  $DOCKER_USER/$IMAGENAME
+
+EOF
+</span></code></pre>
+</div>
+
+<h1 id="06--github-에서-webhook-trigger-유발하게-설정하기">06 : Github 에서 Webhook Trigger 유발하게 설정하기</h1>
+
+<p>pipeline 에 연결된 github repository 로 가서 Setting 의 Webhooks 로 들어간다.</p>
+
+<p><img src="/asset/media/image/post/29/3.png" alt="" /></p>
+
+<p>여기서 Add Webhook 을 클릭하고</p>
+
+<p><img src="/asset/media/image/post/29/4.png" alt="" /></p>
+
+<p>jenkins 서버의 주소 끝에 <code class="highlighter-rouge">/github-Webhook/</code> 을 달아서 트리거 POST request 가 전송될 payload URL 로 지정해준다.</p>
+
+<p>그 아래에는 어떤 이벤트에서 트리거를 유발할 것인지 설정할 수 있다.</p>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div class="row">
+    <div class="col-5"> </div>
+    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
+    <div class="col-5"> </div>
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <!--Custom Javascript-->
+     <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
+    if (main_route == "post"){
+      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
+    }
+    else if(main_route == "project"){
+      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
+    }
+    else if(main_route == "profile"){
+      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
+    }
+    else{
+      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>
