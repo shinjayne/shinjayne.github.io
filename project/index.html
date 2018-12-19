@@ -9,14 +9,29 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/vs.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
-      body {font-family: 'Noto Sans Korean', sans-serif;font-weight: 350;padding-top: 50px;}
-      h1,h2,h3,h4,h5,h6 {font-weight : 800;color : #148b8e;}
-      .navbar, .nav {font-weight: 800;}
-      a {color : #90b3d8;}
+      body {
+        font-family: 'Noto Sans Korean', sans-serif;
+        font-weight: 350;
+        padding-top: 50px;
+      }
+      h1,h2,h3,h4,h5,h6 {
+        font-weight : 800;
+        color : #148b8e;
+      }
+      .navbar, .nav {
+        font-weight: 800;
+      }
+      a {
+        color : #90b3d8;
+      }
+
+      .jaynewho-shadow-effect {
+        box-shadow: 0px 0px 20px 11px rgba(0, 0, 0, 0.18);
+      }
     </style>
     <!--Tawk.to Script-->
     <script src="/asset/static/tawk-chat-api.js"></script>
@@ -25,10 +40,11 @@
 
     
 
-<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
-  background-size: cover;">
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1); background-color: white;">
+  <!-- background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover; -->
   <a class="navbar-brand" href="/">
-    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    <!-- <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px"> -->
     Jayne.who(<p id="logo_text" class="d-inline"></p>);
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,11 +65,12 @@
   </div>
 </nav>
 
-    <div class ="container mt-5">
-  <h2 class="text-center" style="color: #f43e30;">Projects</h2>
-  <p class="text-muted text-center"></p>
-  <hr  />
-</div>
+    <div style="width:100%; display:flex; flex-direction: column; align-items: center;">
+  <div class ="container mt-5">
+    <h2 class="text-center" style="color: #6f1c16;">Projects</h2>
+    <p class="text-muted text-center"></p>
+    <hr  />
+  </div>
 
   <div id="load-list">
   
@@ -84,13 +101,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('/asset/media/image/project/10/1.jpg');">
-    <a href="/project/10"><h1 class="card-title text-white" style="font-size : 1.8rem;">Tornado WS Json API Server Boilerplate</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">21 July 2018</div> -->
+  <div class="card-body" style="background-image:url('/asset/media/image/project/10/1.jpg'); border-radius: 5px;">
+    <!-- <a href="/project/10"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Tornado WS Json API Server Boilerplate</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 21 July 2018</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -117,7 +136,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -182,13 +201,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://velopert.com/wp-content/uploads/2016/03/react.png');">
-    <a href="/project/9"><h1 class="card-title text-white" style="font-size : 1.8rem;">Custom React Boilerplate</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">15 March 2018</div> -->
+  <div class="card-body" style="background-image:url('https://velopert.com/wp-content/uploads/2016/03/react.png'); border-radius: 5px;">
+    <!-- <a href="/project/9"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Custom React Boilerplate</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 15 March 2018</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -213,7 +234,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -278,13 +299,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://cdn-images-1.medium.com/max/1600/1*wNR-1xI8y5NDCwXvopG5GQ.png');">
-    <a href="/project/8"><h1 class="card-title text-white" style="font-size : 1.8rem;">Hey Snu 카카오톡 챗봇 with Firebase</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">01 March 2018</div> -->
+  <div class="card-body" style="background-image:url('https://cdn-images-1.medium.com/max/1600/1*wNR-1xI8y5NDCwXvopG5GQ.png'); border-radius: 5px;">
+    <!-- <a href="/project/8"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Hey Snu 카카오톡 챗봇 with Firebase</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 01 March 2018</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -307,7 +330,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -372,13 +395,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://assets.pcmag.com/media/images/519310-the-best-vps-hosting.jpg?thumb=y&width=810&height=456');">
-    <a href="/project/7"><h1 class="card-title text-white" style="font-size : 1.8rem;">서울대학교 gpud.snu.ac.kr 홈페이지 호스팅 작업</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">01 February 2018</div> -->
+  <div class="card-body" style="background-image:url('https://assets.pcmag.com/media/images/519310-the-best-vps-hosting.jpg?thumb=y&width=810&height=456'); border-radius: 5px;">
+    <!-- <a href="/project/7"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">서울대학교 gpud.snu.ac.kr 홈페이지 호스팅 작업</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 01 February 2018</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -399,7 +424,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -464,13 +489,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('/asset/media/image/project/2/header-image.png');">
-    <a href="/project/2"><h1 class="card-title text-white" style="font-size : 1.8rem;">Nextop Console : 물류 데이터 분석을 위한 웹앱</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">01 February 2018</div> -->
+  <div class="card-body" style="background-image:url('/asset/media/image/project/2/header-image.png'); border-radius: 5px;">
+    <!-- <a href="/project/2"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Nextop Console : 물류 데이터 분석을 위한 웹앱</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 01 February 2018</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -497,7 +524,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -562,13 +589,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('http://info-gate.net/wp-content/uploads/2013/03/banner2.jpg');">
-    <a href="/project/6"><h1 class="card-title text-white" style="font-size : 1.8rem;">서울대학교 ufc.snu.ac.kr 홈페이지 호스팅 작업</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">10 December 2017</div> -->
+  <div class="card-body" style="background-image:url('http://info-gate.net/wp-content/uploads/2013/03/banner2.jpg'); border-radius: 5px;">
+    <!-- <a href="/project/6"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">서울대학교 ufc.snu.ac.kr 홈페이지 호스팅 작업</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 10 December 2017</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -589,7 +618,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -654,13 +683,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2016/07/LSTM-Regression-Time-Steps-1.png');">
-    <a href="/project/5"><h1 class="card-title text-white" style="font-size : 1.8rem;">물류회사 파레트 수요 예측 알고리즘 (Nextop engine)</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">30 October 2017</div> -->
+  <div class="card-body" style="background-image:url('https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2016/07/LSTM-Regression-Time-Steps-1.png'); border-radius: 5px;">
+    <!-- <a href="/project/5"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">물류회사 파레트 수요 예측 알고리즘 (Nextop engine)</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 30 October 2017</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -683,7 +714,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -748,13 +779,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://cloud.google.com/blog/big-data/2016/07/images/146798944178238/neural-networks-10.png');">
-    <a href="/project/1"><h1 class="card-title text-white" style="font-size : 1.8rem;">Textboxes in Tensorflow</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">01 August 2017</div> -->
+  <div class="card-body" style="background-image:url('https://cloud.google.com/blog/big-data/2016/07/images/146798944178238/neural-networks-10.png'); border-radius: 5px;">
+    <!-- <a href="/project/1"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Textboxes in Tensorflow</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 01 August 2017</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -775,7 +808,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -840,13 +873,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a4/TensorFlowLogo.png');">
-    <a href="/project/3"><h1 class="card-title text-white" style="font-size : 1.8rem;">Bitcoin prediction Modeling in CNN, RNN</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">01 June 2017</div> -->
+  <div class="card-body" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/a4/TensorFlowLogo.png'); border-radius: 5px;">
+    <!-- <a href="/project/3"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Bitcoin prediction Modeling in CNN, RNN</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 01 June 2017</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -873,7 +908,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -938,13 +973,15 @@
 </style>
 
 
-<div class="card mx-auto text-center">
-  <div class="card-header">Project</div>
-  <div class="card-body" style="background-image:url('https://cdn-images-1.medium.com/max/2000/1*1zUrLyvIftWAGx19B2dpUQ.png');">
-    <a href="/project/4"><h1 class="card-title text-white" style="font-size : 1.8rem;">Static-Web Design with Jekyll blogging tool</h1></a>
+<div class="card mx-auto text-center jaynewho-shadow-effect">
+  <!-- <div class="card-header" style="height: 40px;">10 May 2017</div> -->
+  <div class="card-body" style="background-image:url('https://cdn-images-1.medium.com/max/2000/1*1zUrLyvIftWAGx19B2dpUQ.png'); border-radius: 5px;">
+    <!-- <a href="/project/4"> -->
+      <h1 class="card-title text-white" style="font-size : 1.4rem;">Static-Web Design with Jekyll blogging tool</h1>
+    <!-- </a> -->
     <!---p class="card-text text-secondary">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p-->
     <p class="card-text text-white">
-      <p class="text-muted"> | 10 May 2017</p>
+      <p class="text-muted"></p>
     </p>
     <p class="card-text text-white">
       Tags |
@@ -965,7 +1002,7 @@
   <div class="col" style="max-width:600px">
     <style>
 .card-side-info h1,h2,h3,h4,h5{
-  color: #f43e30;
+  color: #6f1c16;
 }
 </style>
 
@@ -1012,13 +1049,12 @@
 </button>
 
 
-
+</div>
     <div class ="container mt-5 mb-5">
   <hr  />
-  <div class="row">
-    <div class="col-5"> </div>
-    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
-    <div class="col-5"> </div>
+  <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
+    <img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px;">
+    
   </div>
 </div>
 
@@ -1037,22 +1073,22 @@
     navbar = $('#navbarbackground');
     logotext = $('#logo_text');
     if (main_route == "post"){
-      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      // navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
       logotext.text('post');
       logotext.attr('style',"color:#213b80;");
     }
     else if(main_route == "project"){
-      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      // navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
       logotext.text('project');
       logotext.attr('style',"color:#6f1c16;");
     }
     else if(main_route == "profile"){
-      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      // navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
       logotext.text('profile');
       logotext.attr('style',"color:#6849af;");
     }
     else{
-      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+      // navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
     }
   });
 </script>

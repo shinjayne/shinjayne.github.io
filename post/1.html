@@ -9,14 +9,29 @@
     <!--bootstrap CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/monokai.css" />
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/vs.css" />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
     <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
     <style>
-      body {font-family: 'Noto Sans Korean', sans-serif;font-weight: 350;padding-top: 50px;}
-      h1,h2,h3,h4,h5,h6 {font-weight : 800;color : #148b8e;}
-      .navbar, .nav {font-weight: 800;}
-      a {color : #90b3d8;}
+      body {
+        font-family: 'Noto Sans Korean', sans-serif;
+        font-weight: 350;
+        padding-top: 50px;
+      }
+      h1,h2,h3,h4,h5,h6 {
+        font-weight : 800;
+        color : #148b8e;
+      }
+      .navbar, .nav {
+        font-weight: 800;
+      }
+      a {
+        color : #90b3d8;
+      }
+
+      .jaynewho-shadow-effect {
+        box-shadow: 0px 0px 20px 11px rgba(0, 0, 0, 0.18);
+      }
     </style>
     <!--Tawk.to Script-->
     <script src="/asset/static/tawk-chat-api.js"></script>
@@ -25,10 +40,11 @@
 
     
 
-<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
-  background-size: cover;">
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1); background-color: white;">
+  <!-- background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover; -->
   <a class="navbar-brand" href="/">
-    <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px">
+    <!-- <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px"> -->
     Jayne.who(<p id="logo_text" class="d-inline"></p>);
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,27 +70,38 @@
 .post h1,h2,h3,h4,h5,h6 {
   font-weight: 700;
 }
-.post h1 {font-size: 1.7rem;padding-top: 4.5rem;padding-bottom:1rem; }
-.post h2 {font-size: 1.4rem; color:#355dcc;}
-.post h3 {font-size: 1.2rem; color:#294a9e;}
-.post h4 {font-size: 1.0rem;color:#1a2f66;}
-.post h5 {font-size: 1.2rem; color:#1a2f66;}
+.post h1 {font-size: 1.7rem;margin-top: 4.5rem; padding-bottom: 10px; margin-bottom:1rem;  color:#213b80; border-bottom: 1px solid #213b8026;}
+.post h2 {font-size: 1.4rem;margin-top: 3rem; color:#213b80;}
+.post h3 {font-size: 1.2rem;margin-top: 2rem;  color:#213b80;}
+.post h4 {font-size: 1.0rem;margin-top: 2rem; color:#213b80;}
+.post h5 {font-size: 0.9rem;margin-top: 1.5rem;  color:#213b80;}
 /*for image*/
 .post img {
   max-width: 100%;
   height: auto;
-  padding-top : 2rem ;
-  padding-bottom : 2rem;
+  margin-top : 2rem ;
+  margin-bottom : 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.18);
 }
 
 /*for code highlighter*/
 pre {
-  background-color: #494b4c ;
+  background-color: #dddddd8c ;
   border-radius: 6px;
   padding: 10px;
-  color : #d0d7de;
+  /* color : #d0d7de; */
 }
 
+/*for every text in different line*/
+p {
+  margin-bottom: 8px;
+}
+
+/*Table Form*/
+th{
+  white-space: nowrap;
+}
 
 </style>
 
@@ -1150,10 +1177,9 @@ print("\n\n accuracy : " , ac)
 
     <div class ="container mt-5 mb-5">
   <hr  />
-  <div class="row">
-    <div class="col-5"> </div>
-    <div class="col-2"><img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px; align-center"> </div>
-    <div class="col-5"> </div>
+  <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
+    <img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:10px;">
+    
   </div>
 </div>
 
@@ -1172,22 +1198,22 @@ print("\n\n accuracy : " , ac)
     navbar = $('#navbarbackground');
     logotext = $('#logo_text');
     if (main_route == "post"){
-      navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      // navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
       logotext.text('post');
       logotext.attr('style',"color:#213b80;");
     }
     else if(main_route == "project"){
-      navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      // navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
       logotext.text('project');
       logotext.attr('style',"color:#6f1c16;");
     }
     else if(main_route == "profile"){
-      navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      // navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
       logotext.text('profile');
       logotext.attr('style',"color:#6849af;");
     }
     else{
-      navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+      // navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
     }
   });
 </script>
