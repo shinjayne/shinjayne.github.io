@@ -1,4 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2018-12-26T20:59:09+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">How Great Leaders Inspire Actions?</title><link href="https://shinjayne.github.io/post/37" rel="alternate" type="text/html" title="How Great Leaders Inspire Actions?" /><published>2018-12-26T14:10:50+09:00</published><updated>2018-12-26T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/37</id><content type="html" xml:base="https://shinjayne.github.io/post/37">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2019-01-28T00:24:56+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">구글이 목표를 달성하는 방식, OKR</title><link href="https://shinjayne.github.io/post/38" rel="alternate" type="text/html" title="구글이 목표를 달성하는 방식, OKR" /><published>2019-01-27T21:30:50+09:00</published><updated>2019-01-27T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/38</id><content type="html" xml:base="https://shinjayne.github.io/post/38">&lt;blockquote&gt;
+  &lt;p&gt;최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했다. 하지만 바빠서 자세히 알아보지 못했다.&lt;/p&gt;
+
+  &lt;p&gt;오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었다. 그동안 목표 달성에 대한 갈증이 컸던 모양이다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었다. 아니, 사실 완전히 나를 매료시켜버렸다. 당장에라도 다음 분기 내 인생 계획에 오늘 얻은 OKR 탬플릿을 적용시켜 매 주를 보내고싶다.&lt;/p&gt;
+
+  &lt;p&gt;이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나간다. 나는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;OKR 탬플릿은 4개의 영역으로 나뉩니다. Objective 와 Key Results 를 설정하는 부분인 &lt;strong&gt;목표&lt;/strong&gt;, 목표를 달성하면서도 항상 점검해야할 항목들인 &lt;strong&gt;건전성&lt;/strong&gt;, 목표를 달성하기 위해 &lt;strong&gt;이번주 해야할 일&lt;/strong&gt;, 그리고 OKR 을 달성하면서 항상 인지하고 있어야 할 &lt;strong&gt;4주 내 향후 중요 이벤트&lt;/strong&gt; 입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/okr1.png&quot; alt=&quot;okr1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위의 그림에서 초록색 글씨는 한 분기에 한번 정하는 것이고, 붉은색 글씨는 매주 한번씩 수정하는 것입니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;목표&quot;&gt;목표&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/objective.png&quot; alt=&quot;objective&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;objective--key-results&quot;&gt;Objective &amp;amp; Key Results&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;목표&lt;/strong&gt; 칸에는 Objective &amp;amp; Key Results 를 적습니다. Objective 는 조금 추상적일수도 있는 이번 분기에 달성하고픈 목표이고, Key Results 는 그 목표의 달성 여부를 확인할 수 있는 수치들입니다. Key Results 를 모두 달성했다면 Objective 를 달성했다고 할 수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;자신감-지표&quot;&gt;자신감 지표&lt;/h2&gt;
+&lt;p&gt;Key Results 아래에는 매주 이 목표에 대한 달성 자신감을 0~10 사이의 정수로 나타냅니다. 처음 Key Results를 설정할 때에는, 지금 설정한 이 목표가 달성할 수 있을지, 못할지에 대한 확신이 5:5 여야 합니다. 너무 달성하기 쉬운 목표를 잡으면 의미가 없기 때문이죠. 따라서 분기 시작에 최초의 자신감은 5/10 으로 모두 적습니다. 한주 한주를 거듭하면서 자신감 지표는 업데이트 될 것이고, 목표를 향해 나아가는 팀원들에게 현재 팀 혹은 자신들의 상태를 알 수 있게 해주는 중요한 지표가 될 것입니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;건전성&quot;&gt;건전성&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/health.png&quot; alt=&quot;health&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;건전성&lt;/strong&gt;에는 OKR 달성을 위해 달려나가면서도, 중간 중간 점검해야 할 상태들입니다. 수치화해서 관리를 한다기보단, 매주 건전성 체크 목록에 있는 항목 중, 이번주에 점검해보면 좋겠다라고 꼽힌 2~3가지 정도를 팀이 함께 이야기하면서 현재 건전하게 지켜지고 있는지, 안되고 있다면 어떤 노력을 더 해야할지 정성적으로 이야기합니다.&lt;/p&gt;
+
+&lt;p&gt;이번 분기의 목표를 “고급스런 브랜드 인식 심어주기” 라고 잡았고, 목표를 향해 온 팀이 전념하다보면 자칫하면 코드의 건전성, 수익 구조 와 같은 팀의 건강함을 뒷받침하는 중요한 요소들을 놓칠 수 있습니다. 이런 항목들을 &lt;strong&gt;건전성&lt;/strong&gt; 칸에 배치해두고 매주 점검하는 것은 매우 중요한 일입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/bi-health-check.svg&quot; alt=&quot;bi-health-check&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;이번주-해야할-일&quot;&gt;이번주 해야할 일&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/week.png&quot; alt=&quot;week&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;이번주 해야할 일&lt;/strong&gt; 칸에는 이번 분기 목표를 달성하기 위해 이번주 해야할 아주 중요한 일들 3가지 만을 적습니다. 중요한 것은, 정보 공유의 목적이 아닌, 반드시 해내야 하는 일들에 대한 경각심을 주기 위한 리스트라는 것입니다. 자신이 무슨 일을 이번주에 집중하고 있는지 다른사람들에게 공유하기 위한 Todo 리스트가 아니기 때문에, 팀이 아무리 많은 일을 이번주에 진행하고 있다고 하더라도 반드시 해야 하는 중요한 3가지 일만 적습니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;4주-내-향후-중요-이벤트-알림&quot;&gt;4주 내 향후 중요 이벤트 알림&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/event.png&quot; alt=&quot;event&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4주 내 향후 중요 이벤트 알림&lt;/strong&gt; 칸은 정보 공유의 목적이 강합니다. 향후 4주 내로 큼지막하고 중요한 이벤트들을 매주 적어놓으면, 다른 부서의 누군가가 갑자기 특수한 요청을 해왔을 때 덜 당황할 수 있고, 다른 부서의 사람들이 요즘 무엇때문에 정신이 없고 매주 외근을 하는지 아는데에 도움이 됩니다.&lt;/p&gt;</content><author><name></name></author><category term="okr" /><category term="google" /><category term="book" /><category term="startup" /><summary type="html">최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했다. 하지만 바빠서 자세히 알아보지 못했다. 오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었다. 그동안 목표 달성에 대한 갈증이 컸던 모양이다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었다. 아니, 사실 완전히 나를 매료시켜버렸다. 당장에라도 다음 분기 내 인생 계획에 오늘 얻은 OKR 탬플릿을 적용시켜 매 주를 보내고싶다. 이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나간다. 나는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 한다.</summary></entry><entry><title type="html">How Great Leaders Inspire Actions?</title><link href="https://shinjayne.github.io/post/37" rel="alternate" type="text/html" title="How Great Leaders Inspire Actions?" /><published>2018-12-26T14:10:50+09:00</published><updated>2018-12-26T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/37</id><content type="html" xml:base="https://shinjayne.github.io/post/37">&lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action&quot;&gt;글 제목과 동명의 TED 영상을 시청 한 뒤, 내용을 정리한 글입니다.&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1184,113 +1228,4 @@ master process 는 configuration file 을 읽고 worker processes 를 관리한�
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="nginx" /><category term="proxy" /><category term="cgi" /><category term="http" /><category term="server" /><category term="loadbalance" /><category term="WAS" /><summary type="html">notice! 유료 nginx가 아닌 opensource nginx documentation 을 참고했습니다. 그리고 CGI, WSGI 관련 내용이 부정확할 수 있습니다. 피드백 주시면 감사히 받겠습니다.</summary></entry><entry><title type="html">Python 의 상속</title><link href="https://shinjayne.github.io/post/15" rel="alternate" type="text/html" title="Python 의 상속" /><published>2017-12-04T21:26:50+09:00</published><updated>2017-12-04T21:26:50+09:00</updated><id>https://shinjayne.github.io/post/15</id><content type="html" xml:base="https://shinjayne.github.io/post/15">&lt;p&gt;(예전에 적어두었던 글을 이제서야 올려본다)&lt;/p&gt;
-
-&lt;p&gt;python 의 상속에 대해 정리해보자.&lt;/p&gt;
-
-&lt;h1 id=&quot;강제상속--자동상속&quot;&gt;강제상속 ? 자동상속?&lt;/h1&gt;
-
-&lt;p&gt;강제상속 : 나에게 없을때, 부모클래스 namespace 로 거슬러 올라가 강제 사용&lt;/p&gt;
-
-&lt;p&gt;자동상속 : 내가 부모 클래스 메서드를 덮어썼지만, 부모클래스메서드를 사용하고 싶을 때 super(_&lt;em&gt;class_&lt;/em&gt;, self).method() 로 부모메서드 호출&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#자동상속&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#s1 은 __init__ 이 없어서 Base 것을 참조한다&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jayne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#강제상속&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;#s2 는 자체 __init__ 이 있어서 Base 것을 덮어쓴다. Base 것을 강제 이용하려면, super를 통해 강제상속시킬 수 있다.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jayne&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;182&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;다중상속시-super-는-누구것을-가져오나&quot;&gt;다중상속시 super 는 누구것을 가져오나?&lt;/h1&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tall&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;
-
-
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;위처럼 코드를 만들면, super는 누구의 init 메서드를 강제상속할까.&lt;/p&gt;
-
-&lt;p&gt;후보는 Sub1 과 Sub2 이다.&lt;/p&gt;
-
-&lt;p&gt;후보1 : Sub2 의 메서드를 강제 상속하므로 인자로 name, tall, age 모두 넘겨줘야한다.&lt;/p&gt;
-
-&lt;p&gt;후보2 : Sub1 의 메서드를 찾다가, Base 의 init 메서드를 강제상속해오므로, name 만 넘겨주면 된다.&lt;/p&gt;
-
-&lt;p&gt;이 답을 알아보는 방법은 help() 함수이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SubSub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;so&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Help on SubSub in module __main__ object:
-
-class SubSub(Sub1, Sub2)
- |  Method resolution order:
- |      SubSub
- |      Sub1
- |      Sub2
- |      Base
- |      builtins.object
- |  
- |  Methods defined here:
- |  
- |  __init__(self, name)
- |      Initialize self.  See help(type(self)) for accurate signature.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from Base:
- |  
- |  __dict__
- |      dictionary for instance variables (if defined)
- |  
- |  __weakref__
- |      list of weak references to the object (if defined)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Method resolution order 를 보면 알 있다.&lt;/p&gt;
-
-&lt;p&gt;SubSub 는 자신에게 메서드가 없을 때(자동상속)나 부모의 메서드를 super 로 가져올 때 (강제상속) 위의 ordering 을 따르므로&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;super().__init__()&lt;/code&gt; 을 호출 할 때에도, Sub1 에 &lt;code class=&quot;highlighter-rouge&quot;&gt;__init__&lt;/code&gt; 이 있기에  그 init 부터 가져와 사용하게 된다.&lt;/p&gt;
-
-&lt;h1 id=&quot;결론--모든것은-namespace-참조-순서에-달렸다&quot;&gt;결론 : 모든것은 namespace 참조 순서에 달렸다.&lt;/h1&gt;</content><author><name></name></author><category term="class" /><category term="python" /><category term="object" /><category term="namespace" /><category term="inheritance" /><summary type="html">(예전에 적어두었던 글을 이제서야 올려본다)</summary></entry></feed>
+&lt;/div&gt;</content><author><name></name></author><category term="nginx" /><category term="proxy" /><category term="cgi" /><category term="http" /><category term="server" /><category term="loadbalance" /><category term="WAS" /><summary type="html">notice! 유료 nginx가 아닌 opensource nginx documentation 을 참고했습니다. 그리고 CGI, WSGI 관련 내용이 부정확할 수 있습니다. 피드백 주시면 감사히 받겠습니다.</summary></entry></feed>
