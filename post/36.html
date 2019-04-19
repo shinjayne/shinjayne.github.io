@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+  <head>
+
+    <title>2018 webRTC 정리 | Jayne.who();</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/vs.css" />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <style>
+      body {
+        font-family: 'Noto Sans Korean', sans-serif;
+        font-weight: 350;
+        padding-top: 50px;
+      }
+      h1,h2,h3,h4,h5,h6 {
+        font-weight : 800;
+        color : #148b8e;
+      }
+      .navbar, .nav {
+        font-weight: 800;
+      }
+      a {
+        color : #90b3d8;
+      }
+
+      .jaynewho-shadow-effect {
+        box-shadow: 0px 0px 20px 11px rgba(0, 0, 0, 0.18);
+      }
+    </style>
+    <!--Tawk.to Script-->
+    <script src="/asset/static/tawk-chat-api.js"></script>
+  </head>
+  <body>
+
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1); background-color: white;">
+  <!-- background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover; -->
+  <a class="navbar-brand" href="/">
+    <!-- <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px"> -->
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+    <style>
+/*post titles style*/
+.post h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+}
+.post h1 {font-size: 1.7rem;margin-top: 4.5rem; padding-bottom: 10px; margin-bottom:1rem;  color:#213b80; border-bottom: 1px solid #213b8026;}
+.post h2 {font-size: 1.4rem;margin-top: 3rem; color:#213b80;}
+.post h3 {font-size: 1.2rem;margin-top: 2rem;  color:#213b80;}
+.post h4 {font-size: 1.0rem;margin-top: 2rem; color:#213b80;}
+.post h5 {font-size: 0.9rem;margin-top: 1.5rem;  color:#213b80;}
+/*for image*/
+.post img {
+  max-width: 100%;
+  height: auto;
+  margin-top : 2rem ;
+  margin-bottom : 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.18);
+}
+
+/*for code highlighter*/
+pre {
+  background-color: #dddddd8c ;
+  border-radius: 6px;
+  padding: 10px;
+  /* color : #d0d7de; */
+}
+
+/*for every text in different line*/
+p {
+  margin-bottom: 8px;
+}
+
+/*Table Form*/
+th{
+  white-space: nowrap;
+}
+
+/*blockquote*/
+blockquote{
+  background-color: #8080801c;
+  padding: 15px;
+  color: #000000a6;
+  font-size: 0.9rem;
+  font-weight: 300;  
+}
+
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/36/nature.png');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
+  <h1 class="card-title text-white" style="font-size : 2.2rem;">2018 webRTC 정리</h1>
+  <p class="card-text text-white"><p class="text-muted">web | 19 April 2019</p></p>
+  <p class="card-text text-white">
+    Tags |
+    
+    <a href="#" class="badge badge-primary">webrtc</a>
+    
+    <a href="#" class="badge badge-primary">js</a>
+    
+    <a href="#" class="badge badge-primary">p2p</a>
+    
+    <a href="#" class="badge badge-primary">frontend</a>
+    
+  </p>
+</div>
+
+
+<div class="post container pt-5 " style = "max-width : 750px"><blockquote>
+  <p>초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.</p>
+</blockquote>
+
+<h1 id="what-is-webrtc">What is <code class="highlighter-rouge">WebRTC</code>?</h1>
+<p>WebRTC 는 브라우저나 모바일 application 에서 Real Time Communication (RTC) 를 편리하게 할 수 있는 api 를 만들고자 하는 목적으로 시작된 프로젝트입니다. Open Project 이지만 (2018년 12월 기준) Google Chrome Team 의 주도로, Mozilla, Opera 등의 단체의 지원을 받으며 진행되고 있습니다.</p>
+
+<p>프로젝트의 진행 방식은, WebRTC API 최신 명세 (SPEC) 를 <code class="highlighter-rouge">WebRTC M{xx}</code> 와 같은 이름으로 공개하고, 거의 동시에 Chrome (혹은 Chrome Beta) 에 구현하여 릴리즈하는 것 같습니다. Opera, Safari, Firefox 등의 브라우저들은 이 공개된 명세에 발맞춰 따라옵니다.</p>
+
+<p>WebRTC 로 할 수 있는 일은 굉장히 많지만, 간단한 p2p 영상/음성 연결, p2p 데이터 교환 등에도 많이 쓰입니다.</p>
+
+<blockquote>
+  <p><a href="https://webrtc.org/">WebRTC 공식 홈페이지 webrtc.org 링크</a></p>
+</blockquote>
+
+<h1 id="webrtc-의-3가지-api"><code class="highlighter-rouge">WebRTC</code> 의 3가지 API</h1>
+
+<p>2018년 말인 현재, 대부분의 브라우저가 <code class="highlighter-rouge">webRTC</code> API 표준을 지원합니다.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">MediaStream</code> (<code class="highlighter-rouge">getUserMedia</code>)</li>
+  <li><code class="highlighter-rouge">RTCPeerConnection</code></li>
+  <li><code class="highlighter-rouge">RTCDataChannel</code></li>
+</ol>
+
+<h3 id="api-1-mediastream">API 1. <code class="highlighter-rouge">MediaStream</code></h3>
+<p>사용자의 카메라와 마이크 같은 곳의 데이터 스트림에 접근합니다.</p>
+
+<h3 id="api-2-rtcpeerconnection">API 2. <code class="highlighter-rouge">RTCPeerConnection</code></h3>
+<p>암호화 및 대역폭 관리를 하는 기능을 가지고 있고, 오디오 또는 비디오 연결을 합니다.</p>
+
+<h3 id="api-3-rtcdatachannel">API 3. <code class="highlighter-rouge">RTCDataChannel</code></h3>
+<p>일반적인 데이터 P2P통신</p>
+
+<h1 id="webrtc-application-이-수행하는-것"><code class="highlighter-rouge">webRTC</code> application 이 수행하는 것</h1>
+
+<ol>
+  <li>Streaming Data (Audio, Video, Text, Data) 를 수집합니다.
+    <ul>
+      <li>API : <code class="highlighter-rouge">MediaStream</code>, <code class="highlighter-rouge">getUserMedia</code></li>
+    </ul>
+  </li>
+  <li>IP주소, Port등의 네트워크 정보를 수집합니다. 그리고 그 정보를 다른 WebRTC Client (=Peer) 와 교환합니다.
+    <ul>
+      <li>No API offered</li>
+      <li>Need Signaling Server</li>
+    </ul>
+  </li>
+  <li>“Error Report”, “Session 초기화”, “Session 종료” 와 같은 신호 통신을 관리해야 합니다.
+    <ul>
+      <li>No API offered</li>
+      <li>Need Signaling Server</li>
+    </ul>
+  </li>
+  <li>해상도와 코덱들 같은 미디어와 클라이언트의 capabilty에 대한 정보를 교환합니다.
+    <ul>
+      <li>No API offered</li>
+      <li>Need Signaling Server</li>
+    </ul>
+  </li>
+  <li>스트리밍 오디오, 비디오 또는 데이터를 주고 받아야합니다.
+    <ul>
+      <li>API : <code class="highlighter-rouge">RTCPeerConnection</code>, <code class="highlighter-rouge">RTCDataChannel</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p>크게 나누면 다음과 같은 세단계로 볼 수 있습니다.</p>
+
+<p><strong>Fetching -&gt; Signaling -&gt; Connection &amp; Communication</strong></p>
+
+<p>이중 Fetching(1) 과 Connection &amp; Communication(5) 단계는 <code class="highlighter-rouge">webRTC</code> API 를 이용하지만, 가장 번거로운 Signaling 과정(2,3,4) 는 정작 <code class="highlighter-rouge">webRTC API</code> 로 명세되어있지 않습니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다.</p>
+
+<h2 id="signaling-stage">Signaling Stage</h2>
+
+<p>Signaling 단계는 서로 다른 두 peer (WebRTC Client) 가 Communication 하기 위한 준비단계로, 3가지 종류의 정보를 교환해야 합니다.</p>
+
+<ol>
+  <li>Network 정보를 교환합니다.
+    <ul>
+      <li>ICE Framework 를 사용해 find candidate =&gt; ip 와 port 를 찾는다</li>
+      <li>내 ip 와 port 정보</li>
+    </ul>
+  </li>
+  <li>Media Capability 를 교환합니다.
+    <ul>
+      <li>sdp (Session Description Protocol) 형식을 따르는 blob 인  <code class="highlighter-rouge">offer</code> 와 <code class="highlighter-rouge">answer</code> 를 주고 받으며 교환합니다.</li>
+      <li>내 브라우저와 상대 peer 브라우저가 사용 가능한 코덱들과 해상도들은 무엇일까</li>
+    </ul>
+  </li>
+  <li>Session Control Messages 교환합니다
+    <ul>
+      <li>Session (통신연결) 의 초기화,종료</li>
+      <li>Error Report</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="1-network-정보-ice-candidate-교환하기">1. Network 정보 (ICE Candidate) 교환하기</h3>
+
+<ol>
+  <li><code class="highlighter-rouge">RTCPeerConnection</code> Object 를 새롭게 생성하고 <code class="highlighter-rouge">RTCPeerConnection.onicecandidate</code> 핸들러를 통해 현재 내 client 의 Ice Candidate(Network 정보)  가 확보되면 실행될 callback 을 전달합니다.</li>
+  <li>Ice Candidate (내 네트워크 정보) 가 확보되면, Signaling Channel 을 통해 상대 peer 에게  serialized 된 ice candidate 정보를 전송합니다. (쌍방이 서로에게 합니다.)</li>
+  <li>상대 peer 의 candidate (네트워크 정보) 가 도착하면, <code class="highlighter-rouge">RTCPeerConnection.addIceCandidate</code> 를 통해 상대 peer 의 네트워크 정보를 등록합니다. (쌍방이 모두 합니다.)</li>
+</ol>
+
+<h3 id="2media-capability-교환하기--session-control-message-교환하기">2.Media Capability 교환하기 + Session Control Message 교환하기</h3>
+
+<blockquote>
+  <p>A 와 B 가 webRTC 통신을 하려고합니다. 각자 브라우저에서 <code class="highlighter-rouge">RTCPeerConnection</code> 객체를 가지고 있고, 서로의 네트워크 정보 (ice candidate) 를 교환 후 각자의 <code class="highlighter-rouge">RTCPeerConnection.addIceCandidate</code> 를 통해 서로의 네트워크 정보를 등록하였습니다.</p>
+</blockquote>
+
+<ol>
+  <li>B 가 <code class="highlighter-rouge">RTCPeerConnection.createOffer</code> 를 호출해 Offer SDP (Session Description Protocol) 을 생성합니다. 여기엔 내 브라우저에서 사용 가능한 코덱이나 해상도에 대한 정보가 들어있습니다.</li>
+  <li>B 가 Offer SDP 를 Signaling Channel 을 통해 전송합니다.</li>
+  <li>A 는 Signaling Channel 에서 Offer SDP 를 받아, <code class="highlighter-rouge">RTCPeerConnection.setRemoteDescription</code> 을 수행합니다.</li>
+  <li>A 의 <code class="highlighter-rouge">RTCPeerConnection</code> 객체는 상대 session 에 대한 정보를 알고 있게 되었고, <code class="highlighter-rouge">RTCPeerConnection.createAnswer</code> 를 호출하여 Answer SDP 를 생성하여 Signaling Channel 을 통해 B 에게 전달합니다.</li>
+  <li>B 도 마찬가지로 자신의 <code class="highlighter-rouge">RTCPeerConnection.setRemoteDescription</code> 을 호출해, 전달받은 Answer SDP 를 등록합니다.</li>
+  <li>A, B 각 측에서 <code class="highlighter-rouge">setRemoteDescription</code> 이 성공적으로 수행되었다면, 각 브라우저에서는 서로의 peer 에 대해 인지하고 있는 상태라고 할 수 있고, p2p 연결이 성공적으로 완료되었다고 할 수 있습니다.</li>
+</ol>
+
+<h2 id="communication-stage">Communication Stage</h2>
+<p>보통 webRTC 를 통해서 peer 와 peer 가 주고받는 데이터는 크게 아래의 두가지입니다.</p>
+<ol>
+  <li>video 나 audio 데이터 스트림</li>
+  <li>직렬화된 text 데이터</li>
+</ol>
+
+<p>교환의 양상은, 연결이 이루어지기 전에 데아터 stream 이나 채널을 미리 준비하고, 연결이 완료되면 데이터를 받았을 때의 callback 을 통해 받은 데이터를 처리합니다. 조금 더 자세한 내용은 아래와 같습니다.</p>
+
+<h4 id="1-video-나-audio-데이터-스트림-의-경우"><code class="highlighter-rouge">1. video 나 audio 데이터 스트림</code> 의 경우</h4>
+<p><strong>주는 입장</strong> : 자신의 머신에서  (<code class="highlighter-rouge">getUserMedia</code> 등의 api 를 통해) video/audio 스트림 source 를 취득해 <code class="highlighter-rouge">RTCPeerConnection</code> 을 생성할 당시에 <code class="highlighter-rouge">addTrack</code>(데이터 stream 채널을 연결) 해줍니다. Signaling 을 통해 connection 이 이루어지기 전에 미리 되어야합니다.</p>
+
+<p><strong>받는 입장</strong> : <code class="highlighter-rouge">RTCPeerConnection.ontrack</code> 의 callback 을 커스텀하게 설정해서, connection 이 성공적으로 이루어진 후에 상대방의 Track (video/audio stream) 이 감지되면 어떤 동작을 할지 설정할 수 있습니다. 보통 받은 track 의 데이터 스트림을 DOM 의 <code class="highlighter-rouge">&lt;video srcObject={??}/&gt;</code> element 에 연결해 보여줍니다.</p>
+
+<h4 id="2-직렬화된-text-데이터-의-경우"><code class="highlighter-rouge">2. 직렬화된 text 데이터</code> 의 경우</h4>
+<p><strong>주는 입장</strong> : <code class="highlighter-rouge">RTCPeerConnection.createDataChannel</code>  을 통해, 특정 이름의 data 전달 채널을 개설할 수 있습니다. 이 또한 Signaling 을 통해 connection 이 이루어지기 전에 미리 되어야합니다.</p>
+
+<p><strong>받는 입장</strong> : <code class="highlighter-rouge">RTCPeerConnection.ondatachannel</code> 의 callback 을 커스텀하게 설정해서, connection 이 성공적으로 이루어진 후에 상대방이 data channel 을 통해 어떤 데이터를 보냈을 때의 동작을 설정할 수 있습니다.</p>
+
+<h1 id="참고한-자료들">참고한 자료들</h1>
+<blockquote>
+  <p>Getting Started with webRTC : https://www.html5rocks.com/ko/tutorials/webrtc/basics/</p>
+</blockquote>
+</div>
+
+    <div class ="container mt-5 mb-5">
+  <hr  />
+  <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
+    <img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:50%;">
+    
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+     <!--Custom Javascript-->
+     <script src="/asset/static/post_load.js"></script>
+     <script src="/asset/static/post_table_generation.js"></script>
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
+    if (main_route == "post"){
+      // navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
+    }
+    else if(main_route == "project"){
+      // navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
+    }
+    else if(main_route == "profile"){
+      // navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
+    }
+    else{
+      // navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+
+     <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>
