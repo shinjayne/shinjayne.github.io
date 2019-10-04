@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2019-10-04T23:38:33+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">JPA 의 Fetch Type 과 친해지기</title><link href="https://shinjayne.github.io/post/39" rel="alternate" type="text/html" title="JPA 의 Fetch Type 과 친해지기" /><published>2019-08-06T21:30:50+09:00</published><updated>2019-08-06T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/39</id><content type="html" xml:base="https://shinjayne.github.io/post/39">&lt;p&gt;JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 &lt;strong&gt;Fetch Type (Fetch 전략)&lt;/strong&gt; 입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2019-10-04T23:48:14+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">JPA 의 Fetch Type 과 친해지기</title><link href="https://shinjayne.github.io/post/39" rel="alternate" type="text/html" title="JPA 의 Fetch Type 과 친해지기" /><published>2019-08-06T21:30:50+09:00</published><updated>2019-08-06T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/39</id><content type="html" xml:base="https://shinjayne.github.io/post/39">&lt;p&gt;JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 &lt;strong&gt;Fetch Type (Fetch 전략)&lt;/strong&gt; 입니다.&lt;/p&gt;
 
 &lt;p&gt;Fetch Type 속성은 언제 동작하고 어떻게 동작하는지, 그리고 어떨 때 Fetch Type 때문에 N+1 문제가 발생하는지, 또 어떻게 해결하는지 알아봅니다.&lt;/p&gt;
 
@@ -83,7 +83,28 @@ from order;
 
 &lt;p&gt;위의 쿼리 결과가 아래와 같다고 합니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.notion.so/91b298f03bb24afd94429e6b68c22cac&quot;&gt;Untitled&lt;/a&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;order.id&lt;/th&gt;
+      &lt;th&gt;order.member_id&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1001&lt;/td&gt;
+      &lt;td&gt;999&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1002&lt;/td&gt;
+      &lt;td&gt;888&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1003&lt;/td&gt;
+      &lt;td&gt;777&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;order 에 대한 for 문이 돌면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;order.getMember&lt;/code&gt; 를 호출했다고 합시다. 그럼 아래와 같이 3번의 쿼리가 더 발생할 것입니다.&lt;/p&gt;
 
@@ -158,7 +179,7 @@ from member;
 
 &lt;p&gt;JPA Entity Manager 에 의해 관리되는 Persistence Context 에 Entity 가 Managed 상태로 올라올 때의 동작입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;persistancecontext-60e19c7b-91e5-496e-b75c-0310d2cc231c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/39/39-persist-context.png&quot; alt=&quot;39-persist-context&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;queryDSL 과 같은 쿼리 빌더를 이용해 아무리 Join 문을 짜도, (Fetch Join 을 하지 않는 이상) 메인 도메인의 엔티티만 Persistence Context 에 올라옵니다. 연관관계에 대한 Fetch 도 메인 도메인만 일어납니다.&lt;/p&gt;
 

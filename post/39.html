@@ -235,7 +235,7 @@
     }
 </style>
 
-<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/38/okr2.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/39/39-1.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
     <a href="/post/">
         <p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p>
     </a>
@@ -337,7 +337,28 @@ from order;
 
 <p>위의 쿼리 결과가 아래와 같다고 합니다.</p>
 
-<p><a href="https://www.notion.so/91b298f03bb24afd94429e6b68c22cac">Untitled</a></p>
+<table>
+  <thead>
+    <tr>
+      <th>order.id</th>
+      <th>order.member_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1001</td>
+      <td>999</td>
+    </tr>
+    <tr>
+      <td>1002</td>
+      <td>888</td>
+    </tr>
+    <tr>
+      <td>1003</td>
+      <td>777</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>order 에 대한 for 문이 돌면서 <code class="highlighter-rouge">order.getMember</code> 를 호출했다고 합시다. 그럼 아래와 같이 3번의 쿼리가 더 발생할 것입니다.</p>
 
@@ -412,7 +433,7 @@ from member;
 
 <p>JPA Entity Manager 에 의해 관리되는 Persistence Context 에 Entity 가 Managed 상태로 올라올 때의 동작입니다.</p>
 
-<p><img src="persistancecontext-60e19c7b-91e5-496e-b75c-0310d2cc231c.png" alt="" /></p>
+<p><img src="/asset/media/image/post/39/39-persist-context.png" alt="39-persist-context" /></p>
 
 <p>queryDSL 과 같은 쿼리 빌더를 이용해 아무리 Join 문을 짜도, (Fetch Join 을 하지 않는 이상) 메인 도메인의 엔티티만 Persistence Context 에 올라옵니다. 연관관계에 대한 Fetch 도 메인 도메인만 일어납니다.</p>
 
