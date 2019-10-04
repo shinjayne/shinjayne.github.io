@@ -1,32 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-
     <title>구글이 목표를 달성하는 방식, OKR | Jayne.who();</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <!--bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous"
+    />
     <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
-    <link rel="stylesheet" href="/asset/static/pygments-codehighlight-css/vs.css" />
+    <link
+      rel="stylesheet"
+      href="/asset/static/pygments-codehighlight-css/vs.css"
+    />
     <link rel="stylesheet" href="/asset/static/post_load.css" />
-    <link rel="stylesheet" href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css" />
+    <link
+      rel="stylesheet"
+      href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/asset/static/font/stylesheets/Chosunilbo_myungjo.css"
+    />
     <style>
       body {
-        font-family: 'Noto Sans Korean', sans-serif;
+        font-family:'Arita-buri-SemiBold', "Noto Sans Korean", sans-serif;
         font-weight: 350;
         padding-top: 50px;
       }
-      h1,h2,h3,h4,h5,h6 {
-        font-weight : 800;
-        color : #148b8e;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 800;
+        color: #148b8e;
       }
-      .navbar, .nav {
+      .navbar,
+      .nav {
         font-weight: 800;
       }
       a {
-        color : #90b3d8;
+        color: #90b3d8;
       }
 
       .jaynewho-shadow-effect {
@@ -37,7 +60,6 @@
     <script src="/asset/static/tawk-chat-api.js"></script>
   </head>
   <body>
-
     
 
 <nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1); background-color: white;">
@@ -66,80 +88,176 @@
 </nav>
 
     <style>
-/*post titles style*/
-.post h1,h2,h3,h4,h5,h6 {
-  font-weight: 700;
-}
-.post h1 {font-size: 1.7rem;margin-top: 4.5rem; padding-bottom: 10px; margin-bottom:1rem;  color:#213b80; border-bottom: 1px solid #213b8026;}
-.post h2 {font-size: 1.4rem;margin-top: 3rem; color:#213b80;}
-.post h3 {font-size: 1.2rem;margin-top: 2rem;  color:#213b80;}
-.post h4 {font-size: 1.0rem;margin-top: 2rem; color:#213b80;}
-.post h5 {font-size: 0.9rem;margin-top: 1.5rem;  color:#213b80;}
-/*for image*/
-.post img {
-  max-width: 100%;
-  height: auto;
-  margin-top : 2rem ;
-  margin-bottom : 2rem;
-  border-radius: 5px;
-  box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.18);
-}
+/** title design */
+    .card-title, .card-text, .text-muted {
+        font-family: 'Arita-buri-SemiBold','Chosunilbo_myungjo', "Noto Sans Korean", sans-serif;
+    }
+    .card-text .badge {
+        font-family: "Noto Sans Korean", sans-serif;
+    }
 
-/*for code highlighter*/
-pre {
-  background-color: #dddddd8c ;
-  border-radius: 6px;
-  padding: 10px;
-  /* color : #d0d7de; */
-}
+    /**
+    Post Font Style
+    */
+    .post {
 
-/*for every text in different line*/
-p {
-  margin-bottom: 8px;
-}
+        font-family:  'Chosunilbo_myungjo', "Noto Sans Korean", sans-serif;
+        letter-spacing: -0.004em;
+        line-height: 1.58;
+        font-size: 17px;
+    }
+    /*for every text in different line
+    문단간격
+    */
+    
+    p {
+        margin-bottom: 17px;
+    }
+    /**
+     강조 텍스트 
+    */
+    p strong {
+        background-color: #d6e8fb;
+    }
 
-/*Table Form*/
-th{
-  white-space: nowrap;
-}
+    /*post titles style*/
+    
+    .post h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 700;
+        color: #213b80;
+    }
+    
+    .post h1 {
+        font-size: 1.6rem;
+        margin-top: 4.5rem;
+        padding-bottom: 10px;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #213b8026;
+    }
+    
+    .post h2 {
+        font-size: 1.4rem;
+        margin-top: 3rem;
+    
+    }
+    
+    .post h3 {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+    
+    }
+    
+    .post h4 {
+        font-size: 1.0rem;
+        margin-top: 2rem;
 
-/*blockquote*/
-blockquote{
-  background-color: #8080801c;
-  padding: 15px;
-  color: #000000a6;
-  font-size: 0.9rem;
-  font-weight: 300;  
-}
+    }
+    
+    .post h5 {
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+    
+    }
+    
+    /*for image*/
+    .post img {
+        width: 76%;
+        max-width: 100%;
+        height: auto;
+        margin-left: 12%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.18);
+    }
+    /*for code highlighter*/
+    
+    pre {
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+        border-radius: 6px;
+        padding: 10px;
+        /* color : #d0d7de; */
+    }
 
+    /*Table Form*/
+    
+    th {
+        white-space: nowrap;
+    }
+    /*blockquote*/
+    
+    blockquote {
+        /* background-color: #8080801c; */
+        padding: 18px;
+        border-left: 1px solid #000000a6;
+        color: #000000a6;
+    }
+
+    /**
+    for mobile design 
+    */
+
+    @media (max-width: 728px)  {
+        .post {
+            font-size: 15px;    
+        }
+        .p {
+            margin-bottom: 15px;
+        }
+        .post h1 {
+            font-size: 21px;
+        }
+                .post h2 {
+            font-size: 19px;
+        }
+                .post h3 {
+            font-size: 18px;
+        }
+                .post h4 {
+            font-size: 17px;
+        }
+                .post h5 {
+            font-size: 16px;
+        }
+        .post img {
+            width: 100%;
+            max-width: 100%;
+            margin-left:0;
+        }
+
+        
+    }
 </style>
 
 <div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/38/okr2.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
-  <a href="/post/"><p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p></a>
-  <h1 class="card-title text-white" style="font-size : 2.2rem;">구글이 목표를 달성하는 방식, OKR</h1>
-  <p class="card-text text-white"><p class="text-muted">idea | 27 January 2019</p></p>
-  <p class="card-text text-white">
-    Tags |
-    
-    <a href="#" class="badge badge-primary">okr</a>
-    
-    <a href="#" class="badge badge-primary">google</a>
-    
-    <a href="#" class="badge badge-primary">book</a>
-    
-    <a href="#" class="badge badge-primary">startup</a>
-    
-  </p>
+    <a href="/post/">
+        <p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p>
+    </a>
+    <h1 class="card-title text-white" style="font-size : 2.2rem;">구글이 목표를 달성하는 방식, OKR</h1>
+    <p class="card-text text-white">
+        <p class="text-muted">idea | 27 January 2019</p>
+    </p>
+    <p class="card-text text-white">
+        Tags | 
+        <a href="#" class="badge badge-primary">okr</a> 
+        <a href="#" class="badge badge-primary">google</a> 
+        <a href="#" class="badge badge-primary">book</a> 
+        <a href="#" class="badge badge-primary">startup</a> 
+    </p>
 </div>
 
 
-<div class="post container pt-5 " style = "max-width : 750px"><blockquote>
-  <p>최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했다. 하지만 바빠서 자세히 알아보지 못했다.</p>
+<div class="post container pt-5 " style="max-width : 750px"><p>최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았습니다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었습니다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했습니다. 하지만 바빠서 자세히 알아보지 못했습니다.</p>
 
-  <p>오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었다. 그동안 목표 달성에 대한 갈증이 컸던 모양이다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었다. 아니, 사실 완전히 나를 매료시켜버렸다. 당장에라도 다음 분기 내 인생 계획에 오늘 얻은 OKR 탬플릿을 적용시켜 매 주를 보내고싶다.</p>
+<p>오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었습니다. 그동안 목표 달성에 대한 갈증이 컸던 모양입니다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었습니다.</p>
 
-  <p>이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나간다. 나는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 한다.</p>
-</blockquote>
+<p>이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나갑니다. 이 글에서는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 합니다.</p>
 
 <h1 id="okr-전략이-필요한-이유--황금-사과-이야기">OKR 전략이 필요한 이유 : 황금 사과 이야기</h1>
 <p>책에서 굉장히 인상깊게 읽은 이야기가 있었습니다. 어릴적 한번씩 읽어봤을만한 고대 그리스 로마 신화의 “황금 사과 이야기” 인데, 이 책에서는 OKR 과 같은 목표 달성 전략이 작은 스타트업이나 큰 기업에 왜 필요한지를 설명하기 위해 이 이야기를 소개하고 있습니다.</p>
@@ -190,8 +308,6 @@ blockquote{
 
 <p>이번 분기의 목표를 “고급스런 브랜드 인식 심어주기” 라고 잡았고, 목표를 향해 온 팀이 전념하다보면 자칫하면 코드의 건전성, 수익 구조 와 같은 팀의 건강함을 뒷받침하는 중요한 요소들을 놓칠 수 있습니다. 이런 항목들을 <strong>건전성</strong> 칸에 배치해두고 매주 점검하는 것은 매우 중요한 일입니다.</p>
 
-<p><img src="/asset/media/image/post/38/bi-health-check.svg" alt="bi-health-check" /></p>
-
 <h1 id="이번주-해야할-일">이번주 해야할 일</h1>
 
 <p><img src="/asset/media/image/post/38/week.png" alt="week" /></p>
@@ -205,7 +321,6 @@ blockquote{
 <p><strong>4주 내 향후 중요 이벤트 알림</strong> 칸은 정보 공유의 목적이 강합니다. 향후 4주 내로 큼지막하고 중요한 이벤트들을 매주 적어놓으면, 다른 부서의 누군가가 갑자기 특수한 요청을 해왔을 때 덜 당황할 수 있고, 다른 부서의 사람들이 요즘 무엇때문에 정신이 없고 매주 외근을 하는지 아는데에 도움이 됩니다.</p>
 
 </div>
-
     <div class ="container mt-5 mb-5">
   <hr  />
   <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
@@ -216,13 +331,25 @@ blockquote{
 
 
     <!--bootstrap Javascript-->
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-     <!--Custom Javascript-->
-     <script src="/asset/static/post_load.js"></script>
-     <script src="/asset/static/post_table_generation.js"></script>
-     <script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"
+    ></script>
+    <!--Custom Javascript-->
+    <script src="/asset/static/post_load.js"></script>
+    <script src="/asset/static/post_table_generation.js"></script>
+    <script>
   $(document).ready(function() {
     var main_route = (window.location.pathname.split("/")[1]);
     $('#navbar_' + main_route).addClass('active');
@@ -248,8 +375,7 @@ blockquote{
     }
   });
 </script>
-
-     <script>
+ <script>
   $(document).ready(function() {
     var main_route = (window.location.pathname.split("/")[2]);
     $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');

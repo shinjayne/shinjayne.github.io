@@ -1,4 +1,219 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2019-04-19T17:55:04+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">2018 webRTC 정리</title><link href="https://shinjayne.github.io/post/36" rel="alternate" type="text/html" title="2018 webRTC 정리" /><published>2019-04-19T14:10:50+09:00</published><updated>2019-04-19T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/36</id><content type="html" xml:base="https://shinjayne.github.io/post/36">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2019-10-04T23:38:33+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">JPA 의 Fetch Type 과 친해지기</title><link href="https://shinjayne.github.io/post/39" rel="alternate" type="text/html" title="JPA 의 Fetch Type 과 친해지기" /><published>2019-08-06T21:30:50+09:00</published><updated>2019-08-06T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/39</id><content type="html" xml:base="https://shinjayne.github.io/post/39">&lt;p&gt;JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 &lt;strong&gt;Fetch Type (Fetch 전략)&lt;/strong&gt; 입니다.&lt;/p&gt;
+
+&lt;p&gt;Fetch Type 속성은 언제 동작하고 어떻게 동작하는지, 그리고 어떨 때 Fetch Type 때문에 N+1 문제가 발생하는지, 또 어떻게 해결하는지 알아봅니다.&lt;/p&gt;
+
+&lt;p&gt;추가적으로, 이상하게 동작하는 OneToOne 의 FetchType LAZY 설정도 짚고 넘어갑니다.&lt;/p&gt;
+
+&lt;p&gt;이 글을 이끌어가는데 도움을 주는 두 엔티티를 소개합니다. “주문” 과 “멤버” 라는 친구들입니다. 주문과 멤버는 N:1 의 관계에 있습니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 주문 엔티티&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;order&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Order&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;member_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 멤버 엔티티&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;member&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@OneToMany&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HashSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;fetch-type-이란&quot;&gt;Fetch Type 이란&lt;/h1&gt;
+
+&lt;p&gt;Fetch Type 은 JPA 가 하나의 Entity 를 조회할 때, 연관관계에 있는 객체들을 어떻게 가져올 것이냐를 나타내는 설정값입니다.&lt;/p&gt;
+
+&lt;p&gt;Fetch Type 은 크게 Eager 와 Lazy 두가지 전략이 있습니다. Fetch Type Issue 상황이라는 것은 하나의 Entity 를 로드할 때, 아래의 두가지 전략 중 고민하는 상황을 말합니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;연관 관계에 있는 Entity 들 모두 가져온다 → Eager 전략&lt;/li&gt;
+  &lt;li&gt;연관 관계에 있는 Entity 가져오지 않고, getter 로 접근할 때 가져온다 → Lazy 전략&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;fetch-type-어떻게-동작할까요&quot;&gt;Fetch Type 어떻게 동작할까요?&lt;/h1&gt;
+
+&lt;h2 id=&quot;manytoone-컬럼-있을-때-주인일-때&quot;&gt;ManyToOne 컬럼 있을 때 (주인일 때)&lt;/h2&gt;
+
+&lt;p&gt;Order Entity 는 단일 Member Entity 를 가지는 ManyToOne 컬럼이 있습니다. ( member 의 PK 가 Foreign Key 로 실제로 order DB컬럼에 매핑되어있으므로 Order 가 주인입니다. )&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ManyToOne 의 기본 FetchType 은 EAGER 입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;fetchtypeeager-기본&quot;&gt;FetchType=EAGER &lt;code class=&quot;highlighter-rouge&quot;&gt;기본&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;아래와같이, Join 을 통해 한번에 모든 쿼리를 가져옵니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select
+	order.id,
+	order.member_id,
+	member.id,
+	member.name
+from order
+outer join member
+	on order.member_id=member.id;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;order 에 대한 for 문이 돌면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;order.getMember&lt;/code&gt; 를 호출했다고 합시다.&lt;/p&gt;
+
+&lt;p&gt;이미 member 관련 정보가 Entity Manager 에 캐싱이 되어있기 때문에 추가적인 쿼리는 나가지 않을 것입니다.&lt;/p&gt;
+
+&lt;h3 id=&quot;fetchtypelazy&quot;&gt;FetchType=LAZY&lt;/h3&gt;
+
+&lt;p&gt;Order List 를 가져오는 상황에서 &lt;strong&gt;N+1 Problem 이 발생할 수 있습니다&lt;/strong&gt;. Order List 를 불러온 뒤, 각 Member 에 대해 무언가를 하는 For Loop 가 코드에 있다면 말입니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select
+	order.id,
+	order.member_id
+from order;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;위의 쿼리 결과가 아래와 같다고 합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.notion.so/91b298f03bb24afd94429e6b68c22cac&quot;&gt;Untitled&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;order 에 대한 for 문이 돌면서 &lt;code class=&quot;highlighter-rouge&quot;&gt;order.getMember&lt;/code&gt; 를 호출했다고 합시다. 그럼 아래와 같이 3번의 쿼리가 더 발생할 것입니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select
+	member.id,
+	member.name
+from member
+where member.id=999;
+
+select
+	member.id,
+	member.name
+from member
+where member.id=888;
+
+select
+	member.id,
+	member.name
+from member
+where member.id=777;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;onetomany-컬럼-있을-때-종일-때&quot;&gt;OneToMany 컬럼 있을 때 (종일 때)&lt;/h2&gt;
+
+&lt;p&gt;Member Entity 에는 Order Entity Collection (List 혹은 Set) 을 가지는 OneToMany 컬럼이 있습니다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OneToMany 의 기본 FetchType 은 LAZY 입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;fetchtypeeager&quot;&gt;FetchType=EAGER&lt;/h3&gt;
+
+&lt;p&gt;Member List 를 가져오려고 해봅시다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select
+	member.id,
+	member.name
+from member;
+
+// member 가 2개 라면
+// order set 땡겨오는 쿼리도 바로 2번 날라갑니다.
+
+select
+	order.id,
+	order.member_id
+from order
+where member_id=999;
+
+select
+	order.id,
+	order.member_id
+from order
+where member_id=888;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;member 를 가져오는 동시에 쿼리가 2방 더 날라갑니다. (이를 한번의 쿼리로 해결하려면 직접 JPQL 을 작성하거나 Query Builder 를 이용해 Fetch Join 을 해야합니다.)&lt;/p&gt;
+
+&lt;h3 id=&quot;fetchtypelazy-기본&quot;&gt;FetchType=LAZY &lt;code class=&quot;highlighter-rouge&quot;&gt;기본&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Member List 를 가져오려고 해봅시다. 한번의 쿼리만 날라갑니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select
+	member.id,
+	member.name
+from member;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;fetchtype-이-동작하는-시점&quot;&gt;FetchType 이 동작하는 시점&lt;/h1&gt;
+
+&lt;p&gt;JPA Entity Manager 에 의해 관리되는 Persistence Context 에 Entity 가 Managed 상태로 올라올 때의 동작입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;persistancecontext-60e19c7b-91e5-496e-b75c-0310d2cc231c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;queryDSL 과 같은 쿼리 빌더를 이용해 아무리 Join 문을 짜도, (Fetch Join 을 하지 않는 이상) 메인 도메인의 엔티티만 Persistence Context 에 올라옵니다. 연관관계에 대한 Fetch 도 메인 도메인만 일어납니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;n1-문제는-이럴-때-발생합니다&quot;&gt;N+1 문제는 이럴 때 발생합니다.&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;ManyToOne, OneToOne 컬럼의 FetchType 을 LAZY 로 하였을 경우 발생합니다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;n1-은-어떻게-해결할까요&quot;&gt;N+1 은 어떻게 해결할까요?&lt;/h2&gt;
+
+&lt;p&gt;N+1 이 발생하는 Entity 연관관계를 발견하였다면, 한 Entity 가 Managed 상태로 올라올 때, N+1 문제를 일으키는 Entity Collections 들도 동시에 Managed 상태로 올라오게 하면 됩니다.&lt;/p&gt;
+
+&lt;p&gt;지금까지 크게 3가지 방법을 발견했습니다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;JPQL 의 Fetch Join 을 이용합니다. (QueryDSL 과 같은 쿼리빌더의 도움을 받을 수도 있습니다.)&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ManyToOne, OneToOne 의 FetchType = LAZY → EAGER 로 변경합니다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@EntityGraph&lt;/code&gt; 를 이용해, 한 쿼리에 대해서만 EAGER load 를 지정합니다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;onetoone-의-fetchtype-lazy-는-사용자가-의도한대로-동작하지-않습니다&quot;&gt;OneToOne 의 FetchType LAZY 는 사용자가 의도한대로 동작하지 않습니다.&lt;/h1&gt;
+
+&lt;p&gt;OneToOne 컬럼의 FetchType=LAZY 는 사용자가 의도한대로 동작하지도 않습니다! 아래의 글을 보시죠.&lt;/p&gt;
+
+&lt;p&gt;OneToOne 의 FetchType=LAZY 는 컬럼을 조회하지 않아도 무조건 쿼리가 날라갑니다. 1번 날라갈 쿼리를 무조건 날라가는 2번의 쿼리로 바꿔치기 하는 셈 뿐입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://wonwoo.ml/index.php/post/1566&quot;&gt;hibernate OneToOne lazy 구현하기&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;query-builder-를-이용하는-경우-onetoone-은-fetch-join-걸어주는게-좋습니다&quot;&gt;Query Builder 를 이용하는 경우, OneToOne 은 Fetch Join 걸어주는게 좋습니다.&lt;/h1&gt;
+
+&lt;p&gt;쿼리 빌더를 이용해서 Order List 를 가져오는 쿼리를 짠다고 합시다. 예를 들면 queryDSL 기준으로 아래와 같이 짭니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;List&amp;lt;Order&amp;gt; orders = jpaQueryFactory.select(qOrder).from(qOrder).fetch();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;개발자는 Order 의 Member 연관관계가 FetchType EAGER 로 설정되어있으므로, Order 와 Member 를 조인에서 한번에 가져와주는 쿼리가 나가길 기대할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;하지만 쿼리 빌더를 이용하면, 사실 순수한 Order 에 대한 쿼리만 나가는 경우가 많습니다. 아래와 같이 말이죠.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;select
+	order.id,
+	order.member_id
+from order;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이렇게 쿼리가 나가면, 복수개의 Order Entity 가 영속성 컨텍스트로 로드될 때 EAGER 로 설정된 Member 연관관계의 Fetch Type 이 동작하여 바로 N개의 단일 Member 쿼리가 나가게 됩니다. (FetchType 이 동작하는 시점은 영속성 컨텍스트로 로드될 때입니다.)&lt;/p&gt;
+
+&lt;p&gt;따라서 Query Builder 를 이용해 JPQL 쿼리를 직접 작성할 경우, One To One 관계의 Entity 에 대해선 Fetch Join 을 걸어주는 것이 좋습니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;더-읽어보면-좋을-글&quot;&gt;더 읽어보면 좋을 글&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;N+1 문제를 해결하기 위한 방법들&lt;/strong&gt;을 잘 정리해놓은 글입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Fetch Join&lt;/code&gt; 을 이용하는 방법과 &lt;code class=&quot;highlighter-rouge&quot;&gt;@EntityGraph&lt;/code&gt; Annotation 을 이용하는 법을 소개하고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jojoldu.tistory.com/165&quot;&gt;JPA N+1 문제 및 해결방안&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="spring" /><category term="jpa" /><summary type="html">JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 Fetch Type (Fetch 전략) 입니다.</summary></entry><entry><title type="html">2018 webRTC 정리</title><link href="https://shinjayne.github.io/post/36" rel="alternate" type="text/html" title="2018 webRTC 정리" /><published>2019-04-19T14:10:50+09:00</published><updated>2019-04-19T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/36</id><content type="html" xml:base="https://shinjayne.github.io/post/36">&lt;blockquote&gt;
   &lt;p&gt;초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -67,7 +282,7 @@
 
 &lt;p&gt;크게 나누면 다음과 같은 세단계로 볼 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Fetching -&amp;gt; Signaling -&amp;gt; Connection &amp;amp; Communication&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Fetching(1) -&amp;gt; Signaling (2,3,4) -&amp;gt; Connection &amp;amp; Communication(5)&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;이중 Fetching(1) 과 Connection &amp;amp; Communication(5) 단계는 &lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC&lt;/code&gt; API 를 이용하지만, 가장 번거로운 Signaling 과정(2,3,4) 는 정작 &lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC API&lt;/code&gt; 로 명세되어있지 않습니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다.&lt;/p&gt;
 
@@ -141,13 +356,11 @@
 &lt;h1 id=&quot;참고한-자료들&quot;&gt;참고한 자료들&lt;/h1&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Getting Started with webRTC : https://www.html5rocks.com/ko/tutorials/webrtc/basics/&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name></name></author><category term="webrtc" /><category term="js" /><category term="p2p" /><category term="frontend" /><summary type="html">초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.</summary></entry><entry><title type="html">구글이 목표를 달성하는 방식, OKR</title><link href="https://shinjayne.github.io/post/38" rel="alternate" type="text/html" title="구글이 목표를 달성하는 방식, OKR" /><published>2019-01-27T21:30:50+09:00</published><updated>2019-01-27T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/38</id><content type="html" xml:base="https://shinjayne.github.io/post/38">&lt;blockquote&gt;
-  &lt;p&gt;최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했다. 하지만 바빠서 자세히 알아보지 못했다.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><category term="webrtc" /><category term="js" /><category term="p2p" /><category term="frontend" /><summary type="html">초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.</summary></entry><entry><title type="html">구글이 목표를 달성하는 방식, OKR</title><link href="https://shinjayne.github.io/post/38" rel="alternate" type="text/html" title="구글이 목표를 달성하는 방식, OKR" /><published>2019-01-27T21:30:50+09:00</published><updated>2019-01-27T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/38</id><content type="html" xml:base="https://shinjayne.github.io/post/38">&lt;p&gt;최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았습니다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었습니다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했습니다. 하지만 바빠서 자세히 알아보지 못했습니다.&lt;/p&gt;
 
-  &lt;p&gt;오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었다. 그동안 목표 달성에 대한 갈증이 컸던 모양이다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었다. 아니, 사실 완전히 나를 매료시켜버렸다. 당장에라도 다음 분기 내 인생 계획에 오늘 얻은 OKR 탬플릿을 적용시켜 매 주를 보내고싶다.&lt;/p&gt;
+&lt;p&gt;오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었습니다. 그동안 목표 달성에 대한 갈증이 컸던 모양입니다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었습니다.&lt;/p&gt;
 
-  &lt;p&gt;이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나간다. 나는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 한다.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나갑니다. 이 글에서는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 합니다.&lt;/p&gt;
 
 &lt;h1 id=&quot;okr-전략이-필요한-이유--황금-사과-이야기&quot;&gt;OKR 전략이 필요한 이유 : 황금 사과 이야기&lt;/h1&gt;
 &lt;p&gt;책에서 굉장히 인상깊게 읽은 이야기가 있었습니다. 어릴적 한번씩 읽어봤을만한 고대 그리스 로마 신화의 “황금 사과 이야기” 인데, 이 책에서는 OKR 과 같은 목표 달성 전략이 작은 스타트업이나 큰 기업에 왜 필요한지를 설명하기 위해 이 이야기를 소개하고 있습니다.&lt;/p&gt;
@@ -198,8 +411,6 @@
 
 &lt;p&gt;이번 분기의 목표를 “고급스런 브랜드 인식 심어주기” 라고 잡았고, 목표를 향해 온 팀이 전념하다보면 자칫하면 코드의 건전성, 수익 구조 와 같은 팀의 건강함을 뒷받침하는 중요한 요소들을 놓칠 수 있습니다. 이런 항목들을 &lt;strong&gt;건전성&lt;/strong&gt; 칸에 배치해두고 매주 점검하는 것은 매우 중요한 일입니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/bi-health-check.svg&quot; alt=&quot;bi-health-check&quot; /&gt;&lt;/p&gt;
-
 &lt;h1 id=&quot;이번주-해야할-일&quot;&gt;이번주 해야할 일&lt;/h1&gt;
 
 &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/week.png&quot; alt=&quot;week&quot; /&gt;&lt;/p&gt;
@@ -210,7 +421,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/38/event.png&quot; alt=&quot;event&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;4주 내 향후 중요 이벤트 알림&lt;/strong&gt; 칸은 정보 공유의 목적이 강합니다. 향후 4주 내로 큼지막하고 중요한 이벤트들을 매주 적어놓으면, 다른 부서의 누군가가 갑자기 특수한 요청을 해왔을 때 덜 당황할 수 있고, 다른 부서의 사람들이 요즘 무엇때문에 정신이 없고 매주 외근을 하는지 아는데에 도움이 됩니다.&lt;/p&gt;</content><author><name></name></author><category term="okr" /><category term="google" /><category term="book" /><category term="startup" /><summary type="html">최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했다. 하지만 바빠서 자세히 알아보지 못했다. 오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었다. 그동안 목표 달성에 대한 갈증이 컸던 모양이다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었다. 아니, 사실 완전히 나를 매료시켜버렸다. 당장에라도 다음 분기 내 인생 계획에 오늘 얻은 OKR 탬플릿을 적용시켜 매 주를 보내고싶다. 이 책은 해나와 잭이라는 공동 창업자가 자신들의 스타트업에 OKR 를 적용하면서 겪는 일들, 그러면서 OKR 에 대해 더 잘 알게되는 과정을 스토리 형식으로 풀어나간다. 나는 그 스토리에서 알게 된 OKR 탬플릿을 간단히 여기 정리하려고 한다.</summary></entry><entry><title type="html">How Great Leaders Inspire Actions?</title><link href="https://shinjayne.github.io/post/37" rel="alternate" type="text/html" title="How Great Leaders Inspire Actions?" /><published>2018-12-26T14:10:50+09:00</published><updated>2018-12-26T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/37</id><content type="html" xml:base="https://shinjayne.github.io/post/37">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;4주 내 향후 중요 이벤트 알림&lt;/strong&gt; 칸은 정보 공유의 목적이 강합니다. 향후 4주 내로 큼지막하고 중요한 이벤트들을 매주 적어놓으면, 다른 부서의 누군가가 갑자기 특수한 요청을 해왔을 때 덜 당황할 수 있고, 다른 부서의 사람들이 요즘 무엇때문에 정신이 없고 매주 외근을 하는지 아는데에 도움이 됩니다.&lt;/p&gt;</content><author><name></name></author><category term="okr" /><category term="google" /><category term="book" /><category term="startup" /><summary type="html">최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았습니다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었습니다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했습니다. 하지만 바빠서 자세히 알아보지 못했습니다.</summary></entry><entry><title type="html">How Great Leaders Inspire Actions?</title><link href="https://shinjayne.github.io/post/37" rel="alternate" type="text/html" title="How Great Leaders Inspire Actions?" /><published>2018-12-26T14:10:50+09:00</published><updated>2018-12-26T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/37</id><content type="html" xml:base="https://shinjayne.github.io/post/37">&lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action&quot;&gt;글 제목과 동명의 TED 영상을 시청 한 뒤, 내용을 정리한 글입니다.&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1161,38 +1372,4 @@ rihwohkh3ph38fhillhhb84sk &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   myvm1
 
 &lt;p&gt;매우 간단한 UI 이므로, 직접 사용해보는 것을 추천한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/docker-cloud/&quot;&gt;Docker Cloud Documentation&lt;/a&gt; 의 Manage Swarms 를 보면서 사용하면 좋을 듯 하다.&lt;/p&gt;</content><author><name></name></author><category term="docker" /><category term="swarm" /><category term="stack" /><category term="service" /><category term="container" /><category term="image" /><category term="deploy" /><summary type="html">pre-requisite docker, docker-compose, docker-machine 이 세가지 프로그램이 설치되어야 한다. Docker Store(링크) 에서 설치 가능하다. 자신의 OS 에 맞는 Docker 를 설치하자.</summary></entry><entry><title type="html">AngularJS 와 Django Template Tag 충돌 해결</title><link href="https://shinjayne.github.io/post/20" rel="alternate" type="text/html" title="AngularJS 와 Django Template Tag 충돌 해결" /><published>2018-01-26T13:10:50+09:00</published><updated>2018-01-26T13:10:50+09:00</updated><id>https://shinjayne.github.io/post/20</id><content type="html" xml:base="https://shinjayne.github.io/post/20">&lt;h4 id=&quot;notice&quot;&gt;notice!&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;이 글은 현재 널리 쓰이는 Angular 가 아닌 그의 전신 AngularJS(v1) 를 다루고 있습니다. 과거 기술에 기반한 내용이니 참고해주시기 바랍니다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;AngularJS 는 웹 앱의 프런트엔드 부분을 만드는 Javascipt Framework 이고, Django 의 Template Engine 은 백엔드 Framework 에서 동적으로 html 문서를 생성해주는 시스템이다.&lt;/p&gt;
-
-&lt;p&gt;이 두개를 함께 쓰려하면 한가지 문제가 생긴다. AngularJS 에서 Model(내부변수들)을 View(HTML 문서) 에 bind 할 때 사용하는 Symbol 과 Django Tempate Engine 에서 사용하는 Tag Symbol 이 동일하기 때문에, 함께 사용하면 AngularJS 의 Bind Symbol 이 작동하지 않는다.&lt;/p&gt;
-
-&lt;p&gt;이를 해결하기 위한 방법은 여러가지 있는데, 그중 내가 사용해보려고 하는 방법은 AngularJS  module 의 설정(config) 중 하나인 &lt;code class=&quot;highlighter-rouge&quot;&gt;$interpolateProvider&lt;/code&gt; 를 조정하는 것이다.&lt;/p&gt;
-
-&lt;h1 id=&quot;interpolateprovider-조정하기&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$interpolateProvider&lt;/code&gt; 조정하기&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.angularjs.org/api/ng/provider/$interpolateProvider&quot;&gt;AngularJS 의 공식 Documentation&lt;/a&gt; 에 자세한 사용법이 나온다.&lt;/p&gt;
-
-&lt;p&gt;아래의 예시는 기존의 &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;&lt;/code&gt; 와 &lt;code class=&quot;highlighter-rouge&quot;&gt;} }&lt;/code&gt; 이던 Binding Symbol 을 &lt;code class=&quot;highlighter-rouge&quot;&gt;//&lt;/code&gt; 와 &lt;code class=&quot;highlighter-rouge&quot;&gt;//&lt;/code&gt; 로 변경한다.&lt;/p&gt;
-
-&lt;p&gt;다만 이 설정은 config 설정을 조정한 해당 앱 내에서만 작동한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;customInterpolationApp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;angular&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'customInterpolationApp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
-
-  &lt;span class=&quot;nx&quot;&gt;customInterpolationApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$interpolateProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$interpolateProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;startSymbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'//'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$interpolateProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;endSymbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'//'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-
-  &lt;span class=&quot;nx&quot;&gt;customInterpolationApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'DemoController'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;This binding is brought you by // interpolation symbols.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;ng-controller=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DemoController as demo&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    //demo.label//
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="django" /><category term="angular" /><category term="backend" /><category term="frontend" /><category term="javascript" /><summary type="html">notice! 이 글은 현재 널리 쓰이는 Angular 가 아닌 그의 전신 AngularJS(v1) 를 다루고 있습니다. 과거 기술에 기반한 내용이니 참고해주시기 바랍니다.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/docker-cloud/&quot;&gt;Docker Cloud Documentation&lt;/a&gt; 의 Manage Swarms 를 보면서 사용하면 좋을 듯 하다.&lt;/p&gt;</content><author><name></name></author><category term="docker" /><category term="swarm" /><category term="stack" /><category term="service" /><category term="container" /><category term="image" /><category term="deploy" /><summary type="html">pre-requisite docker, docker-compose, docker-machine 이 세가지 프로그램이 설치되어야 한다. Docker Store(링크) 에서 설치 가능하다. 자신의 OS 에 맞는 Docker 를 설치하자.</summary></entry></feed>
