@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2019-10-04T23:48:14+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">JPA 의 Fetch Type 과 친해지기</title><link href="https://shinjayne.github.io/post/39" rel="alternate" type="text/html" title="JPA 의 Fetch Type 과 친해지기" /><published>2019-08-06T21:30:50+09:00</published><updated>2019-08-06T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/39</id><content type="html" xml:base="https://shinjayne.github.io/post/39">&lt;p&gt;JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 &lt;strong&gt;Fetch Type (Fetch 전략)&lt;/strong&gt; 입니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://shinjayne.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shinjayne.github.io/" rel="alternate" type="text/html" /><updated>2020-02-26T05:57:34+09:00</updated><id>https://shinjayne.github.io/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">점을 연결하는 사람들 - ‘기획자의 습관’을 읽고</title><link href="https://shinjayne.github.io/post/40" rel="alternate" type="text/html" title="점을 연결하는 사람들 - '기획자의 습관'을 읽고" /><published>2019-08-08T21:30:50+09:00</published><updated>2019-08-08T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/40</id><content type="html" xml:base="https://shinjayne.github.io/post/40">&lt;blockquote&gt;
+  &lt;p&gt;«기획자의 습관» 을 읽고. 창의, 통찰, 연결, 기획에 대한 생각 정리.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;기획자의 습관이란 책을 읽고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;저자 최장순씨는 오랫동안 기획자로 일했고, 자신이 일상에서 어떻게 기획 아이디어를 이끌어내는지를 이 책에 담았습니다.&lt;/p&gt;
+
+&lt;p&gt;첫 챕터의 첫번째 주제는 “엣지오브 투모로우”라는 영화입니다. 그는 이 영화를 관람하고, 마치 매일 반복되는 일상을 살면서 “내일의 가장자리” 에서 “내일” 로 넘어가지 못하는 우리의 삶을 떠올렸고, 니체의 “영원회귀” 사상을 떠올렸고, 니체의 저서 «차라투스트라는 이렇게 말했다» 의 “양치기소년이 뱀을 물어뜯은 후 ‘변화한 자’ 가 되었다”  란 이야기를 떠올렸습니다. 굉장히 통찰력 있는 연결이라고 생각합니다.&lt;/p&gt;
+
+&lt;p&gt;저는 이렇게 통찰력 있는 연결이 굉장히 멋있다고 생각합니다. 사실 창의적인 아이디어, 대단한 기획은 세상에 이미 존재하는 것들을 새로운 관점에서 연결점을 찾아내고 새로운 방식으로 잘 연결하는 것입니다.&lt;/p&gt;
+
+&lt;p&gt;스티브 잡스는 인터뷰에서 “어떻게 그렇게 창의적인 아이디어들을 낼 수 있나요?” 라는 질문을 받고 이렇게 답했다고 합니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;“사실 저는 그런 이야기를 들을때마다 굉장히 부끄럽습니다. 저는 다른사람들과 크게 다르거나, 특별히 더 천재적이지 않기 때문이죠. 저는 그저 세상에 이미 존재하는 것들을, 이전과는 다른 방식으로 연결하는 것 뿐입니다. 그리고 저는 창의성이 바로 그런 것이라고 생각합니다. 따라서 창의성은 연습을 통해 기를 수 있습니다.”&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어떻게보면 제가 기획자의 습관이라는 책을 읽다가, 스티브잡스를 떠올린 것도 하나의 “새로운 연결” 을 찾아낸 것입니다. 이 또한 창의성을 발휘한 것이라고 볼 수 있겠죠.&lt;/p&gt;
+
+&lt;p&gt;새로운 연결을 잘 찾아내는 것을 혹자는 “통찰” 이라고 표현합니다. 저는 “창의”, “통찰” 모두 맞다고 생각합니다.&lt;/p&gt;
+
+&lt;p&gt;기획, 창의, 통찰, 연결. 모두 제게는 같은 말로 느껴집니다.&lt;/p&gt;
+
+&lt;p&gt;“창의”, “통찰” 을 잘하기위해선 어떻게 훈련해야할까요? 일상에 존재하는, 혼자서는 무의미한 점들을 연결해 의미를 만들어내는 것, 어떻게하면 잘 할 수 있을까요?&lt;/p&gt;
+
+&lt;p&gt;우선 첫째로는 재료가 될 점들을 많이 알아야하고, 둘째로는 점들간의 관통하는 아이디어를 끄집어내고 연결할 줄 아는 센스를 길려야한다고 생각합니다.&lt;/p&gt;
+
+&lt;p&gt;재료가 되는 점들을 많이 알려면 책을 많이 읽고, 세상에 일어나는 일들에 많은 관심을 기울여야합니다.&lt;/p&gt;
+
+&lt;p&gt;점들간의 관통하는 아이디어를 끄집어내고 연결하는 센스를 기르려면, 점들을 잘 연결하는 사람들의 이야기를 많이 듣고 보고 익혀야합니다. “창의” 는 스티브잡스의 말처럼, 훈련해서 기를 수 있는 “후천적 능력” 입니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/40/bookcover.jpg&quot; alt=&quot;책표지&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="inspiration" /><category term="book" /><category term="planning" /><summary type="html">«기획자의 습관» 을 읽고. 창의, 통찰, 연결, 기획에 대한 생각 정리.</summary></entry><entry><title type="html">JPA 의 Fetch Type 과 친해지기</title><link href="https://shinjayne.github.io/post/39" rel="alternate" type="text/html" title="JPA 의 Fetch Type 과 친해지기" /><published>2019-08-06T21:30:50+09:00</published><updated>2019-08-06T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/39</id><content type="html" xml:base="https://shinjayne.github.io/post/39">&lt;p&gt;JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 &lt;strong&gt;Fetch Type (Fetch 전략)&lt;/strong&gt; 입니다.&lt;/p&gt;
 
 &lt;p&gt;Fetch Type 속성은 언제 동작하고 어떻게 동작하는지, 그리고 어떨 때 Fetch Type 때문에 N+1 문제가 발생하는지, 또 어떻게 해결하는지 알아봅니다.&lt;/p&gt;
 
@@ -235,7 +267,7 @@ from order;
 &lt;p&gt;&lt;strong&gt;N+1 문제를 해결하기 위한 방법들&lt;/strong&gt;을 잘 정리해놓은 글입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Fetch Join&lt;/code&gt; 을 이용하는 방법과 &lt;code class=&quot;highlighter-rouge&quot;&gt;@EntityGraph&lt;/code&gt; Annotation 을 이용하는 법을 소개하고 있습니다.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://jojoldu.tistory.com/165&quot;&gt;JPA N+1 문제 및 해결방안&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="spring" /><category term="jpa" /><summary type="html">JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 Fetch Type (Fetch 전략) 입니다.</summary></entry><entry><title type="html">2018 webRTC 정리</title><link href="https://shinjayne.github.io/post/36" rel="alternate" type="text/html" title="2018 webRTC 정리" /><published>2019-04-19T14:10:50+09:00</published><updated>2019-04-19T14:10:50+09:00</updated><id>https://shinjayne.github.io/post/36</id><content type="html" xml:base="https://shinjayne.github.io/post/36">&lt;blockquote&gt;
-  &lt;p&gt;초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.&lt;/p&gt;
+  &lt;p&gt;2018년도에 webRTC 를 이용한 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 경험을 떠올리며, webRTC API 를 이용한 애플리케이션 작성법을 정리해봅니다. 🎉&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h1 id=&quot;what-is-webrtc&quot;&gt;What is &lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC&lt;/code&gt;?&lt;/h1&gt;
@@ -243,15 +275,15 @@ from order;
 
 &lt;p&gt;프로젝트의 진행 방식은, WebRTC API 최신 명세 (SPEC) 를 &lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC M{xx}&lt;/code&gt; 와 같은 이름으로 공개하고, 거의 동시에 Chrome (혹은 Chrome Beta) 에 구현하여 릴리즈하는 것 같습니다. Opera, Safari, Firefox 등의 브라우저들은 이 공개된 명세에 발맞춰 따라옵니다.&lt;/p&gt;
 
-&lt;p&gt;WebRTC 로 할 수 있는 일은 굉장히 많지만, 간단한 p2p 영상/음성 연결, p2p 데이터 교환 등에도 많이 쓰입니다.&lt;/p&gt;
+&lt;p&gt;WebRTC 로 할 수 있는 일은 굉장히 많습니다. 그 중에서도 이 글에서는 서버를 통하지 않고 클라이언트와 클라이언트 간의 p2p 영상/음성/데이터 통신을 하는 활용법에 초점을 맞춰서 webRTC 의 API 를 정리해보겠습니다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://webrtc.org/&quot;&gt;WebRTC 공식 홈페이지 webrtc.org 링크&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&quot;webrtc-의-3가지-api&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC&lt;/code&gt; 의 3가지 API&lt;/h1&gt;
+&lt;h1 id=&quot;webrtc-의-3가지-대표-api&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC&lt;/code&gt; 의 3가지 대표 API&lt;/h1&gt;
 
-&lt;p&gt;2018년 말인 현재, 대부분의 브라우저가 &lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC&lt;/code&gt; API 표준을 지원합니다.&lt;/p&gt;
+&lt;p&gt;2018년 말인 현재, 대부분의 브라우저가 webRTC API 표준을 지원합니다. 대부분의 브라우저에서 지원하는 webRTC 의 대표적인 표준 API 3가지를 소개하겠습니다.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;getUserMedia&lt;/code&gt;)&lt;/li&gt;
@@ -260,54 +292,61 @@ from order;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;api-1-mediastream&quot;&gt;API 1. &lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;사용자의 카메라와 마이크 같은 곳의 데이터 스트림에 접근합니다.&lt;/p&gt;
+&lt;p&gt;사용자의 카메라와 마이크 같은 곳의 데이터 스트림에 접근합니다. 우리의 애플리케이션이 사용자의 음성, 영상 데이터를 채집해 올 때 자주 사용하게 됩니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;api-2-rtcpeerconnection&quot;&gt;API 2. &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;암호화 및 대역폭 관리를 하는 기능을 가지고 있고, 오디오 또는 비디오 연결을 합니다.&lt;/p&gt;
+&lt;p&gt;암호화 및 대역폭 관리를 하는 기능을 가지고 있고, 오디오 또는 비디오 연결을 담당합니다. 애플리케이션이 채집한 음성 및 영상 데이터를 서로 주고 받는 채널을 추상화하였다고 생각하면 됩니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;api-3-rtcdatachannel&quot;&gt;API 3. &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCDataChannel&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;일반적인 데이터 P2P통신&lt;/p&gt;
+&lt;p&gt;음성 및 영상 데이터가 아닌, json/text 데이터들을 주고받는 채널을 추상화한 API 입니다.&lt;/p&gt;
 
 &lt;h1 id=&quot;webrtc-application-이-수행하는-것&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC&lt;/code&gt; application 이 수행하는 것&lt;/h1&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Streaming Data (Audio, Video, Text, Data) 를 수집합니다.
-    &lt;ul&gt;
-      &lt;li&gt;API : &lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;getUserMedia&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;IP주소, Port등의 네트워크 정보를 수집합니다. 그리고 그 정보를 다른 WebRTC Client (=Peer) 와 교환합니다.
-    &lt;ul&gt;
-      &lt;li&gt;No API offered&lt;/li&gt;
-      &lt;li&gt;Need Signaling Server&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;“Error Report”, “Session 초기화”, “Session 종료” 와 같은 신호 통신을 관리해야 합니다.
-    &lt;ul&gt;
-      &lt;li&gt;No API offered&lt;/li&gt;
-      &lt;li&gt;Need Signaling Server&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;해상도와 코덱들 같은 미디어와 클라이언트의 capabilty에 대한 정보를 교환합니다.
-    &lt;ul&gt;
-      &lt;li&gt;No API offered&lt;/li&gt;
-      &lt;li&gt;Need Signaling Server&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;스트리밍 오디오, 비디오 또는 데이터를 주고 받아야합니다.
-    &lt;ul&gt;
-      &lt;li&gt;API : &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCDataChannel&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;여러분이 만약 p2p 영상 및 음성 통신을 하는 webRTC application 을 구성한다면, 다음의 주요한 4가지 작업을 수행해야 할 것입니다.&lt;/p&gt;
 
-&lt;p&gt;크게 나누면 다음과 같은 세단계로 볼 수 있습니다.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;no&lt;/th&gt;
+      &lt;th&gt;stage&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Fetching&lt;/td&gt;
+      &lt;td&gt;상대 peer 에게 보낼 사용자의 음성 및 영상 데이터를 수집합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Signaling&lt;/td&gt;
+      &lt;td&gt;이 세상 어딘가에 있는 상대 peer 와 연결을 맺기 위해서, 상대 peer 의 정보를 탐색합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Connection&lt;/td&gt;
+      &lt;td&gt;발견한 peer 와 p2p connection 을 맺습니다. channel 을 개방해둡니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;Communication&lt;/td&gt;
+      &lt;td&gt;개방해놓은 채널을 통해 음성/영상/텍스트 데이터를 주고 받습니다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;p&gt;&lt;strong&gt;Fetching(1) -&amp;gt; Signaling (2,3,4) -&amp;gt; Connection &amp;amp; Communication(5)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;위의 4가지 작업의 구체적인 방식과, 각각의 수행에 필요한 webRTC API 들을 알아보겠습니다.&lt;/p&gt;
 
-&lt;p&gt;이중 Fetching(1) 과 Connection &amp;amp; Communication(5) 단계는 &lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC&lt;/code&gt; API 를 이용하지만, 가장 번거로운 Signaling 과정(2,3,4) 는 정작 &lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC API&lt;/code&gt; 로 명세되어있지 않습니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다.&lt;/p&gt;
+&lt;h2 id=&quot;1단계-fetching&quot;&gt;1단계. Fetching&lt;/h2&gt;
 
-&lt;h2 id=&quot;signaling-stage&quot;&gt;Signaling Stage&lt;/h2&gt;
+&lt;p&gt;webRTC API 인 &lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;getUserMedia&lt;/code&gt; 를 이용해 사용자의 영상 및 음성 정보를 가져옵니다. 가져온 이후의 활용법은 4단계에서 자세히 다루겠습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2단계-signaling&quot;&gt;2단계. Signaling&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;잠깐! Signlaing 단계는 피어와 피어가 서로를 찾을 수 있도록 돕는 &lt;strong&gt;중간 매개자 역할을 하는 서버인 Signaling Server 를 필요&lt;/strong&gt;로 합니다. Signaling Sever 의 &lt;strong&gt;구현 방식에는 제약이 없습니다.&lt;/strong&gt;  오롯히 애플리케이션을 만드는 개발자의 몫입니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다. webRTC 애플리케이션 개발을 하면서 가장 어려웠던 부분이기도 합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;Signaling 단계는 서로 다른 두 peer (WebRTC Client) 가 Communication 하기 위한 준비단계로, 3가지 종류의 정보를 교환해야 합니다.&lt;/p&gt;
 
@@ -332,30 +371,79 @@ from order;
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;1-network-정보-ice-candidate-교환하기&quot;&gt;1. Network 정보 (ICE Candidate) 교환하기&lt;/h3&gt;
+&lt;p&gt;조금 더 자세히 알아보겠습니다.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; Object 를 새롭게 생성하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.onicecandidate&lt;/code&gt; 핸들러를 통해 현재 내 client 의 Ice Candidate(Network 정보)  가 확보되면 실행될 callback 을 전달합니다.&lt;/li&gt;
-  &lt;li&gt;Ice Candidate (내 네트워크 정보) 가 확보되면, Signaling Channel 을 통해 상대 peer 에게  serialized 된 ice candidate 정보를 전송합니다. (쌍방이 서로에게 합니다.)&lt;/li&gt;
-  &lt;li&gt;상대 peer 의 candidate (네트워크 정보) 가 도착하면, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.addIceCandidate&lt;/code&gt; 를 통해 상대 peer 의 네트워크 정보를 등록합니다. (쌍방이 모두 합니다.)&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&quot;network-정보-ice-candidate-교환하기&quot;&gt;Network 정보 (ICE Candidate) 교환하기&lt;/h3&gt;
 
-&lt;h3 id=&quot;2media-capability-교환하기--session-control-message-교환하기&quot;&gt;2.Media Capability 교환하기 + Session Control Message 교환하기&lt;/h3&gt;
+&lt;p&gt;세상 어딘가에 있는 상대 peer 를 찾아 연결을 맺기 위해선, 네트워크 정보를 교환해야합니다. 이 때, 중간 매개자 역할로서 별도의 서버인 Signaling Server 가 필요합니다. 순서는 다음과 같습니다.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;A 와 B 가 webRTC 통신을 하려고합니다. 각자 브라우저에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 객체를 가지고 있고, 서로의 네트워크 정보 (ice candidate) 를 교환 후 각자의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.addIceCandidate&lt;/code&gt; 를 통해 서로의 네트워크 정보를 등록하였습니다.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;step&lt;/th&gt;
+      &lt;th&gt;do&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; Object 를 새롭게 생성하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.onicecandidate&lt;/code&gt; 핸들러를 통해 현재 내 client 의 Ice Candidate(Network 정보)  가 확보되면 실행될 callback 을 전달합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Ice Candidate (내 네트워크 정보) 가 확보되면, 중간 매개자인 Signaling Server 을 통해 상대 peer 에게  serialized 된 ice candidate 정보를 전송합니다. (쌍방이 서로에게 합니다.)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;상대 peer 의 candidate (네트워크 정보) 가 도착하면, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.addIceCandidate&lt;/code&gt; 를 통해 상대 peer 의 네트워크 정보를 등록합니다. (쌍방이 모두 합니다.)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;B 가 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createOffer&lt;/code&gt; 를 호출해 Offer SDP (Session Description Protocol) 을 생성합니다. 여기엔 내 브라우저에서 사용 가능한 코덱이나 해상도에 대한 정보가 들어있습니다.&lt;/li&gt;
-  &lt;li&gt;B 가 Offer SDP 를 Signaling Channel 을 통해 전송합니다.&lt;/li&gt;
-  &lt;li&gt;A 는 Signaling Channel 에서 Offer SDP 를 받아, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.setRemoteDescription&lt;/code&gt; 을 수행합니다.&lt;/li&gt;
-  &lt;li&gt;A 의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 객체는 상대 session 에 대한 정보를 알고 있게 되었고, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createAnswer&lt;/code&gt; 를 호출하여 Answer SDP 를 생성하여 Signaling Channel 을 통해 B 에게 전달합니다.&lt;/li&gt;
-  &lt;li&gt;B 도 마찬가지로 자신의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.setRemoteDescription&lt;/code&gt; 을 호출해, 전달받은 Answer SDP 를 등록합니다.&lt;/li&gt;
-  &lt;li&gt;A, B 각 측에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;setRemoteDescription&lt;/code&gt; 이 성공적으로 수행되었다면, 각 브라우저에서는 서로의 peer 에 대해 인지하고 있는 상태라고 할 수 있고, p2p 연결이 성공적으로 완료되었다고 할 수 있습니다.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&quot;media-capability-교환하기--session-control-message-교환하기&quot;&gt;Media Capability 교환하기 + Session Control Message 교환하기&lt;/h3&gt;
 
-&lt;h2 id=&quot;communication-stage&quot;&gt;Communication Stage&lt;/h2&gt;
+&lt;p&gt;상황을 가정해봅시다. A 와 B 가 webRTC 통신을 하려고합니다. 각자 브라우저에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 객체를 가지고 있고, 서로의 네트워크 정보 (ice candidate) 를 교환 후 각자의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.addIceCandidate&lt;/code&gt; 를 통해 서로의 네트워크 정보를 등록하였습니다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;step&lt;/th&gt;
+      &lt;th&gt;do&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;B 가 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createOffer&lt;/code&gt; 를 호출해 Offer SDP (Session Description Protocol) 을 생성합니다. 여기엔 내 브라우저에서 사용 가능한 코덱이나 해상도에 대한 정보가 들어있습니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;B 가 Offer SDP 를 Signaling Server (매개자) 을 통해 전송합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;A 는 Signaling Channel 에서 Offer SDP 를 받아, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.setRemoteDescription&lt;/code&gt; 을 수행합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;A 의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 객체는 상대 session 에 대한 정보를 알고 있게 되었고, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createAnswer&lt;/code&gt; 를 호출하여 Answer SDP 를 생성하여 Signaling Channel 을 통해 B 에게 전달합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;B 도 마찬가지로 자신의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.setRemoteDescription&lt;/code&gt; 을 호출해, 전달받은 Answer SDP 를 등록합니다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;A, B 각 측에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;setRemoteDescription&lt;/code&gt; 이 성공적으로 수행되었다면, 각 브라우저에서는 서로의 peer 에 대해 인지하고 있는 상태라고 할 수 있고, p2p 연결이 성공적으로 완료되었다고 할 수 있습니다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;3단계-connection&quot;&gt;3단계. Connection&lt;/h2&gt;
+
+&lt;p&gt;어려운 Signaling 을 통해 상대 피어의 정보가 잘 등록된 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 를 얻었다면, 연결이 성공적으로 이루어진 것입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;4단계-communication&quot;&gt;4단계. Communication&lt;/h2&gt;
 &lt;p&gt;보통 webRTC 를 통해서 peer 와 peer 가 주고받는 데이터는 크게 아래의 두가지입니다.&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;video 나 audio 데이터 스트림&lt;/li&gt;
@@ -374,10 +462,17 @@ from order;
 
 &lt;p&gt;&lt;strong&gt;받는 입장&lt;/strong&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.ondatachannel&lt;/code&gt; 의 callback 을 커스텀하게 설정해서, connection 이 성공적으로 이루어진 후에 상대방이 data channel 을 통해 어떤 데이터를 보냈을 때의 동작을 설정할 수 있습니다.&lt;/p&gt;
 
+&lt;h1 id=&quot;webrtc-애플리케이션을-만들-때-겪었던-어려움&quot;&gt;webRTC 애플리케이션을 만들 때 겪었던 어려움&lt;/h1&gt;
+&lt;h2 id=&quot;1-피어간의-연결이-끊겼을-때-다시-연결을-맺어줘야-한다&quot;&gt;1. 피어간의 연결이 끊겼을 때, 다시 연결을 맺어줘야 한다&lt;/h2&gt;
+&lt;p&gt;인터넷의 문제나 예기치 못한 문제로 피어와 피어간에 맺어놓은 Connection 이 끊어지는 일이 굉장히 자주 발생합니다. 이 때 적절한 retry 로직으로 자연스럽게 재연결을 맺어주어야 합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-안정적인-signaling-server-를-구축해야한다&quot;&gt;2. 안정적인 Signaling Server 를 구축해야한다&lt;/h2&gt;
+&lt;p&gt;Signaling 단계가 성공하지 못하면 Connection 을 맺을 수 조차 없습니다. 따라서 안정적인 Signaling Server 를 구축하는 것이 무엇보다 중요했습니다.&lt;/p&gt;
+
 &lt;h1 id=&quot;참고한-자료들&quot;&gt;참고한 자료들&lt;/h1&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Getting Started with webRTC : https://www.html5rocks.com/ko/tutorials/webrtc/basics/&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name></name></author><category term="webrtc" /><category term="js" /><category term="p2p" /><category term="frontend" /><summary type="html">초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.</summary></entry><entry><title type="html">구글이 목표를 달성하는 방식, OKR</title><link href="https://shinjayne.github.io/post/38" rel="alternate" type="text/html" title="구글이 목표를 달성하는 방식, OKR" /><published>2019-01-27T21:30:50+09:00</published><updated>2019-01-27T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/38</id><content type="html" xml:base="https://shinjayne.github.io/post/38">&lt;p&gt;최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았습니다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었습니다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했습니다. 하지만 바빠서 자세히 알아보지 못했습니다.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><category term="webrtc" /><category term="js" /><category term="p2p" /><category term="frontend" /><summary type="html">2018년도에 webRTC 를 이용한 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 경험을 떠올리며, webRTC API 를 이용한 애플리케이션 작성법을 정리해봅니다. 🎉</summary></entry><entry><title type="html">구글이 목표를 달성하는 방식, OKR</title><link href="https://shinjayne.github.io/post/38" rel="alternate" type="text/html" title="구글이 목표를 달성하는 방식, OKR" /><published>2019-01-27T21:30:50+09:00</published><updated>2019-01-27T21:30:50+09:00</updated><id>https://shinjayne.github.io/post/38</id><content type="html" xml:base="https://shinjayne.github.io/post/38">&lt;p&gt;최근 이직 온 회사에서 OKR 을 하고 있다는 것을 알기 전부터 OKR 에 관심이 많았습니다. 이전에 일하던 회사는 10명 남짓한 굉장히 작은 스타트업이었는데, 원하는 목표를 어떻게 하면 달성할 수 있을지 고민하던 찰나에 지인으로부터 OKR 에 대해 듣게 되었습니다. 당시 들었을 때에는, 그저 목표 달성을 위한 좋은 방법론이라 생각했습니다. 하지만 바빠서 자세히 알아보지 못했습니다.&lt;/p&gt;
 
 &lt;p&gt;오늘 우연히 서점에서 이 OKR 책을 발견하고선, 집어들은 자리에서 한숨에 절반을 읽었습니다. 그동안 목표 달성에 대한 갈증이 컸던 모양입니다. 내 인생의 목표 달성에 대한 갈증, 현재 속한 회사의 목표 달성에 대한 갈증, 혹은 미래에 내가 간절히 달성하고프게 될 목표의 달성 방법에 대한 갈증 ? 오늘 이 책에서 얻은 OKR 은 나의 이런 갈증을 꽤나 해소시켜줄 수 있는 무엇이었습니다.&lt;/p&gt;
 
@@ -1089,308 +1184,4 @@ setTimeout
 
 &lt;p&gt;이 때 micro task queue 에 있는 task(callback) 들이 우선적으로 engine 의 call stack 으로 (event loop 에 의해) 전달되고, 우선적으로 수행된다.&lt;/p&gt;
 
-&lt;p&gt;micro task queue 가 다 비워진 후에는 task queue 의 작업들이 옮겨지고 수행된다.&lt;/p&gt;</content><author><name></name></author><category term="javascript" /><category term="nodejs" /><category term="runtime" /><category term="promise" /><category term="eventloop" /><summary type="html">javascript 언어는 다른 많은 언어들과 다르게 굉장히 다양한 Runtime(=실행환경) 속에서 실행된다.</summary></entry><entry><title type="html">Docker 공식문서 에서 제시하는 개발-배포 Flow 따라가기 (Docker Swarm 사용하기)</title><link href="https://shinjayne.github.io/post/21" rel="alternate" type="text/html" title="Docker 공식문서 에서 제시하는 개발-배포 Flow 따라가기 (Docker Swarm 사용하기)" /><published>2018-02-09T21:04:50+09:00</published><updated>2018-02-09T21:04:50+09:00</updated><id>https://shinjayne.github.io/post/21</id><content type="html" xml:base="https://shinjayne.github.io/post/21">&lt;blockquote&gt;
-  &lt;h5 id=&quot;pre-requisite&quot;&gt;pre-requisite&lt;/h5&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine&lt;/code&gt; 이 세가지 프로그램이 설치되어야 한다.&lt;/p&gt;
-
-  &lt;p&gt;&lt;a href=&quot;https://store.docker.com/search?type=edition&amp;amp;offering=community&quot;&gt;Docker Store(링크)&lt;/a&gt; 에서 설치 가능하다. 자신의 OS 에 맞는 Docker 를 설치하자.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;h5 id=&quot;서론&quot;&gt;서론&lt;/h5&gt;
-&lt;p&gt;그동안 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker&lt;/code&gt; 를 사용하여 웹 서버 개발을 하고 있었지만, Docker 공식 문서를 오랜만에 들어가보니 그곳에서 추구하는 개발-배포 flow 는 나의 그것과 사뭇 달랐다.&lt;/p&gt;
-
-&lt;p&gt;나의 방식보다 훨씬 깔끔하고 스마트했다. 그래서 한번 제대로 익혀놓고, 앞으로 이렇게 개발-배포 하자 라고 마음먹으며 이 글을 쓴다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;em&gt;“Docker 에서 제시하는 개발-배포 Flow 는 AWS 나 Azure 에서 자사 제품들을 이용하여 제시하는 개발-배포 Flow 의 대체가 될 수 있을 것 같다.”&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;새로운 개발 배포 flow를 익히면서 중점적인 이슈로 둔 부분은 아래와 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;1. 초기구축 : 초기 서비스 그룹(DB, WAS, Web Server 등) 구축이 쉬운가&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;2. 스케일 조정 : Load Balancing 설정이 쉽고, Scale 조정이 쉬운가&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;3. 코드 배포 : 추후 앱의 로직 코드 변경시 배포가 편리한가&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;클라우드를 제공하는 AWS 나 AZURE 는 자신들이 만들어놓은 여러 제품들을 이용하면 위 세가지를 편리하게 실현할 수 있게 하였다. (AWS 의 ELB-elastic load balancer 를 이용하면 로드밸런싱이 쉽게 가능한 것 처럼 …)&lt;/p&gt;
-
-&lt;p&gt;과연 Docker 를 이용한 서버 개발-배포 flow 도 위의 세가지가 가능할까? Docker 공식 문서를 읽고 난 후 나의 생각은 ‘yes’ 이다.&lt;/p&gt;
-
-&lt;h1 id=&quot;docker-에서-제시하는-개발-배포-flow&quot;&gt;Docker 에서 제시하는 개발-배포 Flow&lt;/h1&gt;
-
-&lt;h2 id=&quot;1-초기-구축&quot;&gt;1. 초기 구축&lt;/h2&gt;
-&lt;p&gt;초기 구축이란, 코드가 배포될 클라우드의 인프라를 구축하는 일을 말한다.&lt;/p&gt;
-
-&lt;p&gt;Docker를 이용한 개발-배포 Flow 에서, 초기 구축은 두 단계로 나뉜다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Swarm(Docker Machine Cluster) 를 구축한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 로 Stack 구성하고 실행한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;1-1swarm-구축&quot;&gt;1-1.Swarm 구축&lt;/h3&gt;
-
-&lt;p&gt;Swarm 이란 여러 Docker Macine들이 마치 하나의 Docker 실행환경처럼 작동하는 Virtual Macine Cluster 를 말한다.&lt;/p&gt;
-
-&lt;p&gt;아래 그림처럼 Swarm 이 클라우드 서버 상의 두대의 Docker Machine 으로 구성되어 있다면, 우리가 제공하고자 하는 앱에 필요한 컨테이너들이 두 가상머신에 적절한 수로 배치된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;manager-node-와-worker-node&quot;&gt;Manager node 와 Worker node&lt;/h4&gt;
-&lt;p&gt;Swarm 의 각 Docker Machine 들은 Node 라고 부르며, 하나의 Manager Node와 다수의 Worker Node 로 이루어져있다. 오직 Manager node 만이 다른 node 에 접근하고 제어할 수 있다. 우리는 이 모든 노드에 접속해 일일히 동작을 제어할 필요 없이, Manager Node 의 Shell 에 접속해서 마치 swarm 이 하나의 Docker 실행환경이라고 생각하고 docker 명령어를 실행하면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docs.docker.com/get-started/images/visualizer-with-redis.png&quot; alt=&quot;swarm&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;manager--worker-설정&quot;&gt;Manager / Worker 설정&lt;/h4&gt;
-
-&lt;p&gt;우선 접속 가능한 docker machine 리스트를 확인한다.&lt;/p&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine ls
-NAME    ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS
-myvm1   -        virtualbox   Running   tcp://192.168.99.100:2376           v17.06.2-ce   
-myvm2   -        virtualbox   Running   tcp://192.168.99.101:2376           v17.06.2-ce   
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이 중 manager 로 삼을 docker machine 을 골라 아래와 같이 수행한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine ssh myvm1 &lt;span class=&quot;s2&quot;&gt;&quot;docker swarm init --advertise-addr &amp;lt;myvm1 ip&amp;gt;&quot;&lt;/span&gt;
-Swarm initialized: current node &amp;lt;node ID&amp;gt; is now a manager.
-
-To add a worker to this swarm, run the following &lt;span class=&quot;nb&quot;&gt;command&lt;/span&gt;:
-
-  docker swarm join &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --token &amp;lt;token&amp;gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  &amp;lt;myvm ip&amp;gt;:&amp;lt;port&amp;gt;
-
-To add a manager to this swarm, run &lt;span class=&quot;s1&quot;&gt;'docker swarm join-token manager'&lt;/span&gt; and follow the instructions.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;위를 완료했다면
-worker 로 삼을 docker machine 에서 아래와 같이 수행한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine ssh myvm2 &lt;span class=&quot;s2&quot;&gt;&quot;docker swarm join &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
---token &amp;lt;token&amp;gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
-&amp;lt;ip&amp;gt;:2377&quot;&lt;/span&gt;
-
-This node joined a swarm as a worker.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;이때 주의 할 점은 반드시 2377 포트를 이용해 swarm 통신을 해야한다는 것이다. 2376 이 절대 아니다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;이제 Manager Node 에서 모든 docker 명령을 수행하면 되는데, 첫번째 docker 명령으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker node ls&lt;/code&gt; 으로 모든 클러스터 노드들을 확인해보자.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;docker-machine ssh myvm1 &lt;span class=&quot;s2&quot;&gt;&quot;docker node ls&quot;&lt;/span&gt;
-ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS
-brtu9urxwfd5j0zrmkubhpkbd     myvm2               Ready               Active
-rihwohkh3ph38fhillhhb84sk &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;   myvm1               Ready               Active              Leader
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;이렇게 Swarm 구축은 끝났고, 이 swarm 의 노드들을 Azure 나 Aws 의 클라우드 가상 머신으로 설정만 한다면 클라우드 서버 인프라 구축의 시작점이 되는 것이다.&lt;/p&gt;
-
-&lt;p&gt;참고 1: &lt;a href=&quot;https://docs.microsoft.com/ko-kr/azure/virtual-machines/linux/docker-machine&quot;&gt;Azure 에서 Docker Machine 만드는 법&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;참고 2: &lt;a href=&quot;https://docs.docker.com/machine/drivers/aws/&quot;&gt;AWS 에서 Docker Machine 만드는 법&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;참고 3: &lt;a href=&quot;https://docs.docker.com/machine/drivers/&quot;&gt;Docker machine 에서 지원하는 가상머신 드라이버들&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;참고 4: &lt;a href=&quot;https://msdn.microsoft.com/ko-kr/library/windows/hardware/ff554678(v=vs.85).aspx&quot;&gt;driver 란?  Microsoft&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;1-2-docker-composeyml-로-stack-구성하고-실행&quot;&gt;1-2. &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 로 Stack 구성하고 실행&lt;/h3&gt;
-
-&lt;p&gt;Docker-Compose 는 컨테이너를 Stack-Service-Task 라는 세가지 가상 계층으로 구분해 관리한다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Stack : 하나의 앱. (Facebook, Youtube 처럼 큰 단위)&lt;/li&gt;
-  &lt;li&gt;Service : 앱을 구성하는 하나의 역할. (Django서버, mySQL서버, Nginx서버 등 앱을 작동하기 위한 구성요소들)&lt;/li&gt;
-  &lt;li&gt;Task : Service 를 이루는 컨테이너들&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;결국 우리가 만들고자 하는 것은 하나의 Stack 이고, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt;은 Stack 을 정의할 수 있는 파일이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;docker-composeyml-작성-예시&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 작성 예시&lt;/h4&gt;
-&lt;p&gt;아래는 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 의 예시이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;visualizer&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt; 라는 세개의 Service 가 이 Stack 을 이루고, &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt; Service 는 5개의 Task(Container) 로 이루어져있다.&lt;/p&gt;
-
-&lt;p&gt;5개의 Task 로 이루어진 &lt;code class=&quot;highlighter-rouge&quot;&gt;web&lt;/code&gt;서비스의 주소 80 port 로 접속이 들어오면, docker 는 round-robin 방식으로 load balancing 을 수행한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3&quot;&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# replace username/repo:tag with your name and image details&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;username/repo:tag&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;80:80&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;5&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;restart_policy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;on-failure&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;s&quot;&gt;cpus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0.1&quot;&lt;/span&gt;
-          &lt;span class=&quot;s&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;50M&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webnet&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;visualizer&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;dockersamples/visualizer:stable&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;8080:8080&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;/var/run/docker.sock:/var/run/docker.sock&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;placement&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;constraints&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;node.role == manager&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webnet&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;6379:6379&quot;&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# ports 대신 expose:-&quot;6379&quot; 을 사용하면 docker network 상에서만 접근 가능하고, 실제 외부 포트로 연결은 되지 않는다.&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;redis-data-vol:/data&quot;&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;placement&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;constraints&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;node.role == manager&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;redis-server --appendonly yes&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;webnet&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;webnet&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-
-&lt;span class=&quot;s&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;redis-data-vol&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;대략 하나의 서비스를 기술 할 때,&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;image&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ports&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;expose&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;volumes&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;networks&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;등이 필수적인 설정값인듯 하다.&lt;/p&gt;
-
-&lt;p&gt;참고로 docker swarm 을 이용해 개발-배포 한다면 network driver 의 기본 설정값은 &lt;code class=&quot;highlighter-rouge&quot;&gt;overlay&lt;/code&gt; 이다. &lt;code class=&quot;highlighter-rouge&quot;&gt;overlay&lt;/code&gt; 는 여러대의 docker-machine 에 나누어진 container들이 마치 하나의 network 상에 존재하는 것처럼 접속 가능하게 해준다.&lt;/p&gt;
-
-&lt;p&gt;참고 1 : &lt;a href=&quot;https://docs.docker.com/compose/compose-file/#network-configuration-reference&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;networks&lt;/code&gt; top-level key 설정 관하여&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;참고 2 : &lt;a href=&quot;https://docs.docker.com/compose/compose-file/#volume-configuration-reference&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;volumes&lt;/code&gt; top-level key 설정 관하여&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;참고 3 : &lt;a href=&quot;https://docs.docker.com/compose/compose-file/#deploy&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt; service-level key 설정 관하여&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;참고 4 : &lt;a href=&quot;https://docs.docker.com/network/network-tutorial-overlay/&quot;&gt;Docker 의 overlay network 에 대하여&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;stack-실행하기&quot;&gt;Stack 실행하기&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 로 하나의 Stack 을 정의했으니, 이제 이 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 파일을 Manager Node 에 업로드하고&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker-machine scp /local/docker-compose.yml myvm1:/path/to/docker-compose.yml
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Manager Node 에서 Stack 을 실행한다. 이때 stack 정의에 참고할 Compose file 도 &lt;code class=&quot;highlighter-rouge&quot;&gt;-c&lt;/code&gt; 옵션으로 적어준다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker stack deploy -c ./docker-compose.yml
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;1-3-docker-compose-와-docker-machine&quot;&gt;1-3. Docker Compose 와 Docker Machine&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;h4 id=&quot;docker-compose-가-하는-역할&quot;&gt;Docker Compose 가 하는 역할&lt;/h4&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Stack-Service-Task 계층 구조를 확립시키고, 컨테이너를 효율적으로 관리하고 연결시킨다.&lt;/li&gt;
-    &lt;li&gt;원본 Image 가 변경되어서 컨테이너가 recreate 될 때에도, 이전 컨테이너 내용을 복사해서 붙여넣어주므로 데이터 연속성과 유지력을 보완시켜준다. (&lt;strong&gt;기본적으로 컨테이너가 recreate 되면 read-write 계층 파일은 모두 사라진다.&lt;/strong&gt; ) (&lt;a href=&quot;http://judekim.tistory.com/15&quot;&gt;참고블로그링크&lt;/a&gt;)
-&lt;img src=&quot;http://cfile25.uf.tistory.com/image/2567453B5214F0D815C008&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
-    &lt;li&gt;불필요한 container recreate 를 줄여준다. 이미지의 변경이 없을 시 컨테이너를 그대로 유지한다.&lt;/li&gt;
-    &lt;li&gt;Docker Swarm 의 로드밸런싱 규칙을 설정한다.&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;h4 id=&quot;docker-machine-이-하는-역할&quot;&gt;Docker Machine 이 하는 역할&lt;/h4&gt;
-  &lt;p&gt;docker 실행 환경이 조성된 가상 머신을 생성하고 관리한다. Docker Swarm 을 구축하고 관리할 때 필수적이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;2-스케일-조정&quot;&gt;2. 스케일 조정&lt;/h2&gt;
-
-&lt;h3 id=&quot;2-1-docker-로드밸런싱부하분산---두가지-패러다임&quot;&gt;2-1. docker 로드밸런싱(부하분산) :  두가지 패러다임&lt;/h3&gt;
-
-&lt;p&gt;위의 초기 구축 단계를 따라오다보면 두가지 로드밸런싱의 패러다임을 발견할 수 있다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;첫번째&lt;/strong&gt; : Cluster 의 worker node 를 추가함으로써 부하분산을 취하는 방식&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;두번째&lt;/strong&gt; :  Service 의 Task Container 수 (&lt;code class=&quot;highlighter-rouge&quot;&gt;replicas : 5&lt;/code&gt;)를 늘림으로써 부하분산을 취하는 방식&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;두가지 방식 모두 유용하다. 스케일 조정 참 쉽다.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-2-swarm-cluster-의-로드밸런싱&quot;&gt;2-2. Swarm Cluster 의 로드밸런싱&lt;/h3&gt;
-&lt;p&gt;Swarm 의 각 노드 Machine 주소로 접속한다면?&lt;/p&gt;
-
-&lt;p&gt;결국 각 노드에 존재하는 swarm loadbalancer 가 하나의 docker 실행환경처럼 작동해서 필요한 적절한 컨테이너로 연결해준다.
-&lt;img src=&quot;https://docs.docker.com/engine/swarm/images/ingress-routing-mesh.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;하지만 어떠한 가상머신(node)이 서비스를 제공하는지 숨기고 싶은 경우, 통상적인 방식대로 Swarm 앞에 로드밸런서를 하나 더 두어야한다. &lt;a href=&quot;https://www.upcloud.com/support/load-balancing-docker-swarm-mode/&quot;&gt;Load Balancing 을 수행하는 Proxy 서버로 Nginx 를 Swarm 앞에 사용하는 tutorial 관련 게시글&lt;/a&gt; 을 참조하면 이러한 시도들을 확인할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;이전 nginx 관련 포스트에서 설명했던 바와 같이, nginx 에는 기본 로드밸런서 기능이 내장되어있다.&lt;/p&gt;
-
-&lt;p&gt;관련글 -&amp;gt; &lt;a href=&quot;http://jaynewho.com/post/18&quot;&gt;jayneWho();  &amp;gt; Post &amp;gt;   Nginx 에 대하여 (Nginx Basic Usage)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://www.upcloud.com/support/wp-content/uploads/2016/10/Load-balancing-docker-swarm.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/engine/swarm/ingress/#configure-an-external-load-balancer&quot;&gt;또한 Docker Documentation 에도 Swarm 앞에 External Load Balancer 로 HAProxy 를 두는 법을 설명하고 있다.&lt;/a&gt; 아래 그림을 참고하자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docs.docker.com/engine/swarm/images/ingress-lb.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;3-코드-배포&quot;&gt;3. 코드 배포&lt;/h2&gt;
-
-&lt;p&gt;위와 같이 클라우드 인프라를 구축해놓았다면, 코드를 배포하는 일은 너무나 쉽다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;소스 코드 수정 후 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker image build&lt;/code&gt; 하기&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Docker Hub Repository 에 새로 만든 이미지 push 하기&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose.yml&lt;/code&gt; 파일 또는 swarm 에 bind-mount 파일 변경되었다면 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine scp&lt;/code&gt; 로 전송\&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-machine ssh myvm1 &quot;docker stack deploy -c ./docker-compose.yml&quot;&lt;/code&gt; 로 Stack 재배포하면, Repository 에서 이미지 새로 끌어와서 업데이트된 컨테이너가 구축됨&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/21/1.jpeg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-1-local-에서-개발-테스트&quot;&gt;3-1. local 에서 개발 테스트&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker-compose-dev.yml&lt;/code&gt; 파일을 작성해서, 로컬에서 돌릴만한 Stack 구성을 작성해 local 의 docker engine 에서 이미지와 컨테이너가 잘 작동하는지 테스트하며 개발할 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;이로써 초기 구축, 스케일조정, 코드배포 까지 개발-배포 과정에서 docker 를 이용하는 방식을 살펴보았다. docker 공식 문서에 충실하게 말이다.&lt;/p&gt;
-
-&lt;h5 id=&quot;좋은-refernece-발견&quot;&gt;좋은 refernece 발견&lt;/h5&gt;
-&lt;p&gt;위와 같은 배포 flow 대로 충실히 수행한 toy-project 를 github 에서 발견하였다. 실제 코드가 보고싶을 때 &lt;a href=&quot;https://github.com/sophilabs/sample-django-docker-swarm&quot;&gt;“이 프로젝트 Github 링크”&lt;/a&gt; 로 들어가 프로젝트 코드를 살피면 좋을 듯 하다. backend service (django)(3 replicas) + frontend service (nginx)(2 replicas) 로 간단하게 구성되어있다. 이 곳에서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stack deploy -c docker-swarm.yml&lt;/code&gt; 을 해야한다.&lt;/p&gt;
-
-&lt;h5 id=&quot;뭔가-아쉽다면&quot;&gt;뭔가 아쉽다면&lt;/h5&gt;
-&lt;p&gt;그런데 뭔가 배포한 Swarm 과 Stack 에 관한 시각화와 관리 툴이 있으면 좋겠다는 생각이 든다. 그 때 발견한 것이 Docker Cloud 이다.&lt;/p&gt;
-
-&lt;h1 id=&quot;docker-cloud-web-console-이용하여-swarm-관리&quot;&gt;Docker Cloud Web Console 이용하여 Swarm 관리&lt;/h1&gt;
-
-&lt;p&gt;Docker Cloud 를 이용하면 자신의 Swarm 과 그 위에 돌아가는 Stack, Service, Task Container 들을 관리할 수 있다. 자세한 spec 설정까지 가능하다.&lt;/p&gt;
-
-&lt;p&gt;자신의 Docker Hub Repository 에 있는 image 들도 불러와 관리할 수 있고, AutoBuild 기능으로 코드에 변화가 생겼을 때 바로바로 image 를 자동 재생성하는 기능 또한 갖췄다.&lt;/p&gt;
-
-&lt;p&gt;심지어 새로운 Swarm 이나 이미지를 웹 상에서 만드는 것도 가능하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://github.com/sophilabs/sample-django-docker-swarm/raw/master/create-swarm.png&quot; alt=&quot;&quot; /&gt;
-(docker-machine 드라이버를 제공하는 다른 cloud hosting 서비스 업체들은 많지만, swarm 만들기를 지원하는건 아직 amazon 과 azure 뿐인가보다. 다른 서비스업체를 이용할 경우 직접 위 방식대로 swarm 을 만들어야겠다.)&lt;/p&gt;
-
-&lt;p&gt;매우 간단한 UI 이므로, 직접 사용해보는 것을 추천한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/docker-cloud/&quot;&gt;Docker Cloud Documentation&lt;/a&gt; 의 Manage Swarms 를 보면서 사용하면 좋을 듯 하다.&lt;/p&gt;</content><author><name></name></author><category term="docker" /><category term="swarm" /><category term="stack" /><category term="service" /><category term="container" /><category term="image" /><category term="deploy" /><summary type="html">pre-requisite docker, docker-compose, docker-machine 이 세가지 프로그램이 설치되어야 한다. Docker Store(링크) 에서 설치 가능하다. 자신의 OS 에 맞는 Docker 를 설치하자.</summary></entry></feed>
+&lt;p&gt;micro task queue 가 다 비워진 후에는 task queue 의 작업들이 옮겨지고 수행된다.&lt;/p&gt;</content><author><name></name></author><category term="javascript" /><category term="nodejs" /><category term="runtime" /><category term="promise" /><category term="eventloop" /><summary type="html">javascript 언어는 다른 많은 언어들과 다르게 굉장히 다양한 Runtime(=실행환경) 속에서 실행된다.</summary></entry></feed>

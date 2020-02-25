@@ -254,7 +254,7 @@
 
 
 <div class="post container pt-5 " style="max-width : 750px"><blockquote>
-  <p>초안 작성은 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 2018년 12월 18일인데, 한참 뒤인 2019년 4월 19일에 하게 되었네요. 😂 초안을 작성할 땐 webRTC 세계를 담아보겠다는 포부를 가지고 글을 쓰기 시작했는데, 한참 지난 뒤 글을 적으려다보니 다 까먹어서 내용이 처음에 계획했던 것에 비해 많이 단촐해졌습니다. 하하.</p>
+  <p>2018년도에 webRTC 를 이용한 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 경험을 떠올리며, webRTC API 를 이용한 애플리케이션 작성법을 정리해봅니다. 🎉</p>
 </blockquote>
 
 <h1 id="what-is-webrtc">What is <code class="highlighter-rouge">WebRTC</code>?</h1>
@@ -262,15 +262,15 @@
 
 <p>프로젝트의 진행 방식은, WebRTC API 최신 명세 (SPEC) 를 <code class="highlighter-rouge">WebRTC M{xx}</code> 와 같은 이름으로 공개하고, 거의 동시에 Chrome (혹은 Chrome Beta) 에 구현하여 릴리즈하는 것 같습니다. Opera, Safari, Firefox 등의 브라우저들은 이 공개된 명세에 발맞춰 따라옵니다.</p>
 
-<p>WebRTC 로 할 수 있는 일은 굉장히 많지만, 간단한 p2p 영상/음성 연결, p2p 데이터 교환 등에도 많이 쓰입니다.</p>
+<p>WebRTC 로 할 수 있는 일은 굉장히 많습니다. 그 중에서도 이 글에서는 서버를 통하지 않고 클라이언트와 클라이언트 간의 p2p 영상/음성/데이터 통신을 하는 활용법에 초점을 맞춰서 webRTC 의 API 를 정리해보겠습니다.</p>
 
 <blockquote>
   <p><a href="https://webrtc.org/">WebRTC 공식 홈페이지 webrtc.org 링크</a></p>
 </blockquote>
 
-<h1 id="webrtc-의-3가지-api"><code class="highlighter-rouge">WebRTC</code> 의 3가지 API</h1>
+<h1 id="webrtc-의-3가지-대표-api"><code class="highlighter-rouge">WebRTC</code> 의 3가지 대표 API</h1>
 
-<p>2018년 말인 현재, 대부분의 브라우저가 <code class="highlighter-rouge">webRTC</code> API 표준을 지원합니다.</p>
+<p>2018년 말인 현재, 대부분의 브라우저가 webRTC API 표준을 지원합니다. 대부분의 브라우저에서 지원하는 webRTC 의 대표적인 표준 API 3가지를 소개하겠습니다.</p>
 
 <ol>
   <li><code class="highlighter-rouge">MediaStream</code> (<code class="highlighter-rouge">getUserMedia</code>)</li>
@@ -279,54 +279,61 @@
 </ol>
 
 <h3 id="api-1-mediastream">API 1. <code class="highlighter-rouge">MediaStream</code></h3>
-<p>사용자의 카메라와 마이크 같은 곳의 데이터 스트림에 접근합니다.</p>
+<p>사용자의 카메라와 마이크 같은 곳의 데이터 스트림에 접근합니다. 우리의 애플리케이션이 사용자의 음성, 영상 데이터를 채집해 올 때 자주 사용하게 됩니다.</p>
 
 <h3 id="api-2-rtcpeerconnection">API 2. <code class="highlighter-rouge">RTCPeerConnection</code></h3>
-<p>암호화 및 대역폭 관리를 하는 기능을 가지고 있고, 오디오 또는 비디오 연결을 합니다.</p>
+<p>암호화 및 대역폭 관리를 하는 기능을 가지고 있고, 오디오 또는 비디오 연결을 담당합니다. 애플리케이션이 채집한 음성 및 영상 데이터를 서로 주고 받는 채널을 추상화하였다고 생각하면 됩니다.</p>
 
 <h3 id="api-3-rtcdatachannel">API 3. <code class="highlighter-rouge">RTCDataChannel</code></h3>
-<p>일반적인 데이터 P2P통신</p>
+<p>음성 및 영상 데이터가 아닌, json/text 데이터들을 주고받는 채널을 추상화한 API 입니다.</p>
 
 <h1 id="webrtc-application-이-수행하는-것"><code class="highlighter-rouge">webRTC</code> application 이 수행하는 것</h1>
 
-<ol>
-  <li>Streaming Data (Audio, Video, Text, Data) 를 수집합니다.
-    <ul>
-      <li>API : <code class="highlighter-rouge">MediaStream</code>, <code class="highlighter-rouge">getUserMedia</code></li>
-    </ul>
-  </li>
-  <li>IP주소, Port등의 네트워크 정보를 수집합니다. 그리고 그 정보를 다른 WebRTC Client (=Peer) 와 교환합니다.
-    <ul>
-      <li>No API offered</li>
-      <li>Need Signaling Server</li>
-    </ul>
-  </li>
-  <li>“Error Report”, “Session 초기화”, “Session 종료” 와 같은 신호 통신을 관리해야 합니다.
-    <ul>
-      <li>No API offered</li>
-      <li>Need Signaling Server</li>
-    </ul>
-  </li>
-  <li>해상도와 코덱들 같은 미디어와 클라이언트의 capabilty에 대한 정보를 교환합니다.
-    <ul>
-      <li>No API offered</li>
-      <li>Need Signaling Server</li>
-    </ul>
-  </li>
-  <li>스트리밍 오디오, 비디오 또는 데이터를 주고 받아야합니다.
-    <ul>
-      <li>API : <code class="highlighter-rouge">RTCPeerConnection</code>, <code class="highlighter-rouge">RTCDataChannel</code></li>
-    </ul>
-  </li>
-</ol>
+<p>여러분이 만약 p2p 영상 및 음성 통신을 하는 webRTC application 을 구성한다면, 다음의 주요한 4가지 작업을 수행해야 할 것입니다.</p>
 
-<p>크게 나누면 다음과 같은 세단계로 볼 수 있습니다.</p>
+<table>
+  <thead>
+    <tr>
+      <th>no</th>
+      <th>stage</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Fetching</td>
+      <td>상대 peer 에게 보낼 사용자의 음성 및 영상 데이터를 수집합니다.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Signaling</td>
+      <td>이 세상 어딘가에 있는 상대 peer 와 연결을 맺기 위해서, 상대 peer 의 정보를 탐색합니다.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Connection</td>
+      <td>발견한 peer 와 p2p connection 을 맺습니다. channel 을 개방해둡니다.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Communication</td>
+      <td>개방해놓은 채널을 통해 음성/영상/텍스트 데이터를 주고 받습니다.</td>
+    </tr>
+  </tbody>
+</table>
 
-<p><strong>Fetching(1) -&gt; Signaling (2,3,4) -&gt; Connection &amp; Communication(5)</strong></p>
+<p>위의 4가지 작업의 구체적인 방식과, 각각의 수행에 필요한 webRTC API 들을 알아보겠습니다.</p>
 
-<p>이중 Fetching(1) 과 Connection &amp; Communication(5) 단계는 <code class="highlighter-rouge">webRTC</code> API 를 이용하지만, 가장 번거로운 Signaling 과정(2,3,4) 는 정작 <code class="highlighter-rouge">webRTC API</code> 로 명세되어있지 않습니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다.</p>
+<h2 id="1단계-fetching">1단계. Fetching</h2>
 
-<h2 id="signaling-stage">Signaling Stage</h2>
+<p>webRTC API 인 <code class="highlighter-rouge">MediaStream</code>, <code class="highlighter-rouge">getUserMedia</code> 를 이용해 사용자의 영상 및 음성 정보를 가져옵니다. 가져온 이후의 활용법은 4단계에서 자세히 다루겠습니다.</p>
+
+<h2 id="2단계-signaling">2단계. Signaling</h2>
+
+<blockquote>
+  <p>잠깐! Signlaing 단계는 피어와 피어가 서로를 찾을 수 있도록 돕는 <strong>중간 매개자 역할을 하는 서버인 Signaling Server 를 필요</strong>로 합니다. Signaling Sever 의 <strong>구현 방식에는 제약이 없습니다.</strong>  오롯히 애플리케이션을 만드는 개발자의 몫입니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다. webRTC 애플리케이션 개발을 하면서 가장 어려웠던 부분이기도 합니다.</p>
+</blockquote>
 
 <p>Signaling 단계는 서로 다른 두 peer (WebRTC Client) 가 Communication 하기 위한 준비단계로, 3가지 종류의 정보를 교환해야 합니다.</p>
 
@@ -351,30 +358,79 @@
   </li>
 </ol>
 
-<h3 id="1-network-정보-ice-candidate-교환하기">1. Network 정보 (ICE Candidate) 교환하기</h3>
+<p>조금 더 자세히 알아보겠습니다.</p>
 
-<ol>
-  <li><code class="highlighter-rouge">RTCPeerConnection</code> Object 를 새롭게 생성하고 <code class="highlighter-rouge">RTCPeerConnection.onicecandidate</code> 핸들러를 통해 현재 내 client 의 Ice Candidate(Network 정보)  가 확보되면 실행될 callback 을 전달합니다.</li>
-  <li>Ice Candidate (내 네트워크 정보) 가 확보되면, Signaling Channel 을 통해 상대 peer 에게  serialized 된 ice candidate 정보를 전송합니다. (쌍방이 서로에게 합니다.)</li>
-  <li>상대 peer 의 candidate (네트워크 정보) 가 도착하면, <code class="highlighter-rouge">RTCPeerConnection.addIceCandidate</code> 를 통해 상대 peer 의 네트워크 정보를 등록합니다. (쌍방이 모두 합니다.)</li>
-</ol>
+<h3 id="network-정보-ice-candidate-교환하기">Network 정보 (ICE Candidate) 교환하기</h3>
 
-<h3 id="2media-capability-교환하기--session-control-message-교환하기">2.Media Capability 교환하기 + Session Control Message 교환하기</h3>
+<p>세상 어딘가에 있는 상대 peer 를 찾아 연결을 맺기 위해선, 네트워크 정보를 교환해야합니다. 이 때, 중간 매개자 역할로서 별도의 서버인 Signaling Server 가 필요합니다. 순서는 다음과 같습니다.</p>
 
-<blockquote>
-  <p>A 와 B 가 webRTC 통신을 하려고합니다. 각자 브라우저에서 <code class="highlighter-rouge">RTCPeerConnection</code> 객체를 가지고 있고, 서로의 네트워크 정보 (ice candidate) 를 교환 후 각자의 <code class="highlighter-rouge">RTCPeerConnection.addIceCandidate</code> 를 통해 서로의 네트워크 정보를 등록하였습니다.</p>
-</blockquote>
+<table>
+  <thead>
+    <tr>
+      <th>step</th>
+      <th>do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><code class="highlighter-rouge">RTCPeerConnection</code> Object 를 새롭게 생성하고 <code class="highlighter-rouge">RTCPeerConnection.onicecandidate</code> 핸들러를 통해 현재 내 client 의 Ice Candidate(Network 정보)  가 확보되면 실행될 callback 을 전달합니다.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Ice Candidate (내 네트워크 정보) 가 확보되면, 중간 매개자인 Signaling Server 을 통해 상대 peer 에게  serialized 된 ice candidate 정보를 전송합니다. (쌍방이 서로에게 합니다.)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>상대 peer 의 candidate (네트워크 정보) 가 도착하면, <code class="highlighter-rouge">RTCPeerConnection.addIceCandidate</code> 를 통해 상대 peer 의 네트워크 정보를 등록합니다. (쌍방이 모두 합니다.)</td>
+    </tr>
+  </tbody>
+</table>
 
-<ol>
-  <li>B 가 <code class="highlighter-rouge">RTCPeerConnection.createOffer</code> 를 호출해 Offer SDP (Session Description Protocol) 을 생성합니다. 여기엔 내 브라우저에서 사용 가능한 코덱이나 해상도에 대한 정보가 들어있습니다.</li>
-  <li>B 가 Offer SDP 를 Signaling Channel 을 통해 전송합니다.</li>
-  <li>A 는 Signaling Channel 에서 Offer SDP 를 받아, <code class="highlighter-rouge">RTCPeerConnection.setRemoteDescription</code> 을 수행합니다.</li>
-  <li>A 의 <code class="highlighter-rouge">RTCPeerConnection</code> 객체는 상대 session 에 대한 정보를 알고 있게 되었고, <code class="highlighter-rouge">RTCPeerConnection.createAnswer</code> 를 호출하여 Answer SDP 를 생성하여 Signaling Channel 을 통해 B 에게 전달합니다.</li>
-  <li>B 도 마찬가지로 자신의 <code class="highlighter-rouge">RTCPeerConnection.setRemoteDescription</code> 을 호출해, 전달받은 Answer SDP 를 등록합니다.</li>
-  <li>A, B 각 측에서 <code class="highlighter-rouge">setRemoteDescription</code> 이 성공적으로 수행되었다면, 각 브라우저에서는 서로의 peer 에 대해 인지하고 있는 상태라고 할 수 있고, p2p 연결이 성공적으로 완료되었다고 할 수 있습니다.</li>
-</ol>
+<h3 id="media-capability-교환하기--session-control-message-교환하기">Media Capability 교환하기 + Session Control Message 교환하기</h3>
 
-<h2 id="communication-stage">Communication Stage</h2>
+<p>상황을 가정해봅시다. A 와 B 가 webRTC 통신을 하려고합니다. 각자 브라우저에서 <code class="highlighter-rouge">RTCPeerConnection</code> 객체를 가지고 있고, 서로의 네트워크 정보 (ice candidate) 를 교환 후 각자의 <code class="highlighter-rouge">RTCPeerConnection.addIceCandidate</code> 를 통해 서로의 네트워크 정보를 등록하였습니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>step</th>
+      <th>do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>B 가 <code class="highlighter-rouge">RTCPeerConnection.createOffer</code> 를 호출해 Offer SDP (Session Description Protocol) 을 생성합니다. 여기엔 내 브라우저에서 사용 가능한 코덱이나 해상도에 대한 정보가 들어있습니다.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>B 가 Offer SDP 를 Signaling Server (매개자) 을 통해 전송합니다.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>A 는 Signaling Channel 에서 Offer SDP 를 받아, <code class="highlighter-rouge">RTCPeerConnection.setRemoteDescription</code> 을 수행합니다.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>A 의 <code class="highlighter-rouge">RTCPeerConnection</code> 객체는 상대 session 에 대한 정보를 알고 있게 되었고, <code class="highlighter-rouge">RTCPeerConnection.createAnswer</code> 를 호출하여 Answer SDP 를 생성하여 Signaling Channel 을 통해 B 에게 전달합니다.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>B 도 마찬가지로 자신의 <code class="highlighter-rouge">RTCPeerConnection.setRemoteDescription</code> 을 호출해, 전달받은 Answer SDP 를 등록합니다.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>A, B 각 측에서 <code class="highlighter-rouge">setRemoteDescription</code> 이 성공적으로 수행되었다면, 각 브라우저에서는 서로의 peer 에 대해 인지하고 있는 상태라고 할 수 있고, p2p 연결이 성공적으로 완료되었다고 할 수 있습니다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3단계-connection">3단계. Connection</h2>
+
+<p>어려운 Signaling 을 통해 상대 피어의 정보가 잘 등록된 <code class="highlighter-rouge">RTCPeerConnection</code> 를 얻었다면, 연결이 성공적으로 이루어진 것입니다.</p>
+
+<h2 id="4단계-communication">4단계. Communication</h2>
 <p>보통 webRTC 를 통해서 peer 와 peer 가 주고받는 데이터는 크게 아래의 두가지입니다.</p>
 <ol>
   <li>video 나 audio 데이터 스트림</li>
@@ -392,6 +448,13 @@
 <p><strong>주는 입장</strong> : <code class="highlighter-rouge">RTCPeerConnection.createDataChannel</code>  을 통해, 특정 이름의 data 전달 채널을 개설할 수 있습니다. 이 또한 Signaling 을 통해 connection 이 이루어지기 전에 미리 되어야합니다.</p>
 
 <p><strong>받는 입장</strong> : <code class="highlighter-rouge">RTCPeerConnection.ondatachannel</code> 의 callback 을 커스텀하게 설정해서, connection 이 성공적으로 이루어진 후에 상대방이 data channel 을 통해 어떤 데이터를 보냈을 때의 동작을 설정할 수 있습니다.</p>
+
+<h1 id="webrtc-애플리케이션을-만들-때-겪었던-어려움">webRTC 애플리케이션을 만들 때 겪었던 어려움</h1>
+<h2 id="1-피어간의-연결이-끊겼을-때-다시-연결을-맺어줘야-한다">1. 피어간의 연결이 끊겼을 때, 다시 연결을 맺어줘야 한다</h2>
+<p>인터넷의 문제나 예기치 못한 문제로 피어와 피어간에 맺어놓은 Connection 이 끊어지는 일이 굉장히 자주 발생합니다. 이 때 적절한 retry 로직으로 자연스럽게 재연결을 맺어주어야 합니다.</p>
+
+<h2 id="2-안정적인-signaling-server-를-구축해야한다">2. 안정적인 Signaling Server 를 구축해야한다</h2>
+<p>Signaling 단계가 성공하지 못하면 Connection 을 맺을 수 조차 없습니다. 따라서 안정적인 Signaling Server 를 구축하는 것이 무엇보다 중요했습니다.</p>
 
 <h1 id="참고한-자료들">참고한 자료들</h1>
 <blockquote>
