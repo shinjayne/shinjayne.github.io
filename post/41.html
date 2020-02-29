@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AngularJS 와 Django Template Tag 충돌 해결 | Jayne.who();</title>
+    <title>논리력은 멘탈 모델 + 지식 체계 다. <슈퍼 씽킹> 을 읽고 | Jayne.who();</title>
 
     <meta charset="utf-8" />
     <meta
@@ -235,60 +235,73 @@
     }
 </style>
 
-<div class="container-fluid text-center pt-3" style="background-image : url('https://docs.angularjs.org/img/angularjs-for-header-only.svg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/41/cover.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
     <a href="/post/">
         <p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p>
     </a>
-    <h1 class="card-title text-white" style="font-size : 2.2rem;">AngularJS 와 Django Template Tag 충돌 해결</h1>
+    <h1 class="card-title text-white" style="font-size : 2.2rem;">논리력은 멘탈 모델 + 지식 체계 다. <슈퍼 씽킹> 을 읽고</h1>
     <p class="card-text text-white">
-        <p class="text-muted">web | 26 January 2018</p>
+        <p class="text-muted">idea | 01 March 2020</p>
     </p>
     <p class="card-text text-white">
         Tags | 
-        <a href="#" class="badge badge-primary">django</a> 
-        <a href="#" class="badge badge-primary">angular</a> 
-        <a href="#" class="badge badge-primary">backend</a> 
-        <a href="#" class="badge badge-primary">frontend</a> 
-        <a href="#" class="badge badge-primary">javascript</a> 
+        <a href="#" class="badge badge-primary">inspiration</a> 
+        <a href="#" class="badge badge-primary">book</a> 
+        <a href="#" class="badge badge-primary">logical</a> 
+        <a href="#" class="badge badge-primary">thinking</a> 
     </p>
 </div>
 
 
-<div class="post container pt-5 " style="max-width : 750px"><h4 id="notice">notice!</h4>
-<p><strong>이 글은 현재 널리 쓰이는 Angular 가 아닌 그의 전신 AngularJS(v1) 를 다루고 있습니다. 과거 기술에 기반한 내용이니 참고해주시기 바랍니다.</strong></p>
+<div class="post container pt-5 " style="max-width : 750px"><p>“슈퍼 씽킹” 이란 책은 다음과 같은 주장으로 서문을 연다.</p>
 
-<p>AngularJS 는 웹 앱의 프런트엔드 부분을 만드는 Javascipt Framework 이고, Django 의 Template Engine 은 백엔드 Framework 에서 동적으로 html 문서를 생성해주는 시스템이다.</p>
+<blockquote>
+  <p>단편적인 사실들만 알고있는 것은 아무런 힘을 발휘하지 못한다. 사실들을 엮어 의미와 해석을 가능케 해주는 것을 “멘탈 모델” 이라고 하며, 이는 다양한 학문에서 유래하기도 하고, 살면서 자연스레 체득되기도 한다.</p>
 
-<p>이 두개를 함께 쓰려하면 한가지 문제가 생긴다. AngularJS 에서 Model(내부변수들)을 View(HTML 문서) 에 bind 할 때 사용하는 Symbol 과 Django Tempate Engine 에서 사용하는 Tag Symbol 이 동일하기 때문에, 함께 사용하면 AngularJS 의 Bind Symbol 이 작동하지 않는다.</p>
+  <p>다양한 멘탈 모델들, 특히 모든 분야에 강력한 힘을 발휘하는 “슈퍼 모델” 들을 많이 익히면 “슈퍼 씽킹” 을 할 수 있다.</p>
+</blockquote>
 
-<p>이를 해결하기 위한 방법은 여러가지 있는데, 그중 내가 사용해보려고 하는 방법은 AngularJS  module 의 설정(config) 중 하나인 <code class="highlighter-rouge">$interpolateProvider</code> 를 조정하는 것이다.</p>
+<p>그리고 책의 구성은 저자가 살면서 습득한 다양한 슈퍼 멘탈 모델들을 나열하는 방식으로 되어있다.</p>
 
-<h1 id="interpolateprovider-조정하기"><code class="highlighter-rouge">$interpolateProvider</code> 조정하기</h1>
+<p>이 책이 전달하는 메세지가 책의 서문만을 읽고도 내게 큰 의미로 다가왔다. 그 이유를 이 글을 통해 설명하고자 한다.</p>
 
-<p><a href="https://docs.angularjs.org/api/ng/provider/$interpolateProvider">AngularJS 의 공식 Documentation</a> 에 자세한 사용법이 나온다.</p>
+<p>나는 “논리력” 이 내가 추구하는 중요한 능력이라는 사실을 최근에 자각했고 (논리적인 사고가 더 높은 생산성으로 이어진다고 믿기 때문이다), 그 “논리력” 이 강해지기 위해 필요한 것들을 찾으려 힘썼다. 그 중 첫 번째로 찾은 구성요소는 (어릴 적 부터 왠지 모르게 인생에서 중요하게 생각해온) “지식 체계” 다.</p>
 
-<p>아래의 예시는 기존의 <code class="highlighter-rouge"><span class="p">{</span><span class="w"> </span><span class="err">{</span></code> 와 <code class="highlighter-rouge">} }</code> 이던 Binding Symbol 을 <code class="highlighter-rouge">//</code> 와 <code class="highlighter-rouge">//</code> 로 변경한다.</p>
+<p>한가지 새로운 지식을 습득해도 사람마다 흡수하는 속도가 다르다. 나는 이 차이를 발생시키는 원인을 지식 체계의 차이에서 찾았다.  자신이 쌓아온 지식 체계가 촘촘하고 빼곡할수록,  그 잘 짜여진 체 안에 연관도가 높은 지식들 사이에 새로운 지식의 자리를 빠르게 찾아 배치할 수 있기 때문이다.  그리고 지식체계는 새로운 정보의 습득력 뿐만 아니라, 논리적 사고에 필요한 지식을 빠르게 머리속에서 찾아 꺼내올 때에도 강력한 힘을 발휘한다. 마치 인덱싱이 잘 된 데이터베이스가 검색 속도가 빠른 것과 같다.</p>
 
-<p>다만 이 설정은 config 설정을 조정한 해당 앱 내에서만 작동한다.</p>
+<p>고도화된 지식 체계의 특성은  촘촘함 그리고 빼곡함인데, 이 두 특성 모두 개인이 얼마나 다양한 지식을 접했는가와 지식을 얼마나 체계적으로 정리할 수 있는 논리적 사고력을 갖췄는가 에 영향을 받는다.</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
-  <span class="kd">var</span> <span class="nx">customInterpolationApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'customInterpolationApp'</span><span class="p">,</span> <span class="p">[]);</span>
+<p>고도화된 지식 체계의 중요성을 설파하는 사람은 나뿐만이 아니다. 넷플릭스의 «Inside Bill Gates : 빌게이츠 다큐멘터리» 에서 빌게이츠도 자신의 독서습관을 소개하는 대목에서 지식 체계에 대해 언급한다.</p>
 
-  <span class="nx">customInterpolationApp</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$interpolateProvider</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$interpolateProvider</span><span class="p">.</span><span class="nx">startSymbol</span><span class="p">(</span><span class="s1">'//'</span><span class="p">);</span>
-    <span class="nx">$interpolateProvider</span><span class="p">.</span><span class="nx">endSymbol</span><span class="p">(</span><span class="s1">'//'</span><span class="p">);</span>
-  <span class="p">});</span>
+<blockquote>
+  <p>‘저는 제 머리 속의 지식의 틀 속에 새로운 지식들의 자리를 찾아 넣는 것을 좋아합니다.’ - &lt; Inside Bill Gates : Netflix &gt;</p>
+</blockquote>
 
+<p>논리력이 강하려면 논리적 사고에 필요한 근거인 지식들이 수중에 많아야하고, 단순히 수중에 많은 것을 넘어서 빠르게 시의적절한 지식을 꺼내 논리의 근거로 사용할 수 있어야한다. 따라서 “고도화된 지식 체계” 는 논리력의 필요조건이라고 할 수 있다.</p>
 
-  <span class="nx">customInterpolationApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'DemoController'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">label</span> <span class="o">=</span> <span class="s2">"This binding is brought you by // interpolation symbols."</span><span class="p">;</span>
-  <span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"DemoController as demo"</span><span class="nt">&gt;</span>
-    //demo.label//
-<span class="nt">&lt;/div&gt;</span>
-</code></pre>
-</div>
+<p>그런데 항상 아쉬웠던 부분은 고도화된 지식 체계가 논리력 의 충분 조건은 아니라는 것이었다.  분명 논리력을 구성하는 요인이 지식 체계 외에 더 있다고 느끼고 있었는데, 이 슈퍼 씽킹이란 책의 서문과 목차를 읽고 바로 느꼈다. 내가 찾던 논리력 의 또 다른 필요 조건은 “다양한 멘탈 모델” 이였다는 것을.</p>
+
+<p>멘탈 모델이 무엇이고 어떤 효용이 있는가가 와닿지 않는 분들을 위해, 내가 이 글에서 평소에 내가 가지고 있던 멘탈 모델을 사용한 예시들을 두가지 찾아보겠다.  첫 번째로 이 대목.</p>
+
+<blockquote>
+  <p><em>‘그리고 지식체계는 새로운 정보의 습득력 뿐만 아니라, 논리적 사고에 필요한 지식을 빠르게 머리속에서 찾아 꺼내올 때에도 강력한 힘을 발휘한다. 마치 인덱싱이 잘 된 데이터베이스가 검색 속도가 빠른 것과 같다.’</em></p>
+</blockquote>
+
+<p>이 대목에서 나는 컴퓨터공학에서 기인한 “데이터베이스의 인덱싱” 이라는 멘탈 모델을 이용해 지식 체계라는 보편적인 현상을 이해했다. (참고로 이 책에서는 이렇게 특정 학문적 영역에서 기인하였어도 보편적으로 효용을 줄 수 있는 멘탈 모델을 “슈퍼 모델” 이라고 부른다.)  만약 내가 이 멘탈 모델이 없었다면, 지식 체계의 중요성을 논리적으로 설명하지 못했을 수도 있고, 더 나아가서는 지식 체계의 중요성 자체를 인지하지 못했을 수도 있다.</p>
+
+<p>두번째로는 이 대목이다.</p>
+
+<blockquote>
+  <p><em>‘고도화된 지식 체계가 논리력의 충분 조건은 아니라는 것이었다. 분명 논리력을 구성하는 요인이 지식 체계 외에 더 있다고 느끼고 있었는데, 이 슈퍼 씽킹이란 책의 서문과 목차를 읽고 바로 느꼈다. 내가 찾던 논리력의 또 다른 필요 조건은 “다양한 멘탈 모델” 이었다는 것을.’</em></p>
+</blockquote>
+
+<p>이 대목에서는 “필요 충분 조건” 이라는 논리학에서 기인한 멘탈 모델을 사용한 것이다. 이 멘탈 모델을 사용하면 위 대목 뿐만 아니라 일상 생활의 다양한 부분에서 논리적 의존 관계를 더 쉽게 파악하고 다른 사람에게 설명할 수 있다. 멘탈 모델의 효용을 단적으로 보여주는 예이다.</p>
+
+<p>이렇듯 분명히 멘탈 모델은 똑같은 사실을 마주하더라도 더 빠르게 자신의 방식으로 현상을 해석할 수 있게 해주고, 논리적 결정의 속도와 근거력을 높여준다.  따라서 분명 멘탈 모델은 지식 체계와 더불어 논리력의 필요 조건이라고 할 수 있겠다.</p>
+
+<p>“슈퍼 씽킹” 이 서문에서부터 강조한 ‘슈퍼 씽킹을 하기 위한 슈퍼 멘탈 모델들의 중요성’ 은 나에게 위와 같은 생각을 하게 만들었고, 덕분에 나는 내가 중요하게 생각하는 “논리력” 에 필요한 중요한 요인을 또 하나 찾았다. 이는 내가 앞으로 책을 읽거나 새로운 정보를 얻었을 때, 지식 체계의 관점에서만이 아니라 새로운 멘탈 모델의 습득 관점에도 집중할 수 있게 해 줄 것이다. 이렇게 생각하니 정말 마음이 부푼다. 부푼 마음으로 서문에서 슈퍼 씽킹의 표지를 덮는다.</p>
+
+<p><img src="/asset/media/image/post/41/bookcover.jpg" alt="책" /></p>
 </div> <div class ="container mt-5 mb-5">
   <hr  />
   <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
