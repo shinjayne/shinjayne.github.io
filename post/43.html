@@ -261,6 +261,8 @@
   <p><a href="/post/42">Part 1 : 동시성 문제 - 일반론</a></p>
 
   <p>Part 2  : 동시성 문제 - 데이터베이스와 JPA <strong>(NOW)</strong></p>
+
+  <p><a href="/post/44">Part 3  : 동시성 문제 - 비즈니스 애플리케이션</a></p>
 </blockquote>
 
 <p>앞선 글에서 특정 시스템에 종속되지 않는 <strong>동시성 문제의 일반론</strong>에 대해서 정리해보았습니다.</p>
@@ -344,6 +346,10 @@
 <p>데이터베이스가 제공하는 lock 기능을 이용해 엔티티를 영속 상태로 올릴 때부터 다른 세션에서 조회하지 못하도록 잠금을 걸어둡니다. ( <code class="highlighter-rouge">select for update</code> 구문이라고 생각할 수 있습니다. )</p>
 
 <p>역시 비관적 잠금인만큼, 활동성은 매우 저하되지만 정확성과 세션의 성공은 보장됩니다.</p>
+
+<blockquote>
+  <p>💡 다음 글  : <a href="/post/44">동시성 문제 - 비즈니스 애플리케이션 (Part 3)</a></p>
+</blockquote>
 </div> <div class ="container mt-5 mb-5">
   <hr  />
   <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">

@@ -1,9 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://jaynewho.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://jaynewho.com/" rel="alternate" type="text/html" /><updated>2020-03-06T23:35:28+09:00</updated><id>http://jaynewho.com/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">동시성 문제 - 데이터베이스와 JPA (Part 2)</title><link href="http://jaynewho.com/post/43" rel="alternate" type="text/html" title="동시성 문제 - 데이터베이스와 JPA (Part 2)" /><published>2020-03-06T01:31:50+09:00</published><updated>2020-03-06T01:31:50+09:00</updated><id>http://jaynewho.com/post/43</id><content type="html" xml:base="http://jaynewho.com/post/43">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://jaynewho.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://jaynewho.com/" rel="alternate" type="text/html" /><updated>2020-03-07T00:49:35+09:00</updated><id>http://jaynewho.com/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">동시성 문제 - 비즈니스 애플리케이션 (Part 3)</title><link href="http://jaynewho.com/post/44" rel="alternate" type="text/html" title="동시성 문제 - 비즈니스 애플리케이션 (Part 3)" /><published>2020-03-07T00:41:50+09:00</published><updated>2020-03-07T00:41:50+09:00</updated><id>http://jaynewho.com/post/44</id><content type="html" xml:base="http://jaynewho.com/post/44">&lt;blockquote&gt;
+  &lt;p&gt;시리즈&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/post/42&quot;&gt;Part 1 : 동시성 문제 - 일반론&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/post/43&quot;&gt;Part 2  : 동시성 문제 - 데이터베이스와 JPA&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Part 3 : 동시성 문제 - 비즈니스 애플리케이션 &lt;strong&gt;(NOW)&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;앞선 글들에서 소개한 동시성 문제에 관련한 일반론을 비즈니스 애플리케이션의 개발에서도 이용할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;일반론 파트에서 다루었다시피, 비즈니스 애플리케이션에서의 동시성 문제도 읽고→쓰는 프로세스에서 발생합니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;쇼핑몰-시스템에서의-주문과-재고-차감&quot;&gt;쇼핑몰 시스템에서의 주문과 재고 차감&lt;/h1&gt;
+
+&lt;p&gt;우리가 물건을 파는 쇼핑몰 커머스 시스템을 개발하고 있다고 생각해봅니다. 그 중에서도 고객이 물건을 주문하는 과정의 비즈니스 로직을 개발하고 있습니다.  고객의 주문을 처리하는 과정을 도식화해보겠습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/44/1.png&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;재고 남았는지 확인&lt;/li&gt;
+  &lt;li&gt;가격을 계산하고 → 주문서를 작성하고 → 결제를 요청&lt;/li&gt;
+  &lt;li&gt;재고를 차감&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이 때, 하나의 상품에 동시에 여러 주문이 들어올 때 발생할 수 있는 동시성 문제는 무엇일까요? 네, 바로 &lt;strong&gt;“손실되는 업데이트”&lt;/strong&gt; 입니다.  아래의 그림을 살펴보시죠.&lt;/p&gt;
+
+&lt;p&gt;(참고로 한번 읽어온 데이터는 메모리에 저장하는 애플리케이션의 특성을 가정합니다. 또다른 동시성 문제인 “일관성 없는 읽기”의 문제는 따라서 논외가 됩니다.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/44/2.png&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;고객이 주문을 한 시점에는 재고가 2개였지만, 주문을 처리하는 과정 중 먼저 누군가 2개를 모두 주문해가면서 재고를 2 차감했습니다. 따라서 재고는 0이 되었죠. 하지만 현재 이 고객의 주문 세션에서는 주문이 모두 끝난 뒤 재고를 2에서 1로 업데이트하기 때문에, 손실되는 업데이트가 발생하게 됩니다. 재고는 더이상 믿을 수 없는 값이 됩니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;낙관적-잠금을-통한-해결&quot;&gt;낙관적 잠금을 통한 해결&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/44/3.png&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;동시성 제어 기법 중 하나인 낙관적 잠금 기법을 이용해 아키텍처를 구성하면 믿을 수 없는 재고값 문제를 해결할 수 있습니다.  하지만 전체 프로세스 중에 Transaction 의 원자성을 보장하지 못하게 하는 “외부 시스템 연동” 같은 과정이 있다면, 낙관적 잠금은 사용하기 어렵습니다. 낙관적 잠금은 전체 프로세스의 실패를 마지막 저장 시도 시점에 알 수 있는데, 원자적으로 Rollback 이 어려운 프로세스라면 전체 시스템의 정합성이 깨지기 때문입니다.&lt;/p&gt;
+
+&lt;p&gt;(마지막에 재고 차감에서 충돌이 일어나 주문은 실패하였는데, 외부 결제 시스템 호출은 이미 일어나서 고객의 돈이 빠져 나간다면 시스템의 큰 문제일 것입니다.)&lt;/p&gt;
+
+&lt;p&gt;이런 경우, 시스템의 활동성을 조금 포기하더라도 정확성을 높일 수 있는 “비관적 잠금” 을 사용할 수 있습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;비관적-잠금을-통한-해결&quot;&gt;비관적 잠금을 통한 해결&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/44/4.png&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;비지니스 어플리케이션에서의 비관적 잠금은 보통 동일한 작업을 하는 프로세스들 중 단 하나만이 점유할 수 있는 리소스 (Lock 혹은 Semaphore) 를 이용해 구현합니다. 한 프로세스가 재고 차감에 대한 Lock 을 점유하고 있다면, 현재 주문하려는 고객은 그 Lock 점유가 해제될 때까지 기다렸다가 프로세스를 실행합니다.  모든 주문 프로세스가 순차적으로 진행되는 것이죠.&lt;/p&gt;
+
+&lt;p&gt;비관적 잠금은  낙관적 잠금에 비해 활동성은 줄어들어 주문이 몰리는 시점에 고객은 더 느린 주문을 경험하겠지만, 결제만 되고 취소가 되는 등의 부정확한 시스템을 경험하게 될 확률은 그만큼 줄 것입니다.&lt;/p&gt;</content><author><name></name></author><category term="concurrency" /><category term="architecture" /><category term="enterprise" /><category term="database" /><category term="jpa" /><summary type="html">시리즈 Part 1 : 동시성 문제 - 일반론 Part 2 : 동시성 문제 - 데이터베이스와 JPA Part 3 : 동시성 문제 - 비즈니스 애플리케이션 (NOW)</summary></entry><entry><title type="html">동시성 문제 - 데이터베이스와 JPA (Part 2)</title><link href="http://jaynewho.com/post/43" rel="alternate" type="text/html" title="동시성 문제 - 데이터베이스와 JPA (Part 2)" /><published>2020-03-06T01:31:50+09:00</published><updated>2020-03-06T01:31:50+09:00</updated><id>http://jaynewho.com/post/43</id><content type="html" xml:base="http://jaynewho.com/post/43">&lt;blockquote&gt;
   &lt;p&gt;시리즈&lt;/p&gt;
 
   &lt;p&gt;&lt;a href=&quot;/post/42&quot;&gt;Part 1 : 동시성 문제 - 일반론&lt;/a&gt;&lt;/p&gt;
 
   &lt;p&gt;Part 2  : 동시성 문제 - 데이터베이스와 JPA &lt;strong&gt;(NOW)&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/post/44&quot;&gt;Part 3  : 동시성 문제 - 비즈니스 애플리케이션&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;앞선 글에서 특정 시스템에 종속되지 않는 &lt;strong&gt;동시성 문제의 일반론&lt;/strong&gt;에 대해서 정리해보았습니다.&lt;/p&gt;
@@ -86,12 +138,18 @@
 
 &lt;p&gt;데이터베이스가 제공하는 lock 기능을 이용해 엔티티를 영속 상태로 올릴 때부터 다른 세션에서 조회하지 못하도록 잠금을 걸어둡니다. ( &lt;code class=&quot;highlighter-rouge&quot;&gt;select for update&lt;/code&gt; 구문이라고 생각할 수 있습니다. )&lt;/p&gt;
 
-&lt;p&gt;역시 비관적 잠금인만큼, 활동성은 매우 저하되지만 정확성과 세션의 성공은 보장됩니다.&lt;/p&gt;</content><author><name></name></author><category term="concurrency" /><category term="architecture" /><category term="enterprise" /><category term="database" /><category term="jpa" /><summary type="html">시리즈 Part 1 : 동시성 문제 - 일반론 Part 2 : 동시성 문제 - 데이터베이스와 JPA (NOW)</summary></entry><entry><title type="html">동시성 문제 - 일반론 (Part 1)</title><link href="http://jaynewho.com/post/42" rel="alternate" type="text/html" title="동시성 문제 - 일반론 (Part 1)" /><published>2020-03-05T14:25:50+09:00</published><updated>2020-03-05T14:25:50+09:00</updated><id>http://jaynewho.com/post/42</id><content type="html" xml:base="http://jaynewho.com/post/42">&lt;blockquote&gt;
+&lt;p&gt;역시 비관적 잠금인만큼, 활동성은 매우 저하되지만 정확성과 세션의 성공은 보장됩니다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;💡 다음 글  : &lt;a href=&quot;/post/44&quot;&gt;동시성 문제 - 비즈니스 애플리케이션 (Part 3)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><category term="concurrency" /><category term="architecture" /><category term="enterprise" /><category term="database" /><category term="jpa" /><summary type="html">시리즈 Part 1 : 동시성 문제 - 일반론 Part 2 : 동시성 문제 - 데이터베이스와 JPA (NOW) Part 3 : 동시성 문제 - 비즈니스 애플리케이션</summary></entry><entry><title type="html">동시성 문제 - 일반론 (Part 1)</title><link href="http://jaynewho.com/post/42" rel="alternate" type="text/html" title="동시성 문제 - 일반론 (Part 1)" /><published>2020-03-05T14:25:50+09:00</published><updated>2020-03-05T14:25:50+09:00</updated><id>http://jaynewho.com/post/42</id><content type="html" xml:base="http://jaynewho.com/post/42">&lt;blockquote&gt;
   &lt;p&gt;시리즈&lt;/p&gt;
 
   &lt;p&gt;Part 1 : 동시성 문제 - 일반론 &lt;strong&gt;(NOW)&lt;/strong&gt;&lt;/p&gt;
 
   &lt;p&gt;Part 2  : &lt;a href=&quot;/post/43&quot;&gt;동시성 문제 - 데이터베이스와 JPA&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/post/44&quot;&gt;Part 3  : 동시성 문제 - 비즈니스 애플리케이션&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;동시성 문제란 두 개 이상의 세션이 공통된 자원에 대해 모두 &lt;strong&gt;읽고 쓰는 작업(Read→Write)&lt;/strong&gt; 을 하려고 하는 경우 발생할 수 있는 문제를 말합니다.&lt;/p&gt;
@@ -144,7 +202,7 @@
   &lt;p&gt;💡 다음 글  : &lt;a href=&quot;/post/43&quot;&gt;동시성 문제 - 데이터베이스와 JPA (Part 2)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;em&gt;참고 문헌 : 마틴 파울러의 “엔터프라이즈 애플리케이션 아키텍쳐 패턴”&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="concurrency" /><category term="architecture" /><category term="enterprise" /><summary type="html">시리즈 Part 1 : 동시성 문제 - 일반론 (NOW) Part 2 : 동시성 문제 - 데이터베이스와 JPA</summary></entry><entry><title type="html">논리력은 멘탈 모델 + 지식 체계 다. 을 읽고</title><link href="http://jaynewho.com/post/41" rel="alternate" type="text/html" title="논리력은 멘탈 모델 + 지식 체계 다. &lt;슈퍼 씽킹&gt; 을 읽고" /><published>2020-03-01T00:12:50+09:00</published><updated>2020-03-01T00:12:50+09:00</updated><id>http://jaynewho.com/post/41</id><content type="html" xml:base="http://jaynewho.com/post/41">&lt;p&gt;“슈퍼 씽킹” 이란 책은 다음과 같은 주장으로 서문을 연다.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;참고 문헌 : 마틴 파울러의 “엔터프라이즈 애플리케이션 아키텍쳐 패턴”&lt;/em&gt;&lt;/p&gt;</content><author><name></name></author><category term="concurrency" /><category term="architecture" /><category term="enterprise" /><summary type="html">시리즈 Part 1 : 동시성 문제 - 일반론 (NOW) Part 2 : 동시성 문제 - 데이터베이스와 JPA Part 3 : 동시성 문제 - 비즈니스 애플리케이션</summary></entry><entry><title type="html">논리력은 멘탈 모델 + 지식 체계 다. 을 읽고</title><link href="http://jaynewho.com/post/41" rel="alternate" type="text/html" title="논리력은 멘탈 모델 + 지식 체계 다. &lt;슈퍼 씽킹&gt; 을 읽고" /><published>2020-03-01T00:12:50+09:00</published><updated>2020-03-01T00:12:50+09:00</updated><id>http://jaynewho.com/post/41</id><content type="html" xml:base="http://jaynewho.com/post/41">&lt;p&gt;“슈퍼 씽킹” 이란 책은 다음과 같은 주장으로 서문을 연다.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;단편적인 사실들만 알고있는 것은 아무런 힘을 발휘하지 못한다. 사실들을 엮어 의미와 해석을 가능케 해주는 것을 “멘탈 모델” 이라고 하며, 이는 다양한 학문에서 유래하기도 하고, 살면서 자연스레 체득되기도 한다.&lt;/p&gt;
@@ -856,150 +914,4 @@ from order;
 &lt;h3 id=&quot;deploy-bot-on-slack&quot;&gt;deploy-bot (on slack)&lt;/h3&gt;
 &lt;p&gt;배포 자동화 / 반자동화 진행 상황을 slack 에 알려주고, 컨펌이 필요하면 슬랙을 통해 컨펌 후 배포 계속 진행 되도록 돕는 툴&lt;/p&gt;
 &lt;h3 id=&quot;galley&quot;&gt;Galley&lt;/h3&gt;
-&lt;p&gt;쿠버 노드 안에 환경변수 주입하는 것을 노가다를 줄여주는 툴&lt;/p&gt;</content><author><name></name></author><summary type="html">Con Salad 세미나를 들으러 논현역에 있는 Rainist 본사를 놀러갔다.</summary></entry><entry><title type="html">Jenkins on EC2 AWS</title><link href="http://jaynewho.com/post/29" rel="alternate" type="text/html" title="Jenkins on EC2 AWS" /><published>2018-07-13T18:01:50+09:00</published><updated>2018-07-13T18:01:50+09:00</updated><id>http://jaynewho.com/post/29</id><content type="html" xml:base="http://jaynewho.com/post/29">&lt;h1 id=&quot;01--aws-ec2-instance-띄우기&quot;&gt;01 : AWS EC2 instance 띄우기&lt;/h1&gt;
-
-&lt;p&gt;ubuntu AMI 이용해서 진행하겠다.&lt;/p&gt;
-
-&lt;p&gt;ssh 이용해서 EC2 instance 의 쉘로 진입한다.&lt;/p&gt;
-
-&lt;h1 id=&quot;02--ec2에-jenkins-구동-환경-조성&quot;&gt;02 : EC2에 jenkins 구동 환경 조성&lt;/h1&gt;
-
-&lt;p&gt;jenkins 는 다른 서버용 프로세스들과 마찬가지로 linux 에서 demon(service) 로 실행된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://pkg.jenkins.io/debian-stable/&quot;&gt;공식 홈페이지 ubuntu 다운로드 설명&lt;/a&gt; 을 참조한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;add-key-to-use-jenkins-debian-package-repo&quot;&gt;add key to use jenkins` debian package repo&lt;/h2&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;etcaptsourceslist-수정하기&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apt/sources.list:&lt;/code&gt; 수정하기&lt;/h2&gt;
-
-&lt;p&gt;아래 텍스트를 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apt/sources.list:&lt;/code&gt; 에 추가한다. (&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo vim&lt;/code&gt; 을 사용해야 할 수도)&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;deb https://pkg.jenkins.io/debian-stable binary/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;java-7-또는-8-다운로드-java9-미지원&quot;&gt;java 7 또는 8 다운로드 (java9 미지원)&lt;/h2&gt;
-
-&lt;p&gt;jenkins 는 java 9 과 호환되지 않는다.&lt;/p&gt;
-
-&lt;p&gt;java 를 설치해준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://tecadmin.net/install-oracle-java-8-ubuntu-via-ppa/&quot;&gt;이곳 링크&lt;/a&gt; 에서 ubuntu 에 java 8을 설치하는 법을 자세하게 알려준다.&lt;/p&gt;
-
-&lt;h1 id=&quot;03--apt-get-에서-jenkins-download&quot;&gt;03 : &lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get&lt;/code&gt; 에서 jenkins download&lt;/h1&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update
-sudo apt-get install jenkins  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;04--jenkins-서버-service-demon-가동&quot;&gt;04 : jenkins 서버 service (demon) 가동&lt;/h1&gt;
-
-&lt;p&gt;아래의 명령어로 젠킨스를 실행시킨다.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo service jenkins start
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;이후 8080 포트로 웹 브라우저로 접속해 젠킨스 매니져에 진입한다.&lt;/p&gt;
-
-&lt;h1 id=&quot;05--pipeline-만들기&quot;&gt;05 : pipeline 만들기&lt;/h1&gt;
-
-&lt;h2 id=&quot;새-프로젝트-new-pipeline-생성&quot;&gt;새 프로젝트 (new pipeline) 생성&lt;/h2&gt;
-
-&lt;h4 id=&quot;주의&quot;&gt;주의&lt;/h4&gt;
-&lt;p&gt;프로젝트 명에 공백이 들어가면 안된다. 나중에 script 로 접근할 때 애먹는다.&lt;/p&gt;
-
-&lt;h4 id=&quot;순서&quot;&gt;순서&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;이름을 정한다.&lt;/li&gt;
-  &lt;li&gt;“소스코드 관리 툴”에 GIT 을 선택하고 repository 에 github repo 주소를 적는다.&lt;/li&gt;
-  &lt;li&gt;credential 을 새롭게 생성하고, github 아이디 비번을 저장한다.&lt;/li&gt;
-  &lt;li&gt;“빌드 유발” 에서 GitHub hook trigger for GITScm polling 를 선택한다.&lt;/li&gt;
-  &lt;li&gt;Github 에 푸시가 들어온 이후에 수행할 작업들을 “Build” 탭에 기술한다. (아래 사진 참조)
-&lt;img src=&quot;/asset/media/image/post/29/1.png&quot; alt=&quot;img&quot; /&gt;
-—
-&lt;img src=&quot;/asset/media/image/post/29/2.png&quot; alt=&quot;img&quot; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;위에서 사용된 script 파일은 아래에 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;scripts&quot;&gt;scripts&lt;/h3&gt;
-
-&lt;p&gt;github 의 master branch 에 변경사항이 생기면 순차적으로 실행되는 두개의 script 이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;script-1-build-pushsh&quot;&gt;script 1: &lt;code class=&quot;highlighter-rouge&quot;&gt;build-push.sh&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;변경된 소스코드가 jenkins 에 의해 pull 되면 그 코드를 기반으로 docker image 를 새롭게 build 하고 docker hub 에 push 한다.&lt;/p&gt;
-
-&lt;p&gt;docker hub 계정이 있어야한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
-
-
-&lt;span class=&quot;nv&quot;&gt;USERNAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;your username&amp;gt;
-&lt;span class=&quot;nv&quot;&gt;PASSWORD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;your password&amp;gt;
-&lt;span class=&quot;nv&quot;&gt;IMAGENAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;choose your docker image name&amp;gt;
-&lt;span class=&quot;nv&quot;&gt;DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/var/lib/jenkins/workspace/&amp;lt;pipeline-name&amp;gt;/&amp;lt;Dockerfile name&amp;gt;
-
-
-sudo docker login -u &lt;span class=&quot;nv&quot;&gt;$USERNAME&lt;/span&gt; -p &lt;span class=&quot;nv&quot;&gt;$PASSWORD&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;---LOGIN SUCCEEDED---&quot;&lt;/span&gt;
-sudo docker build -t &lt;span class=&quot;nv&quot;&gt;$USERNAME&lt;/span&gt;/&lt;span class=&quot;nv&quot;&gt;$IMAGENAME&lt;/span&gt; - &amp;lt; &lt;span class=&quot;nv&quot;&gt;$DIR&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;---BUILD SUCCEEDED---&quot;&lt;/span&gt;
-sudo docker push &lt;span class=&quot;nv&quot;&gt;$USERNAME&lt;/span&gt;/&lt;span class=&quot;nv&quot;&gt;$IMAGENAME&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;---PUSH SUCCEEDED---&quot;&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h5 id=&quot;tip--jenkins-에서-script-실행시-sudo-명령어-사용-가능하게-설정하는-법&quot;&gt;TIP : jenkins 에서 script 실행시 sudo 명령어 사용 가능하게 설정하는 법&lt;/h5&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://gist.github.com/hayderimran7/9246dd195f785cf4783d&quot;&gt;이 링크&lt;/a&gt; 에 나와있는대로 조치하면 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;script-2-deploysh&quot;&gt;script 2: &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy.sh&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;docker hub 의 repository 에 푸시되어있는 새로운 도커 이미지를 원격의 웹서버에 접속해서 pull down 하는 script 이다.&lt;/p&gt;
-
-&lt;p&gt;원격 서버의 key 파일을 jenkins 서버 안에 가지고 있어야한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#/bin/sh&lt;/span&gt;
-
-&lt;span class=&quot;nv&quot;&gt;EC2_USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ubuntu
-&lt;span class=&quot;nv&quot;&gt;SERVICE_SERVER_IP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;ip adrress of your service server&amp;gt;
-&lt;span class=&quot;nv&quot;&gt;KEY_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /key/jenkins-demo.pem
-
-
-ssh -i &lt;span class=&quot;nv&quot;&gt;$KEY_DIR&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$EC2_USER&lt;/span&gt;@&lt;span class=&quot;nv&quot;&gt;$SERVICE_SERVER_IP&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt;EOF
-	DOCKER_USER=&amp;lt;your username&amp;gt;
-	DOCKER_PASSWORD=&amp;lt;your password&amp;gt;
-  IMAGENAME=&amp;lt;choose your docker image name&amp;gt;
-	CONTAINER=&amp;lt;your container name&amp;gt;
-
-	sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
-	sudo docker pull $DOCKER_USER/$IMAGENAME
-
-	sudo docker stop $CONTAINER
-
-	sudo docker run -d --rm  --name $CONTAINER  $DOCKER_USER/$IMAGENAME
-
-EOF
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;06--github-에서-webhook-trigger-유발하게-설정하기&quot;&gt;06 : Github 에서 Webhook Trigger 유발하게 설정하기&lt;/h1&gt;
-
-&lt;p&gt;pipeline 에 연결된 github repository 로 가서 Setting 의 Webhooks 로 들어간다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/29/3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 Add Webhook 을 클릭하고&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/29/4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;jenkins 서버의 주소 끝에 &lt;code class=&quot;highlighter-rouge&quot;&gt;/github-Webhook/&lt;/code&gt; 을 달아서 트리거 POST request 가 전송될 payload URL 로 지정해준다.&lt;/p&gt;
-
-&lt;p&gt;그 아래에는 어떤 이벤트에서 트리거를 유발할 것인지 설정할 수 있다.&lt;/p&gt;</content><author><name></name></author><category term="CI/CD" /><category term="automation" /><category term="aws" /><category term="jenkins" /><category term="infra" /><category term="ec2" /><summary type="html">01 : AWS EC2 instance 띄우기</summary></entry></feed>
+&lt;p&gt;쿠버 노드 안에 환경변수 주입하는 것을 노가다를 줄여주는 툴&lt;/p&gt;</content><author><name></name></author><summary type="html">Con Salad 세미나를 들으러 논현역에 있는 Rainist 본사를 놀러갔다.</summary></entry></feed>

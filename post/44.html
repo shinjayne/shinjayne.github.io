@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>동시성 문제 - 일반론 (Part 1) | Jayne.who();</title>
+    <title>동시성 문제 - 비즈니스 애플리케이션 (Part 3) | Jayne.who();</title>
 
     <meta charset="utf-8" />
     <meta
@@ -236,19 +236,21 @@
     }
 </style>
 
-<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/42/cover.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/44/cover.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
     <a href="/post/">
         <p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p>
     </a>
-    <h1 class="card-title text-white" style="font-size : 2.2rem;">동시성 문제 - 일반론 (Part 1)</h1>
+    <h1 class="card-title text-white" style="font-size : 2.2rem;">동시성 문제 - 비즈니스 애플리케이션 (Part 3)</h1>
     <p class="card-text text-white">
-        <p class="text-muted">web | 05 March 2020</p>
+        <p class="text-muted">web | 07 March 2020</p>
     </p>
     <p class="card-text text-white">
         Tags | 
         <a href="#" class="badge badge-primary">concurrency</a> 
         <a href="#" class="badge badge-primary">architecture</a> 
         <a href="#" class="badge badge-primary">enterprise</a> 
+        <a href="#" class="badge badge-primary">database</a> 
+        <a href="#" class="badge badge-primary">jpa</a> 
     </p>
 </div>
 
@@ -256,64 +258,54 @@
 <div class="post container pt-5 " style="max-width : 750px"><blockquote>
   <p>시리즈</p>
 
-  <p>Part 1 : 동시성 문제 - 일반론 <strong>(NOW)</strong></p>
+  <p><a href="/post/42">Part 1 : 동시성 문제 - 일반론</a></p>
 
-  <p>Part 2  : <a href="/post/43">동시성 문제 - 데이터베이스와 JPA</a></p>
+  <p><a href="/post/43">Part 2  : 동시성 문제 - 데이터베이스와 JPA</a></p>
 
-  <p><a href="/post/44">Part 3  : 동시성 문제 - 비즈니스 애플리케이션</a></p>
+  <p>Part 3 : 동시성 문제 - 비즈니스 애플리케이션 <strong>(NOW)</strong></p>
 </blockquote>
 
-<p>동시성 문제란 두 개 이상의 세션이 공통된 자원에 대해 모두 <strong>읽고 쓰는 작업(Read→Write)</strong> 을 하려고 하는 경우 발생할 수 있는 문제를 말합니다.</p>
+<p>앞선 글들에서 소개한 동시성 문제에 관련한 일반론을 비즈니스 애플리케이션의 개발에서도 이용할 수 있습니다.</p>
 
-<p>애플리케이션을 개발하다보면 여러 동시성 문제들을 만나고, 또 동시성 제어를 도와주는 여러 시스템들(데이터베이스 시스템, JPA 시스템 등) 을 보게됩니다.  이런 여러 시스템들이 제공하는 상세한 기능들은 모두 상이하지만, 동시성 문제를 정의하는 방식과 제어하는 이론적인 기틀은 모두 동일합니다.</p>
+<p>일반론 파트에서 다루었다시피, 비즈니스 애플리케이션에서의 동시성 문제도 읽고→쓰는 프로세스에서 발생합니다.</p>
 
-<p>그래서 오늘은 특정 시스템에 종속되지 않는  <strong>동시성 문제와 제어 방법론</strong>에 대해 정리하려고 합니다.</p>
+<h1 id="쇼핑몰-시스템에서의-주문과-재고-차감">쇼핑몰 시스템에서의 주문과 재고 차감</h1>
 
-<blockquote>
-  <p>동시성 문제에 “완전한 해결”은 없습니다. “제어”(적절한 해결) 만 있을 뿐입니다. 동시성 문제는 “정확성 과 활동성 을 어떻게하면 모두 최대로 할 수 있을까?” 에 대한 고민이기 때문입니다. 활동성 (얼마나 빠르게) 을 포기하면 정확성을 높일 수 있습니다. 마찬가지로 정확성(얼마나 올바른 데이터) 을 타협하면 활동성을 높일 수 있습니다.</p>
-</blockquote>
+<p>우리가 물건을 파는 쇼핑몰 커머스 시스템을 개발하고 있다고 생각해봅니다. 그 중에서도 고객이 물건을 주문하는 과정의 비즈니스 로직을 개발하고 있습니다.  고객의 주문을 처리하는 과정을 도식화해보겠습니다.</p>
 
-<h1 id="동시성-문제와-제어-방법론">동시성 문제와 제어 방법론</h1>
+<p><img src="/asset/media/image/post/44/1.png" alt="img-name" /></p>
 
-<p>동시성 문제라고 불리우는 2가지 현상은 바로  “일관성 없는 읽기” 와 “손실되는 업데이트” 입니다.</p>
+<ol>
+  <li>재고 남았는지 확인</li>
+  <li>가격을 계산하고 → 주문서를 작성하고 → 결제를 요청</li>
+  <li>재고를 차감</li>
+</ol>
 
-<h2 id="일관성-없는-읽기">일관성 없는 읽기</h2>
+<p>이 때, 하나의 상품에 동시에 여러 주문이 들어올 때 발생할 수 있는 동시성 문제는 무엇일까요? 네, 바로 <strong>“손실되는 업데이트”</strong> 입니다.  아래의 그림을 살펴보시죠.</p>
 
-<p><img src="/asset/media/image/post/42/4.png" alt="img-name" /></p>
+<p>(참고로 한번 읽어온 데이터는 메모리에 저장하는 애플리케이션의 특성을 가정합니다. 또다른 동시성 문제인 “일관성 없는 읽기”의 문제는 따라서 논외가 됩니다.)</p>
 
-<p>세션 2는 동시에 실행되고 있는 세션 1 때문에, 데이터에 접근하는 시점마다 다른 값을 읽게 됩니다. 이를 “일관성 없는 읽기” 라고 합니다.</p>
+<p><img src="/asset/media/image/post/44/2.png" alt="img-name" /></p>
 
-<h3 id="일관성-없는-읽기는-해결이-쉽다">일관성 없는 읽기는 해결이 쉽다</h3>
+<p>고객이 주문을 한 시점에는 재고가 2개였지만, 주문을 처리하는 과정 중 먼저 누군가 2개를 모두 주문해가면서 재고를 2 차감했습니다. 따라서 재고는 0이 되었죠. 하지만 현재 이 고객의 주문 세션에서는 주문이 모두 끝난 뒤 재고를 2에서 1로 업데이트하기 때문에, 손실되는 업데이트가 발생하게 됩니다. 재고는 더이상 믿을 수 없는 값이 됩니다.</p>
 
-<p>일관성 없는 읽기는 해결이 쉽습니다. 바로 “불변성”, 복사본을 이용하면 됩니다. 세션 2가 최초로  데이터를 조회할 때 해당 데이터를 복사한 후, 이후에도 계속 사용하는 것입니다.  비록 세션 1이 변경한 데이터의 원장은 감지하지 못하더라도, 세션 2 내에서는 계속 동일한 복사본을 바라볼 수 있습니다.</p>
+<h2 id="낙관적-잠금을-통한-해결">낙관적 잠금을 통한 해결</h2>
 
-<h2 id="손실되는-업데이트">손실되는 업데이트</h2>
-<p><img src="/asset/media/image/post/42/1.png" alt="img-name" /></p>
+<p><img src="/asset/media/image/post/44/3.png" alt="img-name" /></p>
 
-<p>더 늦게 시작한 세션 2에 의해 세션 1의 변경사항이 무시되는 현상을 “손실되는 업데이트” 라고 합니다.</p>
+<p>동시성 제어 기법 중 하나인 낙관적 잠금 기법을 이용해 아키텍처를 구성하면 믿을 수 없는 재고값 문제를 해결할 수 있습니다.  하지만 전체 프로세스 중에 Transaction 의 원자성을 보장하지 못하게 하는 “외부 시스템 연동” 같은 과정이 있다면, 낙관적 잠금은 사용하기 어렵습니다. 낙관적 잠금은 전체 프로세스의 실패를 마지막 저장 시도 시점에 알 수 있는데, 원자적으로 Rollback 이 어려운 프로세스라면 전체 시스템의 정합성이 깨지기 때문입니다.</p>
 
-<p>데이터베이스 시스템, JPA 애플리케이션 시스템, 혹은 우리가 직접 조성하는 비즈니스 시스템에서 모두 중요하게 고려되어야 하는 문제입니다.</p>
+<p>(마지막에 재고 차감에서 충돌이 일어나 주문은 실패하였는데, 외부 결제 시스템 호출은 이미 일어나서 고객의 돈이 빠져 나간다면 시스템의 큰 문제일 것입니다.)</p>
 
-<p>“손실되는 업데이트” 를 방지하기 위한 방법으로는 크게 2가지가 있습니다. 바로 “낙관적 잠금” 과 “비관적 잠금” 입니다.</p>
+<p>이런 경우, 시스템의 활동성을 조금 포기하더라도 정확성을 높일 수 있는 “비관적 잠금” 을 사용할 수 있습니다.</p>
 
-<h3 id="낙관적-잠금">낙관적 잠금</h3>
+<h2 id="비관적-잠금을-통한-해결">비관적 잠금을 통한 해결</h2>
 
-<p><img src="/asset/media/image/post/42/2.png" alt="img-name" /></p>
+<p><img src="/asset/media/image/post/44/4.png" alt="img-name" /></p>
 
-<p>“낙관적 잠금” 은 ‘저장 시 체크한다’ 입니다.  세션 1이 데이터 A 를 읽어왔더라도 세션 2는 자유롭게 데이터 A 를 읽어올 수 있습니다. 다만 저장하려고 할 때,  저장하려는 대상 데이터가 세션 2가 들고있던 데이터와 상이하면 저장이 되지 않습니다.</p>
+<p>비지니스 어플리케이션에서의 비관적 잠금은 보통 동일한 작업을 하는 프로세스들 중 단 하나만이 점유할 수 있는 리소스 (Lock 혹은 Semaphore) 를 이용해 구현합니다. 한 프로세스가 재고 차감에 대한 Lock 을 점유하고 있다면, 현재 주문하려는 고객은 그 Lock 점유가 해제될 때까지 기다렸다가 프로세스를 실행합니다.  모든 주문 프로세스가 순차적으로 진행되는 것이죠.</p>
 
-<p>낙관적 잠금을 구현하기 위해서는 공통된 리소스 A 에 대한 Versioning 이 되어야합니다. 세션 2가 들고 있는 A 의 Version 이, 저장하려는 대상 A 의 Version 과 같은지 체크해야하기 때문입니다.</p>
-
-<h3 id="비관적-잠금">비관적 잠금</h3>
-<p><img src="/asset/media/image/post/42/3.png" alt="img-name" /></p>
-
-<p>“비관적 잠금” 은 ‘이미 읽고 있는 사람이 있다면, 나는 못읽어’ 입니다. 보수적인 잠금이라고 할 수 있겠죠. 낙관적 잠금에 비관적 잠금은 세션이 실패할 확률은 줄여주지만, 여러 세션의 “활동성” 은 높여주지 못합니다.</p>
-
-<blockquote>
-  <p>💡 다음 글  : <a href="/post/43">동시성 문제 - 데이터베이스와 JPA (Part 2)</a></p>
-</blockquote>
-
-<p><em>참고 문헌 : 마틴 파울러의 “엔터프라이즈 애플리케이션 아키텍쳐 패턴”</em></p>
+<p>비관적 잠금은  낙관적 잠금에 비해 활동성은 줄어들어 주문이 몰리는 시점에 고객은 더 느린 주문을 경험하겠지만, 결제만 되고 취소가 되는 등의 부정확한 시스템을 경험하게 될 확률은 그만큼 줄 것입니다.</p>
 </div> <div class ="container mt-5 mb-5">
   <hr  />
   <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
