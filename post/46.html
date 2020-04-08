@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101872700-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-101872700-1');
+    </script>
+
+
+    <title>[예민한개발자입니다 #1] 일을 글로 배우셨어요? | Jayne.who();</title>
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!--bootstrap CSS-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous"
+    />
+    <!--code highlighter CSS for Jekyll Markdown to HTML Converter -->
+    <link
+      rel="stylesheet"
+      href="/asset/static/pygments-codehighlight-css/vs.css"
+    />
+    <link rel="stylesheet" href="/asset/static/post_load.css" />
+    <link
+      rel="stylesheet"
+      href="/asset/static/font/stylesheets/NotoSansKR-Hestia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/asset/static/font/stylesheets/Chosunilbo_myungjo.css"
+    />
+    <style>
+      body {
+        font-family: "Arita-buri-SemiBold", "Noto Sans Korean", sans-serif;
+        font-weight: 350;
+        padding-top: 50px;
+        word-break: keep-all;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: 800;
+        color: #148b8e;
+      }
+      .navbar,
+      .nav {
+        font-weight: 800;
+      }
+      a {
+        color: #90b3d8;
+      }
+      
+
+      .jaynewho-shadow-effect {
+        box-shadow: 0px 0px 20px 11px rgba(0, 0, 0, 0.18);
+      }
+    </style>
+    <!--Tawk.to Script-->
+    <script src="/asset/static/tawk-chat-api.js"></script>
+
+    
+  </head>
+  <body>
+    
+
+<nav id = "navbarbackground" class="navbar fixed-top navbar-expand-lg navbar-light" style="box-shadow: 0 3px 5px 0 rgba(0,0,0,0.1); background-color: white;">
+  <!-- background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color;
+  background-size: cover; -->
+  <a class="navbar-brand" href="/">
+    <!-- <img src="/asset/media/image/logo.jpg" width="35" height="35" class="d-inline-block align-top border border-primary" alt="" style="border-radius:10px"> -->
+    Jayne.who(<p id="logo_text" class="d-inline"></p>);
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav" style="font-weight : 600;">
+      <li class="nav-item" id="navbar_profile">
+        <a class="nav-link" href="/profile/">Profile </a>
+      </li>
+      <li class="nav-item" id="navbar_post">
+        <a class="nav-link" href="/post/">Posts </a>
+      </li>
+      <li class="nav-item" id="navbar_project">
+        <a class="nav-link" href="/project/">Projects </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+ <style>
+/** title design */
+    .card-title, .card-text, .text-muted {
+        font-family: 'Arita-buri-SemiBold','Chosunilbo_myungjo', "Noto Sans Korean", sans-serif;
+    }
+    .card-text .badge {
+        font-family: "Noto Sans Korean", sans-serif;
+    }
+
+    /**
+    Post Font Style
+    */
+    .post {
+
+        font-family:  'Chosunilbo_myungjo', "Noto Sans Korean", sans-serif;
+        letter-spacing: -0.004em;
+        line-height: 1.58;
+        font-size: 17px;
+    }
+    /*for every text in different line
+    문단간격
+    */
+    
+    p {
+        margin-bottom: 17px;
+    }
+    /**
+     강조 텍스트 
+    */
+    p strong {
+        background-color: #d6e8fb;
+    }
+
+    /*post titles style*/
+    
+    .post h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 700;
+        color: #213b80;
+    }
+    
+    .post h1 {
+        font-size: 1.6rem;
+        margin-top: 4.5rem;
+        padding-bottom: 10px;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #213b8026;
+    }
+    
+    .post h2 {
+        font-size: 1.4rem;
+        margin-top: 3rem;
+    
+    }
+    
+    .post h3 {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+    
+    }
+    
+    .post h4 {
+        font-size: 1.0rem;
+        margin-top: 2rem;
+
+    }
+    
+    .post h5 {
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+    
+    }
+    
+    /*for image*/
+    .post img {
+        width: 76%;
+        max-width: 100%;
+        height: auto;
+        margin-left: 12%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px 6px rgba(0, 0, 0, 0.18);
+    }
+    /*for code highlighter*/
+    
+    pre {
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+        border-radius: 6px;
+        padding: 10px;
+        /* color : #d0d7de; */
+    }
+
+    /*Table Form*/
+    
+    th {
+        white-space: nowrap;
+    }
+    /*blockquote*/
+    
+    blockquote {
+        /* background-color: #8080801c; */
+        padding: 18px;
+        border-left: 1px solid #000000a6;
+        color: #000000a6;
+    }
+
+    /**
+    for mobile design 
+    */
+
+    @media (max-width: 728px)  {
+        .post {
+            font-size: 15px;    
+        }
+        .p {
+            margin-bottom: 15px;
+        }
+        .post h1 {
+            font-size: 21px;
+        }
+                .post h2 {
+            font-size: 19px;
+        }
+                .post h3 {
+            font-size: 18px;
+        }
+                .post h4 {
+            font-size: 17px;
+        }
+                .post h5 {
+            font-size: 16px;
+        }
+        .post img {
+            width: 100%;
+            max-width: 100%;
+            margin-left:0;
+        }
+
+        
+    }
+</style>
+
+<div class="container-fluid text-center pt-3" style="background-image : url('/asset/media/image/post/46/cover.jpg');  background-color: #00010299; background-blend-mode: color; background-size: cover; min-height: 350px;">
+    <a href="/post/">
+        <p class="text-left md-5"><button type="button" class="btn btn-outline-secondary btn-sm d-inline text-uppercase"> < Back </button></p>
+    </a>
+    <h1 class="card-title text-white" style="font-size : 2.2rem;">[예민한개발자입니다 #1] 일을 글로 배우셨어요?</h1>
+    <p class="card-text text-white">
+        <p class="text-muted">idea | 08 April 2020</p>
+    </p>
+    <p class="card-text text-white">
+        Tags | 
+        <a href="#" class="badge badge-primary">예민한개발자입니다</a> 
+        <a href="#" class="badge badge-primary">일</a> 
+        <a href="#" class="badge badge-primary">협업</a> 
+    </p>
+</div>
+
+
+<div class="post container pt-5 " style="max-width : 750px"><p>애자일 방법론, 린 스타트업, 그로스 해킹 등 기존 시장의 성장곡선을 가파르게 추월해야 살아남을 수 있는 스타트업 업계에서는 성공적인 사례들을 바탕으로 한 다양한 방법론들이 존재한다. 그리고 그 방법론들은 “이렇게 하면 너도 성공할 거야”에 대한 이야기를 해주기 때문에 굉장히 재밌고 인기가 많다.</p>
+
+<p>처음 “창업”과 “스타트업”이라는 이름에 가슴이 뛰었던 시절이 생각이 난다. 내 손으로 일구는 스타트업은 너무나 해보고 싶었지만, 실무 경험도 없고 아는 것도 하나 없는 나는 스스로에 대한 자신감이 매우 부족했다. 그때 신봉적으로 찾았던 것이 바로 “방법론” 들이었다. 직접 해보지 않으면 신비롭고 신화 같은 것.</p>
+
+<p>‘와, 워터폴 방식이 아닌 애자일 방식으로 일하는 회사는 너무 혁신적이야! 나도 저런 회사를 다니거나 세울 수 있을까?’ 라던지 ‘J 커브를 그리기 위해 비즈니스 모델 템플릿부터 철저하게 고려해 완성시킨 경영자들 진짜 멋있다. 그들은 이 방법론들의 마스터야! 그렇기 때문에 성공했겠지.’와 같은 생각을 했다.</p>
+
+<p><strong>그런데 이 제대로 일해보지 않은 자의 ‘방법론에 대한 집착’ 은 제대로 연애해보지 않은 자의 ‘글로 배운 연애’ 랑 비슷해서,</strong> 실제로 해보면 막상 방법론이나 글에서 가르치는 연애는, 하는 말은 틀린 것 하나 없지만 그것만 알고서는 아무것도 할 수 없다. 왜 그럴까? 여느 현실 세계가 그렇듯이, 일과 연애 모두 너무나 많은 변인들에 의해 결과가 달라지는 복잡계이기 때문이다.</p>
+
+<p>결국 일이나 연애를 잘하기 위해선 방법론뿐만 아니라 상황에 대처하는 “유연한 감각”과 “실행 능력” 이 못지않게 중요하다는 것을 체감할 것이다. 심지어 정형화된 방법론 하나 몰라도, 직접 해보면서 체득하는 유연한 감각과 실행 능력만으로도 충분히 훌륭해질 수 있다. 오로지 “경험 안 해본 사람” 만이 방법론에 집착하고 신봉한다.</p>
+
+<p><strong>안 해봤기 때문에 대단해 보이고 달라 보인다.</strong> 세상 많은 것들이 그렇다. 특히 스타트업의 방법론은, “기성 기업의 업무 방식을 타파하고 그들의 성과를 초월한다”는 신화적인 요소도 내포하고 있기 때문에 더욱 “안 해본 사람들” 이 혹하기 쉽다.</p>
+
+<p>소위 말해 “해보면 달라”라는 말이 나온다고 할 수 있다.</p>
+
+<p>연애를 글로만 배운 사람과 연애를 할 때 너무 공식대로만 하려고 하는 상대방에 피로감을 느끼기 십상인 것처럼, 실무를 해보지 않은 방법론 신봉자들도 동료들에게 비슷한 결의 피로감을 준다. 창업을 하기 위해 팀원들이 뭉쳤고, 팀원들 중에 대기업에만 다니셨거나 학생 출신의 팀원이 있다고 상상해보자. 적은 인적, 시간적, 금전적 리소스로 시장을 상회하는 퍼포먼스를 내기 위해서 모두들 열심히 일할 것이다. 그런데 자꾸 대기업에만 다니시던 분이, 평소에 즐겨 읽고 동경하던 “스타트업 바이블”의 방법론을 들먹이면서 “촘촘하게 비즈니스 캔버스부터 다 같이 그려볼까요?” 라거나 “그로스 해킹” 책의 내용을 언급하며 “해야 하는 사안들의 ICE Score를 매기고, 순서대로 진행하는 게 좋겠어요”라고 이야기한다. 그분 입장에서는 평소에 하던 정적인 업무와는 다르고, 그리고 동경하던 방법론들을 발휘해 볼 수 있는 환경이 주어졌기 때문에 신이 났을 것이다. 하지만 같이 일하는 팀원은 어떨까? 방법론은 체득되어있고, 감각과 실무 능력으로 치고 나가고 싶은데, 원리 원칙만 강조하며 일을 더디게 만드는 그 사람이 싫증 날 것이다.</p>
+
+<p>이번엔 콘텐츠 디자인만 하다가 우리 UI 디자인팀 리드로 오신 새 팀장님을 상상해보자. 팀장님은 UI 디자인 경험이 없어서, 열심히 인터넷에서 UI 디자인팀의 방법론들을 학습하셨다. 그리고는 회사에 와서 “우리, 린 스타트업 실전 UX 책을 모두 같이 읽고 오늘부터 이렇게 실천해봅시다!”라고 한다고 해보자. 물론 새로운 자극이라는 측면에서는 일부 긍정적일 수 있지만, <strong>상황에 따라 실무와 너무 동떨어진 이야기이면 팀원들의 사기는 저하된다.</strong></p>
+
+<p>그럼 반대로, 일을 잘하기 위해선 어떻게 해야 하나? 뭐… “이론에 집중하지 말고, 직접 해봐!” 아니겠나… 영상 편집 잘하고 싶으면 서울대학교 영상미디어학과(? 있긴 한가 ?) 수업 자료 구해다가 열심히 공부하지 말고, 비디오 클래스 영상 편집 강의 들으면서 브이로그 채널이라도 시작해보라. 웹 서비스 개발해보고 싶으면 C++이나 컴퓨터공학 기초 이론부터 듣지 말고, 직접 서비스 하나라도 구글링해 만들어보라. 마케팅 잘하고 싶으면 “그로스 해킹” 책 읽으며 방법론을 다질 시간에 직접 만든 제품을 어떻게 팔지 고민해보아야 한다. 일하다 필요할 때에 “그로스 해킹” 책을 자연스럽게 찾게 될 것이다.</p>
+
+<p><strong>실무는 방법론이 전부가 아니다.</strong> 실전은 다르다. 그렇기 때문에 나는 미래에 함께 일하게 될 사람을 구할 땐, 언제나 방법론 척척박사보다 직접 손을 더럽힐 줄 아는 실무자를 찾겠다.</p>
+
+<p><img src="/asset/media/image/post/46/justdoit.png" alt="img-name" /></p>
+</div> <div class ="container mt-5 mb-5">
+  <hr  />
+  <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
+    <img src="/asset/media/image/logo.jpg" width="50" height="50" class="border border-primary px-auto" alt="" style="border-radius:50%;">
+    
+  </div>
+</div>
+
+
+    <!--bootstrap Javascript-->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"
+    ></script>
+    <!--Custom Javascript-->
+    <script src="/asset/static/post_load.js"></script>
+    <script src="/asset/static/post_table_generation.js"></script>
+    <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[1]);
+    $('#navbar_' + main_route).addClass('active');
+    navbar = $('#navbarbackground');
+    logotext = $('#logo_text');
+    if (main_route == "post"){
+      // navbar.attr('style',"background-color:rgb(146, 146, 146); background-image:url('/asset/media/image/gradient4.png');   background-blend-mode: color; background-size: cover;");
+      logotext.text('post');
+      logotext.attr('style',"color:#213b80;");
+    }
+    else if(main_route == "project"){
+      // navbar.attr('style',"background-color:rgba(157, 157, 157, 0.54); background-image:url('/asset/media/image/gradient3.jpg');background-blend-mode:color; background-size:cover;");
+      logotext.text('project');
+      logotext.attr('style',"color:#6f1c16;");
+    }
+    else if(main_route == "profile"){
+      // navbar.attr('style',"background-color:rgba(190, 190, 190, 0.75); background-image:url('/asset/media/image/gradient2-1.jpg'); background-blend-mode: color; background-size: cover;");
+      logotext.text('profile');
+      logotext.attr('style',"color:#6849af;");
+    }
+    else{
+      // navbar.attr('style',"background-color : rgba(178, 85, 228, 0.94); background-image:url('/asset/media/image/gradient1.jpg');   background-blend-mode: color; background-size: cover;");
+    }
+  });
+</script>
+ <script>
+  $(document).ready(function() {
+    var main_route = (window.location.pathname.split("/")[2]);
+    $('#categorybar_' + main_route).addClass('active').addClass('bg-dark');
+  });
+</script>
+
+  </body>
+</html>
