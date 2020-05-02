@@ -268,7 +268,8 @@
 </div>
 
 
-<div class="post container pt-5 " style="max-width : 750px"><blockquote>
+<div class="post container pt-5 " style="max-width : 750px">
+    <blockquote>
   <p>시리즈</p>
 
   <p><a href="/post/42">Part 1 : 동시성 문제 - 일반론</a></p>
@@ -319,6 +320,35 @@
 <p>비지니스 어플리케이션에서의 비관적 잠금은 보통 동일한 작업을 하는 프로세스들 중 단 하나만이 점유할 수 있는 리소스 (Lock 혹은 Semaphore) 를 이용해 구현합니다. 한 프로세스가 재고 차감에 대한 Lock 을 점유하고 있다면, 현재 주문하려는 고객은 그 Lock 점유가 해제될 때까지 기다렸다가 프로세스를 실행합니다.  모든 주문 프로세스가 순차적으로 진행되는 것이죠.</p>
 
 <p>비관적 잠금은  낙관적 잠금에 비해 활동성은 줄어들어 주문이 몰리는 시점에 고객은 더 느린 주문을 경험하겠지만, 결제만 되고 취소가 되는 등의 부정확한 시스템을 경험하게 될 확률은 그만큼 줄 것입니다.</p>
+
+
+    <div style="margin-top: 100px" id="disqus_thread"></div> 
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://jaynewho-com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
 </div> <div class ="container mt-5 mb-5">
   <hr  />
   <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">

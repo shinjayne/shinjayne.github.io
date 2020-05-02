@@ -269,7 +269,8 @@
 </div>
 
 
-<div class="post container pt-5 " style="max-width : 750px"><h1 id="01--aws-ec2-instance-띄우기">01 : AWS EC2 instance 띄우기</h1>
+<div class="post container pt-5 " style="max-width : 750px">
+    <h1 id="01--aws-ec2-instance-띄우기">01 : AWS EC2 instance 띄우기</h1>
 
 <p>ubuntu AMI 이용해서 진행하겠다.</p>
 
@@ -416,6 +417,35 @@ EOF
 <p>jenkins 서버의 주소 끝에 <code class="highlighter-rouge">/github-Webhook/</code> 을 달아서 트리거 POST request 가 전송될 payload URL 로 지정해준다.</p>
 
 <p>그 아래에는 어떤 이벤트에서 트리거를 유발할 것인지 설정할 수 있다.</p>
+
+
+    <div style="margin-top: 100px" id="disqus_thread"></div> 
+<script>
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+  (function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script");
+    s.src = "https://jaynewho-com.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript
+  >Please enable JavaScript to view the
+  <a href="https://disqus.com/?ref_noscript"
+    >comments powered by Disqus.</a
+  ></noscript
+>
+
 </div> <div class ="container mt-5 mb-5">
   <hr  />
   <div style="display:flex; width: 100%; flex-direction: row; justify-content:center;">
