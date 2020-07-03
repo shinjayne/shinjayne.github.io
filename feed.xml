@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://jaynewho.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://jaynewho.com/" rel="alternate" type="text/html" /><updated>2020-05-23T14:32:28+09:00</updated><id>http://jaynewho.com/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">[예민한개발자입니다 #2] 우리가 Best Seller 를 읽어야하는 이유 - 보편지식의 힘 ( importance of general knowledge )</title><link href="http://jaynewho.com/post/47" rel="alternate" type="text/html" title="[예민한개발자입니다 #2] 우리가 Best Seller 를 읽어야하는 이유  - 보편지식의 힘 ( importance of general knowledge )" /><published>2020-05-22T22:34:50+09:00</published><updated>2020-05-22T22:34:50+09:00</updated><id>http://jaynewho.com/post/47</id><content type="html" xml:base="http://jaynewho.com/post/47">&lt;p&gt;반골 기질이 있는 나는 서점에 가는 것을 좋아하지만 Best Seller 섹션에 꽂혀있는 유명한 책들에는 먼저 손이 가지 않는다. 주변 사람들이 모두 읽는 책을 읽으면 ‘이런 이런 책을 읽었는데 이런이런 내용이 좋더라’라고 자랑을 하기도 어렵고, 지식의 가치는 정보의 비대칭에서 온다는 생각이 있어서, 많은 사람들이 이미 아는 내용을 습득해봤자 의미가 있을까 하는 의문이 있기 때문이다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="http://jaynewho.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://jaynewho.com/" rel="alternate" type="text/html" /><updated>2020-07-04T00:45:59+09:00</updated><id>http://jaynewho.com/</id><title type="html">Jayne.who();</title><subtitle>shinjayne`s Developer Blog. 신재인의 개발 블로그. Web / Deep Learning / Android / etc ...</subtitle><entry><title type="html">[사설 #3] IT 기술 회사에서 업의 본질</title><link href="http://jaynewho.com/post/48" rel="alternate" type="text/html" title="[사설 #3] IT 기술 회사에서 업의 본질" /><published>2020-07-03T22:34:50+09:00</published><updated>2020-07-03T22:34:50+09:00</updated><id>http://jaynewho.com/post/48</id><content type="html" xml:base="http://jaynewho.com/post/48">&lt;p&gt;최근 이회사 저회사 대표님이나 이사님 개발자님들을 만나고 다니면서 자주 하게된 이야기 주제가 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“하시려는 업의 본질은 무엇입니까?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“업의 본질에 도달하는 데에 기술이 정말 필요합니까?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://apps.apple.com/kr/app/%EC%8A%A4%ED%83%80%EC%9D%BC%EC%89%90%EC%96%B4/id458165974&quot;&gt;스타일쉐어&lt;/a&gt; 라는 서비스가 있다. 스타일쉐어는 훌륭한 패션 서비스이다. 패션을 좋아하는 유저들에게 좋은 커뮤니티와 커머스를 제공한다. 물론 이러한 서비스를 하기 위해서는 앱과 서버, 웹사이트로 구성된 프로덕트가 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;하지만 그것이 반드시 스타일쉐어 업의 본질을 추구하기 위해 기술이 필요하다는 이야기는 아니다. 업의 본질을 무엇으로 정의하느냐에 따라서 기술이 아예 필요가 없을 수도 있고, 혹은 업의 본질에 다가가기 위한 특정 구간까지만 필요할 수도 있고, 본인들의 정체성을 영속적인 기술 회사로 정의해야 할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;스타일쉐어가 만약 자신의 업을 “사람들에게 더 나은 상품을 더 좋은 가격에 제공하는 것”이라는 전통적인 커머스로 정의한다면, 이들의 업에 있어서 기술은 진짜 하려고 하는 일의 기반을 만드는 데에 기간까지만 중요하다고 생각할 수 있다. 혹은 그마저도 외주나 에이전시로 돌리면 더 그들의 본질에 집중할 수 있다. 전통적인 커머스의 업의 본질은 “더 빠른 배송”, “더 나은 가격”, “더 많은 상품” 이고 이는 가격 경쟁, 상품 경쟁으로 귀결되지 기술로 승부를 보는 무언가가 아니라고 판단한다면 말이다. 이건 팀이 본인들의 업을 어떻게 정의하고 믿느냐에 따라 다를 것이다.&lt;/p&gt;
+
+&lt;p&gt;그런데 재미있는 점은, 조금만 깊고 철저히 생각해보면 사실은 이러한 전통적인 커머스 본질을 추구하려고 해도 기술이 필요하다는 것이다. 상품 스큐를 어마어마하게 늘리면서 동시에 유저에게 매력적인 가격 할인과 기획전을 제공하려면, 오류 없이 치밀하게 설계되고 대용량을 감당할 수 있는 자동화가 필요하다.&lt;/p&gt;
+
+&lt;p&gt;더 나아가 스타일쉐어가 전통적인 커머스업의 본질을 추구하는 게 아닌, 자신을 “패션업”이라고 정의하고, ‘유저가 패션을 탐색하고 상품을 선정하고 좋은 구매 경험을 할 수 있게 하자’ 는 미션을 추구한다면, 업의 본질을 추구하며 달려가는 길에는 기술로 풀어야 하는 어렵고도 도전적인 문제들이 너무나도 많다. 수백만명의 혹은 수천만 명의 유저들이 동시에 자신에게 더 맞는 개인화된 스타일을 찾을 수 있도록 기술로 끊임없이 혁신하고, 더 참신하고 새롭고 재미있는 소통과 연결의 경험을 제공하면서도 동시에 엄청난 처리량을 견디는 기술로 그 경험을 지탱하고, 더 많은 판매자가 본인들을 원하는 구매자들에게 다가갈 수 있게 하는…. 이런 모든 일이 우리의 업을 “기술로 패션을 혁신한다”라는 프레임으로 앞길을 보면 보이기 시작한다.&lt;/p&gt;
+
+&lt;p&gt;똑같은 일을 하려고 해도 업의 본질을 어떻게 정의하느냐의 차이이다. 패션을 혁신한다는 비전의 청사진에 기술이 있을 수도 있고, 없을 수도 있다. 그러한 업의 본질을 정의하는 것은 팀의 역량이다. 무엇이 옳을지 정답은 없지만, 업의 본질과 기술의 필요성을 명확히 해야 한다는 것은 분명하다.&lt;/p&gt;
+
+&lt;p&gt;나는 많은 미숙한 IT 팀들이 업의 본질에 대한 정의 능력 부족, 혹은 그 본질을 달성하는 데에 기술이 필요한 이유에 대한 고민 부족으로 눈앞의 성장 기회들을 많이 놓치고, 또 진짜 그들에게 필요한 유능한 개발자들도 놓친다고 생각한다. 임팩트를 내는 개발자들은 기술로 세상에 가치를 만들고 싶어 하기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;IT 서비스를 한다면 깊이 고민해봐야 한다고 생각한다. 정말 내가 하려는 업의 본질은 뭘까. 그리고 그 업의 본질은 기술로 풀 수 있는 것이 맞는가. 혹은 기술에 대한 낮은 이해도로 업에서 기술의 중요성을 저평가하고 있는 것은 아닌가. 그리고 명확한 답이 나왔다면 과감하게 행동해야 한다. 기술이 필요 없다면 과감히 기술에 대한 집착을 버리고, 기술이 필요하면 확실히 투자하라. 깊이 고민하고 답을 찾았다면 모두에게 확신을 보여줘야 한다.&lt;/p&gt;</content><author><name></name></author><category term="예민한개발자입니다" /><category term="사설" /><category term="팀" /><category term="문화" /><category term="경영" /><summary type="html">최근 이회사 저회사 대표님이나 이사님 개발자님들을 만나고 다니면서 자주 하게된 이야기 주제가 있다.</summary></entry><entry><title type="html">[사설 #2] 우리가 Best Seller 를 읽어야하는 이유</title><link href="http://jaynewho.com/post/47" rel="alternate" type="text/html" title="[사설 #2] 우리가 Best Seller 를 읽어야하는 이유" /><published>2020-05-22T22:34:50+09:00</published><updated>2020-05-22T22:34:50+09:00</updated><id>http://jaynewho.com/post/47</id><content type="html" xml:base="http://jaynewho.com/post/47">&lt;p&gt;반골 기질이 있는 나는 서점에 가는 것을 좋아하지만 Best Seller 섹션에 꽂혀있는 유명한 책들에는 먼저 손이 가지 않는다. 주변 사람들이 모두 읽는 책을 읽으면 ‘이런 이런 책을 읽었는데 이런이런 내용이 좋더라’라고 자랑을 하기도 어렵고, 지식의 가치는 정보의 비대칭에서 온다는 생각이 있어서, 많은 사람들이 이미 아는 내용을 습득해봤자 의미가 있을까 하는 의문이 있기 때문이다.&lt;/p&gt;
 
 &lt;p&gt;확실히 ‘나만 아는 정보다’라는 사실은 전통적으로 매력적이었던 것으로 보인다. 고대 그리스의 권력은 소수만이 접근 가능한 지식에서 나왔다고 한다. 일부 지식인들만 되물림과 인맥을 통해 전달되는 ‘책’ (그때는 매우 희귀했었다)을 읽을 수 있었고, 그를 통해 부여받은 정보와 지식의 압도적인 비대칭을 이용해 권력을 손에 넣었다고 한다. 정말 내가 그때 당시의 일반 농민이었어도, ‘다음 달에는 아마 홍수가 날 테니 홍수들을 대비하는 게 좋을 거야’라고 이야기하고, 정말로 정확한 예측을 하는 사람이 있다면 주술을 부리는 마법사처럼 느껴졌을 것이다. 그리고 그 압도되는 기량 차이에 자연스럽게 권력 구조는 형성될 수밖에 없을 것이다.&lt;/p&gt;
 
@@ -12,7 +36,7 @@
 
 &lt;p&gt;‘다들 읽는 책은 너무 뻔하고 식상해. 남이 추천해준 책을 따라 읽으면 뭔가 따라 하는 것 같잖아?’ 하는 생각을 조금이라도 가지고 있었다면 과감히 버려라. 지금 이 순간의, 대다수 사람들의 사고 체계의 영향을 주는 “보편 지식”을 빠르게 학습하려는 욕심을 가져야 한다. 그것이 넘쳐나는 정보의 홍수 시대에서, 남들을 뛰어넘는 정보역량을 가질 수 있는 역설적이고도 유일한 방법이다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/47/cover1.jpg&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="예민한개발자입니다" /><category term="권력" /><category term="보편지식" /><category term="정치" /><category term="성공" /><summary type="html">반골 기질이 있는 나는 서점에 가는 것을 좋아하지만 Best Seller 섹션에 꽂혀있는 유명한 책들에는 먼저 손이 가지 않는다. 주변 사람들이 모두 읽는 책을 읽으면 ‘이런 이런 책을 읽었는데 이런이런 내용이 좋더라’라고 자랑을 하기도 어렵고, 지식의 가치는 정보의 비대칭에서 온다는 생각이 있어서, 많은 사람들이 이미 아는 내용을 습득해봤자 의미가 있을까 하는 의문이 있기 때문이다.</summary></entry><entry><title type="html">[예민한개발자입니다 #1] 일을 글로 배우셨어요?</title><link href="http://jaynewho.com/post/46" rel="alternate" type="text/html" title="[예민한개발자입니다 #1] 일을 글로 배우셨어요?" /><published>2020-04-08T22:34:50+09:00</published><updated>2020-04-08T22:34:50+09:00</updated><id>http://jaynewho.com/post/46</id><content type="html" xml:base="http://jaynewho.com/post/46">&lt;p&gt;애자일 방법론, 린 스타트업, 그로스 해킹 등 기존 시장의 성장곡선을 가파르게 추월해야 살아남을 수 있는 스타트업 업계에서는 성공적인 사례들을 바탕으로 한 다양한 방법론들이 존재한다. 그리고 그 방법론들은 “이렇게 하면 너도 성공할 거야”에 대한 이야기를 해주기 때문에 굉장히 재밌고 인기가 많다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/47/cover1.jpg&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="예민한개발자입니다" /><category term="권력" /><category term="보편지식" /><category term="정치" /><category term="성공" /><category term="사설" /><summary type="html">반골 기질이 있는 나는 서점에 가는 것을 좋아하지만 Best Seller 섹션에 꽂혀있는 유명한 책들에는 먼저 손이 가지 않는다. 주변 사람들이 모두 읽는 책을 읽으면 ‘이런 이런 책을 읽었는데 이런이런 내용이 좋더라’라고 자랑을 하기도 어렵고, 지식의 가치는 정보의 비대칭에서 온다는 생각이 있어서, 많은 사람들이 이미 아는 내용을 습득해봤자 의미가 있을까 하는 의문이 있기 때문이다.</summary></entry><entry><title type="html">[사설 #1] 일을 글로 배우셨어요?</title><link href="http://jaynewho.com/post/46" rel="alternate" type="text/html" title="[사설 #1] 일을 글로 배우셨어요?" /><published>2020-04-08T22:34:50+09:00</published><updated>2020-04-08T22:34:50+09:00</updated><id>http://jaynewho.com/post/46</id><content type="html" xml:base="http://jaynewho.com/post/46">&lt;p&gt;애자일 방법론, 린 스타트업, 그로스 해킹 등 기존 시장의 성장곡선을 가파르게 추월해야 살아남을 수 있는 스타트업 업계에서는 성공적인 사례들을 바탕으로 한 다양한 방법론들이 존재한다. 그리고 그 방법론들은 “이렇게 하면 너도 성공할 거야”에 대한 이야기를 해주기 때문에 굉장히 재밌고 인기가 많다.&lt;/p&gt;
 
 &lt;p&gt;처음 “창업”과 “스타트업”이라는 이름에 가슴이 뛰었던 시절이 생각이 난다. 내 손으로 일구는 스타트업은 너무나 해보고 싶었지만, 실무 경험도 없고 아는 것도 하나 없는 나는 스스로에 대한 자신감이 매우 부족했다. 그때 신봉적으로 찾았던 것이 바로 “방법론” 들이었다. 직접 해보지 않으면 신비롭고 신화 같은 것.&lt;/p&gt;
 
@@ -34,7 +58,7 @@
 
 &lt;p&gt;&lt;strong&gt;실무는 방법론이 전부가 아니다.&lt;/strong&gt; 실전은 다르다. 그렇기 때문에 나는 미래에 함께 일하게 될 사람을 구할 땐, 언제나 방법론 척척박사보다 직접 손을 더럽힐 줄 아는 실무자를 찾겠다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/46/justdoit.png&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="예민한개발자입니다" /><category term="일" /><category term="협업" /><summary type="html">애자일 방법론, 린 스타트업, 그로스 해킹 등 기존 시장의 성장곡선을 가파르게 추월해야 살아남을 수 있는 스타트업 업계에서는 성공적인 사례들을 바탕으로 한 다양한 방법론들이 존재한다. 그리고 그 방법론들은 “이렇게 하면 너도 성공할 거야”에 대한 이야기를 해주기 때문에 굉장히 재밌고 인기가 많다.</summary></entry><entry><title type="html">DDD 했더니 비대해지는 엔티티, 좋은 대책은 ?</title><link href="http://jaynewho.com/post/45" rel="alternate" type="text/html" title="DDD 했더니 비대해지는 엔티티, 좋은 대책은 ?" /><published>2020-03-24T22:34:50+09:00</published><updated>2020-03-24T22:34:50+09:00</updated><id>http://jaynewho.com/post/45</id><content type="html" xml:base="http://jaynewho.com/post/45">&lt;p&gt;혹시 DDD (Domain Driven Development) 나 클린 아키텍처를 들어본 적 있으십니까? 만약 당신이 개발자라면 서점의 컴퓨터 관련 서적이나 페이스북 커뮤니티, 혹은 기술 블로그 등에서 한두 번쯤 들어보셨을 수 있습니다. 그럼 더 나아가서, DDD 나 클린 아키텍처를 프로젝트에 적용해보신 적이 있나요?&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/asset/media/image/post/46/justdoit.png&quot; alt=&quot;img-name&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="예민한개발자입니다" /><category term="일" /><category term="협업" /><category term="사설" /><summary type="html">애자일 방법론, 린 스타트업, 그로스 해킹 등 기존 시장의 성장곡선을 가파르게 추월해야 살아남을 수 있는 스타트업 업계에서는 성공적인 사례들을 바탕으로 한 다양한 방법론들이 존재한다. 그리고 그 방법론들은 “이렇게 하면 너도 성공할 거야”에 대한 이야기를 해주기 때문에 굉장히 재밌고 인기가 많다.</summary></entry><entry><title type="html">DDD 했더니 비대해지는 엔티티, 좋은 대책은 ?</title><link href="http://jaynewho.com/post/45" rel="alternate" type="text/html" title="DDD 했더니 비대해지는 엔티티, 좋은 대책은 ?" /><published>2020-03-24T22:34:50+09:00</published><updated>2020-03-24T22:34:50+09:00</updated><id>http://jaynewho.com/post/45</id><content type="html" xml:base="http://jaynewho.com/post/45">&lt;p&gt;혹시 DDD (Domain Driven Development) 나 클린 아키텍처를 들어본 적 있으십니까? 만약 당신이 개발자라면 서점의 컴퓨터 관련 서적이나 페이스북 커뮤니티, 혹은 기술 블로그 등에서 한두 번쯤 들어보셨을 수 있습니다. 그럼 더 나아가서, DDD 나 클린 아키텍처를 프로젝트에 적용해보신 적이 있나요?&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/asset/media/image/post/45/diagram.png&quot; alt=&quot;DDD/Untitled%201.png&quot; /&gt;&lt;/p&gt;
 
@@ -761,210 +785,4 @@ from order;
 
 &lt;p&gt;&lt;strong&gt;N+1 문제를 해결하기 위한 방법들&lt;/strong&gt;을 잘 정리해놓은 글입니다. &lt;code class=&quot;highlighter-rouge&quot;&gt;Fetch Join&lt;/code&gt; 을 이용하는 방법과 &lt;code class=&quot;highlighter-rouge&quot;&gt;@EntityGraph&lt;/code&gt; Annotation 을 이용하는 법을 소개하고 있습니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://jojoldu.tistory.com/165&quot;&gt;JPA N+1 문제 및 해결방안&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="spring" /><category term="jpa" /><summary type="html">JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 Fetch Type (Fetch 전략) 입니다.</summary></entry><entry><title type="html">2018 webRTC 정리</title><link href="http://jaynewho.com/post/36" rel="alternate" type="text/html" title="2018 webRTC 정리" /><published>2019-04-19T14:10:50+09:00</published><updated>2019-04-19T14:10:50+09:00</updated><id>http://jaynewho.com/post/36</id><content type="html" xml:base="http://jaynewho.com/post/36">&lt;blockquote&gt;
-  &lt;p&gt;2018년도에 webRTC 를 이용한 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 경험을 떠올리며, webRTC API 를 이용한 애플리케이션 작성법을 정리해봅니다. 🎉&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;what-is-webrtc&quot;&gt;What is &lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC&lt;/code&gt;?&lt;/h1&gt;
-&lt;p&gt;WebRTC 는 브라우저나 모바일 application 에서 Real Time Communication (RTC) 를 편리하게 할 수 있는 api 를 만들고자 하는 목적으로 시작된 프로젝트입니다. Open Project 이지만 (2018년 12월 기준) Google Chrome Team 의 주도로, Mozilla, Opera 등의 단체의 지원을 받으며 진행되고 있습니다.&lt;/p&gt;
-
-&lt;p&gt;프로젝트의 진행 방식은, WebRTC API 최신 명세 (SPEC) 를 &lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC M{xx}&lt;/code&gt; 와 같은 이름으로 공개하고, 거의 동시에 Chrome (혹은 Chrome Beta) 에 구현하여 릴리즈하는 것 같습니다. Opera, Safari, Firefox 등의 브라우저들은 이 공개된 명세에 발맞춰 따라옵니다.&lt;/p&gt;
-
-&lt;p&gt;WebRTC 로 할 수 있는 일은 굉장히 많습니다. 그 중에서도 이 글에서는 서버를 통하지 않고 클라이언트와 클라이언트 간의 p2p 영상/음성/데이터 통신을 하는 활용법에 초점을 맞춰서 webRTC 의 API 를 정리해보겠습니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://webrtc.org/&quot;&gt;WebRTC 공식 홈페이지 webrtc.org 링크&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;webrtc-의-3가지-대표-api&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;WebRTC&lt;/code&gt; 의 3가지 대표 API&lt;/h1&gt;
-
-&lt;p&gt;2018년 말인 현재, 대부분의 브라우저가 webRTC API 표준을 지원합니다. 대부분의 브라우저에서 지원하는 webRTC 의 대표적인 표준 API 3가지를 소개하겠습니다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;getUserMedia&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTCDataChannel&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;api-1-mediastream&quot;&gt;API 1. &lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;사용자의 카메라와 마이크 같은 곳의 데이터 스트림에 접근합니다. 우리의 애플리케이션이 사용자의 음성, 영상 데이터를 채집해 올 때 자주 사용하게 됩니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;api-2-rtcpeerconnection&quot;&gt;API 2. &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;암호화 및 대역폭 관리를 하는 기능을 가지고 있고, 오디오 또는 비디오 연결을 담당합니다. 애플리케이션이 채집한 음성 및 영상 데이터를 서로 주고 받는 채널을 추상화하였다고 생각하면 됩니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;api-3-rtcdatachannel&quot;&gt;API 3. &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCDataChannel&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;음성 및 영상 데이터가 아닌, json/text 데이터들을 주고받는 채널을 추상화한 API 입니다.&lt;/p&gt;
-
-&lt;h1 id=&quot;webrtc-application-이-수행하는-것&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;webRTC&lt;/code&gt; application 이 수행하는 것&lt;/h1&gt;
-
-&lt;p&gt;여러분이 만약 p2p 영상 및 음성 통신을 하는 webRTC application 을 구성한다면, 다음의 주요한 4가지 작업을 수행해야 할 것입니다.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;no&lt;/th&gt;
-      &lt;th&gt;stage&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;Fetching&lt;/td&gt;
-      &lt;td&gt;상대 peer 에게 보낼 사용자의 음성 및 영상 데이터를 수집합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;Signaling&lt;/td&gt;
-      &lt;td&gt;이 세상 어딘가에 있는 상대 peer 와 연결을 맺기 위해서, 상대 peer 의 정보를 탐색합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;Connection&lt;/td&gt;
-      &lt;td&gt;발견한 peer 와 p2p connection 을 맺습니다. channel 을 개방해둡니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;Communication&lt;/td&gt;
-      &lt;td&gt;개방해놓은 채널을 통해 음성/영상/텍스트 데이터를 주고 받습니다.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;위의 4가지 작업의 구체적인 방식과, 각각의 수행에 필요한 webRTC API 들을 알아보겠습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1단계-fetching&quot;&gt;1단계. Fetching&lt;/h2&gt;
-
-&lt;p&gt;webRTC API 인 &lt;code class=&quot;highlighter-rouge&quot;&gt;MediaStream&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;getUserMedia&lt;/code&gt; 를 이용해 사용자의 영상 및 음성 정보를 가져옵니다. 가져온 이후의 활용법은 4단계에서 자세히 다루겠습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;2단계-signaling&quot;&gt;2단계. Signaling&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;잠깐! Signlaing 단계는 피어와 피어가 서로를 찾을 수 있도록 돕는 &lt;strong&gt;중간 매개자 역할을 하는 서버인 Signaling Server 를 필요&lt;/strong&gt;로 합니다. Signaling Sever 의 &lt;strong&gt;구현 방식에는 제약이 없습니다.&lt;/strong&gt;  오롯히 애플리케이션을 만드는 개발자의 몫입니다. 개발 엔지니어 개인 역량에 따라 구현 형태도 다르고, 정답도 없습니다. webRTC 애플리케이션 개발을 하면서 가장 어려웠던 부분이기도 합니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Signaling 단계는 서로 다른 두 peer (WebRTC Client) 가 Communication 하기 위한 준비단계로, 3가지 종류의 정보를 교환해야 합니다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Network 정보를 교환합니다.
-    &lt;ul&gt;
-      &lt;li&gt;ICE Framework 를 사용해 find candidate =&amp;gt; ip 와 port 를 찾는다&lt;/li&gt;
-      &lt;li&gt;내 ip 와 port 정보&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Media Capability 를 교환합니다.
-    &lt;ul&gt;
-      &lt;li&gt;sdp (Session Description Protocol) 형식을 따르는 blob 인  &lt;code class=&quot;highlighter-rouge&quot;&gt;offer&lt;/code&gt; 와 &lt;code class=&quot;highlighter-rouge&quot;&gt;answer&lt;/code&gt; 를 주고 받으며 교환합니다.&lt;/li&gt;
-      &lt;li&gt;내 브라우저와 상대 peer 브라우저가 사용 가능한 코덱들과 해상도들은 무엇일까&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Session Control Messages 교환합니다
-    &lt;ul&gt;
-      &lt;li&gt;Session (통신연결) 의 초기화,종료&lt;/li&gt;
-      &lt;li&gt;Error Report&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;조금 더 자세히 알아보겠습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;network-정보-ice-candidate-교환하기&quot;&gt;Network 정보 (ICE Candidate) 교환하기&lt;/h3&gt;
-
-&lt;p&gt;세상 어딘가에 있는 상대 peer 를 찾아 연결을 맺기 위해선, 네트워크 정보를 교환해야합니다. 이 때, 중간 매개자 역할로서 별도의 서버인 Signaling Server 가 필요합니다. 순서는 다음과 같습니다.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;step&lt;/th&gt;
-      &lt;th&gt;do&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; Object 를 새롭게 생성하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.onicecandidate&lt;/code&gt; 핸들러를 통해 현재 내 client 의 Ice Candidate(Network 정보)  가 확보되면 실행될 callback 을 전달합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;Ice Candidate (내 네트워크 정보) 가 확보되면, 중간 매개자인 Signaling Server 을 통해 상대 peer 에게  serialized 된 ice candidate 정보를 전송합니다. (쌍방이 서로에게 합니다.)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;상대 peer 의 candidate (네트워크 정보) 가 도착하면, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.addIceCandidate&lt;/code&gt; 를 통해 상대 peer 의 네트워크 정보를 등록합니다. (쌍방이 모두 합니다.)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;media-capability-교환하기--session-control-message-교환하기&quot;&gt;Media Capability 교환하기 + Session Control Message 교환하기&lt;/h3&gt;
-
-&lt;p&gt;상황을 가정해봅시다. A 와 B 가 webRTC 통신을 하려고합니다. 각자 브라우저에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 객체를 가지고 있고, 서로의 네트워크 정보 (ice candidate) 를 교환 후 각자의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.addIceCandidate&lt;/code&gt; 를 통해 서로의 네트워크 정보를 등록하였습니다.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;step&lt;/th&gt;
-      &lt;th&gt;do&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;B 가 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createOffer&lt;/code&gt; 를 호출해 Offer SDP (Session Description Protocol) 을 생성합니다. 여기엔 내 브라우저에서 사용 가능한 코덱이나 해상도에 대한 정보가 들어있습니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;B 가 Offer SDP 를 Signaling Server (매개자) 을 통해 전송합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;A 는 Signaling Channel 에서 Offer SDP 를 받아, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.setRemoteDescription&lt;/code&gt; 을 수행합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;A 의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 객체는 상대 session 에 대한 정보를 알고 있게 되었고, &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createAnswer&lt;/code&gt; 를 호출하여 Answer SDP 를 생성하여 Signaling Channel 을 통해 B 에게 전달합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;B 도 마찬가지로 자신의 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.setRemoteDescription&lt;/code&gt; 을 호출해, 전달받은 Answer SDP 를 등록합니다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;6&lt;/td&gt;
-      &lt;td&gt;A, B 각 측에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;setRemoteDescription&lt;/code&gt; 이 성공적으로 수행되었다면, 각 브라우저에서는 서로의 peer 에 대해 인지하고 있는 상태라고 할 수 있고, p2p 연결이 성공적으로 완료되었다고 할 수 있습니다.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;3단계-connection&quot;&gt;3단계. Connection&lt;/h2&gt;
-
-&lt;p&gt;어려운 Signaling 을 통해 상대 피어의 정보가 잘 등록된 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 를 얻었다면, 연결이 성공적으로 이루어진 것입니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;4단계-communication&quot;&gt;4단계. Communication&lt;/h2&gt;
-&lt;p&gt;보통 webRTC 를 통해서 peer 와 peer 가 주고받는 데이터는 크게 아래의 두가지입니다.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;video 나 audio 데이터 스트림&lt;/li&gt;
-  &lt;li&gt;직렬화된 text 데이터&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;교환의 양상은, 연결이 이루어지기 전에 데아터 stream 이나 채널을 미리 준비하고, 연결이 완료되면 데이터를 받았을 때의 callback 을 통해 받은 데이터를 처리합니다. 조금 더 자세한 내용은 아래와 같습니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;1-video-나-audio-데이터-스트림-의-경우&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1. video 나 audio 데이터 스트림&lt;/code&gt; 의 경우&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;주는 입장&lt;/strong&gt; : 자신의 머신에서  (&lt;code class=&quot;highlighter-rouge&quot;&gt;getUserMedia&lt;/code&gt; 등의 api 를 통해) video/audio 스트림 source 를 취득해 &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection&lt;/code&gt; 을 생성할 당시에 &lt;code class=&quot;highlighter-rouge&quot;&gt;addTrack&lt;/code&gt;(데이터 stream 채널을 연결) 해줍니다. Signaling 을 통해 connection 이 이루어지기 전에 미리 되어야합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;받는 입장&lt;/strong&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.ontrack&lt;/code&gt; 의 callback 을 커스텀하게 설정해서, connection 이 성공적으로 이루어진 후에 상대방의 Track (video/audio stream) 이 감지되면 어떤 동작을 할지 설정할 수 있습니다. 보통 받은 track 의 데이터 스트림을 DOM 의 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;video srcObject={??}/&amp;gt;&lt;/code&gt; element 에 연결해 보여줍니다.&lt;/p&gt;
-
-&lt;h4 id=&quot;2-직렬화된-text-데이터-의-경우&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2. 직렬화된 text 데이터&lt;/code&gt; 의 경우&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;주는 입장&lt;/strong&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.createDataChannel&lt;/code&gt;  을 통해, 특정 이름의 data 전달 채널을 개설할 수 있습니다. 이 또한 Signaling 을 통해 connection 이 이루어지기 전에 미리 되어야합니다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;받는 입장&lt;/strong&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;RTCPeerConnection.ondatachannel&lt;/code&gt; 의 callback 을 커스텀하게 설정해서, connection 이 성공적으로 이루어진 후에 상대방이 data channel 을 통해 어떤 데이터를 보냈을 때의 동작을 설정할 수 있습니다.&lt;/p&gt;
-
-&lt;h1 id=&quot;webrtc-애플리케이션을-만들-때-겪었던-어려움&quot;&gt;webRTC 애플리케이션을 만들 때 겪었던 어려움&lt;/h1&gt;
-&lt;h2 id=&quot;1-피어간의-연결이-끊겼을-때-다시-연결을-맺어줘야-한다&quot;&gt;1. 피어간의 연결이 끊겼을 때, 다시 연결을 맺어줘야 한다&lt;/h2&gt;
-&lt;p&gt;인터넷의 문제나 예기치 못한 문제로 피어와 피어간에 맺어놓은 Connection 이 끊어지는 일이 굉장히 자주 발생합니다. 이 때 적절한 retry 로직으로 자연스럽게 재연결을 맺어주어야 합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-안정적인-signaling-server-를-구축해야한다&quot;&gt;2. 안정적인 Signaling Server 를 구축해야한다&lt;/h2&gt;
-&lt;p&gt;Signaling 단계가 성공하지 못하면 Connection 을 맺을 수 조차 없습니다. 따라서 안정적인 Signaling Server 를 구축하는 것이 무엇보다 중요했습니다.&lt;/p&gt;
-
-&lt;h1 id=&quot;참고한-자료들&quot;&gt;참고한 자료들&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Getting Started with webRTC : https://www.html5rocks.com/ko/tutorials/webrtc/basics/&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name></name></author><category term="webrtc" /><category term="js" /><category term="p2p" /><category term="frontend" /><summary type="html">2018년도에 webRTC 를 이용한 ‘코딩 실시간 화상 강의실 서비스’ 를 만들던 경험을 떠올리며, webRTC API 를 이용한 애플리케이션 작성법을 정리해봅니다. 🎉</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://jojoldu.tistory.com/165&quot;&gt;JPA N+1 문제 및 해결방안&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="java" /><category term="spring" /><category term="jpa" /><summary type="html">JPA 를 이용한 개발을 하다보면 자주 접하는 프로그래밍적인 이슈가 있습니다. 바로 Fetch Type (Fetch 전략) 입니다.</summary></entry></feed>
