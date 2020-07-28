@@ -269,36 +269,45 @@
 
 
 <div class="post container pt-5 " style="max-width : 750px">
-    <p>javascript 언어는 다른 많은 언어들과 다르게 굉장히 다양한 Runtime(=실행환경) 속에서 실행된다.</p>
+    <p>Javascript 는 다른 많은 언어들과 다르게 굉장히 다양한 Runtime(=실행환경) 속에서 실행된다.</p>
 
-<p>다른 언어 예를 들자면, python 은 python 공식 interpreter 가 주기적으로 업데이트되며, 모든 파이썬 코드 작성자는 python 공식 interpreter 를 이용한다. java 는 oracle 에서 JDE 를 공식 배포 및 관리하고, java 언어 사용자들은 모두 같은 java Runtime 을 이용하고 개발한다.</p>
+<p>다른 언어 예를 들자면, Python 은 공식 interpreter 가 주기적으로 업데이트되며, 모든 파이썬 코드 작성자는 Python 공식 Interpreter 를 이용한다. Java 또한 공식 JDK 가 배포 및 관리되고, 자바 개발자는 다른 개발자들이 모두 JVM 이라는 동일한 Java Runtime 을 이용한다고 가정하고 개발한다.</p>
 
-<p>반면에 javascript 는 개발자가 코드를 짜도, Runtime 에 따라 작동 양상이 다를 수 있다.</p>
+<p>반면에 Javascript 는 같은 코드여도, Runtime 에 따라 실행 양상이 다를 수 있다.</p>
 
-<p>그럼에도 모든 javascript Runtime 들은 비슷한 구조와 동작방식을 가지고 있다. 가장 대중적인 js runtime 인 nodejs 부터 브라우저에 내장된 runtime 까지, 기본 틀은 비슷하다.</p>
+<p>그럼에도 모든 Javascript Runtime 들은 비슷한 구조와 동작방식을 가지고 있다. 가장 대중적인 Runtime 인 NodeJS 부터 브라우저에 내장된 Runtime 까지, 기본 틀은 비슷하다.</p>
 
-<p>그리고 javascript runtime 들의 공통적인 동작방식을 아는 것은 javascript 코드를 짜는데에 매우 도움이 된다. 만약 callback Pattern 의 코드에서 Promise, async function, await Pattern 의 코드로 넘어가고 싶어도, javascript runtime 의 동작방식을 모르면 쉽사리 넘어갈 수 없다.</p>
+<p>그리고 Javascript Runtime 들의 공통적인 동작방식을 아는 것은 Javascript 코드를 짜는데에 매우 도움이 된다. 만약 Callback Pattern 의 코드에서 Promise 나 async-await Pattern 의 코드로 넘어가고 싶어도, Javascript Runtime 의 동작방식을 모르면 쉽사리 넘어갈 수 없다.</p>
 
 <p>그래서 이번 글에서는 Javascript Runtime 의 공통적인 구조를 파악해보려고 한다.</p>
 
-<h1 id="runtime-기본-4-요소">Runtime 기본 4 요소</h1>
+<h1 id="-runtime-기본-4-요소">🏁 Runtime 기본 4 요소</h1>
+<p><img src="/asset/media/image/post/25/18.png" alt="" /></p>
 
 <p>Javascript Runtime 는 큰 4가지 요소로 나눌 수 있는데 이는 아래와 같다.</p>
 
 <ol>
-  <li>Javascript Engine ( Call Stack , Memory Heap )</li>
-  <li>Background</li>
-  <li>여러 Task Queues 집단 ( Task Queue, Micro Task Queue, + Animation Frame 등 )</li>
-  <li>Event Loop</li>
+  <li>Javascript Engine : Call Stack , Heap Memory</li>
+  <li>Background : 비동기 task 를 수행하는 Multi Threads</li>
+  <li>여러 Task Queue : Background 작업 수행 후 Callback 을 관리</li>
+  <li>Event Loop : Single Thread, Non-blocking IO 의 책임</li>
 </ol>
 
-<h2 id="javascript-engine--코드-인터프리터">Javascript Engine : 코드 인터프리터</h2>
+<p>구성 요소들을 하나하나 살펴보자.</p>
 
-<p>JS Engine 은 <code class="highlighter-rouge">.js</code>파일을 읽으면서 Call stack 을 채우고, Call stack 에 있는 작업들을 수행하기를 반복한다.</p>
+<h2 id="요소-1-javascript-engine">요소 1. Javascript Engine</h2>
+<p><img src="/asset/media/image/post/25/16.png" alt="" /></p>
 
-<p>엔진에 따라 외부 모듈을 읽어들이는 과정도 (<code class="highlighter-rouge">require('https')</code> or <code class="highlighter-rouge">import 'https'</code>) 수행한다.</p>
+<p>Node Js 나 브라우저와 같은 Javascript Runtime 에 포함되어있는 Javascript Engine 은 코드를 읽는 Interpreter, 코드를 바탕으로 현재 실행중인 서브루틴을 관리하는 Call Stack, 그리고 변수와 객체에 대한 메모리 할당 및 관리를 담당하는 Heap Memory 로 구성되어있다.</p>
 
-<h2 id="background--수많은-작업을-하는-멀티-thread">Background : 수많은 작업을 하는 멀티 Thread</h2>
+<p>자바스크립트 엔진은 은 <code class="highlighter-rouge">.js</code>파일을 읽으면서 Call stack 을 채우고, Call stack 에 있는 작업들을 수행하기를 반복한다.</p>
+
+<blockquote>
+  <p>엔진에 따라 외부 모듈을 읽어들이는 과정도 수행한다. (ex : <code class="highlighter-rouge">require('https')</code> , <code class="highlighter-rouge">import 'https'</code>)</p>
+</blockquote>
+
+<h2 id="요소-23-background-와-task-queue">요소 2,3. Background 와 Task Queue</h2>
+<p><img src="/asset/media/image/post/25/19.png" alt="" /></p>
 
 <p>JS Engine 에서 코드를 수행하다가, 다음과 같은 Background API 를 호출하게 되면, Background 작업이 시작된다.</p>
 
@@ -333,24 +342,13 @@
   </tbody>
 </table>
 
-<p>Promise 의 동작은 따로 정리하는 것이 좋을 것 같아서 대강 설명하였다.</p>
+<h2 id="요소-4-event-loop">요소 4. Event Loop</h2>
+<p><img src="/asset/media/image/post/25/15.png" alt="" /></p>
 
-<p>바로 다음 post 에서 정리하겠다.</p>
+<p>Event Loop 는 Javascript Runtime 의 중심에서 Call Stack 과 Background 간의 업무 처리를 돕는 중개자 역할을 한다. 무한 루프를 돌면서 Callback(Task) 를 Background 에서 Task Queue 로, Task Queue 에서 Engine 의 Call stack 으로 적절히 전달한다. Single Thread 로 구성되어있고, Background 의 작업 수행을 기다리지 않기 때문에 Non-Blocking 의 특징을 가지고 있다.</p>
 
-<p><img src="/asset/media/image/post/25/1.png" alt="" /></p>
-
-<h2 id="event-loop--call-stack-과-background-의-중개자">Event Loop : call stack 과 background 의 중개자</h2>
-
-<p>이번엔 Event Loop 가 하는 일을 알아보겠다. Event Loop 는 Javascript Runtime 의 중심에서 Call Stack 과 Background 간의 업무 처리를 돕는 중개자 역할을 한다.</p>
-
-<p>무한 루프를 돌면서 Callback(Task) 를 Background 에서 Task Queue 로, Task Queue 에서 Engine 의 Call stack 으로 적절히 전달한다.</p>
-
-<p><img src="/asset/media/image/post/25/3.png" alt="" /></p>
-
-<h3 id="참고--단일멀티-thread">참고 : 단일/멀티 Thread</h3>
-<p>Javascript Engine 은 단일 Thread 이다.</p>
-
-<p>“단일 Thread” 라는 말과 “Call Stack 이 하나” 라는 말은 같은 말이다.</p>
+<h3 id="참고--요소별-단일멀티-thread">참고 : 요소별 단일/멀티 Thread</h3>
+<p>Javascript Engine 과 Event Loop 는 단일 Thread 이고, Background 는 (사실상) Multi Thread 이다.</p>
 
 <table>
   <thead>
@@ -379,7 +377,14 @@
   </tbody>
 </table>
 
-<h1 id="promise-로-부터-전달된-micro-task-는-우선-처리">Promise 로 부터 전달된 Micro Task 는 우선 처리</h1>
+<h1 id="-그림으로-알아보는-javascript-runtime-동작">🖼 그림으로 알아보는 Javascript Runtime 동작</h1>
+<p>다음은 자바스크립트 코드가 Runtime 에서 어떻게 수행되는지 순서대로 나타낸 것이다. 
+<img src="/asset/media/image/post/25/11.png" alt="" />
+<img src="/asset/media/image/post/25/12.png" alt="" />
+<img src="/asset/media/image/post/25/13.png" alt="" />
+<img src="/asset/media/image/post/25/14.png" alt="" /></p>
+
+<h1 id="-놓치기-쉬운-포인트--promise-로-부터-전달된-micro-task-는-우선-처리">📌 놓치기 쉬운 포인트 : Promise 로 부터 전달된 Micro Task 는 우선 처리</h1>
 
 <p>Task Queue 부분은 여러 종류의 Task Queue 를 가지고 있는데, Javascript 의 Promise 문법을 지원하는 최근의 javascript runtime 들은 Micro Task Queue 를 가진다.</p>
 
